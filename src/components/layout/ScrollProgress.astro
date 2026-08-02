@@ -1,0 +1,22 @@
+---
+// ScrollProgress.astro — luxury gold bar at top of viewport, width = scroll %
+---
+<div id="scroll-progress" style="width: 0%" aria-hidden="true"></div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: true,
+    onUpdate: (self) => {
+      const bar = document.getElementById('scroll-progress');
+      if (bar) {
+        bar.style.width = `${self.progress * 100}%`;
+      }
+    },
+  });
+</script>

@@ -1,0 +1,155 @@
+---
+// AboutTeaser.astro — editorial 2-col: parallax photo left + story right
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="section-padding bg-[var(--color-bg)] overflow-hidden" aria-label="About The Man Wanders Globe">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Photo with parallax effect -->
+      <div class="relative">
+        <!-- Main image (parallax target) -->
+        <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio: 4/5;">
+          <img
+            id="about-parallax-img"
+            src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=85&auto=format"
+            alt="A lone traveller hiking a mountain ridge at golden hour — the spirit of The Man Wanders Globe"
+            width="900"
+            height="1125"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover"
+            style="transform: scale(1.15); transform-origin: center;"
+          />
+          <!-- Overlay year badge -->
+          <div class="absolute bottom-6 right-6 glass rounded-xl px-5 py-4 text-center">
+            <span class="block font-display text-4xl font-semibold text-[var(--color-text-primary)]">{new Date().getFullYear() - 2020}+</span>
+            <span class="text-caption text-[var(--color-text-secondary)] uppercase tracking-wider">Years of journeys</span>
+          </div>
+        </div>
+
+        <!-- Floating accent image -->
+        <div class="absolute -bottom-8 -left-8 w-40 h-48 rounded-xl overflow-hidden shadow-xl border-4 border-white hidden lg:block">
+          <img
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80&auto=format"
+            alt="Aerial view of mountain landscape"
+            width="400"
+            height="480"
+            loading="lazy"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- Gold accent line -->
+        <div class="absolute -top-4 -right-4 w-32 h-32 border border-[var(--color-luxury)] rounded-full opacity-30 hidden lg:block" aria-hidden="true"></div>
+      </div>
+
+      <!-- Story copy -->
+      <div class="lg:pl-4">
+        <SectionHeader
+          eyebrow="Our Story"
+          headline="Born from a <em>wanderer's</em> heart."
+          subhead="What started as one man's quest for authentic travel experiences grew into a curated travel company built on a simple belief: the journey matters as much as the destination."
+        />
+
+        <!-- Timeline micro-narrative -->
+        <div class="mt-10 space-y-6">
+          {[
+            {
+              year: '2020',
+              title: 'The First Journey',
+              text: 'Our founder returned from a solo trip across Rajasthan having seen how fragmented, impersonal travel planning left travellers exhausted before they even arrived. He decided to change that.',
+            },
+            {
+              year: '2021',
+              title: 'The First Guests',
+              text: 'Word of mouth brought the first five families. Each came back with stories that felt like they\'d been written by the land itself. That was the validation we needed.',
+            },
+            {
+              year: '2023',
+              title: 'Going International',
+              text: 'From Bali to the Maldives, Paris to Santorini — we extended our curation philosophy across borders, handpicking partners who shared our obsession with the details.',
+            },
+            {
+              year: 'Today',
+              title: `${5000}+ Wanderers Served`,
+              text: 'Every trip we design is still personal. We still pick up the phone. We still lose sleep making sure your journey is exactly right.',
+            },
+          ].map((item, i) => (
+            <div class="flex gap-5 gsap-rise-hidden about-timeline-item">
+              <div class="flex flex-col items-center shrink-0">
+                <div class="w-9 h-9 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white text-xs font-bold shrink-0">
+                  {i + 1}
+                </div>
+                {i < 3 && <div class="w-px flex-1 bg-[var(--color-border)] mt-2"></div>}
+              </div>
+              <div class="pb-6">
+                <div class="flex items-center gap-3 mb-1.5">
+                  <span class="text-eyebrow">{item.year}</span>
+                </div>
+                <h3 class="text-h3 mb-2">{item.title}</h3>
+                <p class="text-body text-[var(--color-text-secondary)]">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a href="/about" class="inline-flex items-center gap-2 mt-6 font-medium text-[var(--color-accent)] animated-underline gsap-rise-hidden about-cta">
+          Read our full story
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ─── Parallax on photo ───────────────────────────────────────────────────
+  const img = document.getElementById('about-parallax-img');
+  if (img && !prefersReduced) {
+    gsap.to(img, {
+      y: -60,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: img.closest('section'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.5,
+      },
+    });
+  }
+
+  // ─── Timeline items fade + rise ──────────────────────────────────────────
+  const timelineItems = document.querySelectorAll('.about-timeline-item');
+  gsap.to(timelineItems, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: 'power3.out',
+    stagger: 0.12,
+    scrollTrigger: {
+      trigger: timelineItems[0],
+      start: 'top 80%',
+    },
+  });
+
+  const cta = document.querySelector('.about-cta');
+  if (cta) {
+    gsap.to(cta, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: cta, start: 'top 85%' },
+    });
+  }
+</script>

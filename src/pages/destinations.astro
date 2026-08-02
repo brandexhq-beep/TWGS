@@ -1,0 +1,169 @@
+---
+// pages/destinations.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DESTINATIONS } from '../data/destinations';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title={`Travel Destinations in India & Abroad | ${SITE.name}`}
+  description="Explore 120+ curated travel destinations across India and the world. Filter by budget, travel style, season and duration to find your perfect journey."
+>
+  <!-- Page hero -->
+  <div class="relative pt-32 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">
+    <div class="container-site relative z-10">
+      <span class="text-eyebrow block mb-4">Explore the World</span>
+      <h1 class="text-display-xl text-white mb-4">Find your<br/><em class="not-italic" style="color: var(--color-luxury);">next destination.</em></h1>
+      <p class="text-body-lg text-white/70 max-w-lg">
+        From Rajasthan's royal palaces to Maldivian lagoons — filter by style, season and budget.
+      </p>
+    </div>
+    <div class="decorative-layer absolute -right-20 -top-20 opacity-10" aria-hidden="true">
+      <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
+        <circle cx="400" cy="0" r="300" stroke="white" stroke-width="0.8" fill="none"/>
+        <circle cx="400" cy="0" r="200" stroke="white" stroke-width="0.4" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <section class="section-padding bg-[var(--color-bg)]" aria-label="Destination browser">
+    <div class="container-site">
+
+      <!-- Filter bar -->
+      <div class="mb-10 flex flex-wrap gap-3 items-center" role="group" aria-label="Filter destinations">
+        <span class="text-caption text-[var(--color-text-secondary)] font-medium mr-2">Filter by:</span>
+        {[
+          { id: 'all', label: 'All' },
+          { id: 'domestic', label: '🇮🇳 Domestic' },
+          { id: 'international', label: '✈️ International' },
+          { id: 'luxury', label: '💎 Luxury' },
+          { id: 'adventure', label: '🧗 Adventure' },
+          { id: 'honeymoon', label: '💑 Honeymoon' },
+          { id: 'family', label: '👨‍👩‍👧 Family' },
+        ].map((f) => (
+          <button
+            class="chip dest-filter-btn"
+            data-filter={f.id}
+            aria-pressed={f.id === 'all' ? 'true' : 'false'}
+            style={f.id === 'all' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);' : ''}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Destination grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid" role="list">
+        {DESTINATIONS.map((dest) => (
+          <article
+            class="dest-card package-card gsap-rise-hidden"
+            role="listitem"
+            data-region={dest.region}
+            data-types={dest.travelTypes.join(',')}
+          >
+            <div class="card-image relative overflow-hidden" style="aspect-ratio: 4/3;">
+              <img
+                src={dest.heroImage}
+                alt={`${dest.name}, ${dest.country} — travel destination`}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover"
+              />
+              <!-- Hover info overlay -->
+              <div class="absolute inset-0 bg-[var(--color-accent-secondary)] opacity-0 hover:opacity-60 transition-opacity duration-300 flex items-end p-5" aria-hidden="true">
+              </div>
+              <!-- Country badge -->
+              <div class="absolute top-4 left-4">
+                <span class="chip bg-white/90 border-white text-[var(--color-text-primary)] text-xs" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem;">
+                  {dest.country}
+                </span>
+              </div>
+              <!-- Region badge -->
+              <div class="absolute top-4 right-4">
+                <span class="chip text-xs" style={`min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; ${dest.region === 'domestic' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.15);' : 'border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);'}`}>
+                  {dest.region === 'domestic' ? 'Domestic' : 'International'}
+                </span>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 class="text-h3">{dest.name}</h3>
+                  <p class="text-caption text-[var(--color-text-secondary)] mt-0.5">{dest.tagline}</p>
+                </div>
+                <div class="text-right shrink-0">
+                  <p class="text-caption text-[var(--color-text-secondary)]">From</p>
+                  <p class="price-tag">
+                    <span class="currency">₹</span>{dest.budget.from.toLocaleString('en-IN')}
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {dest.travelTypes.slice(0, 3).map((t) => (
+                  <span class="chip text-xs" style="min-height: 0; padding: 0.15rem 0.5rem; font-size: 0.65rem;">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <a href={`/destinations#${dest.slug}`} class="animated-underline text-[var(--color-accent)] font-semibold text-sm">
+                Explore {dest.name} →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <p id="no-results" class="hidden text-center text-[var(--color-text-secondary)] py-12">
+        No destinations found for this filter. <button class="text-[var(--color-accent)] underline" onclick="document.querySelector('[data-filter=all]').click()">Reset filters</button>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Filter logic ─────────────────────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.dest-filter-btn');
+  const cards = document.querySelectorAll('.dest-card') as NodeListOf<HTMLElement>;
+  const noResults = document.getElementById('no-results');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') ?? 'all';
+
+      filterBtns.forEach((b) => {
+        b.setAttribute('aria-pressed', 'false');
+        (b as HTMLElement).style.cssText = '';
+      });
+      btn.setAttribute('aria-pressed', 'true');
+      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);';
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const region = card.getAttribute('data-region') ?? '';
+        const types = (card.getAttribute('data-types') ?? '').split(',');
+        const show = filter === 'all' || region === filter || types.includes(filter);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (noResults) noResults.classList.toggle('hidden', visible > 0);
+    });
+  });
+
+  // Stagger reveal
+  gsap.to(cards, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    ease: 'power3.out',
+    stagger: 0.06,
+    scrollTrigger: { trigger: '#destinations-grid', start: 'top 80%' },
+  });
+</script>

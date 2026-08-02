@@ -1,0 +1,56 @@
+---
+// CookieBanner.astro — shows when analytics/tracking scripts are present
+---
+<div id="cookie-banner" role="region" aria-label="Cookie consent" aria-live="polite">
+  <p>
+    We use cookies to enhance your experience and understand how visitors use our site.
+    <a href="/privacy-policy" class="underline text-white/80 hover:text-white ml-1">Learn more</a>
+  </p>
+  <div class="flex gap-3 shrink-0 flex-wrap">
+    <button
+      id="cookie-reject"
+      class="px-4 py-2 rounded-full text-sm font-medium border border-white/30 text-white/70 hover:border-white/60 hover:text-white transition-all duration-200 min-h-11"
+    >
+      Reject
+    </button>
+    <button
+      id="cookie-accept"
+      class="px-5 py-2 rounded-full text-sm font-semibold bg-white text-[#10253F] hover:bg-white/90 transition-colors duration-200 min-h-11"
+    >
+      Accept All
+    </button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const accept = document.getElementById('cookie-accept');
+  const reject = document.getElementById('cookie-reject');
+
+  function hideBanner() {
+    banner?.classList.remove('show');
+  }
+
+  // Show banner if no consent saved
+  const consent = localStorage.getItem('cookie-consent');
+  if (!consent && banner) {
+    setTimeout(() => banner.classList.add('show'), 2500);
+  }
+
+  accept?.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    hideBanner();
+    // TODO: Enable analytics scripts here (e.g. GA4 init via Partytown)
+  });
+
+  reject?.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'rejected');
+    hideBanner();
+  });
+
+  // Re-open from footer "Cookie Preferences" link
+  document.getElementById('cookie-prefs-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    banner?.classList.add('show');
+  });
+</script>

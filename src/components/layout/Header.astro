@@ -1,0 +1,192 @@
+---
+// Header.astro
+// Transparent over hero → solid after 80px scroll (GSAP ScrollTrigger, no scroll listener)
+// Mobile: full-screen overlay with staggered link reveal
+import { NAV_LINKS } from '../../data/nav';
+import { SITE } from '../../data/site';
+---
+
+<header id="site-header" class="w-full py-4 px-0">
+  <div class="container-site flex items-center justify-between gap-6">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 shrink-0 z-10" aria-label="The Man Wanders Globe — Home">
+      <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="40" r="32" stroke="currentColor" stroke-width="2" fill="none"/>
+        <ellipse cx="40" cy="40" rx="16" ry="32" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="8" y1="40" x2="72" y2="40" stroke="currentColor" stroke-width="1.5"/>
+        <ellipse cx="40" cy="40" rx="29" ry="12" stroke="#C6A34E" stroke-width="1" fill="none"/>
+        <circle cx="56" cy="28" r="3" fill="#C6A34E"/>
+      </svg>
+      <div class="hidden sm:block">
+        <span class="logo-text font-display font-medium tracking-widest text-xs uppercase leading-tight" style="letter-spacing:0.12em">
+          The Man<br/>Wanders Globe
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+      {NAV_LINKS.slice(0, 5).map((link) => (
+        <a
+          href={link.href}
+          class="nav-link transition-colors"
+          data-nav-link
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-4 z-10">
+      <a
+        href="/#plan-my-trip"
+        class="btn btn-primary hidden sm:inline-flex text-sm py-2.5 px-5"
+        id="header-cta"
+      >
+        <span>Plan My Trip</span>
+      </a>
+
+      <!-- Hamburger button — mobile -->
+      <button
+        id="hamburger-btn"
+        class="lg:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span class="hamburger-line w-6 h-px bg-current block transition-all duration-300 origin-center"></span>
+        <span class="hamburger-line w-6 h-px bg-current block transition-all duration-300"></span>
+        <span class="hamburger-line w-5 h-px bg-current block transition-all duration-300 origin-center self-end"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<nav
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  aria-hidden="true"
+>
+  <!-- Close button -->
+  <button
+    id="mobile-nav-close"
+    class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white"
+    aria-label="Close navigation"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="flex flex-col gap-6 py-12">
+    {NAV_LINKS.map((link, i) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link animated-underline-gold"
+        style={`transition-delay: ${i * 60}ms`}
+        onclick="document.getElementById('mobile-nav').classList.remove('open')"
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="/#plan-my-trip"
+      class="btn btn-primary self-start mt-4 mobile-nav-link"
+      style={`transition-delay: ${NAV_LINKS.length * 60}ms`}
+    >
+      <span>Plan My Trip</span>
+    </a>
+  </div>
+
+  <!-- Contact info at bottom -->
+  <div class="absolute bottom-8 left-8 right-8">
+    <p class="text-xs tracking-widest uppercase text-white/40 mb-2">Get in touch</p>
+    <a href={`tel:${SITE.contact.phone}`} class="text-white/70 hover:text-white text-sm transition-colors">
+      {SITE.contact.phone}
+    </a>
+  </div>
+</nav>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = document.getElementById('site-header');
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileClose = document.getElementById('mobile-nav-close');
+  const headerCta = document.getElementById('header-cta');
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const lines = document.querySelectorAll('.hamburger-line');
+
+  // ─── Transparent → solid on scroll ───────────────────────────────────────
+  // Initial state: transparent (white text for hero overlay)
+  if (header) {
+    gsap.set(header, { color: 'white' });
+
+    ScrollTrigger.create({
+      start: 80,
+      onEnter: () => {
+        header.classList.add('scrolled');
+        gsap.to(header, { color: 'var(--color-text-primary)', duration: 0.3, ease: 'power2.out' });
+        if (headerCta) {
+          headerCta.style.borderColor = '';
+          headerCta.style.color = '';
+        }
+      },
+      onLeaveBack: () => {
+        header.classList.remove('scrolled');
+        gsap.to(header, { color: 'white', duration: 0.3, ease: 'power2.out' });
+      },
+    });
+
+    // Mark current page link as active
+    navLinks.forEach((link) => {
+      const href = (link as HTMLAnchorElement).getAttribute('href');
+      if (href && window.location.pathname === href) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // ─── Mobile nav toggle ────────────────────────────────────────────────────
+  function openMobileNav() {
+    if (!mobileNav || !hamburger) return;
+    mobileNav.classList.add('open');
+    mobileNav.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+
+    // Animate hamburger → X
+    gsap.to(lines[0], { rotation: 45, y: 8, duration: 0.3, ease: 'power2.out' });
+    gsap.to(lines[1], { opacity: 0, duration: 0.2 });
+    gsap.to(lines[2], { rotation: -45, y: -8, width: '1.5rem', duration: 0.3, ease: 'power2.out' });
+  }
+
+  function closeMobileNav() {
+    if (!mobileNav || !hamburger) return;
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+
+    // Animate X → hamburger
+    gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.out' });
+    gsap.to(lines[1], { opacity: 1, duration: 0.2 });
+    gsap.to(lines[2], { rotation: 0, y: 0, width: '1.25rem', duration: 0.3, ease: 'power2.out' });
+  }
+
+  hamburger?.addEventListener('click', openMobileNav);
+  mobileClose?.addEventListener('click', closeMobileNav);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      closeMobileNav();
+    }
+  });
+</script>

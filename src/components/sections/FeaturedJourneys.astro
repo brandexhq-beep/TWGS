@@ -1,0 +1,136 @@
+---
+// FeaturedJourneys.astro — alternating editorial rows, animated underline CTA
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const journeys = [
+  {
+    image: 'https://images.unsplash.com/photo-1559135197-8a45ea74d367?w=900&q=85&auto=format',
+    alt: 'Couple on a private beach at sunset, Maldives',
+    eyebrow: 'Honeymoon',
+    title: 'A Private Island, Just the Two of You',
+    body: 'She wanted turquoise water. He wanted no phone signal. We found them both — plus a private chef, a sunset dolphin cruise, and a villa where the ocean is your living room floor.',
+    link: '/packages/maldives-overwater-luxury',
+    linkLabel: 'Read the journey',
+    duration: '7 Days · Maldives',
+    price: '₹1,75,000',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=900&q=85&auto=format',
+    alt: 'Royal Rajasthan — camel caravan at sunset in Thar Desert',
+    eyebrow: 'Royal Heritage',
+    title: 'The Maharajas Had It Right',
+    body: 'Amber Fort at dawn before the crowds arrive. A heritage haveli in the Blue City. A candlelit dinner on Lake Pichola. Rajasthan rewards those who know where to look — and we know exactly where.',
+    link: '/packages/rajasthan-royal-circuit',
+    linkLabel: 'Read the journey',
+    duration: '10 Days · Rajasthan',
+    price: '₹65,000',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85&auto=format',
+    alt: 'Pangong Lake in Ladakh at dawn, turquoise water and snow peaks',
+    eyebrow: 'Adventure',
+    title: 'Where the Road Runs Out',
+    body: 'The highest motorable road on earth. A lake that shifts colour with the clouds. Monasteries that have watched empires rise and fall. Some places don\'t need a filter — Ladakh is one of them.',
+    link: '/packages/leh-ladakh-expedition',
+    linkLabel: 'Read the journey',
+    duration: '9 Days · Leh & Ladakh',
+    price: '₹45,000',
+  },
+];
+---
+
+<section class="section-padding bg-[var(--color-bg)]" aria-label="Featured journeys">
+  <div class="container-site">
+    <SectionHeader
+      eyebrow="Signature Journeys"
+      headline="Every trip has a <em>story.</em> These are ours."
+      id="featured-journeys-header"
+    />
+
+    <div class="mt-16 space-y-24">
+      {journeys.map((j, i) => (
+        <div class={`editorial-row ${i % 2 === 1 ? 'reverse' : ''} gsap-rise-hidden featured-journey-row`}>
+          <!-- Image -->
+          <div class="relative overflow-hidden rounded-2xl img-zoom-container img-zoom-darken" style="aspect-ratio: 4/3;">
+            <img
+              src={j.image}
+              alt={j.alt}
+              width="900"
+              height="675"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover img-zoom-target"
+            />
+            <!-- Price badge -->
+            <div class="absolute bottom-5 left-5 glass rounded-xl px-4 py-3">
+              <p class="text-caption text-[var(--color-text-secondary)] mb-0.5">From</p>
+              <p class="font-display text-2xl font-semibold text-[var(--color-accent)]">{j.price}</p>
+              <p class="text-caption text-[var(--color-text-secondary)] text-xs">per person</p>
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div class="flex flex-col justify-center">
+            <span class="text-eyebrow mb-4 block">{j.eyebrow}</span>
+            <h3 class="text-display-lg mb-5">{j.title}</h3>
+            <div class="divider-luxury mb-5"></div>
+            <p class="text-body-lg text-[var(--color-text-secondary)] mb-4 leading-relaxed">{j.body}</p>
+            <p class="text-caption text-[var(--color-text-secondary)] mb-8 flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              {j.duration}
+            </p>
+            <a
+              href={j.link}
+              class="inline-flex items-center gap-2 font-semibold text-[var(--color-accent)] animated-underline self-start text-sm tracking-wide uppercase"
+            >
+              {j.linkLabel}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const rows = document.querySelectorAll('.featured-journey-row');
+
+  rows.forEach((row, i) => {
+    const direction = i % 2 === 0 ? 40 : -40;
+    gsap.fromTo(
+      row,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: row,
+          start: 'top 75%',
+        },
+      }
+    );
+  });
+
+  // Section header
+  const header = document.getElementById('featured-journeys-header');
+  if (header) {
+    gsap.to(header, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: header, start: 'top 80%' },
+    });
+  }
+</script>

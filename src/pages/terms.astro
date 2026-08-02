@@ -1,0 +1,82 @@
+---
+// pages/terms.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+const lastUpdated = '1 August 2025';
+---
+<BaseLayout
+  title={`Terms & Conditions | ${SITE.name}`}
+  description="Terms and Conditions for The Man Wanders Globe — acceptable use, booking process, liability and disclaimers."
+>
+  <div class="pt-32 pb-12 bg-[var(--color-accent-secondary)]">
+    <div class="container-site">
+      <span class="text-eyebrow block mb-4">Legal</span>
+      <h1 class="text-display-lg text-white mb-3">Terms & Conditions</h1>
+      <p class="text-body text-white/60">Last updated: {lastUpdated}</p>
+    </div>
+  </div>
+  <section class="section-padding bg-[var(--color-bg)]">
+    <div class="container-site max-w-3xl space-y-10">
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-sm text-amber-800">
+        <strong>⚠️ Client review required:</strong> Confirm your registered legal entity name, address, and booking/payment process before publishing. Engage a qualified legal professional to review before go-live.
+      </div>
+
+      {[
+        {
+          title: '1. Acceptance of Terms',
+          body: `By accessing and using the website at ${SITE.url} or engaging our services, you agree to be bound by these Terms & Conditions. If you do not agree, please do not use our site or services. These terms apply to all visitors, enquirers, and clients.`,
+        },
+        {
+          title: '2. Our Services',
+          body: `${SITE.company.legalName} ("The Man Wanders Globe", "we", "us") provides travel planning and booking facilitation services. We design itineraries, make reservations with hotels, airlines and activity providers, and arrange transfers on your behalf. We act as an agent on your behalf and are not the end supplier of accommodation, flights, or experiences.`,
+        },
+        {
+          title: '3. Enquiries Are Not Confirmed Bookings',
+          body: `Submitting a "Plan My Trip" form, callback request, or general enquiry does not constitute a confirmed booking. A booking is only confirmed when: (a) we have issued a written booking confirmation; and (b) the required deposit has been received and cleared. All prices quoted during initial enquiry are indicative and subject to change until a booking confirmation is issued.`,
+        },
+        {
+          title: '4. Pricing and Payment',
+          body: `All prices are quoted in Indian Rupees (INR) unless otherwise stated. Prices are per person unless stated as "total". A deposit of 25–30% of the total package cost is required to confirm a booking, with the balance due 15–30 days prior to departure (as specified in your booking confirmation). Prices may fluctuate due to changes in airline fares, hotel rates, currency exchange rates, taxes, or fuel surcharges. We will notify you of any material price changes before confirming a booking.`,
+        },
+        {
+          title: '5. Accuracy of Information',
+          body: `We take reasonable care to ensure the accuracy of information on our website and in our communications. However, errors can occur. Hotel descriptions, amenity lists, and pricing are based on information provided by our partners and may change. We do not accept liability for typographical errors, inaccuracies in third-party supplier information, or changes made by suppliers after we have published information.`,
+        },
+        {
+          title: '6. Travel Documents & Visas',
+          body: `It is your sole responsibility to ensure you hold a valid passport (with at least 6 months validity beyond your travel dates), any required visas, and any health-related documentation (e.g., vaccination certificates) required for your destination. We provide visa guidance as a courtesy — the decision to grant a visa rests solely with the relevant embassy or consulate. We accept no liability for denied boarding or entry due to inadequate documentation.`,
+        },
+        {
+          title: '7. Travel Insurance',
+          body: `We strongly recommend that all travellers purchase comprehensive travel insurance covering medical emergencies, evacuation, trip cancellation, delays, and baggage loss before departure. We are not an insurance provider. Travel without adequate insurance is entirely at your own risk.`,
+        },
+        {
+          title: '8. Limitation of Liability',
+          body: `${SITE.company.legalName} acts as an intermediary agent. We are not liable for: (a) acts or omissions of third-party suppliers (airlines, hotels, transport operators, activity providers); (b) force majeure events including natural disasters, pandemics, political unrest, or government-imposed travel restrictions; (c) personal injury, illness, property damage or any consequential loss arising from your travel. Our maximum liability to you shall not exceed the total amount paid by you for the specific package in dispute.`,
+        },
+        {
+          title: '9. Complaints and Disputes',
+          body: `If you experience a problem during your trip, please contact us immediately — our team is available 24/7 on WhatsApp. Complaints raised after return must be submitted in writing within 28 days. We will acknowledge your complaint within 72 hours and aim to resolve it within 14 business days. We are committed to fair resolution; if we cannot reach agreement, disputes shall be governed by the laws of India and subject to the jurisdiction of courts in Mumbai, Maharashtra.`,
+        },
+        {
+          title: '10. Intellectual Property',
+          body: `All content on this website — including text, photography, graphics, logos, and code — is the property of ${SITE.company.legalName} or used under licence. You may not reproduce, distribute, or create derivative works without prior written consent.`,
+        },
+        {
+          title: '11. Acceptable Use',
+          body: `You agree not to: use our website for any unlawful purpose; submit false enquiries or personal information; attempt to gain unauthorised access to our systems; or use any automated tool to scrape, crawl, or extract data from our website.`,
+        },
+        {
+          title: '12. Changes to These Terms',
+          body: `We reserve the right to update these terms at any time. Continued use of our services after changes constitutes acceptance of the updated terms. The "Last updated" date at the top of this page indicates the most recent revision.`,
+        },
+      ].map((section) => (
+        <div>
+          <h2 class="text-h2 mb-4">{section.title}</h2>
+          <p class="text-body text-[var(--color-text-secondary)] leading-relaxed">{section.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

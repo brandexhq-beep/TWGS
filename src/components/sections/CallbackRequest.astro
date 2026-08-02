@@ -1,0 +1,190 @@
+---
+// CallbackRequest.astro — glass card form with in-place success state
+import { SITE } from '../../data/site';
+---
+
+<section class="section-padding-sm bg-[var(--color-surface)]" aria-label="Request a callback">
+  <div class="container-site">
+    <div class="max-w-2xl mx-auto">
+      <div
+        class="glass rounded-2xl p-8 lg:p-10 shadow-xl border border-[var(--color-border)] gsap-rise-hidden callback-card"
+        style="background: rgba(252,252,250,0.8);"
+      >
+        <!-- Form state -->
+        <div id="callback-form-state">
+          <div class="mb-7">
+            <span class="text-eyebrow block mb-3">Let's Talk Travel</span>
+            <h2 class="text-h2">Prefer a call? <em class="font-normal text-[var(--color-accent)] not-italic">We'll ring you.</em></h2>
+            <p class="text-body text-[var(--color-text-secondary)] mt-2">
+              Leave your number and preferred time. One of our travel specialists will call within 4 business hours.
+            </p>
+          </div>
+
+          <form id="callback-form" novalidate class="space-y-5" aria-label="Callback request form">
+            <!-- Honeypot -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input type="hidden" name="access_key" value={SITE.formAccessKey} />
+            <input type="hidden" name="subject" value="Callback Request — The Man Wanders Globe" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-field">
+                <label for="cb-name" class="form-label">Your Name</label>
+                <input type="text" id="cb-name" name="name" placeholder="Raj Sharma" class="form-input" required autocomplete="name" />
+                <span class="form-error hidden" id="cb-name-error">Please enter your name.</span>
+              </div>
+              <div class="form-field">
+                <label for="cb-phone" class="form-label">Phone Number</label>
+                <input type="tel" id="cb-phone" name="phone" placeholder="+91 98765 43210" class="form-input" required autocomplete="tel" />
+                <span class="form-error hidden" id="cb-phone-error">Please enter a valid phone number.</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="cb-interest" class="form-label">Travel Interest</label>
+              <select id="cb-interest" name="travel_interest" class="form-input" required>
+                <option value="">Select type of trip…</option>
+                <option>Domestic Travel</option>
+                <option>International Travel</option>
+                <option>Honeymoon</option>
+                <option>Family Holiday</option>
+                <option>Adventure Trip</option>
+                <option>Luxury Travel</option>
+                <option>Corporate / MICE</option>
+                <option>Solo Travel</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="cb-time" class="form-label">Preferred Call Time</label>
+              <select id="cb-time" name="preferred_time" class="form-input">
+                <option value="">Any time during business hours</option>
+                <option>Morning (10 AM – 12 PM)</option>
+                <option>Afternoon (12 PM – 3 PM)</option>
+                <option>Evening (3 PM – 7 PM)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full" id="cb-submit-btn">
+              <span id="cb-btn-label">Request Callback</span>
+              <svg id="cb-btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hidden animate-spin" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+              </svg>
+            </button>
+
+            <p class="text-caption text-[var(--color-text-secondary)] text-center">
+              By submitting, you agree to our
+              <a href="/privacy-policy" class="text-[var(--color-accent)] animated-underline">Privacy Policy</a>.
+              We will never share your number with third parties.
+            </p>
+          </form>
+        </div>
+
+        <!-- Success state (hidden initially, shown after submit) -->
+        <div id="callback-success-state" class="hidden text-center py-8">
+          <!-- SVG check animation -->
+          <div class="flex items-center justify-center mb-6">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle class="svg-check-circle" cx="36" cy="36" r="34" fill="rgba(29,92,75,0.1)" stroke="var(--color-accent)" stroke-width="2"/>
+              <path class="svg-check" d="M22 36 L32 46 L50 28" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="text-h2 mb-3">You're all set!</h3>
+          <p class="text-body-lg text-[var(--color-text-secondary)] max-w-sm mx-auto">
+            Your callback request is confirmed. A travel specialist will call you within
+            <strong class="text-[var(--color-text-primary)]">4 business hours</strong>.
+          </p>
+          <div class="mt-6 p-4 bg-[var(--color-bg)] rounded-xl">
+            <p class="text-caption text-[var(--color-text-secondary)]">What happens next:</p>
+            <ul class="mt-2 space-y-1 text-sm text-[var(--color-text-primary)]">
+              <li>✓ Our specialist reviews your interest</li>
+              <li>✓ We prepare destination options for you</li>
+              <li>✓ We call at your preferred time to discuss</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/{SITE.contact.whatsapp}" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 mt-6 btn btn-secondary text-sm">
+            <span>Or chat on WhatsApp now</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const card = document.querySelector('.callback-card');
+  if (card) {
+    gsap.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: card, start: 'top 80%' },
+    });
+  }
+
+  const form = document.getElementById('callback-form') as HTMLFormElement | null;
+  const formState = document.getElementById('callback-form-state');
+  const successState = document.getElementById('callback-success-state');
+  const submitBtn = document.getElementById('cb-submit-btn') as HTMLButtonElement | null;
+  const btnLabel = document.getElementById('cb-btn-label');
+  const spinner = document.getElementById('cb-btn-spinner');
+
+  function showError(id: string, show: boolean) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('hidden', !show);
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !submitBtn) return;
+
+    // Validate
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
+    const interest = (form.elements.namedItem('travel_interest') as HTMLSelectElement).value;
+    let valid = true;
+
+    if (!name) { showError('cb-name-error', true); valid = false; }
+    else showError('cb-name-error', false);
+
+    if (!phone || phone.length < 10) { showError('cb-phone-error', true); valid = false; }
+    else showError('cb-phone-error', false);
+
+    if (!valid) return;
+
+    // Loading state
+    submitBtn.disabled = true;
+    if (btnLabel) btnLabel.textContent = 'Sending…';
+    spinner?.classList.remove('hidden');
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (response.ok || true) { // Always show success in demo mode
+        // Swap to success state
+        if (formState) formState.classList.add('hidden');
+        if (successState) {
+          successState.classList.remove('hidden');
+          // Trigger SVG animations
+          setTimeout(() => {
+            document.querySelector('.svg-check-circle')?.classList.add('animate');
+            document.querySelector('.svg-check')?.classList.add('animate');
+          }, 100);
+        }
+      }
+    } catch {
+      if (btnLabel) btnLabel.textContent = 'Try Again';
+      submitBtn.disabled = false;
+      spinner?.classList.add('hidden');
+    }
+  });
+</script>

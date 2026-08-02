@@ -1,0 +1,149 @@
+---
+// WhyChooseUs.astro — glass bento cards with Lucide icons, staggered scroll-in
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const reasons = [
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>`,
+    title: 'End-to-End Care',
+    body: 'From the first enquiry to your return flight, we handle every detail — flights, stays, transfers, activities — so you travel without worrying about logistics.',
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>`,
+    title: '120+ Destinations',
+    body: 'Domestic classics, international gems and undiscovered escapes — our network spans continents. We\'ve been there, so you travel with confidence.',
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>`,
+    title: 'Expert Local Guides',
+    body: 'Every destination has a specialist who knows the hidden restaurant, the quieter viewpoint, the right time of day. Generic itineraries don\'t exist here.',
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>`,
+    title: '24/7 Support',
+    body: 'A flight delayed at midnight in a foreign city? We\'re awake. Our team is reachable by WhatsApp, call or email — because emergencies don\'t follow office hours.',
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>`,
+    title: '4.9★ Rated',
+    body: 'Over 5,000 travellers. 4.9 stars on Google. We don\'t chase reviews — we earn them by obsessing over the details that make your trip genuinely better.',
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+      <line x1="7" y1="7" x2="7.01" y2="7"/>
+    </svg>`,
+    title: 'Transparent Pricing',
+    body: 'Our quotes are itemised — you see what you\'re paying for. No hidden fees, no bait-and-switch. If it costs more, we tell you why before you confirm.',
+  },
+];
+---
+
+<section class="section-padding bg-[var(--color-accent-secondary)] relative overflow-hidden" aria-label="Why choose us">
+  <!-- Decorative background arc -->
+  <div class="decorative-layer top-0 right-0 opacity-5" aria-hidden="true">
+    <svg width="600" height="600" viewBox="0 0 600 600">
+      <circle cx="600" cy="0" r="400" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="600" cy="0" r="300" stroke="white" stroke-width="0.5" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="container-site relative z-10">
+    <SectionHeader
+      eyebrow="Why Choose Us"
+      headline="Travel is trust.<br/>We earn it <em>every trip.</em>"
+      align="center"
+      light
+      id="why-choose-header"
+    />
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reasons.map((r, i) => (
+        <div
+          class="why-card gsap-rise-hidden card-hover group p-7 rounded-2xl"
+          style="background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12);"
+          data-card-index={i}
+        >
+          <!-- Icon -->
+          <div
+            class="why-icon w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-[var(--color-luxury)] gsap-hidden"
+            style="background: rgba(198,163,78,0.12);"
+            set:html={r.icon}
+          />
+
+          <h3 class="text-h3 text-white mb-3">{r.title}</h3>
+          <p class="text-body text-white/60 leading-relaxed">{r.body}</p>
+
+          <!-- Hover accent line -->
+          <div class="h-px bg-[var(--color-luxury)] mt-5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Staggered card reveal
+  const cards = document.querySelectorAll('.why-card');
+  const icons = document.querySelectorAll('.why-icon');
+
+  gsap.to(cards, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: 'power3.out',
+    stagger: 0.08,
+    scrollTrigger: {
+      trigger: cards[0],
+      start: 'top 80%',
+    },
+  });
+
+  // Icons scale in after cards, staggered
+  if (!prefersReduced) {
+    ScrollTrigger.create({
+      trigger: cards[0],
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        gsap.to(icons, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: 'back.out(1.5)',
+          stagger: 0.08,
+          delay: 0.3,
+        });
+        icons.forEach(el => (el as HTMLElement).style.transform = 'scale(0)');
+      },
+    });
+  }
+
+  const header = document.getElementById('why-choose-header');
+  if (header) {
+    gsap.to(header, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: header, start: 'top 80%' },
+    });
+  }
+</script>

@@ -1,0 +1,180 @@
+---
+// HeroSection.astro
+// Full-viewport (100svh), 4-image crossfade cycle, blur+rise text stagger, scroll cue
+---
+
+<section
+  id="hero"
+  class="relative w-full overflow-hidden"
+  style="height: 100svh; min-height: 600px;"
+  aria-label="Hero — The Man Wanders Globe"
+>
+  <!-- Image crossfade stack -->
+  <div class="hero-images absolute inset-0" aria-hidden="true">
+    {[
+      { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85&auto=format', alt: 'Ladakh mountains at sunrise' },
+      { src: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=85&auto=format', alt: 'Bali rice terraces at dawn' },
+      { src: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1920&q=85&auto=format', alt: 'Maldives overwater bungalows' },
+      { src: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1920&q=85&auto=format', alt: 'Rajasthan palace at golden hour' },
+    ].map((img, i) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        width="1920"
+        height="1080"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+        class="hero-img absolute inset-0 w-full h-full object-cover transition-opacity duration-[1000ms]"
+        style={`opacity: ${i === 0 ? 1 : 0}; z-index: ${i === 0 ? 2 : 1};`}
+      />
+    ))}
+  </div>
+
+  <!-- Gradient overlay -->
+  <div class="hero-overlay absolute inset-0 z-10" aria-hidden="true"></div>
+
+  <!-- Floating decorative elements -->
+  <div class="decorative-layer absolute top-1/4 right-12 opacity-10 z-10" aria-hidden="true">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+         style="animation: float-slow 18s ease-in-out infinite;">
+      <circle cx="60" cy="60" r="55" stroke="white" stroke-width="0.5" stroke-dasharray="4 8"/>
+    </svg>
+  </div>
+  <div class="decorative-layer absolute bottom-1/3 left-8 opacity-8 z-10" aria-hidden="true">
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+         style="animation: float-slow 14s ease-in-out infinite reverse;">
+      <circle cx="30" cy="30" r="28" stroke="#C6A34E" stroke-width="0.5"/>
+      <line x1="5" y1="30" x2="55" y2="30" stroke="#C6A34E" stroke-width="0.4"/>
+      <line x1="30" y1="5" x2="30" y2="55" stroke="#C6A34E" stroke-width="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative z-20 h-full flex flex-col justify-center items-start container-site">
+    <div class="max-w-4xl">
+      <!-- Eyebrow -->
+      <p class="text-eyebrow text-[#C6A34E] mb-6 gsap-blur-hidden hero-text-el" id="hero-eyebrow">
+        Curated Journeys, Handled Entirely
+      </p>
+
+      <!-- H1 — Headline option 1 -->
+      <h1 class="text-display-xl text-white mb-6 gsap-blur-hidden hero-text-el" id="hero-headline">
+        The world is wide.<br/>
+        <em class="not-italic" style="color: #C6A34E;">Wander it well.</em>
+      </h1>
+
+      <!-- Subhead -->
+      <p class="text-body-lg text-white/80 max-w-lg mb-10 gsap-blur-hidden hero-text-el" id="hero-subhead">
+        We craft bespoke journeys — every stay, transfer and experience curated
+        so all you do is arrive, explore and remember.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4 gsap-blur-hidden hero-text-el" id="hero-ctas">
+        <a href="#plan-my-trip" class="btn btn-primary">
+          <span>Plan My Trip</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="/packages" class="btn btn-ghost-light">
+          <span>Explore Packages</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" aria-hidden="true">
+    <div class="scroll-cue">
+      <div class="scroll-cue__line">
+        <div class="scroll-cue__dot"></div>
+      </div>
+    </div>
+    <span class="text-white/50 text-[10px] tracking-[0.2em] uppercase font-medium">Scroll</span>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Image crossfade cycle ────────────────────────────────────────────────
+  const images = document.querySelectorAll('.hero-img');
+  let current = 0;
+
+  function nextImage() {
+    const prev = current;
+    current = (current + 1) % images.length;
+
+    // Bring next image to top, then fade it in
+    gsap.set(images[current], { zIndex: 3, opacity: 0 });
+    gsap.to(images[current], {
+      opacity: 1,
+      duration: 1,
+      ease: 'power1.inOut',
+      onComplete: () => {
+        // Demote previous image
+        gsap.set(images[prev], { zIndex: 1, opacity: 0 });
+        gsap.set(images[current], { zIndex: 2 });
+      },
+    });
+  }
+
+  // Crossfade every 6 seconds
+  const crossfadeInterval = setInterval(nextImage, 6000);
+
+  // Ken-Burns zoom on current image (subtle, 20s loop)
+  images.forEach((img) => {
+    gsap.fromTo(
+      img,
+      { scale: 1 },
+      {
+        scale: 1.08,
+        duration: 20,
+        ease: 'none',
+        repeat: -1,
+        yoyo: true,
+      }
+    );
+  });
+
+  // ─── Text reveal stagger (after loading screen exits) ────────────────────
+  const textEls = document.querySelectorAll('.hero-text-el');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealHeroText() {
+    if (prefersReduced) {
+      textEls.forEach((el) => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.filter = 'none';
+        (el as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
+
+    gsap.to(textEls, {
+      opacity: 1,
+      filter: 'blur(0px)',
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      stagger: 0.12,
+    });
+  }
+
+  // Wait for loaded class (set by LoadingScreen.astro when it exits)
+  if (document.body.classList.contains('loaded')) {
+    revealHeroText();
+  } else {
+    document.body.addEventListener('animationend', revealHeroText, { once: true });
+    // Fallback: reveal after 2.5s regardless
+    setTimeout(revealHeroText, 2500);
+  }
+
+  // Reduced motion: disable crossfade interval
+  if (prefersReduced) {
+    clearInterval(crossfadeInterval);
+  }
+</script>

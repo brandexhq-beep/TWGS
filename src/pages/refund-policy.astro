@@ -1,0 +1,130 @@
+---
+// pages/refund-policy.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+const lastUpdated = '1 August 2025';
+---
+<BaseLayout
+  title={`Refund Policy | ${SITE.name}`}
+  description="Refund Policy for The Man Wanders Globe — how and when refunds are processed for cancelled or modified travel bookings."
+>
+  <div class="pt-32 pb-12 bg-[var(--color-accent-secondary)]">
+    <div class="container-site">
+      <span class="text-eyebrow block mb-4">Legal</span>
+      <h1 class="text-display-lg text-white mb-3">Refund Policy</h1>
+      <p class="text-body text-white/60">Last updated: {lastUpdated}</p>
+    </div>
+  </div>
+  <section class="section-padding bg-[var(--color-bg)]">
+    <div class="container-site max-w-3xl space-y-10">
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-sm text-amber-800">
+        <strong>⚠️ Client review required:</strong> Confirm refund timelines, bank charges, and any GST treatment before publishing. Engage a CA and legal professional to review.
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Overview</h2>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed">
+          This Refund Policy governs how {SITE.company.legalName} ("The Man Wanders Globe") processes refunds for cancelled bookings. Refund eligibility is determined by our <a href="/cancellation-policy" class="text-[var(--color-accent)] animated-underline">Cancellation Policy</a>, which should be read in conjunction with this document.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Eligibility for Refunds</h2>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed mb-3">You may be eligible for a full or partial refund if:</p>
+        <ul class="space-y-2 text-body text-[var(--color-text-secondary)] list-disc list-inside leading-relaxed">
+          <li>You cancel your booking within the windows specified in our Cancellation Policy and a refund is calculated to be due</li>
+          <li>We cancel your booking (see Cancellation Policy §4)</li>
+          <li>There is a demonstrable service failure on our part that materially impacted your trip</li>
+          <li>Duplicate payments were made (full duplicate amount refunded)</li>
+        </ul>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed mt-3">
+          Refunds are <strong>not</strong> payable for:
+        </p>
+        <ul class="space-y-2 text-body text-[var(--color-text-secondary)] list-disc list-inside leading-relaxed mt-2">
+          <li>Non-refundable third-party costs (certain airline tickets, hotel pre-payments, visa fees, activity deposits)</li>
+          <li>Unused services due to personal choice (e.g. you chose not to attend an included activity)</li>
+          <li>Losses due to force majeure events (see Cancellation Policy)</li>
+          <li>Bookings cancelled after the departure date</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Refund Process</h2>
+        <ol class="space-y-4 text-body text-[var(--color-text-secondary)] list-decimal list-inside leading-relaxed">
+          <li>
+            <strong class="text-[var(--color-text-primary)]">Submit cancellation request</strong> — email <a href={`mailto:${SITE.contact.email}`} class="text-[var(--color-accent)] animated-underline">{SITE.contact.email}</a> with your booking reference.
+          </li>
+          <li>
+            <strong class="text-[var(--color-text-primary)]">Refund calculation</strong> — we calculate the refund amount per the Cancellation Policy and confirm in writing within 2 business days of receiving your request.
+          </li>
+          <li>
+            <strong class="text-[var(--color-text-primary)]">Third-party recovery</strong> — where your package includes non-refundable third-party bookings (e.g. non-refundable airfare), we will make best efforts to recover any amounts from suppliers on your behalf, but cannot guarantee recovery.
+          </li>
+          <li>
+            <strong class="text-[var(--color-text-primary)]">Refund processing</strong> — once agreed, refunds are processed within <strong>10–14 business days</strong>. Credit card refunds may take an additional 5–7 business days to appear on your statement depending on your bank. Bank transfer refunds will be credited to the original account used for payment.
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Refund Methods</h2>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed mb-3">Refunds are processed to the <strong>original payment method</strong> only:</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse border border-[var(--color-border)] rounded-xl overflow-hidden">
+            <thead>
+              <tr class="bg-[var(--color-accent-secondary)] text-white">
+                <th class="p-3 text-left">Original Payment Method</th>
+                <th class="p-3 text-left">Refund Method</th>
+                <th class="p-3 text-left">Estimated Timeline</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--color-border)]">
+              {[
+                ['UPI / IMPS / NEFT', 'Bank transfer to original account', '3–7 business days'],
+                ['Credit card', 'Credit card refund', '7–14 business days (bank dependent)'],
+                ['Debit card', 'Bank transfer', '3–7 business days'],
+                ['Net Banking', 'Bank transfer to original account', '3–7 business days'],
+              ].map(([method, refundTo, timeline]) => (
+                <tr>
+                  <td class="p-3 text-[var(--color-text-primary)]">{method}</td>
+                  <td class="p-3 text-[var(--color-text-secondary)]">{refundTo}</td>
+                  <td class="p-3 text-[var(--color-text-secondary)]">{timeline}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-caption text-[var(--color-text-secondary)] mt-3 italic">
+          Bank charges or foreign currency conversion losses incurred on the original payment are not recoverable and will be deducted from the refund where applicable.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">GST on Refunds</h2>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed">
+          Refund amounts are calculated on the base package price. GST (Goods and Services Tax) treatment on refunds will follow applicable Indian tax regulations at the time of processing. A revised tax invoice/credit note will be issued where applicable. Please consult your tax advisor for queries on GST implications.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Disputes</h2>
+        <p class="text-body text-[var(--color-text-secondary)] leading-relaxed">
+          If you disagree with our refund calculation, please contact our team at <a href={`mailto:${SITE.contact.email}`} class="text-[var(--color-accent)] animated-underline">{SITE.contact.email}</a> within 14 days of receiving our refund confirmation. We commit to reviewing disputes fairly and responding within 7 business days. Unresolved disputes are subject to the dispute resolution clause in our Terms & Conditions.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-h2 mb-4">Contact</h2>
+        <div class="p-5 bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)]">
+          <p class="font-semibold text-[var(--color-text-primary)] mb-2">Refund queries:</p>
+          <p class="text-body text-[var(--color-text-secondary)]">
+            Email: <a href={`mailto:${SITE.contact.email}`} class="text-[var(--color-accent)]">{SITE.contact.email}</a><br/>
+            Phone: <a href={`tel:${SITE.contact.phone}`} class="text-[var(--color-accent)]">{SITE.contact.phone}</a><br/>
+            Subject line: "Refund Request — [Booking Reference]"
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

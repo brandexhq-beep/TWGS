@@ -1,0 +1,41 @@
+---
+// pages/index.astro — Homepage
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import TrustStrip from '../components/sections/TrustStrip.astro';
+import AboutTeaser from '../components/sections/AboutTeaser.astro';
+import FeaturedPackages from '../components/sections/FeaturedPackages.astro';
+import FeaturedJourneys from '../components/sections/FeaturedJourneys.astro';
+import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
+import GalleryPreview from '../components/sections/GalleryPreview.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import PlanMyTripSection from '../components/sections/PlanMyTripSection.astro';
+import CallbackRequest from '../components/sections/CallbackRequest.astro';
+import { SITE } from '../data/site';
+
+// BreadcrumbList JSON-LD for home page
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url }],
+};
+---
+
+<BaseLayout
+  title={`Luxury Travel Packages in India & Abroad | ${SITE.name}`}
+  description="The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander. Plan your dream trip today."
+  structuredData={breadcrumb}
+>
+  <HeroSection />
+  <TrustStrip />
+  <AboutTeaser />
+  <FeaturedPackages />
+  <FeaturedJourneys />
+  <WhyChooseUs />
+  <GalleryPreview />
+  <Testimonials />
+  <FAQSection />
+  <PlanMyTripSection />
+  <CallbackRequest />
+</BaseLayout>

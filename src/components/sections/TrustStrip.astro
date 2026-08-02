@@ -1,0 +1,94 @@
+---
+// TrustStrip.astro — animated counters that count up on scroll-into-view
+import { SITE } from '../../data/site';
+
+const stats = [
+  { value: SITE.stats.yearsInBusiness, suffix: '+', label: 'Years of Expertise', prefix: '' },
+  { value: SITE.stats.destinationsCount, suffix: '+', label: 'Destinations Covered', prefix: '' },
+  { value: SITE.stats.travellersServed, suffix: '+', label: 'Happy Travellers', prefix: '' },
+  { value: SITE.stats.averageRating, suffix: '★', label: 'Average Google Rating', prefix: '' },
+];
+---
+
+<section class="trust-strip" aria-label="Our achievements">
+  <div class="container-site">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat, i) => (
+        <div class="stat-counter gsap-rise-hidden" data-stat-value={stat.value} data-stat-index={i}>
+          <div class="stat-number">
+            <span class="stat-num-display">{stat.prefix}0</span>
+            <span class="stat-suffix">{stat.suffix}</span>
+          </div>
+          <p class="stat-label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function easeOutQuart(t: number): number {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCounter(
+    el: Element,
+    targetValue: number,
+    duration: number,
+    isDecimal = false
+  ) {
+    const display = el.querySelector('.stat-num-display') as HTMLElement;
+    if (!display) return;
+
+    if (prefersReduced) {
+      display.textContent = isDecimal ? targetValue.toFixed(1) : String(targetValue);
+      return;
+    }
+
+    const start = performance.now();
+
+    function tick(now: number) {
+      const elapsed = (now - start) / 1000;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutQuart(progress);
+      const current = targetValue * eased;
+
+      display.textContent = isDecimal
+        ? current.toFixed(1)
+        : Math.floor(current).toLocaleString('en-IN');
+
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // Stagger reveal + trigger counters on scroll
+  const counters = document.querySelectorAll('.stat-counter');
+
+  gsap.to(counters, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: 'power3.out',
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: '.trust-strip',
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        counters.forEach((counter) => {
+          const val = parseFloat(counter.getAttribute('data-stat-value') ?? '0');
+          const isDecimal = val % 1 !== 0;
+          animateCounter(counter, val, 1.6, isDecimal);
+        });
+      },
+    },
+  });
+</script>

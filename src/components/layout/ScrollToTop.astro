@@ -1,0 +1,38 @@
+---
+// ScrollToTop.astro — circular glass button, appears after 600px, custom eased scroll
+---
+
+<button
+  id="scroll-to-top"
+  aria-label="Scroll to top of page"
+  title="Back to top"
+>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const btn = document.getElementById('scroll-to-top');
+  if (!btn) throw new Error('Scroll-to-top button not found');
+
+  // Show after 600px scroll
+  ScrollTrigger.create({
+    start: 600,
+    onEnter: () => btn.classList.add('visible'),
+    onLeaveBack: () => btn.classList.remove('visible'),
+  });
+
+  // Custom eased scroll to top (~800ms, power3.out)
+  btn.addEventListener('click', () => {
+    gsap.to(window, {
+      scrollTo: { y: 0 },
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+  });
+</script>

@@ -1,0 +1,129 @@
+---
+// FAQSection.astro — premium accordion (grid-rows animation), FAQPage JSON-LD
+import { FAQ_ITEMS } from '../../data/faq';
+import SectionHeader from '../ui/SectionHeader.astro';
+
+// FAQPage JSON-LD
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
+    },
+  })),
+};
+---
+
+<section class="section-padding bg-[var(--color-bg)]" aria-label="Frequently asked questions" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+      <!-- Header col -->
+      <div class="lg:col-span-2">
+        <SectionHeader
+          eyebrow="FAQ"
+          headline="Questions worth asking."
+          subhead="Everything you need to know before you plan your next journey with us."
+          id="faq-header"
+        />
+        <div class="mt-8">
+          <a href="/contact" class="inline-flex items-center gap-2 text-[var(--color-accent)] font-medium animated-underline">
+            Still have questions? Contact us
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Accordion col -->
+      <div class="lg:col-span-3">
+        <div class="divide-y divide-[var(--color-border)]" role="list">
+          {FAQ_ITEMS.map((item, i) => (
+            <div class="accordion-item gsap-rise-hidden faq-item" role="listitem">
+              <button
+                class="accordion-trigger"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-trigger-${i}`}
+              >
+                <span class="pr-4 text-left">{item.question}</span>
+                <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+              <div
+                class="accordion-content-wrapper"
+                id={`faq-answer-${i}`}
+                role="region"
+                aria-labelledby={`faq-trigger-${i}`}
+              >
+                <div class="accordion-content-inner">
+                  <div class="accordion-content">{item.answer}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Accordion logic — one open at a time ────────────────────────────────
+  const triggers = document.querySelectorAll('.accordion-trigger');
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      triggers.forEach((t) => {
+        t.setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked if it was closed
+      if (!isOpen) {
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Keyboard: Enter/Space already handled by browser for buttons
+
+  // ─── Scroll reveals ───────────────────────────────────────────────────────
+  const items = document.querySelectorAll('.faq-item');
+  gsap.to(items, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    ease: 'power3.out',
+    stagger: 0.06,
+    scrollTrigger: {
+      trigger: items[0],
+      start: 'top 80%',
+    },
+  });
+
+  const header = document.getElementById('faq-header');
+  if (header) {
+    gsap.to(header, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: header, start: 'top 80%' },
+    });
+  }
+</script>

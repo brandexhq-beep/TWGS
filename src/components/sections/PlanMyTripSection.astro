@@ -1,0 +1,97 @@
+---
+// PlanMyTripSection.astro — anchored wrapper, loads PlanMyTripWizard island
+import PlanMyTripWizard from '../forms/PlanMyTripWizard';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section
+  id="plan-my-trip"
+  class="section-padding relative overflow-hidden"
+  style="background: var(--color-bg);"
+  aria-label="Plan your trip — multi-step form"
+>
+  <!-- Decorative background elements -->
+  <div class="decorative-layer absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[var(--color-luxury)] opacity-10" aria-hidden="true"></div>
+  <div class="decorative-layer absolute -bottom-16 -left-16 w-64 h-64 rounded-full border border-[var(--color-accent)] opacity-8" aria-hidden="true"></div>
+
+  <div class="container-site relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Left: editorial copy -->
+      <div class="gsap-rise-hidden plan-left">
+        <SectionHeader
+          eyebrow="Start Planning"
+          headline="Tell us your dream.<br/><em>We'll build the journey.</em>"
+          subhead="Answer 4 quick questions and our specialists will design a personalised itinerary for you — usually within the same working day."
+        />
+
+        <ul class="mt-10 space-y-5">
+          {[
+            { step: '01', text: 'Choose your trip style and budget' },
+            { step: '02', text: 'Set your dates and group size' },
+            { step: '03', text: 'Tell us where (or let us suggest)' },
+            { step: '04', text: 'Share your details — we\'ll be in touch within 4 hours' },
+          ].map((item) => (
+            <li class="flex items-center gap-4">
+              <span
+                class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 text-white"
+                style="background: var(--color-accent);"
+              >
+                {item.step}
+              </span>
+              <span class="text-body text-[var(--color-text-secondary)]">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Reassurance chips -->
+        <div class="flex flex-wrap gap-3 mt-8">
+          {['Free consultation', 'No obligation', 'Response in 4 hours', 'Fully personalised'].map((chip) => (
+            <span class="chip text-xs" style="min-height: 0; padding: 0.3rem 0.8rem;">
+              ✓ {chip}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: wizard island -->
+      <div class="gsap-rise-hidden plan-right">
+        <div
+          class="bg-white rounded-2xl shadow-xl border border-[var(--color-border)] p-7 lg:p-10"
+          id="wizard-card"
+        >
+          <PlanMyTripWizard client:visible />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const left = document.querySelector('.plan-left');
+  const right = document.querySelector('.plan-right');
+
+  if (left) {
+    gsap.to(left, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: left, start: 'top 80%' },
+    });
+  }
+  if (right) {
+    gsap.to(right, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      delay: 0.15,
+      scrollTrigger: { trigger: right, start: 'top 80%' },
+    });
+  }
+</script>

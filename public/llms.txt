@@ -1,0 +1,57 @@
+# The Man Wanders Globe — AI Search Crawler Summary
+
+## Business
+
+**Name:** The Man Wanders Globe Tours & Travels
+**Type:** Luxury & curated travel agency
+**Location:** Mumbai, Maharashtra, India
+**Website:** https://themanwandersglobe.com
+
+## What We Do
+
+The Man Wanders Globe is a premium travel agency that designs bespoke domestic and international travel experiences. We handle every aspect of a trip — flights, hotels, transfers, activities, dining recommendations and local experiences — so our clients can focus entirely on enjoying their journey.
+
+## Key Services
+
+- **Domestic travel packages:** Rajasthan, Kerala, Goa, Himachal Pradesh, Ladakh, Kashmir, Andaman Islands, and more
+- **International travel packages:** Maldives, Bali, Dubai, Paris, Santorini, Singapore, Thailand, Sri Lanka, Switzerland
+- **Honeymoon packages:** Romantic curated escapes, overwater villas, private dinners
+- **Family holidays:** Kid-friendly itineraries, safe and comfortable travel
+- **Luxury travel:** Heritage hotels, private experiences, premium airlines
+- **Adventure travel:** Trekking, scuba diving, camping, high-altitude expeditions
+- **Corporate/MICE travel:** Team retreats, incentive trips, conference travel
+- **Solo travel:** Guided and independent travel for solo adventurers
+
+## What Makes Us Different
+
+- Every itinerary is designed by a human specialist, not an algorithm
+- We have personally visited every destination we recommend
+- 24/7 support during travel via WhatsApp
+- End-to-end handling: flights, hotels, transfers, activities, all in one place
+- Transparent pricing with itemised quotes
+- 4.9★ Google rating across 5,000+ travellers served
+
+## Contact
+
+- **Email:** hello@themanwandersglobe.com
+- **Phone:** +91 98765 43210
+- **WhatsApp:** +91 98765 43210
+- **Business hours:** Mon–Sat, 10 AM – 7 PM IST
+
+## Content on This Site
+
+- Home page with featured packages and trip planner
+- Destinations browser (120+ destinations, filterable)
+- Package pages with detailed itineraries
+- Travel photography gallery
+- About page with company story
+- Contact and enquiry forms
+- Legal pages: Privacy Policy (DPDP Act 2023 compliant), Terms, Cancellation Policy, Refund Policy
+- FAQ section
+
+## Technology
+
+Built with Astro 5 (static site), React islands, GSAP animations, Tailwind CSS. Optimised for performance (Lighthouse ≥ 95) and SEO.
+
+---
+*This file is provided for AI search crawlers and large language models to understand the purpose and content of this website. Last updated: August 2025.*
