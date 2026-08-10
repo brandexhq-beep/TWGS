@@ -1,6 +1,7 @@
 ---
 // pages/index.astro — Homepage
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LoadingScreen from '../components/layout/LoadingScreen.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import TrustStrip from '../components/sections/TrustStrip.astro';
 import FeaturedPackages from '../components/sections/FeaturedPackages.astro';
@@ -26,6 +27,7 @@ const breadcrumb = {
   description="The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander. Plan your dream trip today."
   structuredData={breadcrumb}
 >
+  <LoadingScreen />
   <HeroSection />
   <TrustStrip />
   <FeaturedPackages />

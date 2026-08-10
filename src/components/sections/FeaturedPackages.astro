@@ -23,13 +23,13 @@ const featured = getFeaturedPackages();
     <div class="bento-grid" role="list">
       {featured.map((pkg, i) => (
         <article
-          class={`package-card gsap-rise-hidden bento-package-card ${i === 0 ? 'bento-cell-feature' : 'bento-cell-sm'}`}
+          class={`package-card flex flex-col h-full gsap-rise-hidden bento-package-card ${i === 0 ? 'bento-cell-feature' : 'bento-cell-sm'}`}
           role="listitem"
           aria-label={pkg.name}
         >
           <!-- Image -->
           <div
-            class={`card-image relative overflow-hidden ${i === 0 ? '' : ''}`}
+            class={`card-image relative overflow-hidden flex-1 ${i === 0 ? '' : ''}`}
             style={i === 0 ? 'aspect-ratio: 16/10;' : 'aspect-ratio: 4/3;'}
           >
             <img
@@ -39,7 +39,7 @@ const featured = getFeaturedPackages();
               height={i === 0 ? 750 : 450}
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover"
+              class="absolute inset-0 w-full h-full object-cover"
             />
             <!-- Category badge -->
             <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
