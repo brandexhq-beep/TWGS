@@ -20,29 +20,9 @@ import { SITE } from '../../data/site';
 </a>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
   const btn = document.getElementById('whatsapp-btn');
-  if (!btn) throw new Error('WhatsApp button not found');
-
-  // Direction-aware hide/show
-  let lastScrollY = window.scrollY;
-
-  ScrollTrigger.create({
-    start: 100,
-    end: 'max',
-    onUpdate: (self) => {
-      const dir = self.direction; // 1 = down, -1 = up
-      if (dir === 1 && !btn.classList.contains('hidden-scroll')) {
-        btn.classList.add('hidden-scroll');
-      } else if (dir === -1 && btn.classList.contains('hidden-scroll')) {
-        btn.classList.remove('hidden-scroll');
-      }
-    },
-  });
-
-  // Touch devices: tap equivalent for the label
-  btn.addEventListener('touchstart', () => {}, { passive: true });
+  if (btn) {
+    // Touch devices: tap equivalent for the label
+    btn.addEventListener('touchstart', () => {}, { passive: true });
+  }
 </script>

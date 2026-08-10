@@ -9,7 +9,7 @@ export const SITE = {
   description:
     "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
   url: "https://themanwandersglobe.com", // TODO: update with actual domain
-  logo: "/images/logo.svg",
+  logo: "/logo.webp",
   ogImage: "/images/og-default.jpg", // 1200×630
 
   contact: {
