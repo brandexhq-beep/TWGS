@@ -52,7 +52,7 @@ const categories = [
             class="chip gallery-filter-btn"
             data-cat={cat.id}
             aria-pressed={i === 0 ? 'true' : 'false'}
-            style={i === 0 ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);' : ''}
+            style={i === 0 ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);' : ''}
           >
             {cat.label}
           </button>
@@ -149,7 +149,7 @@ const categories = [
         (b as HTMLElement).style.cssText = '';
       });
       btn.setAttribute('aria-pressed', 'true');
-      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);';
+      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);';
       items.forEach(item => {
         const show = cat === 'all' || item.getAttribute('data-cat') === cat;
         item.style.display = show ? '' : 'none';

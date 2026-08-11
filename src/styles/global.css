@@ -19,8 +19,8 @@
     --color-surface: #FFFFFF;
     --color-text-primary: #161616;
     --color-text-secondary: #666666;
-    --color-accent: #1D5C4B;
-    --color-accent-dark: #163f34;
+    --color-accent: #00277C;
+    --color-accent-dark: #00174A;
     --color-accent-secondary: #10253F;
     --color-luxury: #C6A34E;
     --color-luxury-light: #d4b87a;
@@ -104,7 +104,7 @@
   --color-surface: #FFFFFF;
   --color-primary: #161616;
   --color-secondary: #666666;
-  --color-accent: #1D5C4B;
+  --color-accent: #00277C;
   --color-accent-dark: #163f34;
   --color-navy: #10253F;
   --color-luxury: #C6A34E;

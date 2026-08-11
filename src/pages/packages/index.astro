@@ -35,7 +35,7 @@ const allPackages = PACKAGES;
             aria-selected={i === 0 ? 'true' : 'false'}
             id={`tab-${cat.id}`}
             aria-controls="packages-panel"
-            style={i === 0 ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);' : ''}
+            style={i === 0 ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);' : ''}
           >
             {cat.label}
           </button>
@@ -125,7 +125,7 @@ const allPackages = PACKAGES;
         (t as HTMLElement).style.cssText = '';
       });
       tab.setAttribute('aria-selected', 'true');
-      (tab as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);';
+      (tab as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);';
 
       let visible = 0;
       cards.forEach((card) => {

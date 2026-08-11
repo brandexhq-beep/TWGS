@@ -45,7 +45,7 @@ import { SITE } from '../data/site';
             class="chip dest-filter-btn"
             data-filter={f.id}
             aria-pressed={f.id === 'all' ? 'true' : 'false'}
-            style={f.id === 'all' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);' : ''}
+            style={f.id === 'all' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);' : ''}
           >
             {f.label}
           </button>
@@ -82,7 +82,7 @@ import { SITE } from '../data/site';
               </div>
               <!-- Region badge -->
               <div class="absolute top-4 right-4">
-                <span class="chip text-xs" style={`min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; ${dest.region === 'domestic' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.15);' : 'border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);'}`}>
+                <span class="chip text-xs" style={`min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; ${dest.region === 'domestic' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.15);' : 'border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);'}`}>
                   {dest.region === 'domestic' ? 'Domestic' : 'International'}
                 </span>
               </div>
@@ -142,7 +142,7 @@ import { SITE } from '../data/site';
         (b as HTMLElement).style.cssText = '';
       });
       btn.setAttribute('aria-pressed', 'true');
-      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(29,92,75,0.06);';
+      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);';
 
       let visible = 0;
       cards.forEach((card) => {

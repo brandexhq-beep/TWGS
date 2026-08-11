@@ -158,10 +158,10 @@ export default function PlanMyTripWizard() {
       <div className="text-center py-12 px-4">
         <div className="flex items-center justify-center mb-6">
           <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-            <circle cx="40" cy="40" r="38" fill="rgba(29,92,75,0.1)" stroke="#1D5C4B" strokeWidth="2"
+            <circle cx="40" cy="40" r="38" fill="rgba(0,39,124,0.1)" stroke="#00277C" strokeWidth="2"
               style={{ animation: 'scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards' }}
             />
-            <path d="M24 40 L36 52 L56 30" stroke="#1D5C4B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"
+            <path d="M24 40 L36 52 L56 30" stroke="#00277C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"
               style={{ strokeDasharray: 60, strokeDashoffset: 60, animation: 'draw-check 0.4s ease-out 0.3s forwards' }}
             />
           </svg>
@@ -177,15 +177,15 @@ export default function PlanMyTripWizard() {
           <p className="text-xs uppercase tracking-widest mb-3" style={{ color: '#C6A34E', fontWeight: 600 }}>What happens next</p>
           <ul className="space-y-2 text-sm" style={{ color: '#161616' }}>
             <li className="flex gap-2">
-              <span style={{ color: '#1D5C4B' }}>✓</span>
+              <span style={{ color: '#00277C' }}>✓</span>
               We review your {form.tripType} trip request
             </li>
             <li className="flex gap-2">
-              <span style={{ color: '#1D5C4B' }}>✓</span>
+              <span style={{ color: '#00277C' }}>✓</span>
               Curate 2–3 personalised itinerary options
             </li>
             <li className="flex gap-2">
-              <span style={{ color: '#1D5C4B' }}>✓</span>
+              <span style={{ color: '#00277C' }}>✓</span>
               Call or WhatsApp you to walk through them
             </li>
           </ul>
@@ -211,9 +211,9 @@ export default function PlanMyTripWizard() {
                 disabled={i > step}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 transition-all duration-300 border-2"
                 style={{
-                  background: i < step ? '#1D5C4B' : i === step ? 'white' : 'transparent',
-                  borderColor: i <= step ? '#1D5C4B' : '#ECECEC',
-                  color: i < step ? 'white' : i === step ? '#1D5C4B' : '#999',
+                  background: i < step ? '#00277C' : i === step ? 'white' : 'transparent',
+                  borderColor: i <= step ? '#00277C' : '#ECECEC',
+                  color: i < step ? 'white' : i === step ? '#00277C' : '#999',
                   cursor: i < step ? 'pointer' : 'default',
                 }}
                 aria-label={i < step ? `Go back to step ${i + 1}: ${s}` : s}
@@ -231,14 +231,14 @@ export default function PlanMyTripWizard() {
                 <div className="flex-1 h-0.5 mx-2 rounded-full overflow-hidden" style={{ background: '#ECECEC' }}>
                   <div
                     className="h-full rounded-full transition-all duration-500"
-                    style={{ background: '#1D5C4B', width: i < step ? '100%' : '0%' }}
+                    style={{ background: '#00277C', width: i < step ? '100%' : '0%' }}
                   />
                 </div>
               )}
             </div>
           ))}
         </div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-center" style={{ color: '#1D5C4B' }}>
+        <p className="text-xs font-semibold uppercase tracking-widest text-center" style={{ color: '#00277C' }}>
           Step {step + 1} of 4 — {STEPS[step]}
         </p>
       </div>
@@ -262,24 +262,24 @@ export default function PlanMyTripWizard() {
                   <button
                     key={t.id}
                     onClick={() => { setForm((f) => ({ ...f, tripType: t.id })); setErrors((e) => ({ ...e, tripType: undefined })); }}
-                    className="relative p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-[#1D5C4B] hover:scale-[1.02]"
+                    className="relative p-4 rounded-xl border-2 text-left transition-all duration-200 hover:border-[#00277C] hover:scale-[1.02]"
                     style={{
-                      borderColor: isSelected ? '#1D5C4B' : '#ECECEC',
-                      background: isSelected ? 'rgba(29,92,75,0.06)' : 'white',
+                      borderColor: isSelected ? '#00277C' : '#ECECEC',
+                      background: isSelected ? 'rgba(0,39,124,0.06)' : 'white',
                     }}
                     aria-pressed={isSelected}
                     aria-label={`${t.label} — ${t.description}`}
                   >
                     {/* Checkmark badge */}
                     {isSelected && (
-                      <span className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: '#1D5C4B' }}>
+                      <span className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: '#00277C' }}>
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
                           <polyline points="20 6 9 17 4 12"/>
                         </svg>
                       </span>
                     )}
                     <span className="text-2xl block mb-2" aria-hidden="true">{t.icon}</span>
-                    <span className="font-semibold text-sm block" style={{ color: isSelected ? '#1D5C4B' : '#161616' }}>{t.label}</span>
+                    <span className="font-semibold text-sm block" style={{ color: isSelected ? '#00277C' : '#161616' }}>{t.label}</span>
                     <span className="text-xs block mt-0.5" style={{ color: '#666' }}>{t.description}</span>
                   </button>
                 );
@@ -299,7 +299,7 @@ export default function PlanMyTripWizard() {
             <div className="form-field">
               <label className="form-label flex items-center justify-between">
                 <span>Budget per person</span>
-                <span className="font-bold text-base" style={{ color: '#1D5C4B' }}>
+                <span className="font-bold text-base" style={{ color: '#00277C' }}>
                   ₹{form.budget.toLocaleString('en-IN')}
                 </span>
               </label>
@@ -360,7 +360,7 @@ export default function PlanMyTripWizard() {
                     <button
                       type="button"
                       onClick={() => setForm((f) => ({ ...f, [key]: Math.max(key === 'adults' ? 1 : 0, f[key] - 1) }))}
-                      className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-lg transition-colors hover:border-[#1D5C4B] hover:text-[#1D5C4B]"
+                      className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-lg transition-colors hover:border-[#00277C] hover:text-[#00277C]"
                       style={{ borderColor: '#ECECEC', color: '#161616' }}
                       aria-label={`Decrease ${label}`}
                     >
@@ -370,7 +370,7 @@ export default function PlanMyTripWizard() {
                     <button
                       type="button"
                       onClick={() => setForm((f) => ({ ...f, [key]: f[key] + 1 }))}
-                      className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-lg transition-colors hover:border-[#1D5C4B] hover:text-[#1D5C4B]"
+                      className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-lg transition-colors hover:border-[#00277C] hover:text-[#00277C]"
                       style={{ borderColor: '#ECECEC', color: '#161616' }}
                       aria-label={`Increase ${label}`}
                     >
@@ -445,9 +445,9 @@ export default function PlanMyTripWizard() {
                       aria-pressed={selected}
                       className="chip transition-all duration-200"
                       style={{
-                        borderColor: selected ? '#1D5C4B' : '#ECECEC',
-                        color: selected ? '#1D5C4B' : '#666',
-                        background: selected ? 'rgba(29,92,75,0.06)' : 'white',
+                        borderColor: selected ? '#00277C' : '#ECECEC',
+                        color: selected ? '#00277C' : '#666',
+                        background: selected ? 'rgba(0,39,124,0.06)' : 'white',
                       }}
                     >
                       {selected && '✓ '}
@@ -537,12 +537,12 @@ export default function PlanMyTripWizard() {
                     type="checkbox"
                     checked={form.consent}
                     onChange={(e) => { setForm((f) => ({ ...f, consent: e.target.checked })); setErrors((er) => ({ ...er, consent: undefined })); }}
-                    className="w-4 h-4 mt-0.5 accent-[#1D5C4B]"
+                    className="w-4 h-4 mt-0.5 accent-[#00277C]"
                     required
                   />
                   <span className="text-sm" style={{ color: '#666', lineHeight: 1.5 }}>
                     I agree to the{' '}
-                    <a href="/privacy-policy" className="text-[#1D5C4B] underline" target="_blank">Privacy Policy</a>
+                    <a href="/privacy-policy" className="text-[#00277C] underline" target="_blank">Privacy Policy</a>
                     {' '}and consent to The Man Wanders Globe contacting me about my trip enquiry.
                     Placeholder data — see §10.
                   </span>
