@@ -158,9 +158,9 @@
       opacity: 1,
       filter: 'blur(0px)',
       y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.12,
+      duration: 1.4,
+      ease: 'power4.out',
+      stagger: 0.15,
     });
   }
 
@@ -169,8 +169,8 @@
     revealHeroText();
   } else {
     document.body.addEventListener('animationend', revealHeroText, { once: true });
-    // Fallback: reveal after 2.5s regardless
-    setTimeout(revealHeroText, 2500);
+    // Fallback: reveal much faster since loader might be hidden
+    setTimeout(revealHeroText, 300);
   }
 
   // Reduced motion: disable crossfade interval

@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PACKAGES } from '../../data/packages';
+
+export async function getStaticPaths() {
+  return PACKAGES.map((pkg) => ({
+    params: { slug: pkg.slug },
+    props: { pkg },
+  }));
+}
+
+const { pkg } = Astro.props;
+---
+
+<BaseLayout 
+  title={`${pkg.name} | Travel Packages — ${pkg.destination}`}
+  description={pkg.tagline}
+>
+  <!-- Hero Section with Proper Header Offset -->
+  <section class="relative w-full min-h-[500px] md:min-h-[560px] flex items-end pt-36 md:pt-44 pb-16 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src={pkg.heroImage} alt={pkg.name} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#00174A] via-[#00174A]/60 to-black/40"></div>
+    </div>
+    
+    <div class="container-site relative z-10 text-white">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="bg-[var(--color-luxury)] text-black text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full">
+          {pkg.destination}
+        </span>
+        <span class="bg-white/20 backdrop-blur-md text-white text-xs font-medium px-3.5 py-1 rounded-full border border-white/20">
+          {pkg.duration.nights} Nights / {pkg.duration.days} Days
+        </span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-serif text-white mb-4 leading-tight">{pkg.name}</h1>
+      <p class="text-lg md:text-xl text-white/90 max-w-2xl font-light leading-relaxed">{pkg.tagline}</p>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <section class="section-padding bg-[var(--color-bg)]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left 8 Cols: Overview, Highlights, Itinerary -->
+        <div class="lg:col-span-8 space-y-12">
+          
+          <!-- Key Info Bar -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-white rounded-2xl shadow-sm border border-[var(--color-border)]">
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-medium mb-1">Duration</span>
+              <span class="font-semibold text-base text-[var(--color-text-primary)]">{pkg.duration.nights}N / {pkg.duration.days}D</span>
+            </div>
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-medium mb-1">Group Size</span>
+              <span class="font-semibold text-base text-[var(--color-text-primary)]">Max {pkg.maxGroupSize} Guests</span>
+            </div>
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-medium mb-1">Best Season</span>
+              <span class="font-semibold text-base text-[var(--color-text-primary)]">{pkg.seasons.join(', ')}</span>
+            </div>
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-medium mb-1">Rating</span>
+              <span class="font-semibold text-base text-[var(--color-text-primary)] flex items-center gap-1">
+                <span class="text-[var(--color-luxury)]">★</span> {pkg.rating} ({pkg.reviewCount})
+              </span>
+            </div>
+          </div>
+
+          <!-- Trip Highlights -->
+          <div class="bg-white p-8 rounded-2xl border border-[var(--color-border)] shadow-sm">
+            <h2 class="text-2xl font-serif mb-6 text-[var(--color-text-primary)] flex items-center gap-3">
+              <span class="w-1.5 h-6 bg-[var(--color-accent)] rounded-full inline-block"></span>
+              Trip Highlights
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {pkg.highlights.map(h => (
+                <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-100">
+                  <div class="w-6 h-6 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">
+                    ✓
+                  </div>
+                  <span class="text-sm font-medium text-[var(--color-text-primary)] leading-normal">{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Day by Day Itinerary -->
+          <div>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-serif text-[var(--color-text-primary)]">Day-by-Day Itinerary</h2>
+              <span class="text-sm text-[var(--color-text-secondary)] font-medium">{pkg.itinerary.length} Days Detailed Plan</span>
+            </div>
+
+            <div class="space-y-6 relative before:absolute before:left-5 before:top-4 before:bottom-4 before:w-0.5 before:bg-[var(--color-accent)]/20">
+              {pkg.itinerary.map((day) => (
+                <div class="relative pl-14 group">
+                  <!-- Day Circle Badge -->
+                  <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-[var(--color-bg)]">
+                    D{day.day}
+                  </div>
+
+                  <!-- Day Card -->
+                  <div class="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold font-serif text-[var(--color-text-primary)] mb-3">
+                      Day {day.day}: {day.title}
+                    </h3>
+
+                    <p class="text-body text-[var(--color-text-secondary)] leading-relaxed mb-6">
+                      {day.description}
+                    </p>
+
+                    <!-- Day Highlights Chips -->
+                    {day.highlights && day.highlights.length > 0 && (
+                      <div class="mb-4">
+                        <span class="block text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-semibold mb-2">Day Highlights</span>
+                        <div class="flex flex-wrap gap-2">
+                          {day.highlights.map(dh => (
+                            <span class="bg-[var(--color-accent)]/5 text-[var(--color-accent)] border border-[var(--color-accent)]/10 text-xs px-3 py-1 rounded-full font-medium">
+                              ✨ {dh}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <!-- Stay & Meals Info -->
+                    {(day.stay || (day.meals && day.meals.length > 0)) && (
+                      <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs">
+                        {day.stay && day.stay !== 'N/A' && (
+                          <div class="flex items-center gap-2 text-[var(--color-text-secondary)]">
+                            <span class="font-semibold text-[var(--color-text-primary)]">🏨 Stay:</span>
+                            <span>{day.stay}</span>
+                          </div>
+                        )}
+                        {day.meals && day.meals.length > 0 && (
+                          <div class="flex items-center gap-2 text-[var(--color-text-secondary)]">
+                            <span class="font-semibold text-[var(--color-text-primary)]">🍽️ Meals:</span>
+                            <span class="capitalize">{day.meals.join(', ')}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Included & Excluded -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl">
+              <h3 class="text-lg font-bold text-emerald-950 mb-4 flex items-center gap-2">
+                <span class="text-emerald-600 font-bold">✓</span> What's Included
+              </h3>
+              <ul class="space-y-2.5 text-sm text-emerald-900">
+                {pkg.includes.map(inc => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-emerald-600 font-bold">•</span>
+                    <span>{inc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-rose-50/60 border border-rose-100 p-6 rounded-2xl">
+              <h3 class="text-lg font-bold text-rose-950 mb-4 flex items-center gap-2">
+                <span class="text-rose-600 font-bold">✕</span> What's Excluded
+              </h3>
+              <ul class="space-y-2.5 text-sm text-rose-900">
+                {pkg.excludes.map(exc => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-rose-600 font-bold">•</span>
+                    <span>{exc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right 4 Cols: Sticky Booking Sidebar -->
+        <div class="lg:col-span-4">
+          <div class="sticky top-32 bg-white rounded-3xl p-8 border border-[var(--color-border)] shadow-xl space-y-6">
+            <div>
+              <span class="text-xs uppercase tracking-wider text-[var(--color-text-secondary)] font-semibold block mb-1">Starting From</span>
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold font-serif text-[var(--color-text-primary)]">₹{pkg.priceFrom.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-[var(--color-text-secondary)]">/ person</span>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-4 border-t border-slate-100 text-sm">
+              <div class="flex justify-between py-1">
+                <span class="text-[var(--color-text-secondary)]">Duration</span>
+                <span class="font-medium">{pkg.duration.nights} Nights / {pkg.duration.days} Days</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-[var(--color-text-secondary)]">Destinations</span>
+                <span class="font-medium text-right">{pkg.destination}</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-[var(--color-text-secondary)]">Max Group Size</span>
+                <span class="font-medium">Up to {pkg.maxGroupSize} pax</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-[var(--color-text-secondary)]">Rating</span>
+                <span class="font-medium flex items-center gap-1">
+                  <span class="text-[var(--color-luxury)]">★</span> {pkg.rating} ({pkg.reviewCount})
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-4 space-y-3">
+              <a href="https://wa.me/919071971123?text=Hi,%20I%20am%20interested%20in%20the%20{pkg.name}" class="btn btn-primary w-full py-4 text-center justify-center text-base shadow-lg shadow-[var(--color-accent)]/20">
+                <span>Request Custom Quote</span>
+              </a>
+            </div>
+
+            <p class="text-xs text-center text-slate-400 pt-2">
+              *Prices are subject to availability and seasonal changes.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

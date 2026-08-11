@@ -1,10 +1,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Package Data — placeholder content, client to replace before launch
+// Package Data — Asia & Europe Portfolios
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type PackageCategory =
   | "domestic"
   | "international"
+  | "asia"
+  | "europe"
   | "luxury"
   | "adventure"
   | "honeymoon"
@@ -29,12 +31,12 @@ export interface Package {
   tagline: string;
   category: PackageCategory[];
   featured: boolean;
-  heroImage: string; // Unsplash URL — client to replace with real photography
+  heroImage: string;
   galleryImages: string[];
   destination: string;
   country: string;
   duration: { days: number; nights: number };
-  priceFrom: number; // INR per person
+  priceFrom: number;
   maxGroupSize: number;
   highlights: string[];
   itinerary: ItineraryDay[];
@@ -45,435 +47,300 @@ export interface Package {
   reviewCount: number;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Placeholder photography from Unsplash (royalty-free, swap with real photos)
-// ─────────────────────────────────────────────────────────────────────────────
-
-const UNSPLASH = {
-  rajasthan: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80",
-  kerala: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80",
-  goa: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80",
-  himachal: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  maldives: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&q=80",
-  bali: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80",
-  paris: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80",
-  santorini: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&q=80",
-  dubai: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80",
-  leh: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",
-  kashmir: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=1200&q=80",
-  andaman: "https://images.unsplash.com/photo-1583248369069-9d91f1640fe6?w=1200&q=80",
-};
-
 export const PACKAGES: Package[] = [
-  // ─── LUXURY ────────────────────────────────────────────────────────────────
+  // ─── ASIA ──────────────────────────────────────────────────────────────────
   {
     id: "pkg-001",
-    slug: "maldives-overwater-luxury",
-    name: "Maldives — Overwater Luxury",
-    tagline: "Where the ocean is your floor and the sky your ceiling.",
-    category: ["luxury", "honeymoon", "international"],
+    slug: "sri-lanka-5d4n",
+    name: "Sri Lanka — Island Escape",
+    tagline: "Experience the lush green hills, culture, and pristine beaches of Sri Lanka.",
+    category: ["international", "asia", "family"],
     featured: true,
-    heroImage: UNSPLASH.maldives,
-    galleryImages: [UNSPLASH.maldives, UNSPLASH.bali, UNSPLASH.santorini],
-    destination: "Maldives",
-    country: "Maldives",
-    duration: { days: 7, nights: 6 },
-    priceFrom: 175000,
-    maxGroupSize: 2,
-    highlights: [
-      "Overwater villa with glass-floor panels",
-      "Private sunset dolphin cruise",
-      "Couples' spa with ocean views",
-      "Snorkelling & scuba in UNESCO biosphere",
-      "All-inclusive gourmet dining",
+    heroImage: "https://images.openai.com/static-rsc-4/O6SZS67vi9k2MwUSrG-gh4d_n98zZRJ5O6xxkOdQxi-v_S-8b1qa7nynDQV5ztVfuzrZu7q-hJcYsWQqIDx91RCq6CAaHgyQ7w3zzT4fi2wnP-4OG2MTVUmAuiLzSS89EI7CRYnslB-9UeTXdxl5zHvbJn5loXMMCTSMIxTVDDb2hCRYB4QWNdeURcxINKh_?purpose=fullsize",
+    galleryImages: [
+      "https://images.openai.com/static-rsc-4/O6SZS67vi9k2MwUSrG-gh4d_n98zZRJ5O6xxkOdQxi-v_S-8b1qa7nynDQV5ztVfuzrZu7q-hJcYsWQqIDx91RCq6CAaHgyQ7w3zzT4fi2wnP-4OG2MTVUmAuiLzSS89EI7CRYnslB-9UeTXdxl5zHvbJn5loXMMCTSMIxTVDDb2hCRYB4QWNdeURcxINKh_?purpose=fullsize",
+      "https://images.openai.com/static-rsc-4/ZJwxj0n_o_XuFRzPheTYC60Lz-0Mnq9wzq0AHOKYyIpmFjwn1PGW0H0rM0VBVD-32vonY46Uiy-WUpAMuTmc8cxpsXrCqBLtDrB0nbQ-iTZF1oPkYiMothUhoA77KAS9Rnbe6UYXM2gcOq7h8CRtXUy48wk0Ac8JDV2Pa2ap4t5oigZKOWOB6WKyt7K9NT_4?purpose=fullsize"
     ],
+    destination: "Sri Lanka",
+    country: "Sri Lanka",
+    duration: { days: 5, nights: 4 },
+    priceFrom: 24999,
+    maxGroupSize: 10,
+    highlights: ["Pinnawala Elephant Orphanage", "Temple of the Tooth", "Tea plantation", "Nine Arch Bridge", "Galle Fort"],
+    includes: ["Accommodation", "Daily Breakfast", "Airport Transfers"],
+    excludes: ["Flights", "Visas", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.8,
+    reviewCount: 124,
     itinerary: [
-      {
-        day: 1,
-        title: "Arrival in Paradise",
-        description:
-          "Seaplane transfer from Malé to your private island resort. Check into your overwater villa, where turquoise lagoon water stretches beneath your feet.",
-        highlights: ["Seaplane transfer", "Welcome cocktails", "Sunset villa tour"],
-        meals: ["dinner"],
-        stay: "Overwater Water Villa, Conrad Maldives",
-        images: [UNSPLASH.maldives],
-      },
-      {
-        day: 2,
-        title: "Reef, Rays & Romance",
-        description:
-          "Morning snorkelling on the house reef, followed by a couples' rejuvenation treatment at the overwater spa. Sunset champagne on your deck.",
-        highlights: ["House reef snorkelling", "Couples spa (90 min)", "Sunset champagne"],
-        meals: ["breakfast", "dinner"],
-        stay: "Conrad Maldives",
-        images: [UNSPLASH.maldives],
-      },
-      {
-        day: 3,
-        title: "Dolphin Cruise & Dive",
-        description:
-          "Full-day scuba diving on the outer reef (PADI-certified instructor) + evening dolphin-watching cruise with a private chef's platter.",
-        highlights: ["2 x scuba dives", "Dolphin sunset cruise", "Private platter"],
-        meals: ["breakfast", "lunch"],
-        stay: "Conrad Maldives",
-      },
-      {
-        day: 4,
-        title: "Day at Sea",
-        description:
-          "Private catamaran charter — sail to a deserted sandbank for a champagne picnic lunch. Afternoon kayaking and paddleboarding at leisure.",
-        highlights: ["Catamaran charter", "Sandbank picnic", "Paddleboarding"],
-        meals: ["breakfast", "lunch"],
-        stay: "Conrad Maldives",
-      },
-      {
-        day: 5,
-        title: "Culture & Cuisine",
-        description:
-          "Morning visit to a local island fishermen's village; afternoon gourmet cooking class with the resort chef using locally-caught seafood.",
-        highlights: ["Local island excursion", "Cooking class", "Chef's table dinner"],
-        meals: ["breakfast", "dinner"],
-        stay: "Conrad Maldives",
-      },
-      {
-        day: 6,
-        title: "Leisure & Farewell",
-        description:
-          "Unplanned day — pool, spa, or simply float in your villa's private pool. Farewell dinner under the stars on a floating pontoon.",
-        highlights: ["Spa at leisure", "Private pool villa", "Floating pontoon dinner"],
-        meals: ["breakfast", "dinner"],
-        stay: "Conrad Maldives",
-      },
-      {
-        day: 7,
-        title: "Departure",
-        description:
-          "Late checkout, seaplane back to Malé international airport. Depart with memories that last a lifetime.",
-        highlights: ["Late checkout", "Seaplane transfer"],
-        meals: ["breakfast"],
-        stay: "Departure",
-      },
-    ],
-    includes: [
-      "Return seaplane transfers (Malé–resort–Malé)",
-      "6 nights overwater villa (all-inclusive)",
-      "Couples' spa session (90 min)",
-      "Sunset dolphin cruise",
-      "Snorkelling equipment",
-      "Dedicated butler service",
-    ],
-    excludes: [
-      "International airfare to/from Malé",
-      "Scuba diving (extra charge)",
-      "Catamaran charter (add-on)",
-      "Personal expenses & alcohol beyond package",
-    ],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"],
-    rating: 4.9,
-    reviewCount: 143,
+      { day: 1, title: "Airport → Kandy", description: "Airport pickup, Pinnawala Elephant Orphanage, Kandy sightseeing, and Temple of the Tooth.", highlights: ["Pinnawala Elephant Orphanage", "Temple of the Tooth"], meals: [], stay: "Kandy" },
+      { day: 2, title: "Kandy → Nuwara Eliya → Ella", description: "Visit a tea plantation & factory, Nuwara Eliya sightseeing, and enjoy a scenic train journey toward Ella.", highlights: ["Tea plantation", "Scenic train journey"], meals: ["breakfast"], stay: "Ella" },
+      { day: 3, title: "Ella", description: "Visit the famous Nine Arch Bridge, hike Little Adam's Peak, and see Ravana Falls.", highlights: ["Nine Arch Bridge", "Little Adam's Peak", "Ravana Falls"], meals: ["breakfast"], stay: "Ella" },
+      { day: 4, title: "Ella → Galle → Colombo", description: "Drive to Galle, explore Galle Fort, visit the beach, and enjoy Colombo city sightseeing.", highlights: ["Galle Fort", "Colombo sightseeing"], meals: ["breakfast"], stay: "Colombo" },
+      { day: 5, title: "Colombo → Airport", description: "Leisure/shopping depending on flight time, followed by an airport transfer.", highlights: ["Leisure shopping", "Airport transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
   },
-
-  // ─── HONEYMOON ─────────────────────────────────────────────────────────────
   {
     id: "pkg-002",
-    slug: "bali-honeymoon-bliss",
-    name: "Bali — Honeymoon in the Gods' Island",
-    tagline: "Rice terraces, temples, and utter togetherness.",
-    category: ["honeymoon", "international", "luxury"],
+    slug: "thailand-bangkok-pattaya",
+    name: "Thailand — Bangkok + Pattaya",
+    tagline: "Vibrant city life meets stunning coral islands in this Thailand getaway.",
+    category: ["international", "asia", "family"],
     featured: true,
-    heroImage: UNSPLASH.bali,
-    galleryImages: [UNSPLASH.bali, UNSPLASH.maldives, UNSPLASH.santorini],
-    destination: "Bali",
-    country: "Indonesia",
-    duration: { days: 8, nights: 7 },
-    priceFrom: 95000,
-    maxGroupSize: 2,
-    highlights: [
-      "Private infinity pool villa in Ubud",
-      "Sunrise Batur volcano trek",
-      "Couples' Balinese spa rituals",
-      "Temple & rice terrace sunset tour",
-      "Romantic beach dinner in Seminyak",
+    heroImage: "https://images.openai.com/static-rsc-4/qilHbiJjo7Yzdpz2nZyjkKlHuIgvFlMJvsL32PeOhlDZyqRyGWF7gvSY11Mk8RKx4DLsIrmHFHwGWtXSdWHk7-85l0oPwwwEtVBGKkg17EEJsfnHH0rchgZr6ZELgf-vJ4iC5O5a4iAsCH2__bJh9VXXo8BO6Z-RhzgPUJtu6xzKBUGhjI_pBZ-ciiWghL9d?purpose=fullsize",
+    galleryImages: [
+      "https://images.openai.com/static-rsc-4/qilHbiJjo7Yzdpz2nZyjkKlHuIgvFlMJvsL32PeOhlDZyqRyGWF7gvSY11Mk8RKx4DLsIrmHFHwGWtXSdWHk7-85l0oPwwwEtVBGKkg17EEJsfnHH0rchgZr6ZELgf-vJ4iC5O5a4iAsCH2__bJh9VXXo8BO6Z-RhzgPUJtu6xzKBUGhjI_pBZ-ciiWghL9d?purpose=fullsize"
     ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Welcome to Bali",
-        description: "Airport pickup, lei welcome, and transfer to Ubud. Check-in to private pool villa nestled in rice fields.",
-        highlights: ["Airport welcome", "Villa check-in", "Evening rice field walk"],
-        meals: ["dinner"],
-        stay: "Private Pool Villa, Ubud",
-      },
-    ],
-    includes: ["7 nights private pool villa", "Daily breakfast", "Airport transfers", "Spa session", "Volcano trek with guide"],
-    excludes: ["International flights", "Personal expenses", "Optional activities"],
-    seasons: ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-    rating: 4.8,
-    reviewCount: 98,
-  },
-
-  // ─── DOMESTIC ──────────────────────────────────────────────────────────────
-  {
-    id: "pkg-003",
-    slug: "rajasthan-royal-circuit",
-    name: "Rajasthan — The Royal Circuit",
-    tagline: "Palaces, forts, and a land that dreams in saffron.",
-    category: ["domestic", "luxury"],
-    featured: true,
-    heroImage: UNSPLASH.rajasthan,
-    galleryImages: [UNSPLASH.rajasthan, UNSPLASH.leh, UNSPLASH.kashmir],
-    destination: "Jaipur · Jodhpur · Udaipur",
-    country: "India",
-    duration: { days: 10, nights: 9 },
-    priceFrom: 65000,
-    maxGroupSize: 10,
-    highlights: [
-      "Amber Fort jeep ride at dawn",
-      "Sunset at Mehrangarh in the Blue City",
-      "Boat dinner on Lake Pichola",
-      "Camel safari in the Thar Desert",
-      "Heritage palace hotel stays",
-    ],
-    itinerary: [],
-    includes: ["9 nights heritage hotels", "Daily breakfast & dinner", "AC vehicle throughout", "Expert local guides", "Camel safari"],
-    excludes: ["Airfare", "Entrance fees", "Personal expenses"],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
-    rating: 4.9,
-    reviewCount: 217,
-  },
-
-  // ─── ADVENTURE ─────────────────────────────────────────────────────────────
-  {
-    id: "pkg-004",
-    slug: "leh-ladakh-expedition",
-    name: "Leh–Ladakh — High Altitude Expedition",
-    tagline: "Where roads end and the adventure truly begins.",
-    category: ["adventure", "domestic", "solo"],
-    featured: true,
-    heroImage: UNSPLASH.leh,
-    galleryImages: [UNSPLASH.leh, UNSPLASH.himachal, UNSPLASH.kashmir],
-    destination: "Leh, Ladakh",
-    country: "India",
-    duration: { days: 9, nights: 8 },
-    priceFrom: 45000,
-    maxGroupSize: 12,
-    highlights: [
-      "Pangong Lake sunrise camp",
-      "Khardung La pass (world's highest motorable road)",
-      "Monastery circuit: Hemis, Thikse, Diskit",
-      "Indus & Zanskar river rafting",
-      "Camping under Milky Way",
-    ],
-    itinerary: [],
-    includes: ["8 nights camp/guesthouse", "All meals", "Royal Enfield rental or 4WD", "Permits", "Guide & support"],
-    excludes: ["Airfare to Leh", "Personal gear", "Travel insurance"],
-    seasons: ["Jun", "Jul", "Aug", "Sep"],
-    rating: 4.8,
-    reviewCount: 134,
-  },
-
-  // ─── FAMILY ────────────────────────────────────────────────────────────────
-  {
-    id: "pkg-005",
-    slug: "kerala-family-backwaters",
-    name: "Kerala — Backwaters & Beyond",
-    tagline: "God's Own Country. Your family's fondest memory.",
-    category: ["family", "domestic"],
-    featured: false,
-    heroImage: UNSPLASH.kerala,
-    galleryImages: [UNSPLASH.kerala, UNSPLASH.goa, UNSPLASH.andaman],
-    destination: "Kochi · Munnar · Alleppey · Kovalam",
-    country: "India",
-    duration: { days: 8, nights: 7 },
-    priceFrom: 42000,
-    maxGroupSize: 6,
-    highlights: [
-      "Houseboat overnight on Vembanad Lake",
-      "Tea estate walk in Munnar",
-      "Kathakali cultural performance",
-      "Elephant interaction (ethical sanctuary)",
-      "Varkala cliff-side beach day",
-    ],
-    itinerary: [],
-    includes: ["7 nights hotels + 1 houseboat", "Daily breakfast", "All transfers", "Kathakali show tickets", "Elephant visit"],
-    excludes: ["Flights", "Lunches & dinners (except houseboat)", "Personal expenses"],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
-    rating: 4.7,
-    reviewCount: 189,
-  },
-
-  // ─── INTERNATIONAL / EUROPE ────────────────────────────────────────────────
-  {
-    id: "pkg-006",
-    slug: "paris-santorini-honeymoon",
-    name: "Paris & Santorini — European Romance",
-    tagline: "The City of Light meets the Aegean dream.",
-    category: ["honeymoon", "international", "luxury"],
-    featured: false,
-    heroImage: UNSPLASH.paris,
-    galleryImages: [UNSPLASH.paris, UNSPLASH.santorini, UNSPLASH.bali],
-    destination: "Paris · Santorini",
-    country: "France / Greece",
-    duration: { days: 12, nights: 11 },
-    priceFrom: 220000,
-    maxGroupSize: 2,
-    highlights: [
-      "Eiffel Tower private dinner reservation",
-      "Cave suite with caldera views in Oia",
-      "Sunset catamaran in the Aegean",
-      "Louvre priority-access guided tour",
-      "Champagne tasting in Reims",
-    ],
-    itinerary: [],
-    includes: ["11 nights 5-star hotels", "Daily breakfast", "Paris–Santorini flight", "All transfers", "Selected tours"],
-    excludes: ["International flights to Paris from India", "Personal shopping", "Lunches & dinners"],
-    seasons: ["Apr", "May", "Jun", "Sep", "Oct"],
-    rating: 4.9,
-    reviewCount: 76,
-  },
-
-  // ─── GOA ───────────────────────────────────────────────────────────────────
-  {
-    id: "pkg-007",
-    slug: "goa-weekend-escape",
-    name: "Goa — Weekend Escape",
-    tagline: "Sun, sea, and stories worth telling.",
-    category: ["domestic", "solo", "family"],
-    featured: false,
-    heroImage: UNSPLASH.goa,
-    galleryImages: [UNSPLASH.goa, UNSPLASH.andaman, UNSPLASH.kerala],
-    destination: "Goa",
-    country: "India",
-    duration: { days: 4, nights: 3 },
-    priceFrom: 18000,
-    maxGroupSize: 8,
-    highlights: [
-      "North Goa beach-hopping",
-      "Old Goa heritage churches walk",
-      "Sunset cruise on Mandovi River",
-      "Spice plantation tour with Goan lunch",
-      "Night market at Anjuna",
-    ],
-    itinerary: [],
-    includes: ["3 nights boutique resort", "Daily breakfast", "Airport transfers", "River cruise", "Spice plantation"],
-    excludes: ["Flights", "Lunch & dinner", "Personal expenses"],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
-    rating: 4.6,
-    reviewCount: 312,
-  },
-
-  // ─── CORPORATE ─────────────────────────────────────────────────────────────
-  {
-    id: "pkg-008",
-    slug: "dubai-corporate-retreat",
-    name: "Dubai — Corporate Excellence Retreat",
-    tagline: "Reward your team where ambition meets skyline.",
-    category: ["corporate", "international", "luxury"],
-    featured: false,
-    heroImage: UNSPLASH.dubai,
-    galleryImages: [UNSPLASH.dubai, UNSPLASH.paris, UNSPLASH.santorini],
-    destination: "Dubai",
-    country: "UAE",
+    destination: "Bangkok & Pattaya",
+    country: "Thailand",
     duration: { days: 5, nights: 4 },
-    priceFrom: 85000,
-    maxGroupSize: 50,
-    highlights: [
-      "Burj Al Arab welcome reception",
-      "Desert safari team-building dinner",
-      "Conference facility at luxury hotel",
-      "Dubai Marina yacht evening",
-      "Customised team activities",
-    ],
-    itinerary: [],
-    includes: ["4 nights 5-star hotel", "All conference facilities", "Desert safari", "Transfers", "MICE-dedicated coordinator"],
-    excludes: ["International flights", "Visa fees", "Personal expenses", "Optional excursions"],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
-    rating: 4.8,
-    reviewCount: 45,
-  },
-
-  // ─── ANDAMAN ───────────────────────────────────────────────────────────────
-  {
-    id: "pkg-009",
-    slug: "andaman-island-hopping",
-    name: "Andaman — Island Hopping Adventure",
-    tagline: "Emerald waters. Untouched shores. Zero signal. Total freedom.",
-    category: ["adventure", "domestic", "solo", "honeymoon"],
-    featured: false,
-    heroImage: UNSPLASH.andaman,
-    galleryImages: [UNSPLASH.andaman, UNSPLASH.goa, UNSPLASH.kerala],
-    destination: "Port Blair · Havelock · Neil Island",
-    country: "India",
-    duration: { days: 7, nights: 6 },
-    priceFrom: 38000,
-    maxGroupSize: 8,
-    highlights: [
-      "Radhanagar Beach (Asia's best beach)",
-      "Scuba diving at Elephant Beach",
-      "Night kayaking through bio-luminescent waters",
-      "Cellular Jail light & sound show",
-      "Snorkelling at Neil Island coral reefs",
-    ],
-    itinerary: [],
-    includes: ["6 nights beach resorts", "Daily breakfast", "All inter-island ferries", "Scuba session", "Kayaking"],
-    excludes: ["Flights to Port Blair", "Lunch & dinner", "Permit fees"],
-    seasons: ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"],
-    rating: 4.8,
-    reviewCount: 156,
-  },
-
-  // ─── KASHMIR ───────────────────────────────────────────────────────────────
-  {
-    id: "pkg-010",
-    slug: "kashmir-paradise-valley",
-    name: "Kashmir — Valley of Paradise",
-    tagline: "Heaven is a place on earth. It's called Kashmir.",
-    category: ["domestic", "honeymoon", "luxury"],
-    featured: false,
-    heroImage: UNSPLASH.kashmir,
-    galleryImages: [UNSPLASH.kashmir, UNSPLASH.himachal, UNSPLASH.leh],
-    destination: "Srinagar · Gulmarg · Pahalgam · Sonamarg",
-    country: "India",
-    duration: { days: 7, nights: 6 },
-    priceFrom: 35000,
-    maxGroupSize: 8,
-    highlights: [
-      "Dal Lake houseboat stay",
-      "Gondola ride at Gulmarg (Asia's highest)",
-      "Betaab Valley & Aru Valley picnic",
-      "Mughal Gardens: Shalimar & Nishat Bagh",
-      "Sonamarg glacier excursion",
-    ],
-    itinerary: [],
-    includes: ["6 nights houseboat + hotels", "Daily breakfast & dinner", "All transfers", "Gondola tickets", "Local sightseeing"],
-    excludes: ["Flights to Srinagar", "Lunch", "Pony rides & optional excursions"],
-    seasons: ["Apr", "May", "Jun", "Sep", "Oct"],
+    priceFrom: 29999,
+    maxGroupSize: 15,
+    highlights: ["Coral Island Tour", "Grand Palace Area", "Golden Buddha", "Shopping"],
+    includes: ["Accommodation", "Daily Breakfast", "Airport Transfers"],
+    excludes: ["Flights", "Visas", "Personal Expenses"],
+    seasons: ["All Year"],
     rating: 4.7,
     reviewCount: 201,
+    itinerary: [
+      { day: 1, title: "Bangkok → Pattaya", description: "Airport pickup, transfer to Pattaya, hotel check-in, and evening at leisure.", highlights: ["Transfer to Pattaya"], meals: [], stay: "Pattaya" },
+      { day: 2, title: "Coral Island", description: "Coral Island tour with beach activities. Return to Pattaya for an evening walk.", highlights: ["Coral Island tour"], meals: ["breakfast"], stay: "Pattaya" },
+      { day: 3, title: "Pattaya → Bangkok", description: "Transfer to Bangkok, sightseeing around Wat Arun / Wat Pho area, and shopping.", highlights: ["Wat Arun", "Bangkok sightseeing"], meals: ["breakfast"], stay: "Bangkok" },
+      { day: 4, title: "Bangkok", description: "Visit the Grand Palace area, Golden Buddha, and local markets/malls.", highlights: ["Grand Palace", "Golden Buddha"], meals: ["breakfast"], stay: "Bangkok" },
+      { day: 5, title: "Bangkok → Airport", description: "Check-out and transfer to the airport.", highlights: ["Airport transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
   },
+  {
+    id: "pkg-003",
+    slug: "bali-5d4n",
+    name: "Bali — Island of the Gods",
+    tagline: "Volcanoes, rice terraces, and dramatic clifftop temples.",
+    category: ["international", "asia", "honeymoon", "luxury"],
+    featured: true,
+    heroImage: "https://images.openai.com/static-rsc-4/7ETEW4_toFL1EZ9pz-7lUw0M8fFYV7EDtTbjLymXGMp1lh-l5LnkTDV9ZJtkrGCaQGex1SNJReZGO37ONXQOi21J8t22waVGHKJhPKLriUP-2eYiX_g-Xo1EzQuFbS8-uVhBIWNZJoN_0_WuRqkeMxvuLRP0rMUoBf5gcSNeymcH3DV8Vr5nuSqDeQwvPhc5?purpose=fullsize",
+    galleryImages: [
+      "https://images.openai.com/static-rsc-4/7ETEW4_toFL1EZ9pz-7lUw0M8fFYV7EDtTbjLymXGMp1lh-l5LnkTDV9ZJtkrGCaQGex1SNJReZGO37ONXQOi21J8t22waVGHKJhPKLriUP-2eYiX_g-Xo1EzQuFbS8-uVhBIWNZJoN_0_WuRqkeMxvuLRP0rMUoBf5gcSNeymcH3DV8Vr5nuSqDeQwvPhc5?purpose=fullsize"
+    ],
+    destination: "Bali",
+    country: "Indonesia",
+    duration: { days: 5, nights: 4 },
+    priceFrom: 32999,
+    maxGroupSize: 12,
+    highlights: ["Tegalalang Rice Terrace", "Nusa Penida", "Uluwatu Temple", "Kecak Dance"],
+    includes: ["Accommodation", "Daily Breakfast", "Airport Transfers", "Island Tours"],
+    excludes: ["Flights", "Visas", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.9,
+    reviewCount: 450,
+    itinerary: [
+      { day: 1, title: "Bali Arrival", description: "Airport pickup, hotel check-in, Kuta/Seminyak sightseeing, and beach sunset.", highlights: ["Beach sunset"], meals: [], stay: "Bali" },
+      { day: 2, title: "Ubud + Kintamani", description: "Visit Tegenungan Waterfall, Tegalalang Rice Terrace, Kintamani volcano, and a coffee plantation.", highlights: ["Tegalalang Rice Terrace", "Kintamani"], meals: ["breakfast"], stay: "Bali" },
+      { day: 3, title: "Nusa Penida", description: "Full-day Nusa Penida tour including Kelingking Beach, Broken Beach, and Crystal Bay.", highlights: ["Nusa Penida", "Kelingking Beach"], meals: ["breakfast"], stay: "Bali" },
+      { day: 4, title: "Uluwatu", description: "Uluwatu Temple, Kecak Dance performance, and Jimbaran Beach dinner.", highlights: ["Uluwatu Temple", "Kecak Dance"], meals: ["breakfast"], stay: "Bali" },
+      { day: 5, title: "Bali → Airport", description: "Check-out, shopping/leisure time, and airport transfer.", highlights: ["Airport transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+
+  // ─── EUROPE ────────────────────────────────────────────────────────────────
+  {
+    id: "pkg-004",
+    slug: "iceland-wonderland",
+    name: "Iceland — Northern Lights & Glaciers",
+    tagline: "Chasing aurora borealis, waterfalls, black sand beaches, and geothermal lagoons.",
+    category: ["international", "europe", "adventure", "luxury"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1200&q=80",
+      "https://images.unsplash.com/photo-1529963183134-61a90db47eaf?w=1200&q=80"
+    ],
+    destination: "Iceland",
+    country: "Iceland",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 249999,
+    maxGroupSize: 10,
+    highlights: ["Northern Lights Tour", "Golden Circle", "Jökulsárlón Glacier Lagoon", "Blue Lagoon Spa", "Reynisfjara Black Sand Beach"],
+    includes: ["Accommodation", "Daily Breakfast", "Airport & Excursion Transfers", "Blue Lagoon Entrance"],
+    excludes: ["International Flights", "Schengen Visa", "Personal Expenses"],
+    seasons: ["Sep - Apr (Aurora Season)", "May - Aug (Midnight Sun)"],
+    rating: 4.95,
+    reviewCount: 88,
+    itinerary: [
+      { day: 1, title: "Arrival in Reykjavik", description: "Airport pickup, transfer to Reykjavik, hotel check-in, city walk seeing Hallgrímskirkja Church and Harpa Concert Hall.", highlights: ["Hallgrímskirkja", "Harpa Concert Hall"], meals: [], stay: "Reykjavik" },
+      { day: 2, title: "The Golden Circle", description: "Explore Thingvellir National Park, Geysir geothermal area, Gullfoss Waterfall, and Kerid Crater. Evening Northern Lights hunt depending on weather.", highlights: ["Thingvellir", "Geysir", "Gullfoss Waterfall"], meals: ["breakfast"], stay: "Reykjavik" },
+      { day: 3, title: "South Coast Waterfalls & Black Sand", description: "Visit Seljalandsfoss, Skógafoss, Reynisfjara Black Sand Beach, and the dramatic cliffs of Dyrhólaey.", highlights: ["Skógafoss", "Reynisfjara Beach"], meals: ["breakfast"], stay: "Vik / South Iceland" },
+      { day: 4, title: "Glacier & Ice Lagoon", description: "Explore Skaftafell region, Diamond Beach, and the world-famous Jökulsárlón Glacier Lagoon.", highlights: ["Jökulsárlón Glacier Lagoon", "Diamond Beach"], meals: ["breakfast"], stay: "South Iceland" },
+      { day: 5, title: "Blue Lagoon & Reykjavik", description: "Soak in the mineral-rich geothermal waters of the Blue Lagoon. Return to Reykjavik for shopping & dining.", highlights: ["Blue Lagoon Spa", "Shopping"], meals: ["breakfast"], stay: "Reykjavik" },
+      { day: 6, title: "Departure", description: "Breakfast, check-out, and transfer to Keflavík Airport.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-005",
+    slug: "switzerland-alpine-dream",
+    name: "Switzerland — Alpine Dream",
+    tagline: "Panoramas of snow-capped peaks, alpine lakes, and world-famous mountain railways.",
+    category: ["international", "europe", "luxury", "family", "honeymoon"],
+    featured: false,
+    heroImage: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&q=80"
+    ],
+    destination: "Lucerne, Interlaken & Zurich",
+    country: "Switzerland",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 189999,
+    maxGroupSize: 12,
+    highlights: ["Mount Titlis Cable Car", "Jungfraujoch Top of Europe", "Chapel Bridge Lucerne", "Lauterbrunnen Waterfalls"],
+    includes: ["3-Star/4-Star Hotels", "Daily Breakfast", "Swiss Travel Pass Excursions"],
+    excludes: ["International Flights", "Schengen Visa", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.9,
+    reviewCount: 164,
+    itinerary: [
+      { day: 1, title: "Zurich → Lucerne", description: "Airport pickup, transfer to Lucerne, stroll past Chapel Bridge, Lake Lucerne, and Old Town.", highlights: ["Chapel Bridge", "Lake Lucerne"], meals: [], stay: "Lucerne" },
+      { day: 2, title: "Mount Titlis Excursion", description: "Ascend Mount Titlis on the rotating Rotair cable car, glacier cave, and snow activities.", highlights: ["Mount Titlis", "Rotair Cable Car"], meals: ["breakfast"], stay: "Lucerne" },
+      { day: 3, title: "Lucerne → Interlaken", description: "Scenic train journey to Interlaken. Visit Lauterbrunnen valley of 72 waterfalls.", highlights: ["Lauterbrunnen Waterfalls", "Scenic Train"], meals: ["breakfast"], stay: "Interlaken" },
+      { day: 4, title: "Jungfraujoch — Top of Europe", description: "Cogwheel train ride to Jungfraujoch Europe's highest railway station. Sphinx observatory & Ice Palace.", highlights: ["Jungfraujoch", "Ice Palace"], meals: ["breakfast"], stay: "Interlaken" },
+      { day: 5, title: "Interlaken → Zurich", description: "Transfer to Zurich, city tour of Bahnhofstrasse, Lake Zurich, and luxury shopping.", highlights: ["Bahnhofstrasse", "Lake Zurich"], meals: ["breakfast"], stay: "Zurich" },
+      { day: 6, title: "Zurich Departure", description: "Breakfast, check-out, and airport transfer.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-006",
+    slug: "italy-romance-history",
+    name: "Italy — Renaissance & Romance",
+    tagline: "Ancient Rome, Tuscan art, and gondola rides along Venetian canals.",
+    category: ["international", "europe", "honeymoon"],
+    featured: false,
+    heroImage: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80"
+    ],
+    destination: "Rome, Florence & Venice",
+    country: "Italy",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 159999,
+    maxGroupSize: 15,
+    highlights: ["Colosseum & Vatican City", "High-speed Frecciarossa Train", "Florence Duomo", "Venice Gondola Ride"],
+    includes: ["Hotels with Breakfast", "High-Speed Train Tickets", "Venice Gondola Ride"],
+    excludes: ["International Flights", "Schengen Visa", "City Tourist Taxes"],
+    seasons: ["Apr - Oct"],
+    rating: 4.85,
+    reviewCount: 142,
+    itinerary: [
+      { day: 1, title: "Rome Arrival", description: "Airport pickup, hotel check-in, visit Trevi Fountain, Spanish Steps, and Piazza Navona.", highlights: ["Trevi Fountain", "Spanish Steps"], meals: [], stay: "Rome" },
+      { day: 2, title: "Ancient Rome & Vatican", description: "Guided tour of the Colosseum, Roman Forum, Pantheon, and Vatican City St. Peter's Basilica.", highlights: ["Colosseum", "Vatican City"], meals: ["breakfast"], stay: "Rome" },
+      { day: 3, title: "Rome → Florence", description: "High-speed train to Florence. Guided walk around Florence Duomo, Ponte Vecchio, and Uffizi area.", highlights: ["Florence Duomo", "Ponte Vecchio"], meals: ["breakfast"], stay: "Florence" },
+      { day: 4, title: "Florence → Venice", description: "Train to Venice. St. Mark's Square, Rialto Bridge, and a romantic sunset gondola ride.", highlights: ["St. Mark's Square", "Venice Gondola Ride"], meals: ["breakfast"], stay: "Venice" },
+      { day: 5, title: "Venice Islands & Leisure", description: "Optional excursion to Murano & Burano glass-making islands or leisure shopping.", highlights: ["Grand Canal", "Murano & Burano"], meals: ["breakfast"], stay: "Venice" },
+      { day: 6, title: "Venice Departure", description: "Breakfast, check-out, and water taxi / transfer to airport.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-007",
+    slug: "france-paris-lights",
+    name: "France — City of Lights & Versailles",
+    tagline: "Iconic Eiffel Tower views, world-class art, and royal grandeur in Paris.",
+    category: ["international", "europe", "family", "honeymoon"],
+    featured: false,
+    heroImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80"
+    ],
+    destination: "Paris & Versailles",
+    country: "France",
+    duration: { days: 5, nights: 4 },
+    priceFrom: 134999,
+    maxGroupSize: 15,
+    highlights: ["Eiffel Tower 2nd Tier", "Seine River Cruise", "Palace of Versailles", "Louvre Museum"],
+    includes: ["Hotels with Breakfast", "Seine Cruise Tickets", "Versailles Entrance"],
+    excludes: ["International Flights", "Schengen Visa", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.8,
+    reviewCount: 190,
+    itinerary: [
+      { day: 1, title: "Paris Arrival & Seine Cruise", description: "Airport pickup, hotel check-in, Champs-Élysées, Arc de Triomphe, Eiffel Tower photo stop, and evening Seine river cruise.", highlights: ["Eiffel Tower", "Seine Cruise"], meals: [], stay: "Paris" },
+      { day: 2, title: "Paris Culture & Louvre", description: "Visit Louvre Museum, Notre-Dame area, Latin Quarter, and bohemian Montmartre Sacré-Cœur.", highlights: ["Louvre Museum", "Sacré-Cœur"], meals: ["breakfast"], stay: "Paris" },
+      { day: 3, title: "Palace of Versailles", description: "Excursion to the magnificent Palace of Versailles and its manicured gardens. Evening shopping.", highlights: ["Palace of Versailles"], meals: ["breakfast"], stay: "Paris" },
+      { day: 4, title: "Paris Experience & Shopping", description: "Shopping at Galeries Lafayette, free time, optional evening Moulin Rouge show.", highlights: ["Galeries Lafayette", "Free Time"], meals: ["breakfast"], stay: "Paris" },
+      { day: 5, title: "Paris Departure", description: "Breakfast, check-out, and airport transfer.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-008",
+    slug: "italy-switzerland-combo",
+    name: "Italy + Switzerland — Grand Duo",
+    tagline: "Combine the romantic canals of Venice and Rome with the majestic Swiss Alps.",
+    category: ["international", "europe", "luxury"],
+    featured: false,
+    heroImage: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1200&q=80"
+    ],
+    destination: "Rome, Venice, Lucerne & Zurich",
+    country: "Italy & Switzerland",
+    duration: { days: 7, nights: 6 },
+    priceFrom: 209999,
+    maxGroupSize: 12,
+    highlights: ["Rome Colosseum", "Venice Gondola Ride", "Mount Titlis Cable Car", "Lake Lucerne"],
+    includes: ["Hotels with Breakfast", "Cross-Border Train", "Excursions"],
+    excludes: ["International Flights", "Schengen Visa"],
+    seasons: ["May - Oct"],
+    rating: 4.92,
+    reviewCount: 110,
+    itinerary: [
+      { day: 1, title: "Rome Arrival", description: "Airport transfer, check-in, Trevi Fountain & Colosseum orientation.", highlights: ["Colosseum"], meals: [], stay: "Rome" },
+      { day: 2, title: "Vatican & High Speed Train to Venice", description: "Vatican City tour, then high-speed train to Venice.", highlights: ["Vatican City", "High-Speed Train"], meals: ["breakfast"], stay: "Venice" },
+      { day: 3, title: "Venice Canals", description: "Gondola ride across Grand Canal and St. Mark's Square exploration.", highlights: ["Venice Gondola"], meals: ["breakfast"], stay: "Venice" },
+      { day: 4, title: "Venice → Scenic Swiss Alps (Lucerne)", description: "Cross-border train journey through the Alps to Lucerne, Switzerland.", highlights: ["Alpine Train Journey"], meals: ["breakfast"], stay: "Lucerne" },
+      { day: 5, title: "Mount Titlis Alpine Adventure", description: "Cable car ascent to Mount Titlis for snow activities & glacier cave.", highlights: ["Mount Titlis"], meals: ["breakfast"], stay: "Lucerne" },
+      { day: 6, title: "Lucerne → Zurich", description: "Transfer to Zurich, city tour and Lake Zurich evening cruise.", highlights: ["Lake Zurich"], meals: ["breakfast"], stay: "Zurich" },
+      { day: 7, title: "Zurich Departure", description: "Breakfast, check-out, and transfer to Zurich Airport.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-009",
+    slug: "norway-fjords-lights",
+    name: "Norway — Fjords & Northern Lights",
+    tagline: "Dramatic Arctic fjords, snow adventures, and magical aurora borealis.",
+    category: ["international", "europe", "adventure"],
+    featured: false,
+    heroImage: "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=1200&q=80",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=1200&q=80"
+    ],
+    destination: "Oslo & Tromsø",
+    country: "Norway",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 229999,
+    maxGroupSize: 10,
+    highlights: ["Oslo Fjord Cruise", "Tromsø Arctic Wilderness", "Chasing Northern Lights", "Reindeer & Sami Experience"],
+    includes: ["Accommodation", "Daily Breakfast", "Domestic Flight Oslo-Tromsø", "Aurora Safari"],
+    excludes: ["International Flights", "Schengen Visa"],
+    seasons: ["Oct - Mar (Northern Lights)"],
+    rating: 4.91,
+    reviewCount: 76,
+    itinerary: [
+      { day: 1, title: "Oslo Arrival", description: "Airport pickup, hotel check-in, Oslo city tour visiting Vigeland Park and Opera House.", highlights: ["Oslo Opera House"], meals: [], stay: "Oslo" },
+      { day: 2, title: "Oslo → Tromsø (Gateway to the Arctic)", description: "Flight to Tromsø above the Arctic Circle. Evening orientation walk.", highlights: ["Tromsø Arctic Circle"], meals: ["breakfast"], stay: "Tromsø" },
+      { day: 3, title: "Tromsø City & Cable Car", description: "Visit Arctic Cathedral, take Fjellheisen Cable Car for panoramic fjord views.", highlights: ["Fjellheisen Cable Car"], meals: ["breakfast"], stay: "Tromsø" },
+      { day: 4, title: "Fjord Excursion & Wildlife", description: "Scenic cruise through Norway's snow-covered fjords.", highlights: ["Fjord Safari"], meals: ["breakfast"], stay: "Tromsø" },
+      { day: 5, title: "Northern Lights Hunt", description: "Guided evening aurora hunt in the Arctic wilderness with hot drinks & campfire.", highlights: ["Northern Lights Safari"], meals: ["breakfast"], stay: "Tromsø" },
+      { day: 6, title: "Departure", description: "Check-out and airport transfer.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  }
 ];
 
 export const PACKAGE_CATEGORIES = [
   { id: "all", label: "All Packages" },
-  { id: "domestic", label: "Domestic" },
+  { id: "asia", label: "🌏 Asia" },
+  { id: "europe", label: "🇪🇺 Europe" },
   { id: "international", label: "International" },
   { id: "luxury", label: "Luxury" },
-  { id: "adventure", label: "Adventure" },
-  { id: "honeymoon", label: "Honeymoon" },
   { id: "family", label: "Family" },
-  { id: "corporate", label: "Corporate" },
-  { id: "solo", label: "Solo" },
-] as const;
+  { id: "honeymoon", label: "Honeymoon" }
+];
 
-export function getFeaturedPackages(): Package[] {
+export function getFeaturedPackages() {
   return PACKAGES.filter((p) => p.featured);
-}
-
-export function getPackagesByCategory(category: PackageCategory | "all"): Package[] {
-  if (category === "all") return PACKAGES;
-  return PACKAGES.filter((p) => p.category.includes(category));
-}
-
-export function getPackageBySlug(slug: string): Package | undefined {
-  return PACKAGES.find((p) => p.slug === slug);
 }

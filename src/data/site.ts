@@ -10,12 +10,12 @@ export const SITE = {
     "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
   url: "https://themanwandersglobe.com", // TODO: update with actual domain
   logo: "/logo.webp",
-  ogImage: "/images/og-default.jpg", // 1200×630
+  ogImage: "/logo.webp", // Logo for URL preview
 
   contact: {
     email: "hello@themanwandersglobe.com", // TODO: update
-    phone: "+91 98765 43210", // TODO: update
-    whatsapp: "919876543210", // TODO: update (no + or spaces)
+    phone: "+91 90719 71123",
+    whatsapp: "919071971123",
     address: "123 Travel Lane, Mumbai, Maharashtra 400001, India", // TODO: update
     businessHours: "Mon–Sat, 10 AM – 7 PM IST",
   },

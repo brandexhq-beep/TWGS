@@ -9,6 +9,7 @@ import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import ScrollToTop from '../components/layout/ScrollToTop.astro';
 import CookieBanner from '../components/layout/CookieBanner.astro';
 import SEOHead from '../components/seo/SEOHead.astro';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -51,9 +52,11 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
-    <link rel="apple-touch-icon" href="/favicon.webp" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
 
+    <!-- Google Fonts: Playfair Display & Inter -->
     <!-- Organization JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
