@@ -40,7 +40,7 @@ export const SITE = {
   /** Number of years in business for trust-strip counter */
   stats: {
     yearsInBusiness: 5,
-    destinationsCount: 120,
+    destinationsCount: 30,
     travellersServed: 5000,
     averageRating: 4.9,
   },

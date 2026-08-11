@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionHeader from "../../components/ui/SectionHeader.astro";
 import { DESTINATIONS, getDestinationBySlug } from "../../data/destinations";
@@ -26,10 +26,11 @@ const packages = PACKAGES.filter(
   title={`${destination.name} Travel Packages | The Man Wanders Globe`}
   description={`Explore curated ${destination.name} travel packages. ${destination.description}`}
 >
-  <section class="relative h-[60vh] min-h-[400px] flex items-end overflow-hidden">
-    <img src={destination.heroImage} alt={destination.name} class="absolute inset-0 w-full h-full object-cover" width="1600" height="900" loading="eager" decoding="async" />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-    <div class="container-site relative z-10 pb-12">
+  <!-- Compact Hero Section -->
+  <section class="relative pt-32 pb-16 flex items-end overflow-hidden">
+    <img src={destination.heroImage} alt={destination.name} class="absolute inset-0 w-full h-full object-cover" width="1600" height="600" loading="eager" decoding="async" />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#00174A]/90 via-[#00174A]/60 to-black/30"></div>
+    <div class="container-site relative z-10">
       <nav aria-label="Breadcrumb" class="mb-4">
         <ol class="flex items-center gap-2 text-white/60 text-sm">
           <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
@@ -39,53 +40,62 @@ const packages = PACKAGES.filter(
           <li class="text-white font-medium" aria-current="page">{destination.name}</li>
         </ol>
       </nav>
-      <h1 class="text-white text-4xl md:text-6xl font-semibold leading-tight mb-3" style="font-family: var(--font-display);">{destination.name}</h1>
+      <h1 class="text-white text-4xl md:text-5xl font-semibold leading-tight mb-2" style="font-family: var(--font-display);">{destination.name} Packages</h1>
       <p class="text-white/80 text-lg max-w-2xl">{destination.tagline}</p>
     </div>
   </section>
 
+  <!-- Packages Section (Moved to top) -->
   <section class="section-padding bg-[var(--color-bg)]">
     <div class="container-site">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-serif text-[var(--color-text-primary)]">Curated Itineraries for {destination.name}</h2>
+        <span class="text-sm font-medium text-[var(--color-text-secondary)]">{packages.length} Packages</span>
+      </div>
+      
+      {packages.length > 0 ? (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {packages.map((pkg) => (
+            <article class="package-card relative group cursor-pointer flex flex-col">
+              <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View ${pkg.name} details`}></a>
+              <div class="relative overflow-hidden" style="aspect-ratio: 4/3;"><img src={pkg.heroImage} alt={pkg.name} width="600" height="450" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /><div class="absolute top-3 right-3 bg-[var(--color-accent)] text-white text-xs font-semibold px-2.5 py-1 rounded-full">{pkg.duration.nights}N/{pkg.duration.days}D</div></div>
+              <div class="p-5 flex flex-col flex-1">
+                <p class="text-xs text-[var(--color-text-secondary)] mb-1">{pkg.destination}</p>
+                <h3 class="text-base font-semibold leading-snug mb-3" style="font-family: var(--font-display);">{pkg.name}</h3>
+                <div class="mt-auto flex items-center justify-between"><div><p class="text-xs text-[var(--color-text-secondary)]">From</p><p class="price-tag text-lg"><span class="currency">&#x20B9;</span>{pkg.priceFrom.toLocaleString("en-IN")}</p></div><a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20"><span>Book Now</span></a></div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12 bg-white rounded-2xl border border-[var(--color-border)]">
+          <p class="text-[var(--color-text-secondary)] text-lg mb-6">No packages listed yet for {destination.name}.</p>
+          <a href="/contact" class="btn btn-primary"><span>Request a Custom Itinerary</span></a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Destination Info (Moved below packages) -->
+  <section class="section-padding bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+    <div class="container-site">
+      <SectionHeader eyebrow={`About ${destination.name}`} headline="Discover the Destination" subhead="Everything you need to know before you go." />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-10">
         <div class="lg:col-span-2">
           <p class="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-8">{destination.description}</p>
-          <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] mb-4">Top Highlights</h2>
+          <h3 class="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] mb-4">Top Highlights</h3>
           <ul class="flex flex-wrap gap-3">{destination.highlights.map((h) => <li class="chip">{h}</li>)}</ul>
         </div>
-        <div class="bg-[var(--color-surface)] rounded-2xl p-6 border border-[var(--color-border)] self-start">
-          <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] mb-5">Quick Facts</h2>
+        <div class="bg-white rounded-2xl p-6 border border-[var(--color-border)] self-start shadow-sm">
+          <h3 class="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] mb-5">Quick Facts</h3>
           <dl class="space-y-4">
             <div><dt class="text-xs text-[var(--color-text-secondary)] uppercase font-semibold tracking-wider mb-1">Duration</dt><dd class="font-semibold">{destination.duration.min}&#x2013;{destination.duration.max} days</dd></div>
             <div><dt class="text-xs text-[var(--color-text-secondary)] uppercase font-semibold tracking-wider mb-1">Budget From</dt><dd class="font-semibold text-[var(--color-accent)]">&#x20B9;{destination.budget.from.toLocaleString("en-IN")}</dd></div>
             <div><dt class="text-xs text-[var(--color-text-secondary)] uppercase font-semibold tracking-wider mb-1">Best Seasons</dt><dd class="font-semibold capitalize">{destination.seasons.join(", ")}</dd></div>
           </dl>
-          <a href="/contact" class="btn btn-primary w-full mt-6 justify-center"><span>Enquire Now</span></a>
+          <a href="/contact" class="btn btn-secondary w-full mt-6 justify-center"><span>Enquire Now</span></a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-padding bg-[var(--color-surface)]">
-    <div class="container-site">
-      <SectionHeader eyebrow={`${destination.name} Packages`} headline={packages.length > 0 ? `${packages.length} curated <em>itinerar${packages.length === 1 ? "y" : "ies"}</em>` : `Packages <em>coming soon.</em>`} subhead={packages.length > 0 ? `Every itinerary is handcrafted for ${destination.name}.` : `Enquire for a custom itinerary.`} />
-      <div class="mt-10">
-        {packages.length > 0 ? (
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {packages.map((pkg) => (
-              <article class="package-card relative group cursor-pointer flex flex-col">
-                <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View ${pkg.name} details`}></a>
-                <div class="relative overflow-hidden" style="aspect-ratio: 4/3;"><img src={pkg.heroImage} alt={pkg.name} width="600" height="450" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /><div class="absolute top-3 right-3 bg-[var(--color-accent)] text-white text-xs font-semibold px-2.5 py-1 rounded-full">{pkg.duration.nights}N/{pkg.duration.days}D</div></div>
-                <div class="p-5 flex flex-col flex-1">
-                  <p class="text-xs text-[var(--color-text-secondary)] mb-1">{pkg.destination}</p>
-                  <h3 class="text-base font-semibold leading-snug mb-3" style="font-family: var(--font-display);">{pkg.name}</h3>
-                  <div class="mt-auto flex items-center justify-between"><div><p class="text-xs text-[var(--color-text-secondary)]">From</p><p class="price-tag text-lg"><span class="currency">&#x20B9;</span>{pkg.priceFrom.toLocaleString("en-IN")}</p></div><a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20"><span>Book Now</span></a></div>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div class="text-center py-16"><p class="text-[var(--color-text-secondary)] text-lg mb-6">No packages listed yet for {destination.name}.</p><a href="/contact" class="btn btn-primary"><span>Request a Custom Itinerary</span></a></div>
-        )}
       </div>
     </div>
   </section>

@@ -7,7 +7,7 @@ import { SITE } from '../data/site';
 
 <BaseLayout
   title={`Travel Destinations in India & Abroad | ${SITE.name}`}
-  description="Explore 120+ curated travel destinations across India and the world. Filter by budget, travel style, season and duration to find your perfect journey."
+  description="Explore 30+ curated travel destinations across India and the world. Filter by budget, travel style, season and duration to find your perfect journey."
 >
   <!-- Page hero -->
   <div class="relative pt-32 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">
@@ -55,11 +55,13 @@ import { SITE } from '../data/site';
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid" role="list">
         {DESTINATIONS.map((dest) => (
           <article
-            class="dest-card package-card"
+            class="dest-card package-card relative group cursor-pointer"
             role="listitem"
             data-region={dest.region}
             data-types={dest.travelTypes.join(',')}
           >
+            <!-- Stretched link for full card clickability -->
+            <a href={`/destinations/${dest.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${dest.name}`}></a>
             <div class="card-image relative overflow-hidden" style="aspect-ratio: 4/3;">
               <img
                 src={dest.heroImage}
@@ -106,7 +108,7 @@ import { SITE } from '../data/site';
                   </span>
                 ))}
               </div>
-              <a href={`/packages?country=${encodeURIComponent(dest.country)}`} class="animated-underline text-[var(--color-accent)] font-semibold text-sm">
+              <a href={`/destinations/${dest.slug}`} class="relative z-20 animated-underline text-[var(--color-accent)] font-semibold text-sm">
                 Explore {dest.name} →
               </a>
             </div>
