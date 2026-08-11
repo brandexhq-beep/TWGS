@@ -2,6 +2,7 @@
 // pages/index.astro — Homepage
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LoadingScreen from '../components/layout/LoadingScreen.astro';
+import PlanTripModal from '../components/layout/PlanTripModal.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import TrustStrip from '../components/sections/TrustStrip.astro';
 import FeaturedPackages from '../components/sections/FeaturedPackages.astro';
@@ -10,8 +11,7 @@ import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
 import GalleryPreview from '../components/sections/GalleryPreview.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
-import PlanMyTripSection from '../components/sections/PlanMyTripSection.astro';
-import CallbackRequest from '../components/sections/CallbackRequest.astro';
+import LeadCTABar from '../components/sections/LeadCTABar.astro';
 import { SITE } from '../data/site';
 
 // BreadcrumbList JSON-LD for home page
@@ -36,6 +36,8 @@ const breadcrumb = {
   <GalleryPreview />
   <Testimonials />
   <FAQSection />
-  <PlanMyTripSection />
-  <CallbackRequest />
+  <!-- Floating lead capture bar (slides up on scroll) -->
+  <LeadCTABar />
+  <!-- Plan My Trip modal (triggered by all #plan-my-trip links) -->
+  <PlanTripModal />
 </BaseLayout>

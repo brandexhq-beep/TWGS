@@ -14,15 +14,53 @@ import { SITE } from '../../data/site';
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
-      {NAV_LINKS.slice(0, 5).map((link) => (
-        <a
-          href={link.href}
-          class="nav-link transition-colors"
-          data-nav-link
-        >
-          {link.label}
-        </a>
+    <nav class="hidden lg:flex items-center gap-6" aria-label="Main navigation">
+      {NAV_LINKS.slice(0, 6).map((link) => (
+        link.children ? (
+          <div class="nav-dropdown-wrapper relative group">
+            <a
+              href={link.href}
+              class="nav-link transition-colors flex items-center gap-1"
+              data-nav-link
+            >
+              {link.label}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="transition-transform duration-200 group-hover:rotate-180" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </a>
+            <!-- Dropdown panel -->
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
+              <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden min-w-[200px]">
+                <div class="p-2">
+                  {link.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-slate-50 hover:text-[var(--color-accent)] transition-all duration-150 font-medium"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                  <div class="border-t border-slate-100 mt-2 pt-2">
+                    <a
+                      href={link.href}
+                      class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-[var(--color-accent)] hover:bg-[var(--color-accent)]/5 transition-colors"
+                    >
+                      View All {link.label} →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={link.href}
+            class="nav-link transition-colors"
+            data-nav-link
+          >
+            {link.label}
+          </a>
+        )
       ))}
     </nav>
 

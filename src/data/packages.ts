@@ -15,7 +15,11 @@ export type PackageCategory =
   | "honeymoon"
   | "family"
   | "corporate"
-  | "solo";
+  | "solo"
+  | "domestic"
+  | "india"
+  | "nepal"
+  | "bhutan";
 
 export interface ItineraryDay {
   day: number;
@@ -92,10 +96,10 @@ export const PACKAGES: Package[] = [
     tagline: "Experience the lush green hills, culture, and pristine beaches of Sri Lanka.",
     category: ["international", "asia", "family", "honeymoon"],
     featured: true,
-    heroImage: "https://images.unsplash.com/photo-1586224388874-8848db2cc25c?w=1200&q=80&fm=webp",
+    heroImage: "/images/srilanka-hero.webp",
     galleryImages: [
-      "https://images.unsplash.com/photo-1544473244-f6895e69da8a?w=1200&q=80&fm=webp",
-      "https://images.unsplash.com/photo-1536697246787-1f7ae568d89d?w=1200&q=80&fm=webp"
+      "/images/srilanka-gallery-1.webp",
+      "/images/srilanka-gallery-2.webp"
     ],
     destination: "Sri Lanka",
     country: "Sri Lanka",
@@ -356,20 +360,166 @@ export const PACKAGES: Package[] = [
       { day: 2, title: "Seoul City", description: "Gyeongbokgung Palace, Bukchon Hanok Village, Insadong, Cheonggyecheon Stream.", highlights: ["Gyeongbokgung Palace", "Bukchon Hanok Village"], meals: ["breakfast"], stay: "Seoul" },
       { day: 3, title: "Nami Island + Gapyeong", description: "Nami Island, Garden of Morning Calm, Optional rail bike.", highlights: ["Nami Island", "Garden of Morning Calm"], meals: ["breakfast"], stay: "Seoul" },
       { day: 4, title: "Seoul Modern Experience", description: "Gangnam, COEX, Starfield Library, Han River, Hongdae.", highlights: ["Gangnam", "Starfield Library"], meals: ["breakfast"], stay: "Seoul" },
-      { day: 5, title: "Seoul", description: "DMZ tour (subject to availability) or alternative Seoul experience, shopping.", highlights: ["DMZ Tour", "Shopping"], meals: ["breakfast"], stay: "Seoul" },
-      { day: 6, title: "Seoul → Airport", description: "Check-out, airport transfer.", highlights: ["Airport Transfer"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-nepal",
+    slug: "nepal-kathmandu-pokhara",
+    name: "Nepal — Kathmandu & Pokhara",
+    tagline: "Spiritual Temples & Himalayan Views",
+    category: ["international", "nepal", "asia", "family", "adventure"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&q=80&fm=webp",
+    galleryImages: ["https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&q=80&fm=webp"],
+    destination: "Kathmandu & Pokhara",
+    country: "Nepal",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 34999,
+    maxGroupSize: 15,
+    highlights: ["Pashupatinath Temple", "Swayambhunath Temple", "Phewa Lake", "Sarangkot Sunrise", "Kathmandu Durbar Square"],
+    includes: ["Accommodation", "Daily Breakfast", "Sightseeing Tours", "Transfers"],
+    excludes: ["Flights", "Visas", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.8,
+    reviewCount: 78,
+    itinerary: [
+      { day: 1, title: "Kathmandu Arrival", description: "Airport pickup, hotel check-in, visit Pashupatinath Temple and Boudhanath Stupa.", highlights: ["Pashupatinath Temple"], meals: [], stay: "Kathmandu" },
+      { day: 2, title: "Kathmandu Heritage", description: "Swayambhunath Temple, Kathmandu Durbar Square, Patan Durbar Square, and local market exploration.", highlights: ["Swayambhunath", "Durbar Square"], meals: ["breakfast"], stay: "Kathmandu" },
+      { day: 3, title: "Kathmandu → Pokhara", description: "Scenic drive to Pokhara. Check-in, followed by Phewa Lake boating and exploring Lakeside market.", highlights: ["Phewa Lake"], meals: ["breakfast"], stay: "Pokhara" },
+      { day: 4, title: "Pokhara Wonders", description: "Early morning Sarangkot sunrise view. Visit Davis Falls, Gupteshwor Cave, and the International Mountain Museum.", highlights: ["Sarangkot Sunrise", "Davis Falls"], meals: ["breakfast"], stay: "Pokhara" },
+      { day: 5, title: "Pokhara → Kathmandu", description: "Return drive to Kathmandu. Leisure and shopping at Thamel Market.", highlights: ["Thamel Market"], meals: ["breakfast"], stay: "Kathmandu" },
+      { day: 6, title: "Departure", description: "Breakfast, followed by airport transfer.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-kashmir",
+    slug: "kashmir-paradise",
+    name: "Jammu & Kashmir — Paradise on Earth",
+    tagline: "Srinagar • Gulmarg • Pahalgam",
+    category: ["domestic", "india", "honeymoon", "family", "luxury"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=1200&q=80&fm=webp",
+    galleryImages: ["https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=1200&q=80&fm=webp"],
+    destination: "Srinagar, Gulmarg & Pahalgam",
+    country: "India",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 29999,
+    maxGroupSize: 15,
+    highlights: ["Dal Lake Shikara Ride", "Gulmarg Gondola", "Mughal Gardens", "Betaab Valley"],
+    includes: ["Accommodation", "Daily Breakfast", "Shikara Ride", "Transfers"],
+    excludes: ["Flights", "Gondola Tickets", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.9,
+    reviewCount: 204,
+    itinerary: [
+      { day: 1, title: "Srinagar Arrival", description: "Airport pickup, houseboat or hotel check-in. Enjoy a Shikara ride on Dal Lake and visit Mughal Gardens.", highlights: ["Dal Lake", "Shikara ride"], meals: [], stay: "Srinagar" },
+      { day: 2, title: "Gulmarg Day Trip", description: "Full-day trip to Gulmarg. Experience the Gondola ride (subject to operation) and snow activities.", highlights: ["Gulmarg Gondola"], meals: ["breakfast"], stay: "Srinagar" },
+      { day: 3, title: "Srinagar → Pahalgam", description: "Drive to Pahalgam. En-route view apple orchards. Visit Betaab Valley and Aru Valley.", highlights: ["Betaab Valley"], meals: ["breakfast"], stay: "Pahalgam" },
+      { day: 4, title: "Pahalgam Valley", description: "Leisure in the valley. Local sightseeing, optional horse riding or nature walks.", highlights: ["Pahalgam"], meals: ["breakfast"], stay: "Pahalgam" },
+      { day: 5, title: "Pahalgam → Srinagar", description: "Return to Srinagar. Shopping and leisure by Dal Lake.", highlights: ["Shopping"], meals: ["breakfast"], stay: "Srinagar" },
+      { day: 6, title: "Departure", description: "Breakfast and airport transfer.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-manali",
+    slug: "manali-kullu-escape",
+    name: "Manali + Kullu Escape",
+    tagline: "Snowy Peaks, Alpine Valleys & Solang Adventure",
+    category: ["domestic", "india", "adventure", "family", "honeymoon"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80&fm=webp",
+    galleryImages: ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80&fm=webp"],
+    destination: "Manali & Kullu",
+    country: "India",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 24999,
+    maxGroupSize: 15,
+    highlights: ["Solang Valley", "Hadimba Temple", "Kasol", "Manikaran Hot Springs"],
+    includes: ["Accommodation", "Daily Breakfast", "Sightseeing Tours", "Transfers"],
+    excludes: ["Flights", "Adventure Activities", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.7,
+    reviewCount: 130,
+    itinerary: [
+      { day: 1, title: "Arrival in Manali", description: "Pickup and hotel check-in. Visit Mall Road, Tibetan Monastery, and Hadimba Temple.", highlights: ["Hadimba Temple", "Mall Road"], meals: [], stay: "Manali" },
+      { day: 2, title: "Solang Valley", description: "Full-day excursion to Solang Valley for snow activities. Optional visit to Atal Tunnel and Sissu (subject to conditions).", highlights: ["Solang Valley", "Atal Tunnel"], meals: ["breakfast"], stay: "Manali" },
+      { day: 3, title: "Manali Local", description: "Explore Old Manali, Manu Temple, Vashisht Hot Springs, and enjoy river-side café experiences.", highlights: ["Old Manali", "Vashisht Hot Springs"], meals: ["breakfast"], stay: "Manali" },
+      { day: 4, title: "Kullu + Manikaran", description: "Drive through Kullu Valley. Visit a shawl factory, the village of Kasol, and Manikaran Sahib hot springs.", highlights: ["Kullu Valley", "Manikaran Sahib"], meals: ["breakfast"], stay: "Manali" },
+      { day: 5, title: "Manali Leisure", description: "Free day for shopping, café hopping, or optional adventure activities.", highlights: ["Leisure"], meals: ["breakfast"], stay: "Manali" },
+      { day: 6, title: "Departure", description: "Check-out and transfer to airport or railway station.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-rajasthan",
+    slug: "royal-rajasthan",
+    name: "Royal Rajasthan",
+    tagline: "Jaipur • Jodhpur • Jaisalmer",
+    category: ["domestic", "india", "luxury", "family", "corporate"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1200&q=80&fm=webp",
+    galleryImages: ["https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1200&q=80&fm=webp"],
+    destination: "Jaipur, Jodhpur & Jaisalmer",
+    country: "India",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 27999,
+    maxGroupSize: 15,
+    highlights: ["Amber Fort", "Mehrangarh Fort", "Jaisalmer Desert Camp", "Camel Safari"],
+    includes: ["Accommodation", "Daily Breakfast", "Desert Camp Dinner", "Transfers"],
+    excludes: ["Flights", "Monument Fees", "Personal Expenses"],
+    seasons: ["Oct - Mar"],
+    rating: 4.85,
+    reviewCount: 165,
+    itinerary: [
+      { day: 1, title: "Jaipur Arrival", description: "Hotel check-in. Visit City Palace, Jantar Mantar, Hawa Mahal, and explore the local market.", highlights: ["Hawa Mahal", "City Palace"], meals: [], stay: "Jaipur" },
+      { day: 2, title: "Jaipur Sightseeing", description: "Explore the majestic Amber Fort, take a Jal Mahal photo stop, visit Albert Hall Museum, and enjoy sunset at Nahargarh.", highlights: ["Amber Fort", "Nahargarh"], meals: ["breakfast"], stay: "Jaipur" },
+      { day: 3, title: "Jaipur → Jodhpur", description: "Transfer to Jodhpur. Hotel check-in. Enjoy a heritage walk in the Blue City and visit Clock Tower Market.", highlights: ["Blue City walk"], meals: ["breakfast"], stay: "Jodhpur" },
+      { day: 4, title: "Jodhpur → Jaisalmer", description: "Visit Mehrangarh Fort and Jaswant Thada. Drive to Jaisalmer and check into your hotel.", highlights: ["Mehrangarh Fort"], meals: ["breakfast"], stay: "Jaisalmer" },
+      { day: 5, title: "Jaisalmer Desert", description: "Visit Jaisalmer Fort, Patwon Ki Haveli, and Gadisar Lake. Transfer to Sam Sand Dunes for a camel safari, sunset view, and a cultural evening with dinner.", highlights: ["Desert Camp", "Camel Safari"], meals: ["breakfast", "dinner"], stay: "Desert Camp" },
+      { day: 6, title: "Departure", description: "Watch the desert sunrise, enjoy breakfast, check-out, and transfer to the airport or railway station.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
+    id: "pkg-bhutan",
+    slug: "bhutan-himalayan-kingdom",
+    name: "Bhutan — The Himalayan Kingdom",
+    tagline: "Thimphu • Punakha • Paro",
+    category: ["international", "bhutan", "asia", "luxury", "honeymoon"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1582650507313-b545934c1143?w=1200&q=80&fm=webp",
+    galleryImages: ["https://images.unsplash.com/photo-1582650507313-b545934c1143?w=1200&q=80&fm=webp"],
+    destination: "Thimphu, Punakha & Paro",
+    country: "Bhutan",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 44999,
+    maxGroupSize: 12,
+    highlights: ["Tiger's Nest Monastery", "Punakha Dzong", "Buddha Dordenma", "Dochula Pass"],
+    includes: ["Accommodation", "Daily Breakfast", "Bhutan SDF/Permits", "Transfers"],
+    excludes: ["Flights", "Personal Expenses"],
+    seasons: ["Spring", "Autumn"],
+    rating: 4.95,
+    reviewCount: 92,
+    itinerary: [
+      { day: 1, title: "Paro → Thimphu", description: "Airport pickup in Paro, transfer to Thimphu. Visit Buddha Dordenma, Memorial Chorten, and the exterior of Tashichho Dzong.", highlights: ["Buddha Dordenma"], meals: [], stay: "Thimphu" },
+      { day: 2, title: "Thimphu", description: "Visit Motithang Takin Preserve, National Folk Heritage Museum, local markets, and a handicraft centre.", highlights: ["Takin Preserve"], meals: ["breakfast"], stay: "Thimphu" },
+      { day: 3, title: "Thimphu → Punakha", description: "Drive via scenic Dochula Pass to view the 108 Druk Wangyal Chortens. Visit the stunning Punakha Dzong and the Suspension Bridge.", highlights: ["Dochula Pass", "Punakha Dzong"], meals: ["breakfast"], stay: "Punakha" },
+      { day: 4, title: "Punakha → Paro", description: "Transfer to Paro. Visit Kyichu Lhakhang, explore Paro town, and enjoy local shopping.", highlights: ["Kyichu Lhakhang"], meals: ["breakfast"], stay: "Paro" },
+      { day: 5, title: "Tiger's Nest", description: "Early breakfast followed by a hike to the iconic Tiger's Nest Monastery. Enjoy a traditional Bhutanese experience and explore Paro market.", highlights: ["Tiger's Nest Hike"], meals: ["breakfast", "lunch"], stay: "Paro" },
+      { day: 6, title: "Departure", description: "Breakfast and airport transfer for your onward journey.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
     ]
   }
 ];
 
 export const PACKAGE_CATEGORIES = [
   { id: "all", label: "All Packages" },
+  { id: "domestic", label: "🇮🇳 Domestic (India)" },
   { id: "asia", label: "🌏 Asia" },
   { id: "europe", label: "🇪🇺 Europe" },
   { id: "africa", label: "🌍 Africa" },
   { id: "china", label: "🇨🇳 China" },
   { id: "japan", label: "🇯🇵 Japan" },
   { id: "south-korea", label: "🇰🇷 South Korea" },
+  { id: "nepal", label: "🇳🇵 Nepal" },
+  { id: "bhutan", label: "🇧🇹 Bhutan" },
   { id: "international", label: "International" },
   { id: "luxury", label: "Luxury" },
   { id: "family", label: "Family" },

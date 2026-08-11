@@ -1,0 +1,114 @@
+---
+// PlanTripModal.astro — Full-screen modal wrapper for Plan My Trip wizard
+import PlanMyTripWizard from '../forms/PlanMyTripWizard';
+---
+
+<!-- Modal Overlay -->
+<div
+  id="plan-trip-modal"
+  class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Plan your trip"
+  style="display:none;"
+>
+  <!-- Backdrop -->
+  <div
+    id="modal-backdrop"
+    class="absolute inset-0 bg-slate-900/75 backdrop-blur-sm"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Panel -->
+  <div
+    id="modal-panel"
+    class="relative w-full max-w-2xl max-h-[92svh] overflow-y-auto rounded-3xl bg-white shadow-2xl border border-slate-200/60"
+    style="transform: scale(0.96); opacity: 0; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;"
+  >
+    <!-- Header bar -->
+    <div class="sticky top-0 z-10 flex items-center justify-between px-6 pt-6 pb-4 bg-white/95 backdrop-blur-sm border-b border-slate-100">
+      <div>
+        <p class="text-[10px] uppercase tracking-widest font-bold text-[var(--color-luxury)] mb-0.5">TheMan WandersGlobe</p>
+        <h2 class="text-lg font-bold text-slate-900" style="font-family: 'Cormorant Garamond', serif;">Plan My Trip</h2>
+      </div>
+      <button
+        id="modal-close-btn"
+        aria-label="Close"
+        class="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 text-slate-400 hover:text-slate-700 hover:border-slate-400 transition-all duration-200"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Wizard content -->
+    <div class="px-6 pb-8 pt-4">
+      <PlanMyTripWizard client:only="react" />
+    </div>
+  </div>
+</div>
+
+<script>
+  function initModal() {
+    const modal = document.getElementById('plan-trip-modal') as HTMLElement | null;
+    const panel = document.getElementById('modal-panel') as HTMLElement | null;
+    const backdrop = document.getElementById('modal-backdrop');
+    const closeBtn = document.getElementById('modal-close-btn');
+
+    if (!modal) return;
+
+    function openModal() {
+      if (!modal || !panel) return;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (panel) {
+            panel.style.transform = 'scale(1)';
+            panel.style.opacity = '1';
+          }
+        });
+      });
+    }
+
+    function closeModal() {
+      if (!modal || !panel) return;
+      panel.style.transform = 'scale(0.96)';
+      panel.style.opacity = '0';
+      setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 280);
+    }
+
+    // Intercept ALL clicks — catches any href or data attribute
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const trigger = target.closest(
+        'a[href="#plan-my-trip"], a[href="/#plan-my-trip"], [data-open-modal="plan-trip"]'
+      );
+      if (trigger) {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal();
+      }
+    }, true); // capture phase so it fires first
+
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.style.display !== 'none') closeModal();
+    });
+
+    (window as any).openPlanTripModal = openModal;
+  }
+
+  // Run immediately and also on DOMContentLoaded as fallback
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModal);
+  } else {
+    initModal();
+  }
+</script>

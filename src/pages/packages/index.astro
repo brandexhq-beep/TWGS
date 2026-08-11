@@ -54,7 +54,7 @@ const allPackages = PACKAGES;
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-grid">
           {allPackages.map((pkg) => (
             <article
-              class="pkg-card package-card relative group cursor-pointer gsap-rise-hidden"
+              class="pkg-card package-card relative group cursor-pointer"
               data-categories={pkg.category.join(',')}
               data-country={pkg.country}
             >
@@ -128,9 +128,9 @@ const allPackages = PACKAGES;
   const cards = document.querySelectorAll('.pkg-card') as NodeListOf<HTMLElement>;
   const noResults = document.getElementById('pkg-no-results');
 
-  let activeRegion = 'all';
-  let activeStyle = 'all';
   const urlParams = new URLSearchParams(window.location.search);
+  let activeRegion = urlParams.get('region') ?? 'all';
+  let activeStyle = urlParams.get('style') ?? 'all';
   let activeCountry = urlParams.get('country');
 
   function filterPackages() {
@@ -138,7 +138,9 @@ const allPackages = PACKAGES;
     cards.forEach((card) => {
       const cats = (card.getAttribute('data-categories') ?? '').split(',');
       const country = card.getAttribute('data-country');
+      // If region is set and not 'all', the package must have it
       const matchRegion = activeRegion === 'all' || cats.includes(activeRegion);
+      // If style is set and not 'all', the package must have it
       const matchStyle = activeStyle === 'all' || cats.includes(activeStyle);
       const matchCountry = !activeCountry || country === activeCountry;
       const show = matchRegion && matchStyle && matchCountry;
@@ -150,11 +152,34 @@ const allPackages = PACKAGES;
     if (noResults) noResults.classList.toggle('hidden', visible > 0);
   }
 
-  // Initial filter run in case of URL params
-  if (activeCountry) {
-    // Optionally clear active classes from buttons if a specific country is chosen that doesn't match a generic region
+  // Initial filter setup
+  function updateUI() {
+    // Update region buttons
+    regionCards.forEach((c) => {
+      if (c.getAttribute('data-region') === activeRegion) {
+        c.classList.add('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
+        c.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+      } else {
+        c.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
+        c.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+      }
+    });
+
+    // Update style chips
+    styleChips.forEach((s) => {
+      if (s.getAttribute('data-style') === activeStyle) {
+        s.classList.add('bg-[var(--color-accent)]', 'text-white');
+        s.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+      } else {
+        s.classList.remove('bg-[var(--color-accent)]', 'text-white');
+        s.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+      }
+    });
+    
     filterPackages();
   }
+  
+  updateUI();
 
   regionCards.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -190,8 +215,12 @@ const allPackages = PACKAGES;
     });
   });
 
-  gsap.to(cards, {
-    opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.08,
-    scrollTrigger: { trigger: '#packages-grid', start: 'top 80%' },
+  gsap.from(cards, {
+    opacity: 0, 
+    y: 30, 
+    duration: 0.8, 
+    ease: 'power3.out', 
+    stagger: 0.05,
+    scrollTrigger: { trigger: '#packages-grid', start: 'top 85%' },
   });
 </script>

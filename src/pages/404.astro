@@ -1,0 +1,41 @@
+---
+// pages/404.astro — Not Found Page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title={`404 - Page Not Found | ${SITE.name}`}
+  description="Looks like you've wandered off the map. Let's get you back on track."
+  noIndex={true}
+>
+  <div class="relative min-h-[80vh] flex items-center justify-center bg-[var(--color-bg)] overflow-hidden">
+    <!-- Background subtle compass/map elements could go here if available -->
+    
+    <div class="container-site text-center relative z-10 px-4">
+      <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] mb-8">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
+      </div>
+      
+      <h1 class="text-display-xl font-serif text-[var(--color-text-primary)] mb-4 leading-tight">
+        Looks like you've <br/><em class="not-italic text-[var(--color-accent)]">wandered off the map.</em>
+      </h1>
+      
+      <p class="text-body-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-10">
+        The page you are looking for doesn't exist or has been moved. Don't worry, even the best travelers get lost sometimes. Let's get you back to planning your next bespoke journey.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/" class="btn btn-primary px-8 py-3.5 text-base w-full sm:w-auto justify-center">
+          <span>Back to Home</span>
+        </a>
+        <a href="/packages" class="btn btn-secondary px-8 py-3.5 text-base w-full sm:w-auto justify-center">
+          <span>Explore Packages</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

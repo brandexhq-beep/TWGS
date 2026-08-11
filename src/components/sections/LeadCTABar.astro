@@ -1,0 +1,123 @@
+---
+// LeadCTABar.astro — Sticky floating CTA bar + quick-action buttons
+import { SITE } from '../../data/site';
+---
+
+<!-- ── Floating Lead CTA Bar ──────────────────────────────────────────────── -->
+<!-- Shown after user scrolls 400px, stays fixed at bottom -->
+<div
+  id="lead-cta-bar"
+  aria-label="Quick contact bar"
+  class="fixed bottom-0 left-0 right-0 z-[999] translate-y-full transition-transform duration-500 ease-out"
+>
+  <div class="bg-[var(--color-accent-secondary)] border-t border-white/10 shadow-2xl px-4 py-3 sm:py-3.5">
+    <div class="container-site flex items-center justify-between gap-3 sm:gap-6">
+
+      <!-- Left: copy -->
+      <div class="hidden sm:block shrink-0">
+        <p class="text-[10px] uppercase tracking-widest text-white/50 font-bold">Ready to Wander?</p>
+        <p class="text-sm font-semibold text-white leading-tight">Get a free personalised itinerary — within 4 hours</p>
+      </div>
+      <p class="block sm:hidden text-sm font-semibold text-white leading-tight">Get a free itinerary today ✨</p>
+
+      <!-- Right: CTAs -->
+      <div class="flex items-center gap-2 shrink-0 ml-auto">
+        <!-- WhatsApp -->
+        <a
+          href={`https://wa.me/${SITE.contact.whatsapp}?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20travel%20packages.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          id="cta-bar-whatsapp"
+          aria-label="Chat on WhatsApp"
+          class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5c] text-white text-xs font-bold transition-all duration-200 hover:scale-105 shadow-lg"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          <span class="hidden xs:inline">WhatsApp</span>
+        </a>
+
+        <!-- Call -->
+        <a
+          href={`tel:${SITE.contact.phone}`}
+          id="cta-bar-call"
+          aria-label="Call us now"
+          class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white text-xs font-bold border border-white/20 transition-all duration-200 hover:scale-105"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="hidden xs:inline">Call Us</span>
+        </a>
+
+        <!-- Plan My Trip -->
+        <button
+          data-open-modal="plan-trip"
+          id="cta-bar-plan"
+          aria-label="Plan my trip"
+          class="flex items-center gap-2 px-5 py-2 rounded-full font-bold text-xs transition-all duration-200 hover:scale-105 shadow-lg"
+          style="background: var(--color-luxury); color: #1a1008;"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Plan My Trip
+        </button>
+
+        <!-- Dismiss -->
+        <button
+          id="cta-bar-dismiss"
+          aria-label="Dismiss bar"
+          class="w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white/70 transition-colors shrink-0"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  const bar = document.getElementById('lead-cta-bar');
+  const dismissBtn = document.getElementById('cta-bar-dismiss');
+  const whatsappBubble = document.getElementById('whatsapp-bubble');
+
+  let dismissed = sessionStorage.getItem('cta-bar-dismissed') === 'true';
+
+  function showBar() {
+    if (!bar || dismissed) return;
+    bar.style.transform = 'translateY(0)';
+    // Push WhatsApp bubble up to avoid overlap
+    if (whatsappBubble) whatsappBubble.style.bottom = `${bar.offsetHeight + 20}px`;
+  }
+
+  function hideBar() {
+    if (!bar) return;
+    bar.style.transform = 'translateY(100%)';
+    if (whatsappBubble) whatsappBubble.style.bottom = '5rem';
+  }
+
+  // Show after 400px scroll
+  function onScroll() {
+    if (dismissed) return;
+    if (window.scrollY > 400) {
+      showBar();
+    } else {
+      hideBar();
+    }
+  }
+
+  dismissBtn?.addEventListener('click', () => {
+    dismissed = true;
+    sessionStorage.setItem('cta-bar-dismissed', 'true');
+    hideBar();
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // Check on load
+</script>
