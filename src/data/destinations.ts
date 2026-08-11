@@ -25,6 +25,24 @@ export interface Destination {
 
 export const DESTINATIONS: Destination[] = [
   {
+    id: "dest-eg",
+    slug: "egypt",
+    name: "Egypt",
+    country: "Egypt",
+    packageCountry: "Egypt",
+    region: "international",
+    tagline: "Pyramids, Pharaohs & The Majestic Nile",
+    description:
+      "Journey through time in Egypt. Marvel at the Great Pyramids of Giza, explore the ancient temples of Luxor and Karnak, and cruise the legendary Nile River in ultimate luxury.",
+    heroImage: "/images/egypt-hero.webp",
+    travelTypes: ["luxury", "family", "adventure"],
+    seasons: ["winter", "spring", "autumn"],
+    duration: { min: 6, max: 10 },
+    budget: { from: 79999, to: 150000 },
+    highlights: ["Great Pyramids of Giza", "Nile Cruise", "Valley of the Kings", "Karnak Temple"],
+    featured: true,
+  },
+  {
     id: "dest-sa",
     slug: "south-africa",
     name: "South Africa",

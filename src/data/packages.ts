@@ -53,6 +53,39 @@ export interface Package {
 export const PACKAGES: Package[] = [
   // ─── NEW ITINERARIES FROM USER ─────────────────────────────────────────────
   {
+    id: "pkg-egypt-explorer",
+    slug: "egypt-explorer",
+    name: "Egypt Explorer",
+    tagline: "Cairo • Aswan • Nile Cruise • Luxor",
+    category: ["international", "africa", "luxury", "family"],
+    featured: true,
+    heroImage: "/images/egypt-hero.webp",
+    galleryImages: [
+      "/images/egypt-gallery-1.webp",
+      "/images/egypt-gallery-2.webp"
+    ],
+    destination: "Cairo & Nile Cruise",
+    country: "Egypt",
+    duration: { days: 7, nights: 6 },
+    priceFrom: 79999,
+    maxGroupSize: 15,
+    highlights: ["Great Pyramids of Giza", "Egyptian Museum", "Nile Cruise", "Valley of the Kings", "Karnak Temple"],
+    includes: ["Accommodation", "Daily Breakfast", "Nile Cruise Meals", "Airport Transfers", "Domestic Flight"],
+    excludes: ["International Flights", "Visas", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.9,
+    reviewCount: 145,
+    itinerary: [
+      { day: 1, title: "Arrival in Cairo", description: "Arrival at Cairo International Airport. Meet & greet, private airport transfer, and hotel check-in. Rest and enjoy an evening at leisure, with an optional Nile dinner cruise.", highlights: ["Arrival in Cairo"], meals: [], stay: "Cairo" },
+      { day: 2, title: "Pyramids & Cairo", description: "After breakfast, marvel at the Great Pyramid of Giza, Pyramid of Khafre, Pyramid of Menkaure, and the Great Sphinx. Later, explore the Egyptian Museum and shop at Khan El Khalili Bazaar.", highlights: ["Great Pyramids", "Great Sphinx", "Egyptian Museum", "Khan El Khalili"], meals: ["breakfast"], stay: "Cairo" },
+      { day: 3, title: "Cairo → Aswan", description: "Check-out and take a domestic flight to Aswan. Transfer to your Nile cruise, check-in, and have lunch. Visit Philae Temple and the Unfinished Obelisk, followed by a scenic Felucca ride around the Nile. Enjoy dinner on board.", highlights: ["Philae Temple", "Nile Cruise", "Felucca ride"], meals: ["breakfast", "lunch", "dinner"], stay: "Nile Cruise" },
+      { day: 4, title: "Aswan → Kom Ombo → Edfu", description: "Breakfast on cruise while sailing toward Kom Ombo. Visit Kom Ombo Temple, then continue sailing and enjoying the magnificent Nile scenery. Dinner on board.", highlights: ["Kom Ombo Temple", "Nile Sailing"], meals: ["breakfast", "lunch", "dinner"], stay: "Nile Cruise" },
+      { day: 5, title: "Edfu → Luxor", description: "Visit Edfu Temple in the morning. Continue sailing toward Luxor with lunch on board. In the evening, explore the majestic Luxor Temple.", highlights: ["Edfu Temple", "Luxor Temple"], meals: ["breakfast", "lunch", "dinner"], stay: "Nile Cruise" },
+      { day: 6, title: "Luxor → Cairo", description: "Early breakfast before visiting the Valley of the Kings, Temple of Hatshepsut, Colossi of Memnon, and Karnak Temple. Transfer to Luxor airport for a flight back to Cairo. Evening leisure/shopping.", highlights: ["Valley of the Kings", "Karnak Temple"], meals: ["breakfast"], stay: "Cairo" },
+      { day: 7, title: "Cairo → Departure", description: "Breakfast and check-out. Enjoy free time for optional shopping depending on your flight schedule before your airport transfer for departure.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+  {
     id: "pkg-srilanka",
     slug: "sri-lanka-5d4n",
     name: "Sri Lanka — Island Escape",
