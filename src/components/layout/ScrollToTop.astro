@@ -27,12 +27,10 @@
     onLeaveBack: () => btn.classList.remove('visible'),
   });
 
-  // Custom eased scroll to top (~800ms, power3.out)
   btn.addEventListener('click', () => {
-    gsap.to(window, {
-      scrollTo: { y: 0 },
-      duration: 0.8,
-      ease: 'power3.out',
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   });
 </script>

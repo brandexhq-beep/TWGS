@@ -1,0 +1,191 @@
+---
+// PopularDestinations.astro — Grid of top client destinations with badges, starting prices, and direct package links
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const topDestinations = [
+  {
+    name: 'South Africa',
+    flag: '🇿🇦',
+    tagline: 'Cape Town, Kruger & Wildlife Safari',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80&fm=webp',
+    badge: 'Top Safari 2026',
+    price: '₹1,39,999',
+    duration: '6D / 5N',
+    link: '/destinations/south-africa',
+    category: 'africa'
+  },
+  {
+    name: 'Kenya Safari',
+    flag: '🇰🇪',
+    tagline: 'Nairobi, Maasai Mara & Amboseli',
+    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80&fm=webp',
+    badge: 'Big Five Safari',
+    price: '₹1,29,999',
+    duration: '5D / 4N',
+    link: '/destinations/kenya',
+    category: 'africa'
+  },
+  {
+    name: 'China Explorer',
+    flag: '🇨🇳',
+    tagline: 'Shanghai, Beijing & Great Wall',
+    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80&fm=webp',
+    badge: 'Heritage & Metropolis',
+    price: '₹69,999',
+    duration: '6D / 5N',
+    link: '/destinations/china',
+    category: 'china'
+  },
+  {
+    name: 'South Korea',
+    flag: '🇰🇷',
+    tagline: 'Seoul, Nami Island & K-Culture',
+    image: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&q=80&fm=webp',
+    badge: 'Trending Destination',
+    price: '₹79,999',
+    duration: '6D / 5N',
+    link: '/destinations/south-korea',
+    category: 'south-korea'
+  },
+  {
+    name: 'Japan Golden Route',
+    flag: '🇯🇵',
+    tagline: 'Tokyo, Mt. Fuji, Kyoto & Bullet Train',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80&fm=webp',
+    badge: 'Best Seller',
+    price: '₹1,49,999',
+    duration: '7D / 6N',
+    link: '/destinations/japan',
+    category: 'japan'
+  },
+  {
+    name: 'Bali & Tropical Asia',
+    flag: '🇮🇩',
+    tagline: 'Ubud Rice Terraces & Seminyak Beaches',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80&fm=webp',
+    badge: 'Tropical Escape',
+    price: '₹39,999',
+    duration: '5D / 4N',
+    link: '/destinations/bali',
+    category: 'asia'
+  },
+  {
+    name: 'Swiss Alps & Europe',
+    flag: '🇪🇺',
+    tagline: 'Zurich, Lucerne & Jungfraujoch',
+    image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800&q=80&fm=webp',
+    badge: 'Alpine Luxury',
+    price: '₹1,49,999',
+    duration: '6D / 5N',
+    link: '/destinations/santorini',
+    category: 'europe'
+  },
+  {
+    name: 'Maldives Paradise',
+    flag: '🇲🇻',
+    tagline: 'Overwater Bungalows & Coral Reefs',
+    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80&fm=webp',
+    badge: 'Honeymoon Special',
+    price: '₹1,20,999',
+    duration: '5D / 4N',
+    link: '/destinations/maldives',
+    category: 'luxury'
+  }
+];
+---
+
+<section class="pt-12 lg:pt-16 pb-[clamp(6rem,12vw,10rem)] bg-[var(--color-bg)]" aria-label="Most popular client destinations">
+  <div class="container-site">
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
+      <SectionHeader
+        eyebrow="Where Our Clients Wander Most"
+        headline="Our <em>Most Popular</em> Destinations"
+        subhead="Handpicked international escapes booked most frequently by our travelers."
+        id="popular-destinations-header"
+      />
+      <a href="/destinations" class="btn btn-secondary shrink-0 self-start lg:self-auto">
+        <span>Explore All Destinations</span>
+      </a>
+    </div>
+
+    <!-- Destinations Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="popular-destinations-grid">
+      {topDestinations.map((dest) => (
+        <a
+          href={dest.link}
+          class="dest-card-interactive gsap-rise-hidden group relative overflow-hidden rounded-2xl bg-white border border-slate-200/80 hover:border-[var(--color-accent)] transition-all duration-300 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 flex flex-col h-full"
+          aria-label={`Explore ${dest.name} — ${dest.tagline}`}
+        >
+          <!-- Image Container -->
+          <div class="relative overflow-hidden aspect-[4/3] w-full bg-slate-100">
+            <img
+              src={dest.image}
+              alt={`${dest.name} travel package`}
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+            
+            <!-- Badge -->
+            <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-[var(--color-accent-secondary)] font-bold text-xs px-3 py-1 rounded-full shadow-sm border border-slate-100 group-hover:bg-[var(--color-accent)] group-hover:text-white transition-colors duration-300">
+              {dest.badge}
+            </span>
+
+            <!-- Flag & Duration -->
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
+              <span class="text-lg drop-shadow-md">{dest.flag}</span>
+              <span class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full font-semibold">{dest.duration}</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5 flex flex-col justify-between flex-1 bg-white">
+            <div>
+              <h3 class="font-bold text-lg text-slate-900 group-hover:text-[var(--color-accent)] transition-colors mb-1 flex items-center justify-between">
+                <span>{dest.name}</span>
+                <span class="text-xs text-[var(--color-luxury)] opacity-0 group-hover:opacity-100 transition-opacity">✨</span>
+              </h3>
+              <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">
+                {dest.tagline}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">Starting From</span>
+                <span class="font-bold text-base text-[var(--color-accent)]">{dest.price}</span>
+              </div>
+              <span class="text-xs font-bold text-[var(--color-accent)] group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1">
+                Explore &rarr;
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const grid = document.getElementById('popular-destinations-grid');
+  if (grid && grid.children.length > 0) {
+    gsap.to(grid.children, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: grid,
+        start: 'top 85%',
+      },
+    });
+  }
+</script>

@@ -1,7 +1,7 @@
 ---
 // pages/packages/index.astro — packages landing with visual region cards & style sub-filters
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { PACKAGES } from '../../data/packages';
+import { PACKAGES, PACKAGE_CATEGORIES } from '../../data/packages';
 import { SITE } from '../../data/site';
 
 const allPackages = PACKAGES;
@@ -25,61 +25,18 @@ const allPackages = PACKAGES;
   <section class="section-padding bg-[var(--color-bg)]" aria-label="Browse all travel packages">
     <div class="container-site">
 
-      <!-- Explore by Region Visual Cards -->
+      <!-- Explore by Destination (Pill Buttons) -->
       <div class="mb-10">
-        <h2 class="text-xs uppercase tracking-widest text-[var(--color-text-secondary)] font-bold mb-4">Explore by Region</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="region-cards-grid">
-          <!-- All -->
-          <button 
-            class="region-card active relative overflow-hidden rounded-2xl h-36 md:h-44 text-left p-5 flex flex-col justify-end group transition-all duration-300 ring-2 ring-[var(--color-accent)] shadow-md"
-            data-region="all"
-          >
-            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80" alt="All Destinations" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-            <div class="relative z-10 text-white">
-              <span class="text-xs uppercase tracking-wider opacity-80 block mb-0.5">Worldwide</span>
-              <span class="font-bold text-base md:text-lg font-serif">All Destinations</span>
-            </div>
-          </button>
-
-          <!-- Europe -->
-          <button 
-            class="region-card relative overflow-hidden rounded-2xl h-36 md:h-44 text-left p-5 flex flex-col justify-end group transition-all duration-300 ring-0 hover:ring-2 hover:ring-[var(--color-accent)] opacity-85 hover:opacity-100"
-            data-region="europe"
-          >
-            <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&q=80" alt="Europe" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-            <div class="relative z-10 text-white">
-              <span class="text-xs uppercase tracking-wider opacity-80 block mb-0.5">Swiss, Italy, Paris</span>
-              <span class="font-bold text-base md:text-lg font-serif">🇪🇺 Europe</span>
-            </div>
-          </button>
-
-          <!-- Asia -->
-          <button 
-            class="region-card relative overflow-hidden rounded-2xl h-36 md:h-44 text-left p-5 flex flex-col justify-end group transition-all duration-300 ring-0 hover:ring-2 hover:ring-[var(--color-accent)] opacity-85 hover:opacity-100"
-            data-region="asia"
-          >
-            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Asia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-            <div class="relative z-10 text-white">
-              <span class="text-xs uppercase tracking-wider opacity-80 block mb-0.5">Bali, Thailand, Sri Lanka</span>
-              <span class="font-bold text-base md:text-lg font-serif">🌏 Asia & Tropics</span>
-            </div>
-          </button>
-
-          <!-- Luxury & Bespoke -->
-          <button 
-            class="region-card relative overflow-hidden rounded-2xl h-36 md:h-44 text-left p-5 flex flex-col justify-end group transition-all duration-300 ring-0 hover:ring-2 hover:ring-[var(--color-accent)] opacity-85 hover:opacity-100"
-            data-region="luxury"
-          >
-            <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=600&q=80" alt="Luxury" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
-            <div class="relative z-10 text-white">
-              <span class="text-xs uppercase tracking-wider opacity-80 block mb-0.5">Iceland & Private</span>
-              <span class="font-bold text-base md:text-lg font-serif">💎 Luxury Collection</span>
-            </div>
-          </button>
+        <h2 class="text-xs uppercase tracking-widest text-[var(--color-text-secondary)] font-bold mb-4">Explore by Destination</h2>
+        <div class="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none">
+          {PACKAGE_CATEGORIES.filter(c => !["luxury", "family", "honeymoon", "international"].includes(c.id)).map((cat) => (
+            <button 
+              class={`region-card ${cat.id === 'all' ? 'active bg-[var(--color-accent)] text-white border-[var(--color-accent)]' : 'bg-white text-slate-700 border-slate-200'} px-5 py-2.5 rounded-full text-sm font-semibold border hover:border-[var(--color-accent)] transition-all shrink-0 whitespace-nowrap shadow-sm`}
+              data-region={cat.id}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -99,6 +56,7 @@ const allPackages = PACKAGES;
             <article
               class="pkg-card package-card relative group cursor-pointer gsap-rise-hidden"
               data-categories={pkg.category.join(',')}
+              data-country={pkg.country}
             >
               <!-- Stretched link for full card clickability -->
               <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${pkg.name}`}></a>
@@ -172,14 +130,18 @@ const allPackages = PACKAGES;
 
   let activeRegion = 'all';
   let activeStyle = 'all';
+  const urlParams = new URLSearchParams(window.location.search);
+  let activeCountry = urlParams.get('country');
 
   function filterPackages() {
     let visible = 0;
     cards.forEach((card) => {
       const cats = (card.getAttribute('data-categories') ?? '').split(',');
+      const country = card.getAttribute('data-country');
       const matchRegion = activeRegion === 'all' || cats.includes(activeRegion);
       const matchStyle = activeStyle === 'all' || cats.includes(activeStyle);
-      const show = matchRegion && matchStyle;
+      const matchCountry = !activeCountry || country === activeCountry;
+      const show = matchRegion && matchStyle && matchCountry;
 
       card.style.display = show ? '' : 'none';
       if (show) visible++;
@@ -188,16 +150,28 @@ const allPackages = PACKAGES;
     if (noResults) noResults.classList.toggle('hidden', visible > 0);
   }
 
+  // Initial filter run in case of URL params
+  if (activeCountry) {
+    // Optionally clear active classes from buttons if a specific country is chosen that doesn't match a generic region
+    filterPackages();
+  }
+
   regionCards.forEach((btn) => {
     btn.addEventListener('click', () => {
       regionCards.forEach((c) => {
-        c.classList.remove('ring-2', 'ring-[var(--color-accent)]', 'shadow-md', 'opacity-100');
-        c.classList.add('ring-0', 'opacity-85');
+        c.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
+        c.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
       });
-      btn.classList.add('ring-2', 'ring-[var(--color-accent)]', 'shadow-md', 'opacity-100');
-      btn.classList.remove('ring-0', 'opacity-85');
+      btn.classList.add('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
+      btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
 
       activeRegion = btn.getAttribute('data-region') ?? 'all';
+      // When a region button is clicked, clear the URL country filter so it doesn't conflict
+      activeCountry = null;
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.delete('country');
+      window.history.replaceState({}, '', newUrl);
+
       filterPackages();
     });
   });

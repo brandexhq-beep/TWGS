@@ -1,246 +1,371 @@
 ---
-// pages/about.astro — editorial story page with scroll-scrubbed timeline
+// pages/about.astro — The Journey Behind TheMan WandersGlobe Tours
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
 
-const timelineItems = [
-  { year: '2020', title: 'The Idea', desc: 'Our founder, having experienced years of impersonal, fragmented travel planning firsthand, decided to build the company he always wished existed.' },
-  { year: '2021', title: 'First Five Families', desc: 'Word of mouth brought the first guests. Each one returned with stories that felt personal and alive — not like standard tour packages.' },
-  { year: '2022', title: 'Building the Team', desc: 'We recruited destination specialists, local partners and a small but deeply passionate operations team committed to getting every detail right.' },
-  { year: '2023', title: 'International Expansion', desc: 'From Bali to the Maldives, Europe to Southeast Asia — we extended the same curation philosophy beyond India\'s borders.' },
-  { year: '2024', title: '5,000 Wanderers', desc: 'We crossed the 5,000 traveller milestone with a 4.9 Google rating — not because we chased reviews, but because we obsessed over the experience.' },
-  { year: 'Now', title: 'Your Turn', desc: 'Every enquiry still gets personal attention. Every itinerary is still handcrafted. The company has grown; the philosophy hasn\'t.' },
+const stats = [
+  { value: `${SITE.stats.yearsInBusiness}+`, label: 'Years Experience', icon: '🏆' },
+  { value: `${SITE.stats.destinationsCount}+`, label: 'Global Destinations', icon: '📍' },
+  { value: `${(SITE.stats.travellersServed / 1000).toFixed(1)}k+`, label: 'Happy Wanderers', icon: '✈️' },
+  { value: `${SITE.stats.averageRating} ★`, label: 'Guest Satisfaction', icon: '⭐' },
 ];
 
-const teamMembers = [
+const offers = [
   {
-    name: 'Founder & Lead Planner',
-    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-    quote: '"The best journeys are the ones where you forget to check your phone."',
-    note: 'Placeholder — client to provide team details.',
+    title: 'International Holidays',
+    desc: 'Curated escapes across Europe, Asia, Africa, and the Americas.',
+    icon: '✈️',
+    tag: 'Global'
   },
   {
-    name: 'Head of International Travel',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-    quote: '"I\'ve visited every destination we recommend. That\'s not a policy, it\'s a personal commitment."',
-    note: 'Placeholder — client to provide team details.',
+    title: 'Group Tours',
+    desc: 'Fun, seamless group departures with experienced tour managers.',
+    icon: '👥',
+    tag: 'Community'
   },
   {
-    name: 'Domestic Experiences Lead',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    quote: '"India has enough extraordinary places to fill a hundred lifetimes. We\'re here to help you find yours."',
-    note: 'Placeholder — client to provide team details.',
+    title: 'Customized Trips',
+    desc: 'Tailor-made itineraries designed around your pace & style.',
+    icon: '🎨',
+    tag: 'Bespoke'
   },
+  {
+    title: 'Family Holidays',
+    desc: 'Safe, comfortable, and memorable experiences for all ages.',
+    icon: '👨‍👩‍👧',
+    tag: 'Family'
+  },
+  {
+    title: 'Couple & Honeymoon Trips',
+    desc: 'Romantic stays, private dinners, and unforgettable views.',
+    icon: '💑',
+    tag: 'Romance'
+  },
+  {
+    title: 'Youth Travel',
+    desc: 'Vibrant, high-energy exploration & budget-conscious adventures.',
+    icon: '🎒',
+    tag: 'Adventure'
+  },
+  {
+    title: 'Destination Experiences',
+    desc: 'Authentic local food tours, safaris, and cultural deep-dives.',
+    icon: '🌟',
+    tag: 'Culture'
+  },
+  {
+    title: 'Corporate & Private Travel',
+    desc: 'Executive MICE events, incentive retreats & private charters.',
+    icon: '💼',
+    tag: 'Corporate'
+  }
+];
+
+const pillars = [
+  {
+    title: '100% Tailored Itineraries',
+    desc: 'No generic templates. Every trip is crafted around your preferences, schedule, and travel aspirations.',
+    icon: '💎'
+  },
+  {
+    title: 'Trusted Local Partners',
+    desc: 'We collaborate with vetted boutique hotels, licensed local guides, and top-tier transport operators.',
+    icon: '🤝'
+  },
+  {
+    title: '24/7 Travel Concierge',
+    desc: 'Direct personal support from your dedicated travel manager before, during, and after your journey.',
+    icon: '🛡️'
+  },
+  {
+    title: 'Transparent & Fair Value',
+    desc: 'Bespoke luxury experience without inflated hidden costs. Honest pricing guaranteed.',
+    icon: '💰'
+  }
+];
+
+const leadershipTeam = [
+  {
+    name: 'Founder & Managing Director',
+    role: 'Founder & Chief Executive',
+    image: '/team/founder.webp',
+    bio: 'Passionate globetrotter & industry visioner focused on building a trusted global travel community.',
+    badge: 'Founder'
+  },
+  {
+    name: 'Head of international travel',
+    role: 'Head of International Travel',
+    image: '/team/cto.webp',
+    bio: 'Leading digital innovation, seamless booking platforms, and high-growth sales operations.',
+    badge: 'International Travel'
+  },
+  {
+    name: 'Inbound sales head',
+    role: 'Inbound Sales Head',
+    image: '/team/coo.webp',
+    bio: 'Driving global partner operations, regional sales excellence, and guest experience quality.',
+    badge: 'Inbound Sales'
+  }
 ];
 ---
 
 <BaseLayout
-  title={`Our Story | ${SITE.name}`}
-  description="Learn the story behind The Man Wanders Globe — how a wanderer's frustration with impersonal travel planning became a company that crafts bespoke journeys for thousands of travellers."
+  title={`About Us | The Journey Behind ${SITE.name}`}
+  description="Discover the journey behind TheMan WandersGlobe Tours — our story, vision, mission, 4 pillars of excellence, and the leadership team crafting bespoke global travel experiences."
 >
-  <!-- Hero -->
-  <div class="relative overflow-hidden" style="min-height: 70vh; display: flex; align-items: flex-end;">
-    <img
-      src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=85&auto=format"
-      alt="A solo traveller looking out across a mountain valley at sunset"
-      width="1920" height="1080"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="hero-overlay absolute inset-0"></div>
-    <div class="container-site relative z-10 pb-16 pt-32">
-      <span class="text-eyebrow block mb-4">Our Story</span>
-      <h1 class="text-display-xl text-white max-w-3xl mb-6">
-        Born from a<br/><em class="not-italic" style="color: var(--color-luxury);">wanderer's frustration.</em>
+  <!-- Hero Section -->
+  <div class="relative pt-36 pb-24 bg-[var(--color-accent-secondary)] overflow-hidden">
+    <div class="container-site relative z-10">
+      <span class="text-eyebrow block mb-4 text-[var(--color-luxury)]">Our Heritage & Vision</span>
+      <h1 class="text-display-xl text-white mb-6 max-w-4xl font-bold">
+        The Journey Behind<br/>
+        <em class="not-italic" style="color: var(--color-luxury);">TheMan WandersGlobe Tours.</em>
       </h1>
-      <p class="text-body-lg text-white/70 max-w-lg">
-        What started as one man's quest for authentic travel became a company built on one belief:
-        the journey matters as much as the destination.
+      <p class="text-body-lg text-white/80 max-w-2xl font-light leading-relaxed mb-6">
+        Travel has always been more than just a journey — it is a way of learning, experiencing, and connecting deeply with the world.
       </p>
+      <p class="text-xs text-white/60 mb-12 font-medium tracking-wide uppercase">
+        A proud brand of {SITE.company.legalName}
+      </p>
+
+      <!-- Trust Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/15">
+        {stats.map((s) => (
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:border-[var(--color-luxury)]/50 transition-all duration-300">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{s.icon}</span>
+              <span class="text-2xl font-bold text-white font-display">{s.value}</span>
+            </div>
+            <span class="text-xs text-white/70 font-medium uppercase tracking-wider block">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Decorative background layer -->
+    <div class="decorative-layer absolute -right-16 -top-16 opacity-10" aria-hidden="true">
+      <svg width="550" height="550" viewBox="0 0 550 550" fill="none">
+        <circle cx="275" cy="275" r="260" stroke="white" stroke-width="1"/>
+        <circle cx="275" cy="275" r="180" stroke="white" stroke-width="0.5"/>
+      </svg>
     </div>
   </div>
 
-  <!-- Story section -->
-  <section class="section-padding bg-[var(--color-bg)]" aria-label="Company story">
+  <!-- Story Section -->
+  <section class="section-padding bg-[var(--color-bg)]" aria-label="Founder's Story">
     <div class="container-site">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div class="lg:col-span-7 prose-style">
-          <span class="text-eyebrow block mb-4">How It Started</span>
-          <h2 class="text-display-lg mb-6">Every great company begins with a problem that <em>someone actually cares about solving.</em></h2>
-          <div class="space-y-5 text-body-lg text-[var(--color-text-secondary)] leading-relaxed">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Story Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-eyebrow block">How It All Began</span>
+          <h2 class="text-h2 text-slate-900 font-bold leading-tight">
+            Transforming a passion for exploration into <em class="not-italic text-[var(--color-accent)]">unforgettable journeys.</em>
+          </h2>
+
+          <div class="space-y-4 text-slate-600 text-body-lg leading-relaxed">
             <p>
-              Our founder returned from a trip across Rajasthan — a trip that should have been extraordinary
-              but had been reduced to a rushed sequence of hotel lobbies, generic sightseeing buses
-              and impersonal itineraries clearly designed for the average traveller. He wasn't the average traveller.
-              <strong class="text-[var(--color-text-primary)]">You're probably not either.</strong>
+              Over the years, I kept travelling to different destinations and experiencing new cultures, people, places, and ways of life. With every journey, I gained something valuable — not only memories, but also a deeper understanding of what travellers truly look for when planning a trip.
             </p>
             <p>
-              He started The Man Wanders Globe with a simple premise: what if a travel company treated
-              every guest the way a good concierge at the world's best hotel treats a valued regular?
-              Know your name. Know your preferences. Know which table you'd actually prefer.
+              Along the way, I had the opportunity to meet and learn from experienced professionals in the travel industry, attend travel events, connect with industry experts, and understand how the travel business works from behind the scenes. These experiences gave me the confidence and inspiration to turn my passion for travel into something bigger.
             </p>
-            <p>
-              Today we serve thousands of travellers across the world — families, honeymooners,
-              adventurers, corporate teams and solo wanderers. The scale has changed. The philosophy hasn't.
-              Every enquiry still gets personal attention. Every itinerary is still handcrafted.
+            <p class="font-semibold text-slate-900 text-xl pt-2 border-l-4 border-[var(--color-luxury)] pl-4">
+              That is how TheMan WandersGlobe Tours & Travels was born.
             </p>
           </div>
         </div>
+
+        <!-- Visual Feature Card -->
         <div class="lg:col-span-5">
-          <div class="sticky top-28 space-y-6">
-            <img
-              src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80"
-              alt="Mountain vista representing the spirit of wandering"
-              width="600" height="750"
-              loading="lazy"
-              class="rounded-2xl w-full object-cover"
-              style="aspect-ratio: 4/5;"
-            />
-            <div class="grid grid-cols-3 gap-3">
-              {[
-                { value: `${SITE.stats.yearsInBusiness}+`, label: 'Years' },
-                { value: `${SITE.stats.destinationsCount}+`, label: 'Destinations' },
-                { value: `${(SITE.stats.travellersServed / 1000).toFixed(1)}k+`, label: 'Travellers' },
-              ].map((s) => (
-                <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-4 text-center">
-                  <p class="font-display text-2xl font-semibold text-[var(--color-accent)]">{s.value}</p>
-                  <p class="text-caption text-[var(--color-text-secondary)] uppercase tracking-wider mt-0.5">{s.label}</p>
-                </div>
-              ))}
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-white p-8 space-y-6 hover:shadow-luxury transition-all duration-500">
+            <div class="w-14 h-14 rounded-2xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] flex items-center justify-center text-3xl font-bold">
+              🌍
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900">More Than Just Travel</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Our goal is not simply to sell travel packages. We want to create meaningful travel experiences that bring together people who love exploring the world.
+            </p>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              From carefully planned international holidays and group tours to customized trips for families, couples, friends, and solo travellers, we aim to make travel easier, more comfortable, and more memorable.
+            </p>
+            <div class="pt-5 border-t border-slate-100 flex flex-col gap-1 text-xs text-[var(--color-text-secondary)]">
+              <span class="font-bold text-[var(--color-luxury)] uppercase tracking-wider">Registered Legal Entity</span>
+              <span class="font-bold text-slate-900 text-sm">{SITE.company.legalName}</span>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Timeline -->
-  <section class="section-padding bg-[var(--color-surface)]" aria-label="Company timeline">
-    <div class="container-site">
-      <span class="text-eyebrow block mb-4">Our Journey</span>
-      <h2 class="text-display-lg mb-12 max-w-xl">From a <em>single idea</em> to thousands of journeys.</h2>
+  <!-- Vision & Mission Grid -->
+  <section class="section-padding bg-slate-900 text-white relative overflow-hidden" aria-label="Vision & Mission">
+    <div class="container-site relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3 text-[var(--color-luxury)]">Guided By Purpose</span>
+        <h2 class="text-display-lg text-white font-bold">Our Vision & Mission</h2>
+        <p class="text-slate-400 mt-4">Building a trusted global travel community connecting wanderers with stories worth sharing.</p>
+      </div>
 
-      <!-- Desktop horizontal timeline / Mobile vertical -->
-      <div class="relative">
-        <!-- Vertical line (mobile) / Horizontal (desktop via CSS) -->
-        <div class="hidden md:block absolute left-0 right-0 top-8 h-px bg-[var(--color-border)]" aria-hidden="true">
-          <div id="timeline-fill-line" class="h-full bg-[var(--color-accent)] w-0 transition-all duration-500"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Vision -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md hover:border-[var(--color-luxury)]/50 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[var(--color-luxury)]/20 text-[var(--color-luxury)] flex items-center justify-center text-3xl mb-6">
+              🔭
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
+            <p class="text-slate-300 leading-relaxed text-body mb-4">
+              We believe that the future of travel is about more than visiting famous tourist attractions. It is about experiencing destinations, meeting people, discovering cultures, creating friendships, and returning home with stories worth sharing.
+            </p>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed pt-4 border-t border-white/10">
+            Building a trusted global travel community connecting wanderers across continents.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-4">
-          {timelineItems.map((item, i) => (
-            <div class="relative timeline-node gsap-rise-hidden" data-node-index={i}>
-              <!-- Year dot (desktop) -->
-              <div
-                class="hidden md:flex w-8 h-8 rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface)] items-center justify-center mx-auto mb-4 z-10 relative transition-all duration-500"
-                id={`timeline-dot-${i}`}
-                aria-hidden="true"
-              >
-                <div class="w-3 h-3 rounded-full bg-[var(--color-border)] transition-colors duration-300 timeline-inner-dot"></div>
-              </div>
-              <!-- Mobile dot -->
-              <div class="flex md:hidden items-start gap-4">
-                <div class="w-8 h-8 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5">
-                  {i + 1}
-                </div>
-              </div>
-
-              <div class="md:pt-0 pl-12 md:pl-0">
-                <span class="text-eyebrow block mb-2">{item.year}</span>
-                <h3 class="text-h3 mb-2">{item.title}</h3>
-                <p class="text-body text-[var(--color-text-secondary)] text-sm leading-relaxed">{item.desc}</p>
-              </div>
+        <!-- Mission -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md hover:border-[var(--color-luxury)]/50 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[var(--color-accent)]/40 text-white flex items-center justify-center text-3xl mb-6">
+              🎯
             </div>
-          ))}
+            <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
+            <p class="text-slate-300 leading-relaxed text-body mb-4">
+              Our mission is to make travel simple, accessible, and memorable. We aim to provide thoughtfully planned holidays, group trips, customized journeys, and authentic travel experiences while offering reliable service and personal support throughout the journey.
+            </p>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed pt-4 border-t border-white/10">
+            Delivering quality experiences at competitive prices with direct support from planning to arrival.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Team section -->
-  <section class="section-padding bg-[var(--color-bg)]" aria-label="Our team">
+  <!-- What We Offer Portfolio Grid -->
+  <section class="section-padding bg-[var(--color-bg)]" aria-label="What We Offer">
     <div class="container-site">
-      <div class="text-center mb-12">
-        <span class="text-eyebrow block mb-4">The People</span>
-        <h2 class="text-display-lg">Travellers first.<br/><em>Planners by profession.</em></h2>
-        <p class="text-body text-[var(--color-text-secondary)] mt-4 max-w-lg mx-auto">
-          Every member of our team has personally visited the destinations they recommend.
-          That's not a policy — it's a prerequisite.
-        </p>
-        <p class="text-caption text-[var(--color-text-secondary)] mt-2 italic">
-          ⚠️ Placeholder — client to provide real team photos and bios before launch.
-        </p>
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3">Comprehensive Services</span>
+        <h2 class="text-display-lg font-bold text-slate-900">What We Offer</h2>
+        <p class="text-slate-600 mt-3 text-body">Tailor-made travel portfolios crafted for every wanderer's desire.</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {teamMembers.map((member) => (
-          <div class="text-center group gsap-rise-hidden team-card">
-            <div class="relative w-40 h-40 rounded-full overflow-hidden mx-auto mb-5 img-zoom-container border-4 border-[var(--color-surface)] shadow-lg">
-              <img
-                src={member.photo}
-                alt={member.name}
-                width="160" height="160"
-                loading="lazy"
-                class="w-full h-full object-cover img-zoom-target"
-              />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {offers.map((item) => (
+          <div class="group bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:border-[var(--color-accent)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">{item.icon}</span>
+                <span class="text-[10px] uppercase font-bold text-[var(--color-luxury)] bg-[var(--color-luxury)]/10 px-2.5 py-1 rounded-full">{item.tag}</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-900 group-hover:text-[var(--color-accent)] transition-colors mb-2">
+                {item.title}
+              </h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
-            <h3 class="text-h3 mb-2">{member.name}</h3>
-            <p class="text-body text-[var(--color-text-secondary)] italic text-sm leading-relaxed max-w-xs mx-auto">{member.quote}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA section -->
-  <section class="section-padding bg-[var(--color-accent)] relative overflow-hidden" aria-label="Plan your trip CTA">
-    <div class="decorative-layer absolute -right-20 opacity-10" aria-hidden="true">
-      <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
-        <circle cx="300" cy="150" r="200" stroke="white" stroke-width="1" fill="none"/>
-      </svg>
+  <!-- 4 Pillars of Excellence -->
+  <section class="section-padding bg-slate-100/70 border-y border-slate-200/80" aria-label="Why Choose Us">
+    <div class="container-site">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3 text-[var(--color-luxury)]">Why Choose Us</span>
+        <h2 class="text-display-lg text-slate-900 font-bold">Built On Trust & Excellence</h2>
+        <p class="text-slate-600 mt-3">Why thousands of travelers choose TheMan WandersGlobe for their journey.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {pillars.map((p) => (
+          <div class="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-2xl mb-5">
+              {p.icon}
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{p.title}</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section class="section-padding bg-[var(--color-bg)]" aria-label="Leadership Team">
+    <div class="container-site">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3">Meet The Leaders</span>
+        <h2 class="text-display-lg text-slate-900 font-bold">Executive Leadership Team</h2>
+        <p class="text-slate-600 mt-3">The visionaries and strategic minds driving TheMan WandersGlobe Tours & Travels.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {leadershipTeam.map((member) => (
+          <div class="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col">
+            <!-- Image Container -->
+            <div class="relative aspect-[4/5] w-full overflow-hidden bg-slate-100">
+              <img
+                src={member.image}
+                alt={`${member.name} — ${member.role}`}
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              
+              <!-- Badge -->
+              <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[var(--color-accent-secondary)] font-bold text-xs px-3.5 py-1.5 rounded-full shadow-sm border border-slate-200">
+                {member.badge}
+              </span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6 flex flex-col flex-1 justify-between bg-white">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-[var(--color-accent)] transition-colors mb-1">
+                  {member.name}
+                </h3>
+                <p class="text-xs font-bold text-[var(--color-luxury)] uppercase tracking-wider mb-3">
+                  {member.role}
+                </p>
+                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                  {member.bio}
+                </p>
+              </div>
+
+              <div class="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-slate-400">TheMan WandersGlobe</span>
+                <span class="text-xs font-bold text-[var(--color-accent)] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  Executive Team &rarr;
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section-padding bg-[var(--color-accent)] text-white relative overflow-hidden" aria-label="Start Your Journey">
     <div class="container-site text-center relative z-10">
-      <h2 class="text-display-lg text-white mb-4">Ready to wander?</h2>
-      <p class="text-body-lg text-white/75 mb-8 max-w-md mx-auto">
-        Let us craft your next journey. No templates. No defaults. Just a trip that feels like yours.
+      <h2 class="text-display-lg font-bold text-white mb-4">The journey has only just begun.</h2>
+      <p class="text-body-lg text-white/80 max-w-xl mx-auto mb-8 font-light">
+        Let us craft your next international holiday, family escape, or honeymooon with personal support every step of the way.
       </p>
-      <a href="/#plan-my-trip" class="btn btn-ghost-light">
-        <span>Plan My Trip</span>
+      <a href="/#plan-my-trip" class="btn btn-ghost-light px-8 py-3.5 rounded-full font-bold text-sm">
+        <span>Plan Your Trip With Us</span>
       </a>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Timeline nodes stagger
-  const nodes = document.querySelectorAll('.timeline-node');
-  const dots = document.querySelectorAll('.timeline-inner-dot');
-  const fillLine = document.getElementById('timeline-fill-line');
-
-  gsap.to(nodes, {
-    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: nodes[0], start: 'top 75%',
-      onEnter: () => {
-        dots.forEach((d, i) => {
-          setTimeout(() => {
-            (d as HTMLElement).style.background = 'var(--color-accent)';
-            d.closest('[id]')?.setAttribute('style', 'border-color: var(--color-accent)');
-          }, i * 200);
-        });
-        if (fillLine) {
-          gsap.to(fillLine, { width: '100%', duration: 1.5, ease: 'power2.out', delay: 0.3 });
-        }
-      }
-    },
-  });
-
-  const teamCards = document.querySelectorAll('.team-card');
-  gsap.to(teamCards, {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: teamCards[0], start: 'top 80%' },
-  });
-</script>

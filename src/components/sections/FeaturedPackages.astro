@@ -1,114 +1,73 @@
 ---
-// FeaturedPackages.astro — true bento grid (12-col desktop, asymmetric)
+// FeaturedPackages.astro — compact horizontal cards
 import SectionHeader from '../ui/SectionHeader.astro';
 import { getFeaturedPackages } from '../../data/packages';
 
-const featured = getFeaturedPackages();
+const featured = getFeaturedPackages().slice(0, 3);
 ---
 
-<section class="section-padding bg-[var(--color-surface)]" aria-label="Featured travel packages">
+<section class="pt-[clamp(6rem,12vw,10rem)] pb-12 lg:pb-16 bg-[var(--color-surface)]" aria-label="Featured travel packages">
   <div class="container-site">
-    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-10">
       <SectionHeader
         eyebrow="Handpicked Packages"
         headline="Journeys that become <em>stories.</em>"
-        subhead="Every package below is curated — not templated."
+        subhead="Every package is curated — not templated."
       />
       <a href="/packages" class="btn btn-secondary shrink-0 self-start lg:self-auto">
         <span>View All Packages</span>
       </a>
     </div>
 
-    <!-- True bento grid — 12 col desktop -->
-    <div class="bento-grid" role="list">
-      {featured.map((pkg, i) => (
+    <!-- Compact 3-column card grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+      {featured.map((pkg) => (
         <article
-          class={`package-card relative group cursor-pointer flex flex-col h-full gsap-rise-hidden bento-package-card ${i === 0 ? 'bento-cell-feature' : 'bento-cell-sm'}`}
+          class="package-card relative group cursor-pointer flex flex-col gsap-rise-hidden"
           role="listitem"
           aria-label={pkg.name}
         >
-          <!-- Stretched link for full card clickability -->
+          <!-- Stretched link -->
           <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${pkg.name}`}></a>
           <!-- Image -->
-          <div
-            class={`card-image relative overflow-hidden flex-1 ${i === 0 ? '' : ''}`}
-            style={i === 0 ? 'aspect-ratio: 16/10;' : 'aspect-ratio: 4/3;'}
-          >
+          <div class="relative overflow-hidden" style="aspect-ratio: 4/3;">
             <img
               src={pkg.heroImage}
               alt={`${pkg.destination} — ${pkg.name}`}
-              width={i === 0 ? 1200 : 600}
-              height={i === 0 ? 750 : 450}
+              width="600"
+              height="450"
               loading="lazy"
               decoding="async"
-              class="absolute inset-0 w-full h-full object-cover"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <!-- Category badge -->
-            <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-              {pkg.category.slice(0, 2).map((cat) => (
-                <span class="chip bg-white/90 border-white text-[var(--color-text-primary)] text-xs py-1 px-3 min-h-0" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem;">
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                </span>
-              ))}
-            </div>
             <!-- Duration badge -->
-            <div class="absolute top-4 right-4 bg-[var(--color-accent)] text-white text-xs font-semibold px-3 py-1 rounded-full">
+            <div class="absolute top-3 right-3 bg-[var(--color-accent)] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               {pkg.duration.nights}N/{pkg.duration.days}D
             </div>
           </div>
-
           <!-- Card body -->
-          <div class={`p-5 ${i === 0 ? 'lg:p-7' : ''}`}>
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <div>
-                <p class="text-caption text-[var(--color-text-secondary)] mb-0.5">{pkg.destination}</p>
-                <h3 class="text-h3 leading-snug">{pkg.name}</h3>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-xs text-[var(--color-text-secondary)] mb-1">{pkg.destination}</p>
+            <h3 class="text-base font-semibold leading-snug mb-3" style="font-family: var(--font-display);">{pkg.name}</h3>
+            <div class="flex items-center gap-2 mb-4">
+              <div class="star-rating" aria-label={`Rated ${pkg.rating} out of 5`}>
+                {Array.from({length: 5}).map((_, si) => (
+                  <span class="star text-xs" aria-hidden="true">{si < Math.floor(pkg.rating) ? '★' : '☆'}</span>
+                ))}
               </div>
-              <div class="text-right shrink-0">
-                <p class="text-caption text-[var(--color-text-secondary)]">From</p>
-                <p class="price-tag text-xl">
+              <span class="text-xs text-[var(--color-text-secondary)]">{pkg.rating}</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between">
+              <div>
+                <p class="text-xs text-[var(--color-text-secondary)]">From</p>
+                <p class="price-tag text-lg">
                   <span class="currency">₹</span>
                   {pkg.priceFrom.toLocaleString('en-IN')}
                 </p>
-                <p class="text-caption text-[var(--color-text-secondary)]">per person</p>
               </div>
-            </div>
-
-            {/* Highlights — show more on feature card */}
-            {i === 0 && (
-              <ul class="flex flex-wrap gap-2 mb-5">
-                {pkg.highlights.slice(0, 3).map((h) => (
-                  <li class="chip" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem;">
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <!-- Rating -->
-            <div class="flex items-center gap-2 mb-5">
-              <div class="star-rating" aria-label={`Rated ${pkg.rating} out of 5`}>
-                {Array.from({length: 5}).map((_, si) => (
-                  <span class="star" aria-hidden="true">{si < Math.floor(pkg.rating) ? '★' : '☆'}</span>
-                ))}
-              </div>
-              <span class="text-caption text-[var(--color-text-secondary)]">
-                {pkg.rating} ({pkg.reviewCount} reviews)
-              </span>
-            </div>
-
-            <!-- CTAs -->
-            <div class="flex gap-3">
-              <a href={`/packages/${pkg.slug}`} class="btn btn-primary flex-1 py-2.5 text-sm">
+              <a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20">
                 <span>Book Now</span>
               </a>
-              <button
-                class="btn btn-secondary py-2.5 text-sm px-4"
-                data-quick-view={pkg.slug}
-                aria-label={`Quick view ${pkg.name}`}
-              >
-                <span>Quick View</span>
-              </button>
             </div>
           </div>
         </article>
@@ -122,17 +81,17 @@ const featured = getFeaturedPackages();
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  const cards = document.querySelectorAll('.bento-package-card');
+  const cards = document.querySelectorAll('.package-card');
 
   gsap.to(cards, {
     opacity: 1,
     y: 0,
-    duration: 1.2,
-    ease: 'power4.out',
-    stagger: 0.1,
+    duration: 0.8,
+    ease: 'power3.out',
+    stagger: 0.12,
     scrollTrigger: {
-      trigger: '.bento-grid',
-      start: 'top 75%',
+      trigger: cards[0],
+      start: 'top 80%',
     },
   });
 </script>

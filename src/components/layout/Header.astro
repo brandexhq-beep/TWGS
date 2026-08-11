@@ -115,21 +115,13 @@ import { SITE } from '../../data/site';
   // ─── Transparent → solid on scroll ───────────────────────────────────────
   // Initial state: transparent (white text for hero overlay)
   if (header) {
-    gsap.set(header, { color: 'white' });
-
     ScrollTrigger.create({
       start: 80,
       onEnter: () => {
         header.classList.add('scrolled');
-        gsap.to(header, { color: 'var(--color-text-primary)', duration: 0.3, ease: 'power2.out' });
-        if (headerCta) {
-          headerCta.style.borderColor = '';
-          headerCta.style.color = '';
-        }
       },
       onLeaveBack: () => {
         header.classList.remove('scrolled');
-        gsap.to(header, { color: 'white', duration: 0.3, ease: 'power2.out' });
       },
     });
 

@@ -9,7 +9,6 @@ import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import ScrollToTop from '../components/layout/ScrollToTop.astro';
 import CookieBanner from '../components/layout/CookieBanner.astro';
 import SEOHead from '../components/seo/SEOHead.astro';
-import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -54,7 +53,6 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <ClientRouter />
 
     <!-- Google Fonts: Playfair Display & Inter -->
     <!-- Organization JSON-LD -->
@@ -104,11 +102,35 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <!-- Cookie consent -->
     <CookieBanner />
 
-    <!-- GSAP init -->
+    <!-- GSAP & Lenis init -->
     <script>
       import gsap from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import Lenis from 'lenis';
+
       gsap.registerPlugin(ScrollTrigger);
+
+      // Initialize Lenis
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      // Integrate Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
 
       // Make GSAP available globally for island components
       (window as any).__gsap = gsap;

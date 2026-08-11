@@ -34,7 +34,6 @@ import { SITE } from '../data/site';
         <span class="text-caption text-[var(--color-text-secondary)] font-medium mr-2">Filter by:</span>
         {[
           { id: 'all', label: 'All' },
-          { id: 'domestic', label: '🇮🇳 Domestic' },
           { id: 'international', label: '✈️ International' },
           { id: 'luxury', label: '💎 Luxury' },
           { id: 'adventure', label: '🧗 Adventure' },
@@ -56,7 +55,7 @@ import { SITE } from '../data/site';
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid" role="list">
         {DESTINATIONS.map((dest) => (
           <article
-            class="dest-card package-card gsap-rise-hidden"
+            class="dest-card package-card"
             role="listitem"
             data-region={dest.region}
             data-types={dest.travelTypes.join(',')}
@@ -82,8 +81,8 @@ import { SITE } from '../data/site';
               </div>
               <!-- Region badge -->
               <div class="absolute top-4 right-4">
-                <span class="chip text-xs" style={`min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; ${dest.region === 'domestic' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.15);' : 'border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);'}`}>
-                  {dest.region === 'domestic' ? 'Domestic' : 'International'}
+                <span class="chip text-xs" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);">
+                  International
                 </span>
               </div>
             </div>
@@ -107,7 +106,7 @@ import { SITE } from '../data/site';
                   </span>
                 ))}
               </div>
-              <a href={`/destinations#${dest.slug}`} class="animated-underline text-[var(--color-accent)] font-semibold text-sm">
+              <a href={`/packages?country=${encodeURIComponent(dest.country)}`} class="animated-underline text-[var(--color-accent)] font-semibold text-sm">
                 Explore {dest.name} →
               </a>
             </div>

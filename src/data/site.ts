@@ -29,8 +29,8 @@ export const SITE = {
   },
 
   company: {
-    // TODO: confirm registered entity details before launch
-    legalName: "The Man Wanders Globe Tours & Travels",
+    legalName: "Frontier Travel and Hospitality Solutions Private Limited",
+    brandName: "TheMan WandersGlobe Tours",
     cin: "U63040MH2024PTC000000", // placeholder
     gstin: "27AAAAA0000A1Z5", // placeholder
     pan: "AAAAA0000A", // placeholder
