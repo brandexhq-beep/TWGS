@@ -1,0 +1,315 @@
+---
+// pages/bengaluru-travel-agency.astro — Local SEO Landing Page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+import { PACKAGES } from '../data/packages';
+
+// Get a few featured packages to show on this landing page
+const featuredPackages = PACKAGES.filter((p) => p.featured).slice(0, 3);
+
+// Breadcrumb for local landing page
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
+    { "@type": "ListItem", "position": 2, "name": "Travel Agency in Bengaluru", "item": `${SITE.url}/bengaluru-travel-agency` },
+  ]
+};
+
+// LocalBusiness schema for the Bengaluru location
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "@id": `${SITE.url}/#localbusiness`,
+  "name": SITE.company.brandName,
+  "description": "Premium travel agency based in Bengaluru, Karnataka, specialising in bespoke domestic and international holiday packages.",
+  "url": `${SITE.url}/bengaluru-travel-agency`,
+  "logo": `${SITE.url}/logo.webp`,
+  "image": `${SITE.url}/logo.webp`,
+  "telephone": SITE.contact.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Near SBI Road, Chikkagollarahatti, Magadi Main Road",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "562162",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "12.9716",
+    "longitude": "77.4600"
+  },
+  "openingHours": "Mo,Tu,We,Th,Fr,Sa 10:00-19:00",
+  "priceRange": "₹₹-₹₹₹",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": String(SITE.stats.averageRating),
+    "reviewCount": String(SITE.stats.travellersServed),
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+---
+
+<BaseLayout
+  title={`Travel Agency in Bengaluru | Customised Holiday Packages | ${SITE.name}`}
+  description="Looking for the best travel agency in Bengaluru? The Man Wanders Globe offers bespoke domestic & international holiday packages from Bengaluru. Enquire today."
+  ogImage="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1200&q=85"
+  structuredData={[breadcrumb, localBusiness]}
+>
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-20 bg-[var(--color-accent-secondary)] overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-20 mix-blend-overlay">
+      <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1600&q=80" alt="Bengaluru Cityscape" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#00174A]/80 to-[var(--color-bg)]"></div>
+    </div>
+    
+    <div class="container-site relative z-10 text-center">
+      <span class="text-eyebrow block mb-4 text-[var(--color-luxury)]">Bengaluru's Premium Travel Experts</span>
+      <h1 class="text-display-lg text-white mb-6">Travel Agency in Bengaluru</h1>
+      <p class="text-body-lg text-white/80 max-w-2xl mx-auto mb-10">
+        Based in Bengaluru, The Man Wanders Globe is your trusted partner for crafting bespoke holiday packages. Whether you're planning a honeymoon in the Maldives, a family trip to Europe, or exploring the wonders of India, we handle everything end-to-end.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#featured-packages" class="btn btn-primary px-8 py-3.5">
+          <span>View Packages from Bengaluru</span>
+        </a>
+        <a href="/contact" class="btn border border-white/30 text-white hover:bg-white hover:text-[#00174A] px-8 py-3.5 transition-colors duration-300">
+          <span>Contact Our Travel Experts</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Our Services -->
+  <section class="py-16 md:py-24 bg-[var(--color-bg)]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-h2 text-[var(--color-text-primary)] mb-6">Customised Holiday Packages from Bengaluru</h2>
+          <p class="text-body text-[var(--color-text-secondary)] mb-6 leading-relaxed">
+            Planning a trip can be overwhelming. As a leading travel agency in Bengaluru, we take the stress out of travel by designing personalized itineraries tailored to your budget, travel style, and preferences. 
+          </p>
+          <p class="text-body text-[var(--color-text-secondary)] mb-8 leading-relaxed">
+            From seamless flight bookings departing from Kempegowda International Airport (BLR) to luxury stays, private transfers, and curated local experiences — we ensure your journey is flawless from start to finish.
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" class="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-[var(--color-text-primary)]">Personalised trip planning with human experts</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" class="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-[var(--color-text-primary)]">End-to-end booking: Flights, stays, activities</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" class="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-[var(--color-text-primary)]">24/7 WhatsApp support while you travel</span>
+            </li>
+          </ul>
+          <a href="/about" class="inline-flex items-center gap-2 text-[var(--color-accent)] font-semibold hover:underline">
+            Learn more about our agency →
+          </a>
+        </div>
+        <div class="relative">
+          <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80" alt="Travel experts planning a trip" class="w-full h-full object-cover" />
+          </div>
+          <!-- Trust badge floating -->
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-[200px]">
+            <div class="flex items-center gap-2 mb-2 text-[var(--color-luxury)]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <p class="text-sm font-bold text-[#00174A]">4.9/5 Rating</p>
+            <p class="text-xs text-slate-500 mt-1">Based on {SITE.stats.travellersServed}+ travellers served</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations from Bengaluru -->
+  <section class="py-16 md:py-24 bg-[var(--color-surface)]">
+    <div class="container-site text-center">
+      <span class="text-eyebrow block mb-4 text-[var(--color-accent)]">Top Picks</span>
+      <h2 class="text-h2 text-[var(--color-text-primary)] mb-6">Popular Destinations from Bengaluru</h2>
+      <p class="text-body text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-12">
+        Whether you prefer a short domestic getaway or an exotic international escape, these are the most sought-after destinations by our Bengaluru clients.
+      </p>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 text-left">
+        <a href="/destinations/maldives" class="group relative aspect-[4/5] rounded-2xl overflow-hidden block">
+          <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldives Honeymoon Packages from Bengaluru" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#00174A]/90 via-[#00174A]/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h3 class="text-white font-serif text-2xl font-bold mb-1">Maldives</h3>
+            <p class="text-white/80 text-sm">Direct flights from BLR</p>
+          </div>
+        </a>
+        <a href="/destinations/bali" class="group relative aspect-[4/5] rounded-2xl overflow-hidden block">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali Tour Packages from Bengaluru" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#00174A]/90 via-[#00174A]/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h3 class="text-white font-serif text-2xl font-bold mb-1">Bali</h3>
+            <p class="text-white/80 text-sm">Culture & Beaches</p>
+          </div>
+        </a>
+        <a href="/destinations/dubai" class="group relative aspect-[4/5] rounded-2xl overflow-hidden block">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="Dubai Packages from Bengaluru" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#00174A]/90 via-[#00174A]/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h3 class="text-white font-serif text-2xl font-bold mb-1">Dubai</h3>
+            <p class="text-white/80 text-sm">Luxury & Adventure</p>
+          </div>
+        </a>
+        <a href="/destinations/rajasthan" class="group relative aspect-[4/5] rounded-2xl overflow-hidden block">
+          <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&q=80" alt="Rajasthan Tour Packages from Bengaluru" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#00174A]/90 via-[#00174A]/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <h3 class="text-white font-serif text-2xl font-bold mb-1">Rajasthan</h3>
+            <p class="text-white/80 text-sm">Royal Heritage</p>
+          </div>
+        </a>
+      </div>
+      
+      <a href="/destinations" class="btn btn-outline">
+        <span>Explore All Destinations</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Packages -->
+  <section id="featured-packages" class="py-16 md:py-24 bg-[var(--color-bg)]">
+    <div class="container-site">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-eyebrow block mb-4 text-[var(--color-accent)]">Curated Itineraries</span>
+          <h2 class="text-h2 text-[var(--color-text-primary)] mb-2">Holiday Packages from Bengaluru</h2>
+          <p class="text-body text-[var(--color-text-secondary)]">Expertly crafted itineraries for seamless travel from Bengaluru.</p>
+        </div>
+        <a href="/packages" class="inline-flex items-center gap-2 text-[var(--color-accent)] font-semibold hover:underline">
+          View all packages →
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {featuredPackages.map((pkg) => (
+          <a
+            href={`/packages/${pkg.slug}`}
+            class="group rounded-2xl overflow-hidden bg-white border border-[var(--color-border)] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+          >
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src={pkg.heroImage}
+                alt={`${pkg.name} tour package from Bengaluru`}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+              <div class="absolute top-4 left-4 bg-[var(--color-luxury)] text-black text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
+                {pkg.destination}
+              </div>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-serif text-xl text-[var(--color-text-primary)] font-bold mb-2 leading-tight group-hover:text-[var(--color-accent)] transition-colors">
+                {pkg.name}
+              </h3>
+              
+              <div class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] mb-4 font-medium">
+                <span class="flex items-center gap-1">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {pkg.duration.nights}N / {pkg.duration.days}D
+                </span>
+                <span>•</span>
+                <span class="text-[var(--color-accent)]">From ₹{pkg.priceFrom.toLocaleString('en-IN')}</span>
+              </div>
+              
+              <p class="text-sm text-[var(--color-text-secondary)] line-clamp-2 mb-6">
+                {pkg.tagline}
+              </p>
+              
+              <div class="mt-auto flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
+                <span class="text-sm font-semibold text-[var(--color-accent)]">View Itinerary</span>
+                <span class="w-8 h-8 rounded-full bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit Our Office -->
+  <section class="py-16 md:py-24 bg-[var(--color-accent-secondary)] relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-10">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M0 100 V 50 Q 25 25 50 50 t 50 0 V 100 z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#pattern)" />
+      </svg>
+    </div>
+    
+    <div class="container-site relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-h2 text-white mb-6">Visit Our Travel Agency in Bengaluru</h2>
+        <p class="text-body-lg text-white/80 mb-10">
+          Ready to plan your next adventure? Call us, WhatsApp us, or visit our Bengaluru office to discuss your travel plans with our experts over a cup of coffee.
+        </p>
+        
+        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl text-left flex flex-col md:flex-row gap-8 items-start">
+          <div class="flex-1 space-y-6">
+            <div>
+              <p class="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">Office Address</p>
+              <p class="text-[var(--color-text-primary)] font-medium leading-relaxed">
+                {SITE.company.brandName}<br/>
+                Near SBI Road, Chikkagollarahatti,<br/>
+                Magadi Main Road, Bengaluru,<br/>
+                Karnataka 562162, India
+              </p>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">Business Hours</p>
+              <p class="text-[var(--color-text-primary)] font-medium">{SITE.contact.businessHours}</p>
+            </div>
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href={`tel:${SITE.contact.phone}`} class="btn btn-primary px-6 py-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Call Now</span>
+              </a>
+              <a href={`https://wa.me/${SITE.contact.whatsapp}?text=Hi! I'd like to plan a trip from Bengaluru.`} target="_blank" rel="noopener noreferrer" class="btn border border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] px-6 py-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+          <div class="flex-1 w-full rounded-2xl overflow-hidden shadow-inner h-[300px]">
+             <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.42!2d77.4600!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3e0000000000%3A0x0!2sMagadi+Main+Road%2C+Bengaluru%2C+Karnataka+562162!5e0!3m2!1sen!2sin!4v1706000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style="border: 0;"
+              allowfullscreen={false}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Travel Agency in Bengaluru Map"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

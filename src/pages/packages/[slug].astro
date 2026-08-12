@@ -49,6 +49,10 @@ const touristTrip = {
     "worstRating": "1"
   } : undefined
 };
+// Related packages: share at least one category, exclude self, pick up to 3
+const relatedPackages = PACKAGES
+  .filter((p) => p.slug !== pkg.slug && p.category.some((c) => pkg.category.includes(c)))
+  .slice(0, 3);
 ---
 
 <BaseLayout 
@@ -269,4 +273,38 @@ const touristTrip = {
       </div>
     </div>
   </section>
+
+  <!-- Related packages -->
+  {relatedPackages.length > 0 && (
+    <section class="py-14 bg-[var(--color-surface)]">
+      <div class="container-site">
+        <h2 class="text-h3 font-serif text-[var(--color-text-primary)] mb-1">You Might Also Like</h2>
+        <p class="text-sm text-[var(--color-text-secondary)] mb-7">More curated trips handpicked for you</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {relatedPackages.map((rel) => (
+            <a
+              href={`/packages/${rel.slug}`}
+              class="group rounded-2xl overflow-hidden bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
+            >
+              <div class="relative h-44 overflow-hidden">
+                <img
+                  src={rel.heroImage}
+                  alt={`${rel.name} — ${rel.destination} travel package`}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="400"
+                  height="176"
+                />
+              </div>
+              <div class="p-4 flex flex-col gap-1 flex-1">
+                <p class="font-semibold text-[var(--color-text-primary)] text-sm leading-snug">{rel.name}</p>
+                <p class="text-xs text-[var(--color-text-secondary)]">{rel.duration.nights}N / {rel.duration.days}D · from &#x20B9;{rel.priceFrom.toLocaleString('en-IN')}</p>
+                <span class="mt-auto pt-3 text-xs font-semibold text-[var(--color-accent)] group-hover:underline">View {rel.name} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

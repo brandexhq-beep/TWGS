@@ -6,3 +6,4 @@ Disallow: /dist/
 Disallow: /.env
 
 Sitemap: https://www.themanwandersglobetours.com/sitemap-index.xml
+Sitemap: https://www.themanwandersglobetours.com/image-sitemap.xml

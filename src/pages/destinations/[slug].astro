@@ -36,6 +36,11 @@ const breadcrumb = {
     { "@type": "ListItem", "position": 3, "name": destination.name },
   ]
 };
+
+// Related: same region, exclude self, pick up to 3
+const relatedDestinations = DESTINATIONS
+  .filter((d) => d.slug !== destination.slug && d.region === destination.region)
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -120,6 +125,34 @@ const breadcrumb = {
 
   <section class="py-8 bg-[var(--color-bg)]">
     <div class="container-site">
+      {relatedDestinations.length > 0 && (
+        <div class="mb-10">
+          <h2 class="text-h3 font-serif text-[var(--color-text-primary)] mb-1">You Might Also Like</h2>
+          <p class="text-sm text-[var(--color-text-secondary)] mb-5">More handpicked destinations from The Man Wanders Globe</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {relatedDestinations.map((rel) => (
+              <a
+                href={`/destinations/${rel.slug}`}
+                class="group relative rounded-xl overflow-hidden aspect-[4/3] block"
+              >
+                <img
+                  src={rel.heroImage}
+                  alt={`${rel.name} travel packages from India`}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-4">
+                  <p class="text-white font-semibold text-base leading-tight">{rel.name}</p>
+                  <p class="text-white/70 text-xs mt-0.5">{rel.tagline}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <a href="/destinations" class="inline-flex items-center gap-2 text-[var(--color-accent)] font-semibold hover:underline text-sm">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         Back to All Destinations

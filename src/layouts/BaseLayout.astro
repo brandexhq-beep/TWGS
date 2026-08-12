@@ -50,8 +50,14 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon — brand logo -->
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo.webp" />
+    <meta name="application-name" content={SITE.name} />
+    <meta name="apple-mobile-web-app-title" content={SITE.name} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Fonts: Playfair Display & Inter -->
@@ -76,6 +82,10 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Near SBI Road, Chikkagollarahatti, Magadi Main Road",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "562162",
         "addressCountry": "IN"
       },
       "sameAs": [

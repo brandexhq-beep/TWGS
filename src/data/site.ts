@@ -17,7 +17,7 @@ export const SITE = {
     phone: "+91 98457 07423",
     phoneSecondary: "+91 90719 71123",
     whatsapp: "919845707423",
-    address: "123 Travel Lane, Mumbai, Maharashtra 400001, India", // TODO: update
+    address: "Near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India",
     businessHours: "Mon–Sat, 10 AM – 7 PM IST",
   },
 
