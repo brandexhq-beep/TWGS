@@ -24,7 +24,7 @@ export const SITE = {
   social: {
     instagram: "https://www.instagram.com/theman_wandersglobetours/",
     facebook: "https://www.facebook.com/themanwandersglobe",
-    youtube: "https://www.youtube.com/@theman_wandersglobe",
+    youtube: "https://www.youtube.com/@Theman_wandersglobe",
     pinterest: "https://www.pinterest.com/themanwandersglobe",
     linkedin: "https://www.linkedin.com/company/themanwandersglobe",
   },
