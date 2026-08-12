@@ -14,14 +14,15 @@ export const SITE = {
 
   contact: {
     email: "hello@themanwandersglobe.com", // TODO: update
-    phone: "+91 90719 71123",
-    whatsapp: "919071971123",
+    phone: "+91 98457 07423",
+    phoneSecondary: "+91 90719 71123",
+    whatsapp: "919845707423",
     address: "123 Travel Lane, Mumbai, Maharashtra 400001, India", // TODO: update
     businessHours: "Mon–Sat, 10 AM – 7 PM IST",
   },
 
   social: {
-    instagram: "https://instagram.com/themanwandersglobe", // TODO: update
+    instagram: "https://instagram.com/theman_wandersglobetours",
     facebook: "https://facebook.com/themanwandersglobe", // TODO: update
     youtube: "https://youtube.com/@themanwandersglobe", // TODO: update
     pinterest: "https://pinterest.com/themanwandersglobe", // TODO: update
