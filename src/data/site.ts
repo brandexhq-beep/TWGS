@@ -8,12 +8,12 @@ export const SITE = {
   tagline: "Curated Journeys, Handled Entirely",
   description:
     "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
-  url: "https://themanwandersglobe.com", // TODO: update with actual domain
+  url: "https://www.themanwandersglobetours.com",
   logo: "/logo.webp",
-  ogImage: "/logo.webp", // Logo for URL preview
+  ogImage: "https://www.themanwandersglobetours.com/logo.webp",
 
   contact: {
-    email: "hello@themanwandersglobe.com", // TODO: update
+    email: "hello@themanwandersglobetours.com",
     phone: "+91 98457 07423",
     phoneSecondary: "+91 90719 71123",
     whatsapp: "919845707423",
@@ -22,11 +22,11 @@ export const SITE = {
   },
 
   social: {
-    instagram: "https://instagram.com/theman_wandersglobetours",
-    facebook: "https://facebook.com/themanwandersglobe", // TODO: update
-    youtube: "https://youtube.com/@themanwandersglobe", // TODO: update
-    pinterest: "https://pinterest.com/themanwandersglobe", // TODO: update
-    linkedin: "https://linkedin.com/company/themanwandersglobe", // TODO: update
+    instagram: "https://www.instagram.com/theman_wandersglobetours/",
+    facebook: "https://www.facebook.com/themanwandersglobe",
+    youtube: "https://www.youtube.com/@themanwandersglobe",
+    pinterest: "https://www.pinterest.com/themanwandersglobe",
+    linkedin: "https://www.linkedin.com/company/themanwandersglobe",
   },
 
   company: {

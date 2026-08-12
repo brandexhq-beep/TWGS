@@ -5,11 +5,22 @@ import { PACKAGES, PACKAGE_CATEGORIES } from '../../data/packages';
 import { SITE } from '../../data/site';
 
 const allPackages = PACKAGES;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
+    { "@type": "ListItem", "position": 2, "name": "Packages", "item": `${SITE.url}/packages` },
+  ]
+};
 ---
 
 <BaseLayout
-  title={`Travel Packages — Europe, Asia & Luxury | ${SITE.name}`}
-  description="Browse our curated travel packages — Europe, Asia, honeymoon, family, and luxury trips across the globe."
+  title={`Travel Packages — Domestic, International & Luxury | ${SITE.name}`}
+  description="Browse curated travel packages from India's top travel agency — honeymoon, family, luxury, Europe, Maldives, Bali & more. Fully handled end-to-end."
+  ogImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85"
+  structuredData={breadcrumb}
 >
   <!-- Hero -->
   <div class="relative pt-36 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">

@@ -7,7 +7,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://themanwandersglobe.com', // TODO: update with actual domain
+  site: 'https://www.themanwandersglobetours.com',
   integrations: [
     react(),
     sitemap(),

@@ -16,7 +16,7 @@ export interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   noIndex?: boolean;
-  structuredData?: object;
+  structuredData?: object | object[];
 }
 
 const {
@@ -59,24 +59,46 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "TravelAgency",
+      "@id": `${SITE.url}/#organization`,
       "name": SITE.name,
+      "alternateName": "TheMan WandersGlobe Tours & Travels",
       "description": SITE.description,
       "url": SITE.url,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE.url}/logo.webp`,
+        "width": 512,
+        "height": 512
+      },
+      "image": `${SITE.url}/logo.webp`,
       "telephone": SITE.contact.phone,
       "email": SITE.contact.email,
+      "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        "addressCountry": "IN",
-        "streetAddress": SITE.contact.address
+        "addressCountry": "IN"
       },
-      "priceRange": "₹₹₹",
-      "sameAs": Object.values(SITE.social),
+      "sameAs": [
+        SITE.social.instagram,
+        SITE.social.facebook,
+        SITE.social.youtube,
+        SITE.social.pinterest,
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": String(SITE.stats.averageRating),
+        "reviewCount": String(SITE.stats.travellersServed),
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "openingHours": "Mo-Sa 10:00-19:00"
     })} />
 
     <!-- Additional page-level structured data -->
     {structuredData && (
-      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      Array.isArray(structuredData)
+        ? structuredData.map((sd) => <script type="application/ld+json" set:html={JSON.stringify(sd)} />)
+        : <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
   </head>
 

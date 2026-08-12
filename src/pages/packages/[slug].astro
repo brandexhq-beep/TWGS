@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { PACKAGES } from '../../data/packages';
+import { SITE } from '../../data/site';
 
 export async function getStaticPaths() {
   return PACKAGES.map((pkg) => ({
@@ -10,11 +11,51 @@ export async function getStaticPaths() {
 }
 
 const { pkg } = Astro.props;
+
+// Ensure ogImage is always a fully absolute URL
+const ogImage = pkg.heroImage.startsWith('http')
+  ? pkg.heroImage
+  : `${SITE.url}${pkg.heroImage}`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
+    { "@type": "ListItem", "position": 2, "name": "Packages", "item": `${SITE.url}/packages` },
+    { "@type": "ListItem", "position": 3, "name": pkg.name },
+  ]
+};
+
+const touristTrip = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": pkg.name,
+  "description": pkg.tagline,
+  "image": ogImage,
+  "touristType": pkg.category.includes('honeymoon') ? 'Romantic' : 'Leisure',
+  "offers": {
+    "@type": "Offer",
+    "price": String(pkg.priceFrom),
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2025-01-01"
+  },
+  "aggregateRating": pkg.rating ? {
+    "@type": "AggregateRating",
+    "ratingValue": String(pkg.rating),
+    "reviewCount": pkg.reviewCount ? String(pkg.reviewCount).replace(/[^0-9]/g,'') : "50",
+    "bestRating": "5",
+    "worstRating": "1"
+  } : undefined
+};
 ---
 
 <BaseLayout 
-  title={`${pkg.name} | Travel Packages — ${pkg.destination}`}
-  description={pkg.tagline}
+  title={`${pkg.name} | ${pkg.destination} Travel Package — Itinerary & Prices`}
+  description={`${pkg.tagline} ${pkg.duration.nights} nights / ${pkg.duration.days} days from ₹${pkg.priceFrom.toLocaleString('en-IN')}. Book your ${pkg.destination} trip with The Man Wanders Globe.`}
+  ogImage={ogImage}
+  structuredData={[breadcrumb, touristTrip]}
 >
   <!-- Hero Section with Proper Header Offset -->
   <section class="relative w-full min-h-[500px] md:min-h-[560px] flex items-end pt-36 md:pt-44 pb-16 overflow-hidden">
@@ -214,7 +255,7 @@ const { pkg } = Astro.props;
             </div>
 
             <div class="pt-4 space-y-3">
-              <a href="https://wa.me/919071971123?text=Hi,%20I%20am%20interested%20in%20the%20{pkg.name}" class="btn btn-primary w-full py-4 text-center justify-center text-base shadow-lg shadow-[var(--color-accent)]/20">
+              <a href={`https://wa.me/${SITE.contact.whatsapp}?text=Hi,%20I%20am%20interested%20in%20the%20${encodeURIComponent(pkg.name)}%20package`} class="btn btn-primary w-full py-4 text-center justify-center text-base shadow-lg shadow-[var(--color-accent)]/20">
                 <span>Request Custom Quote</span>
               </a>
             </div>

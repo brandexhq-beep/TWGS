@@ -4,8 +4,9 @@
 
 **Name:** The Man Wanders Globe Tours & Travels
 **Type:** Luxury & curated travel agency
-**Location:** Mumbai, Maharashtra, India
-**Website:** https://themanwandersglobe.com
+**Location:** India
+**Website:** https://www.themanwandersglobetours.com
+**Instagram:** https://www.instagram.com/theman_wandersglobetours/
 
 ## What We Do
 
@@ -14,7 +15,7 @@ The Man Wanders Globe is a premium travel agency that designs bespoke domestic a
 ## Key Services
 
 - **Domestic travel packages:** Rajasthan, Kerala, Goa, Himachal Pradesh, Ladakh, Kashmir, Andaman Islands, and more
-- **International travel packages:** Maldives, Bali, Dubai, Paris, Santorini, Singapore, Thailand, Sri Lanka, Switzerland
+- **International travel packages:** Maldives, Bali, Dubai, Paris, Santorini, Singapore, Thailand, Sri Lanka, Switzerland, Egypt, South Africa, South Korea, Japan, China, Bhutan, Nepal
 - **Honeymoon packages:** Romantic curated escapes, overwater villas, private dinners
 - **Family holidays:** Kid-friendly itineraries, safe and comfortable travel
 - **Luxury travel:** Heritage hotels, private experiences, premium airlines
@@ -33,16 +34,17 @@ The Man Wanders Globe is a premium travel agency that designs bespoke domestic a
 
 ## Contact
 
-- **Email:** hello@themanwandersglobe.com
-- **Phone:** +91 98765 43210
-- **WhatsApp:** +91 98765 43210
+- **Email:** hello@themanwandersglobetours.com
+- **Phone (Primary):** +91 98457 07423
+- **Phone (Secondary):** +91 90719 71123
+- **WhatsApp:** +91 98457 07423 (24/7)
 - **Business hours:** Mon–Sat, 10 AM – 7 PM IST
 
 ## Content on This Site
 
 - Home page with featured packages and trip planner
-- Destinations browser (120+ destinations, filterable)
-- Package pages with detailed itineraries
+- Destinations browser (30+ destinations, filterable)
+- Package pages with detailed day-by-day itineraries and pricing
 - Travel photography gallery
 - About page with company story
 - Contact and enquiry forms
@@ -54,4 +56,4 @@ The Man Wanders Globe is a premium travel agency that designs bespoke domestic a
 Built with Astro 5 (static site), React islands, GSAP animations, Tailwind CSS. Optimised for performance (Lighthouse ≥ 95) and SEO.
 
 ---
-*This file is provided for AI search crawlers and large language models to understand the purpose and content of this website. Last updated: August 2025.*
+*This file is provided for AI search crawlers and large language models to understand the purpose and content of this website. Last updated: August 2026.*
