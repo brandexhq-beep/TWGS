@@ -23,16 +23,16 @@ export default defineConfig({
         // Boost priority for key commercial pages
         if (item.url === 'https://www.themanwandersglobetours.com/') {
           item.priority = 1.0;
-          item.changefreq = 'weekly';
+          item.changefreq = /** @type {any} */ ('weekly');
         } else if (item.url.includes('/packages/') || item.url.includes('/destinations/')) {
           item.priority = 0.9;
-          item.changefreq = 'weekly';
+          item.changefreq = /** @type {any} */ ('weekly');
         } else if (item.url.endsWith('/packages/') || item.url.endsWith('/destinations/')) {
           item.priority = 0.85;
-          item.changefreq = 'weekly';
+          item.changefreq = /** @type {any} */ ('weekly');
         } else {
           item.priority = 0.7;
-          item.changefreq = 'monthly';
+          item.changefreq = /** @type {any} */ ('monthly');
         }
         return item;
       },

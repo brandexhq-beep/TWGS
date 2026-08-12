@@ -3,7 +3,7 @@ import { PACKAGES } from '../data/packages';
 import { DESTINATIONS } from '../data/destinations';
 
 export async function GET() {
-  const images = [];
+  const images: { url: string; imageLoc: string; imageTitle?: string; imageCaption?: string; }[] = [];
 
   // Add destination hero images
   DESTINATIONS.forEach(dest => {
