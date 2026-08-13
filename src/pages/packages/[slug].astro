@@ -56,8 +56,8 @@ const relatedPackages = PACKAGES
 ---
 
 <BaseLayout 
-  title={`${pkg.name} | ${pkg.destination} Travel Package — Itinerary & Prices`}
-  description={`${pkg.tagline} ${pkg.duration.nights} nights / ${pkg.duration.days} days from ₹${pkg.priceFrom.toLocaleString('en-IN')}. Book your ${pkg.destination} trip with The Man Wanders Globe.`}
+  title={`${pkg.name} | ${pkg.destination} Package`}
+  description={`${pkg.duration.nights}N/${pkg.duration.days}D ${pkg.destination} trip from ₹${pkg.priceFrom.toLocaleString('en-IN')}. ${pkg.tagline.slice(0, 80)}...`}
   ogImage={ogImage}
   structuredData={[breadcrumb, touristTrip]}
 >

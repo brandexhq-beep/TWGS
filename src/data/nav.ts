@@ -79,12 +79,12 @@ export const FOOTER_COLUMNS = [
   {
     title: "Packages",
     links: [
-      { label: "Luxury Travel", href: "/packages/luxury" },
-      { label: "Honeymoon", href: "/packages/honeymoon" },
-      { label: "Adventure", href: "/packages/adventure" },
-      { label: "Family Holidays", href: "/packages/family" },
-      { label: "Corporate Travel", href: "/packages/corporate" },
-      { label: "Solo Trips", href: "/packages/solo" },
+      { label: "Luxury Travel", href: "/packages?style=luxury" },
+      { label: "Honeymoon", href: "/packages?style=honeymoon" },
+      { label: "Adventure", href: "/packages?style=adventure" },
+      { label: "Family Holidays", href: "/packages?style=family" },
+      { label: "Corporate Travel", href: "/packages?style=corporate" },
+      { label: "Solo Trips", href: "/packages?style=solo" },
     ],
   },
 ] as const;
