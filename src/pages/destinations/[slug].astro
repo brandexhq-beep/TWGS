@@ -18,9 +18,15 @@ if (!destination) {
   return Astro.redirect("/destinations");
 }
 
-const packages = PACKAGES.filter(
-  (pkg) => pkg.country.toLowerCase() === destination.packageCountry.toLowerCase()
-);
+const packages = PACKAGES.filter((pkg) => {
+  if (destination.slug === "europe") return pkg.category.includes("europe");
+  if (destination.slug === "kashmir") return pkg.slug.includes("kashmir") || pkg.destination.toLowerCase().includes("kashmir");
+  if (destination.slug === "himachal-pradesh") return pkg.slug.includes("manali") || pkg.slug.includes("shimla") || pkg.destination.toLowerCase().includes("himachal");
+  if (destination.slug === "rajasthan") return pkg.slug.includes("rajasthan") || pkg.destination.toLowerCase().includes("rajasthan");
+  
+  return pkg.country.toLowerCase() === destination.packageCountry.toLowerCase() || 
+         pkg.destination.toLowerCase().includes(destination.name.toLowerCase());
+});
 
 // Ensure ogImage is always a fully absolute URL
 const ogImage = destination.heroImage.startsWith('http')

@@ -1,0 +1,440 @@
+---
+// pages/visa.astro — Premium Visa Assistance Concierge
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlanTripModal from '../components/layout/PlanTripModal.astro';
+import { SITE } from '../data/site';
+
+const popularVisas = [
+  {
+    flag: "🇪🇺",
+    country: "Schengen Visa",
+    coverage: "France, Germany, Italy, Switzerland, Spain & 24 more",
+    type: "Tourist / Business / Family",
+    validity: "Up to 90 days stay",
+    processingTime: "15–20 Working Days",
+    highlights: ["Complete itinerary & hotel vouchers", "Cover letter drafting", "VFS slot booking assistance", "Travel insurance support"],
+    featured: true,
+  },
+  {
+    flag: "🇬🇧",
+    country: "United Kingdom",
+    coverage: "England, Scotland, Wales & Northern Ireland",
+    type: "Standard Visitor (6M / 2Y / 5Y / 10Y)",
+    validity: "Multiple Entry",
+    processingTime: "10–15 Working Days",
+    highlights: ["Financial document audit", "Strong employment tie proofing", "VFS priority booking support", "Application review"],
+    featured: true,
+  },
+  {
+    flag: "🇺🇸",
+    country: "United States (B1/B2)",
+    coverage: "All 50 US States & Territories",
+    type: "Tourist & Business Visitor",
+    validity: "10 Years Multiple Entry",
+    processingTime: "Slot Based",
+    highlights: ["DS-160 form accurate filing", "Emergency / early slot monitoring", "One-on-one Mock interview prep", "Consular guideline adherence"],
+    featured: true,
+  },
+  {
+    flag: "🇯🇵",
+    country: "Japan",
+    coverage: "Tokyo, Kyoto, Osaka & nationwide",
+    type: "eVisa / Sticker Visa (Single & Multiple)",
+    validity: "15 to 90 days",
+    processingTime: "5–7 Working Days",
+    highlights: ["Official daily itinerary generation", "Financial eligibility verification", "Fast-track processing", "eVisa issuance guidance"],
+    featured: false,
+  },
+  {
+    flag: "🇨🇳",
+    country: "China",
+    coverage: "Shanghai, Beijing, Guangzhou & nationwide",
+    type: "Tourist (L) & Business (M) Visa",
+    validity: "Single / Double / Multiple",
+    processingTime: "7–10 Working Days",
+    highlights: ["Invitation letter check", "Biometric center slot booking", "Flight & stay reservation proof", "Expedited options"],
+    featured: false,
+  },
+  {
+    flag: "🇦🇪",
+    country: "Dubai & UAE",
+    coverage: "Dubai, Abu Dhabi, Sharjah & all Emirates",
+    type: "Express Tourist eVisa (30 / 60 Days)",
+    validity: "Single & Multiple Entry",
+    processingTime: "24–48 Hours",
+    highlights: ["Only passport & photo required", "Guaranteed quick turnaround", "Instant PDF delivery", "Extension support"],
+    featured: false,
+  },
+  {
+    flag: "🇸🇬",
+    country: "Singapore & Malaysia",
+    coverage: "Singapore e-Pass & Malaysia eVisa/eNTRI",
+    type: "Tourist & Transit Visa",
+    validity: "30 Days Stay",
+    processingTime: "2–4 Working Days",
+    highlights: ["Authorized submission", "Singapore SG Arrival card help", "Malaysia MDAC integration", "Minimal documentation"],
+    featured: false,
+  },
+  {
+    flag: "🇸🇦",
+    country: "Saudi Arabia & Umrah",
+    coverage: "Makkah, Madinah, Riyadh, Jeddah",
+    type: "Tourist eVisa & Stopover Visa",
+    validity: "1 Year Multiple Entry",
+    processingTime: "24–72 Hours",
+    highlights: ["Umrah permit guidance", "Nusuk app registration support", "Medical insurance included", "Express processing"],
+    featured: false,
+  },
+  {
+    flag: "🇦🇺",
+    country: "Australia & Canada",
+    coverage: "Subclass 600 & Visitor TRV",
+    type: "Visitor & Tourist Visa",
+    validity: "Up to 3–10 Years",
+    processingTime: "3–6 Weeks",
+    highlights: ["SOP & Statement of purpose drafting", "Tax & asset documentation indexing", "Biometric appointment booking", "Online portal management"],
+    featured: false,
+  },
+];
+
+const processSteps = [
+  {
+    num: "01",
+    title: "Profile Assessment & Document Checklist",
+    desc: "Our visa specialists analyze your travel history, financial standing, and destination requirements to formulate a customized document checklist."
+  },
+  {
+    num: "02",
+    title: "Application Filing & Cover Letter Crafting",
+    desc: "We meticulously fill out all official embassy forms and write tailored, professional cover letters that highlight genuine travel intent."
+  },
+  {
+    num: "03",
+    title: "Appointment & Biometrics Slot Scheduling",
+    desc: "We track and book the earliest available VFS, TLScontact, BLS, or embassy biometric appointments to keep your travel on track."
+  },
+  {
+    num: "04",
+    title: "Mock Interview & Document Verification",
+    desc: "For visas requiring embassy interviews (like USA B1/B2 or Germany), we conduct simulated mock interview sessions with probable question banks."
+  },
+  {
+    num: "05",
+    title: "Visa Approval & Secure Delivery",
+    desc: "We track your application real-time with the consulate and safely hand over your approved eVisa or stamped passport right to your door."
+  }
+];
+
+const faqs = [
+  {
+    q: "How early should I apply for my international visa?",
+    a: "We recommend initiating your visa process at least 45 to 60 days before your intended date of travel for Schengen, UK, Canada, and Australia. For UAE, Singapore, and Saudi Arabia, 1 to 2 weeks is usually sufficient."
+  },
+  {
+    q: "Can you help if my visa was previously rejected?",
+    a: "Yes! We specialize in refusal cases. We conduct a thorough root-cause analysis of your rejection letter, address previous deficiencies, strengthen your financial and ties-to-home proofs, and reapply with a strong explanatory cover letter."
+  },
+  {
+    q: "Do I need to buy confirmed flight tickets before visa approval?",
+    a: "No. For most embassies (including Schengen and UK), verified flight reservations and tentative hotel bookings are sufficient. We arrange embassy-compliant verifiable flight itineraries without requiring you to purchase expensive non-refundable tickets upfront."
+  },
+  {
+    q: "What makes your visa approval rate so high (99.2%)?",
+    a: "Our multi-tier verification process ensures zero errors, complete financial clarity, flawless documentation, and authentic itinerary presentation. If we identify any weakness in a profile, we advise rectifications before submission."
+  }
+];
+---
+
+<BaseLayout
+  title={`Visa Assistance & Global Concierge | ${SITE.name}`}
+  description="Fast, reliable, and hassle-free visa services for 50+ countries. 99.2% approval rate, expert document audit, appointment booking, and mock interview guidance."
+>
+  <!-- Hero Section -->
+  <header class="pt-36 pb-20 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] text-white relative overflow-hidden">
+    <!-- Ambient light circles -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#C6A34E]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#00277C]/30 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="container-site relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#E5C378] text-xs font-semibold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#E5C378] animate-pulse"></span>
+          Global Visa Concierge & Assistance
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-white leading-[1.12] mb-6">
+          World-Class Visa Solutions.<br/>
+          <em class="not-italic text-[#E5C378]">Handled With Precision.</em>
+        </h1>
+
+        <p class="text-neutral-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl font-light">
+          Skip the embassy queues and paperwork stress. Our visa experts provide end-to-end documentation audit, fast-track slot booking, mock interview guidance, and an industry-leading <strong class="text-white font-medium">99.2% approval success rate</strong>.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#visa-destinations" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all">
+            <span>Explore Countries</span>
+          </a>
+          <a 
+            href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent("Hello! I need assistance with getting a visa. Could you please guide me?")}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn border border-white/30 text-white hover:bg-white/10 px-7 py-3.5 rounded-xl backdrop-blur-sm inline-flex items-center gap-2"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/>
+            </svg>
+            <span>Talk to Visa Specialist</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Trust Metrics Strip -->
+      <div class="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <span class="block text-3xl sm:text-4xl font-serif text-[#E5C378] font-bold">99.2%</span>
+          <span class="text-xs uppercase tracking-wider text-neutral-300">Approval Success Rate</span>
+        </div>
+        <div>
+          <span class="block text-3xl sm:text-4xl font-serif text-white font-bold">50+</span>
+          <span class="text-xs uppercase tracking-wider text-neutral-300">Countries Supported</span>
+        </div>
+        <div>
+          <span class="block text-3xl sm:text-4xl font-serif text-[#E5C378] font-bold">24–48h</span>
+          <span class="text-xs uppercase tracking-wider text-neutral-300">Document Audit Turnaround</span>
+        </div>
+        <div>
+          <span class="block text-3xl sm:text-4xl font-serif text-white font-bold">10,000+</span>
+          <span class="text-xs uppercase tracking-wider text-neutral-300">Visas Processed</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Popular Visa Countries Section -->
+  <section class="section-padding bg-[#FCFCFA]" id="visa-destinations" aria-label="Popular Visa Destinations">
+    <div class="container-site">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3 text-[var(--color-luxury)] font-semibold tracking-widest uppercase text-xs">
+          DESTINATIONS WE COVER
+        </span>
+        <h2 class="text-display-lg text-[var(--color-text-primary)] font-serif">
+          Popular Visa <em class="not-italic text-[var(--color-accent)] font-serif">Assistance</em>
+        </h2>
+        <p class="text-[var(--color-text-secondary)] mt-3 text-base">
+          From complex Schengen stickers to instant Middle East eVisas, our experts handle every guideline with embassy precision.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {popularVisas.map((visa) => (
+          <div class="bg-white rounded-3xl p-8 border border-neutral-200/70 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group relative overflow-hidden">
+            {visa.featured && (
+              <span class="absolute top-0 right-0 bg-[#C6A34E] text-[#10253F] font-bold text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-bl-2xl shadow-sm">
+                Most Requested
+              </span>
+            )}
+
+            <!-- Country Header -->
+            <div class="flex items-center gap-3.5 mb-5">
+              <span class="text-3xl p-2.5 rounded-2xl bg-neutral-50 border border-neutral-100 shadow-sm">{visa.flag}</span>
+              <div>
+                <h3 class="text-xl font-serif font-bold text-neutral-900 group-hover:text-[var(--color-accent)] transition-colors">
+                  {visa.country}
+                </h3>
+                <span class="text-xs text-neutral-500 font-medium">{visa.type}</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-neutral-600 mb-5 pb-4 border-b border-neutral-100 leading-relaxed">
+              <strong class="text-neutral-800">Coverage:</strong> {visa.coverage}
+            </p>
+
+            <!-- Key Specs -->
+            <div class="grid grid-cols-2 gap-3 mb-6 bg-neutral-100 p-3.5 rounded-2xl text-xs border border-neutral-200">
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-neutral-500 block font-bold mb-0.5">Processing</span>
+                <span class="font-bold text-neutral-900">{visa.processingTime}</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-neutral-500 block font-bold mb-0.5">Validity</span>
+                <span class="font-bold text-neutral-900">{visa.validity}</span>
+              </div>
+            </div>
+
+            <!-- Highlights Checklist -->
+            <ul class="space-y-2 mb-8 flex-1">
+              {visa.highlights.map((item) => (
+                <li class="flex items-start gap-2 text-xs text-neutral-600">
+                  <svg class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <a 
+              href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hi, I would like to get visa assistance for ${visa.country}. Please share requirements and process.`)}`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full py-3 px-4 rounded-xl text-center font-semibold text-xs uppercase tracking-wider bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] text-white transition-colors duration-200 shadow-sm flex items-center justify-center gap-2"
+            >
+              <span>Apply for {visa.country}</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-Step Process Section -->
+  <section class="section-padding bg-[#10253F] text-white relative overflow-hidden" aria-label="How Our Visa Assistance Works">
+    <div class="container-site relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-eyebrow block mb-3 text-[#E5C378] font-semibold tracking-widest uppercase text-xs">
+          SEAMLESS & TRANSPARENT
+        </span>
+        <h2 class="text-display-lg text-white font-serif">
+          Our 5-Stage Visa <em class="not-italic text-[#E5C378] font-serif">Mastery</em>
+        </h2>
+        <p class="text-neutral-300 mt-3 text-base">
+          Every application goes through structured quality checkpoints to ensure zero rejections and maximum peace of mind.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {processSteps.map((step) => (
+          <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 flex flex-col hover:bg-white/10 transition-colors duration-300">
+            <span class="text-3xl font-serif font-bold text-[#E5C378] mb-4 block">{step.num}</span>
+            <h3 class="text-base font-serif font-semibold text-white mb-2">{step.title}</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Document Checklist Guide Card -->
+  <section class="section-padding bg-[#F4F4F0]" aria-label="Visa Document Checklist">
+    <div class="container-site">
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200 shadow-xl max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8 pb-6 border-b border-neutral-100">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-[var(--color-luxury)] block mb-1">PREPARE WITH CONFIDENCE</span>
+            <h3 class="text-2xl sm:text-3xl font-serif text-neutral-900 font-bold">Standard Document Checklist</h3>
+          </div>
+          <a 
+            href="/contact" 
+            class="btn btn-primary bg-[var(--color-accent)] text-white px-5 py-2.5 text-xs uppercase tracking-wider rounded-xl shrink-0"
+          >
+            Get Custom Checklist
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">🛂</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Valid Passport</h4>
+                <p class="text-xs text-neutral-500">Minimum 6 months validity from travel date with at least 2 blank pages.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">🏦</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Financial Proofs</h4>
+                <p class="text-xs text-neutral-500">Last 6 months bank statement with bank seal/sign + 2-3 years ITR acknowledgement.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">📸</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Embassy-Spec Photos</h4>
+                <p class="text-xs text-neutral-500">Recent white background photographs tailored to specific country size specs (e.g. 35x45mm / 2x2 inch).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">💼</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Employment / Business NOC</h4>
+                <p class="text-xs text-neutral-500">Salary slips (3 months) & approved leave letter, or GST/Business registration certificates.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">✈️</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Flight & Hotel Itinerary</h4>
+                <p class="text-xs text-neutral-500">We arrange verifiable flight reservations & confirmed hotel vouchers matching your tour dates.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
+              <span class="text-lg">🛡️</span>
+              <div>
+                <h4 class="text-xs font-bold text-neutral-900 uppercase tracking-wide">Travel Medical Insurance</h4>
+                <p class="text-xs text-neutral-500">Mandatory coverage (e.g. €30,000 for Schengen) covering COVID, hospitalization & repatriation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-padding bg-white" aria-label="Visa Frequently Asked Questions">
+    <div class="container-site max-w-4xl">
+      <div class="text-center mb-14">
+        <span class="text-eyebrow block mb-3 text-[var(--color-luxury)] font-semibold tracking-widest uppercase text-xs">
+          ANSWERS & CLARITY
+        </span>
+        <h2 class="text-display-lg text-neutral-900 font-serif">
+          Visa Assistance <em class="not-italic text-[var(--color-accent)] font-serif">FAQ</em>
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-neutral-50 rounded-2xl p-6 border border-neutral-200/80 transition-all duration-200 open:bg-white open:shadow-md">
+            <summary class="flex justify-between items-center font-serif text-lg text-neutral-900 font-semibold cursor-pointer list-none select-none">
+              <span>{faq.q}</span>
+              <span class="transition group-open:rotate-180 text-[var(--color-accent)]">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <p class="text-neutral-600 text-sm mt-4 leading-relaxed border-t border-neutral-100 pt-4">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+
+      <!-- Bottom Help Box -->
+      <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-[#10253F] to-[#0A1626] text-white text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="text-left">
+          <h3 class="text-2xl font-serif font-bold text-white mb-1">Have a specific country query?</h3>
+          <p class="text-neutral-300 text-sm">Speak directly with our senior visa advisors today.</p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href={`tel:${SITE.contact.phone.replace(/\s+/g, '')}`} class="btn border border-white/30 text-white hover:bg-white/10 px-5 py-3 rounded-xl text-xs uppercase tracking-wider">
+            Call: {SITE.contact.phone}
+          </a>
+          <a href="/contact" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 font-semibold px-5 py-3 rounded-xl text-xs uppercase tracking-wider">
+            Book Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan Trip Modal for triggers -->
+  <PlanTripModal />
+</BaseLayout>

@@ -1,8 +1,10 @@
 ---
-// pages/destinations.astro
+// pages/destinations.astro — Destinations search, filter & pagination
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { DESTINATIONS } from '../data/destinations';
 import { SITE } from '../data/site';
+
+const allDestinations = DESTINATIONS;
 
 const breadcrumb = {
   "@context": "https://schema.org",
@@ -15,64 +17,175 @@ const breadcrumb = {
 ---
 
 <BaseLayout
-  title={`Travel Destinations | ${SITE.name}`}
-  description="Explore 30+ handpicked travel destinations. Filter by budget, season & style to find your perfect trip."
+  title={`Travel Destinations Around the World | ${SITE.name}`}
+  description="Explore handpicked travel destinations — Europe, Swiss Alps, Japan, Bali, South Africa, Rajasthan, Kashmir & more. Filter by budget, season & style."
   structuredData={breadcrumb}
 >
   <!-- Page hero -->
-  <div class="relative pt-32 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">
+  <div class="relative pt-36 pb-16 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] overflow-hidden text-white">
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#C6A34E]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#00277C]/30 rounded-full blur-3xl pointer-events-none"></div>
+
     <div class="container-site relative z-10">
-      <span class="text-eyebrow block mb-4">Explore the World</span>
-      <h1 class="text-display-xl text-white mb-4">Find your<br/><em class="not-italic" style="color: var(--color-luxury);">next destination.</em></h1>
-      <p class="text-body-lg text-white/70 max-w-lg">
-        From Rajasthan's royal palaces to Maldivian lagoons — filter by style, season and budget.
-      </p>
-    </div>
-    <div class="decorative-layer absolute -right-20 -top-20 opacity-10" aria-hidden="true">
-      <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
-        <circle cx="400" cy="0" r="300" stroke="white" stroke-width="0.8" fill="none"/>
-        <circle cx="400" cy="0" r="200" stroke="white" stroke-width="0.4" fill="none"/>
-      </svg>
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#E5C378] text-xs font-semibold uppercase tracking-wider mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#E5C378]"></span>
+          Global Destinations Portfolio
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white mb-4 leading-tight">
+          Find your<br/>
+          <em class="not-italic text-[#E5C378]">next destination.</em>
+        </h1>
+        <p class="text-neutral-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+          From Rajasthan's royal palaces to Maldivian coral lagoons and Icelandic glaciers — search and filter by region, style, and budget.
+        </p>
+      </div>
     </div>
   </div>
 
-  <section class="section-padding bg-[var(--color-bg)]" aria-label="Destination browser">
+  <section class="py-12 lg:py-16 bg-[#F8F8F6]" aria-label="Destination browser">
     <div class="container-site">
 
-      <!-- Filter bar -->
-      <div class="mb-10 flex flex-wrap gap-3 items-center" role="group" aria-label="Filter destinations">
-        <span class="text-caption text-[var(--color-text-secondary)] font-medium mr-2">Filter by:</span>
-        {[
-          { id: 'all', label: 'All' },
-          { id: 'international', label: '✈️ International' },
-          { id: 'luxury', label: '💎 Luxury' },
-          { id: 'adventure', label: '🧗 Adventure' },
-          { id: 'honeymoon', label: '💑 Honeymoon' },
-          { id: 'family', label: '👨‍👩‍👧 Family' },
-        ].map((f) => (
+      <!-- Search & Filter Control Center -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-md mb-10">
+        
+        <!-- Search Input Bar -->
+        <div class="relative mb-6">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="dest-search-input"
+            placeholder="Search destinations by name, country, experience (e.g. Switzerland, Safari, Pyramids, Temples, Beach)..."
+            class="w-full pl-12 pr-10 py-3.5 bg-neutral-50 border border-neutral-200 rounded-2xl text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all placeholder:text-neutral-400 font-medium"
+          />
           <button
-            class="chip dest-filter-btn"
-            data-filter={f.id}
-            aria-pressed={f.id === 'all' ? 'true' : 'false'}
-            style={f.id === 'all' ? 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);' : ''}
+            id="dest-search-clear"
+            class="absolute inset-y-0 right-0 pr-4 flex items-center text-neutral-400 hover:text-neutral-700 hidden"
+            aria-label="Clear search"
           >
-            {f.label}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
           </button>
-        ))}
+        </div>
+
+        <!-- Filter Dropdowns Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <!-- Travel Style Filter -->
+          <div>
+            <label for="dest-style-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Travel Style</label>
+            <select
+              id="dest-style-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">All Styles</option>
+              <option value="luxury">💎 Luxury</option>
+              <option value="honeymoon">💑 Honeymoon</option>
+              <option value="family">👨‍👩‍👧 Family</option>
+              <option value="adventure">🧗 Adventure</option>
+              <option value="solo">🎒 Solo</option>
+              <option value="corporate">💼 Corporate</option>
+            </select>
+          </div>
+
+          <!-- Duration Filter -->
+          <div>
+            <label for="dest-duration-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Duration</label>
+            <select
+              id="dest-duration-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">Any Duration</option>
+              <option value="short">Up to 6 Days</option>
+              <option value="medium">7 – 10 Days</option>
+              <option value="long">10+ Days</option>
+            </select>
+          </div>
+
+          <!-- Sort Filter -->
+          <div>
+            <label for="dest-sort-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Sort By</label>
+            <select
+              id="dest-sort-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="featured">Featured / Popular</option>
+              <option value="budget-asc">Budget: Low to High</option>
+              <option value="budget-desc">Budget: High to Low</option>
+              <option value="duration-asc">Duration: Short to Long</option>
+              <option value="duration-desc">Duration: Long to Short</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Region Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-neutral-100 pt-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 shrink-0 mr-1">Region:</span>
+          {[
+            { id: "all", label: "All Destinations" },
+            { id: "international", label: "✈️ International" },
+            { id: "domestic", label: "🇮🇳 Domestic (India)" },
+            { id: "europe", label: "🇪🇺 Europe" },
+            { id: "asia", label: "🌏 Asia" },
+            { id: "africa", label: "🌍 Africa" },
+          ].map((cat) => (
+            <button
+              class="dest-region-btn px-4 py-1.5 rounded-full text-xs font-semibold border transition-all shrink-0 whitespace-nowrap bg-white text-neutral-700 border-neutral-200 hover:border-[#C6A34E] data-[active=true]:bg-[#C6A34E] data-[active=true]:text-neutral-950 data-[active=true]:border-[#C6A34E] data-[active=true]:font-bold"
+              data-region={cat.id}
+              data-active={cat.id === "all" ? "true" : "false"}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Results Header & Active Filters Bar -->
+      <div id="dest-results-anchor" class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div>
+          <span id="dest-count-badge" class="text-xs font-bold uppercase tracking-wider text-neutral-500">
+            Showing all {allDestinations.length} destinations
+          </span>
+        </div>
+        <div id="dest-active-filters-wrap" class="flex flex-wrap items-center gap-2 hidden">
+          <span class="text-xs text-neutral-400 font-medium">Active Filters:</span>
+          <div id="dest-active-tags" class="flex flex-wrap items-center gap-2"></div>
+          <button id="dest-reset-all" class="text-xs font-bold text-[#BA1828] hover:underline ml-2">
+            Clear All
+          </button>
+        </div>
       </div>
 
       <!-- Destination grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid" role="list">
-        {DESTINATIONS.map((dest) => (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid" role="list">
+        {allDestinations.map((dest) => (
           <article
-            class="dest-card package-card relative group cursor-pointer"
+            class="dest-card package-card bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group relative"
             role="listitem"
+            data-id={dest.id}
+            data-name={dest.name.toLowerCase()}
+            data-country={dest.country.toLowerCase()}
+            data-slug={dest.slug.toLowerCase()}
             data-region={dest.region}
             data-types={dest.travelTypes.join(',')}
+            data-tagline={dest.tagline.toLowerCase()}
+            data-description={dest.description.toLowerCase()}
+            data-highlights={dest.highlights.join(' ').toLowerCase()}
+            data-min-days={dest.duration.min}
+            data-max-days={dest.duration.max}
+            data-budget={dest.budget.from}
+            data-featured={dest.featured ? "true" : "false"}
           >
             <!-- Stretched link for full card clickability -->
             <a href={`/destinations/${dest.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${dest.name}`}></a>
-            <div class="card-image relative overflow-hidden" style="aspect-ratio: 4/3;">
+            
+            <div class="card-image relative overflow-hidden aspect-[4/3] bg-neutral-100">
               <img
                 src={dest.heroImage}
                 alt={`${dest.name}, ${dest.country} — travel destination`}
@@ -80,101 +193,443 @@ const breadcrumb = {
                 height="600"
                 loading="lazy"
                 decoding="async"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <!-- Hover info overlay -->
-              <div class="absolute inset-0 bg-[var(--color-accent-secondary)] opacity-0 hover:opacity-60 transition-opacity duration-300 flex items-end p-5" aria-hidden="true">
-              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+
               <!-- Country badge -->
               <div class="absolute top-4 left-4">
-                <span class="chip bg-white/90 border-white text-[var(--color-text-primary)] text-xs" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem;">
+                <span class="bg-white/95 backdrop-blur-md text-neutral-900 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
                   {dest.country}
                 </span>
               </div>
+
               <!-- Region badge -->
               <div class="absolute top-4 right-4">
-                <span class="chip text-xs" style="min-height: 0; padding: 0.2rem 0.6rem; font-size: 0.7rem; border-color: var(--color-luxury); color: var(--color-luxury); background: rgba(198,163,78,0.15);">
-                  International
+                <span class="bg-[#C6A34E] text-neutral-950 text-xs font-bold px-3 py-1 rounded-full shadow">
+                  {dest.region === 'domestic' ? '🇮🇳 Domestic' : '✈️ International'}
                 </span>
               </div>
             </div>
-            <div class="p-5">
+
+            <div class="p-6 flex flex-col flex-1">
               <div class="flex items-start justify-between gap-3 mb-2">
                 <div>
-                  <h3 class="text-h3">{dest.name}</h3>
-                  <p class="text-caption text-[var(--color-text-secondary)] mt-0.5">{dest.tagline}</p>
+                  <h3 class="text-2xl font-serif font-bold text-neutral-900 group-hover:text-[var(--color-accent)] transition-colors">
+                    {dest.name}
+                  </h3>
+                  <p class="text-xs text-neutral-500 mt-1 line-clamp-1">{dest.tagline}</p>
                 </div>
                 <div class="text-right shrink-0">
-                  <p class="text-caption text-[var(--color-text-secondary)]">From</p>
-                  <p class="price-tag">
-                    <span class="currency">₹</span>{dest.budget.from.toLocaleString('en-IN')}
+                  <span class="text-[10px] uppercase font-bold text-neutral-400 tracking-wider block">From</span>
+                  <p class="price-tag text-lg font-serif font-bold text-neutral-900">
+                    ₹{dest.budget.from.toLocaleString('en-IN')}
                   </p>
                 </div>
               </div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
+
+              <!-- Travel Type Badges -->
+              <div class="flex flex-wrap gap-1.5 my-4">
                 {dest.travelTypes.slice(0, 3).map((t) => (
-                  <span class="chip text-xs" style="min-height: 0; padding: 0.15rem 0.5rem; font-size: 0.65rem;">
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-semibold bg-neutral-100 text-neutral-600 border border-neutral-200/60">
                     {t}
                   </span>
                 ))}
               </div>
-              <a href={`/destinations/${dest.slug}`} class="relative z-20 animated-underline text-[var(--color-accent)] font-semibold text-sm">
-                Explore {dest.name} →
-              </a>
+
+              <!-- Highlights Preview -->
+              <ul class="text-xs text-neutral-500 space-y-1 mb-5 flex-1">
+                {dest.highlights.slice(0, 2).map((h) => (
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-[#C6A34E] text-xs">✦</span>
+                    <span class="line-clamp-1">{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="pt-3 border-t border-neutral-100 flex items-center justify-between mt-auto">
+                <span class="text-xs text-neutral-400 font-medium">
+                  {dest.duration.min}–{dest.duration.max} Days
+                </span>
+                <span class="text-xs font-bold text-[var(--color-accent)] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  Explore {dest.name} &rarr;
+                </span>
+              </div>
             </div>
           </article>
         ))}
       </div>
 
-      <!-- Empty state -->
-      <p id="no-results" class="hidden text-center text-[var(--color-text-secondary)] py-12">
-        No destinations found for this filter. <button class="text-[var(--color-accent)] underline" onclick="document.querySelector('[data-filter=all]').click()">Reset filters</button>
-      </p>
+      <!-- Pagination Controls -->
+      <div id="dest-pagination" class="mt-14 flex items-center justify-center gap-2">
+        <!-- Dynamically populated via JS -->
+      </div>
+
+      <!-- No Results Fallback Card -->
+      <div id="dest-no-results" class="hidden text-center py-20 bg-white rounded-3xl border border-neutral-200 shadow-sm max-w-2xl mx-auto p-8">
+        <span class="text-4xl mb-4 block">🌍</span>
+        <h3 class="text-2xl font-serif font-bold text-neutral-900 mb-2">No Destinations Found</h3>
+        <p class="text-sm text-neutral-500 mb-6 leading-relaxed">
+          We couldn't find any destinations matching your current search or filters. Try adjusting your query or resetting filters.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button id="dest-empty-reset" class="btn bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-xl">
+            Reset Filters
+          </button>
+          <a href="/contact" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-xl">
+            Custom Destination Request
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  // ─── Interactive Search, Multi-Filter & Pagination Script ──────────────────
+  const searchInput = document.getElementById('dest-search-input') as HTMLInputElement | null;
+  const searchClear = document.getElementById('dest-search-clear') as HTMLButtonElement | null;
+  const styleSelect = document.getElementById('dest-style-select') as HTMLSelectElement | null;
+  const durationSelect = document.getElementById('dest-duration-select') as HTMLSelectElement | null;
+  const sortSelect = document.getElementById('dest-sort-select') as HTMLSelectElement | null;
+  const regionBtns = document.querySelectorAll('.dest-region-btn');
+  const countBadge = document.getElementById('dest-count-badge');
+  const activeWrap = document.getElementById('dest-active-filters-wrap');
+  const activeTags = document.getElementById('dest-active-tags');
+  const resetAllBtn = document.getElementById('dest-reset-all');
+  const emptyResetBtn = document.getElementById('dest-empty-reset');
+  const destinationsGrid = document.getElementById('destinations-grid');
+  const paginationContainer = document.getElementById('dest-pagination');
+  const noResults = document.getElementById('dest-no-results');
 
-  // ─── Filter logic ─────────────────────────────────────────────────────────
-  const filterBtns = document.querySelectorAll('.dest-filter-btn');
-  const cards = document.querySelectorAll('.dest-card') as NodeListOf<HTMLElement>;
-  const noResults = document.getElementById('no-results');
+  const allCards = Array.from(document.querySelectorAll('.dest-card')) as HTMLElement[];
+  const ITEMS_PER_PAGE = 9;
+  let currentPage = 1;
 
-  filterBtns.forEach((btn) => {
+  // State
+  let searchQuery = '';
+  let selectedRegion = 'all';
+  let selectedStyle = 'all';
+  let selectedDuration = 'all';
+  let selectedSort = 'featured';
+
+  // Read URL query params on load
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('q')) searchQuery = urlParams.get('q') || '';
+  if (urlParams.has('region')) selectedRegion = urlParams.get('region') || 'all';
+  if (urlParams.has('type')) selectedStyle = urlParams.get('type') || 'all';
+
+  if (searchInput && searchQuery) {
+    searchInput.value = searchQuery;
+    searchClear?.classList.remove('hidden');
+  }
+  if (styleSelect && selectedStyle !== 'all') styleSelect.value = selectedStyle;
+
+  function syncRegionUI() {
+    regionBtns.forEach((btn) => {
+      const r = btn.getAttribute('data-region');
+      btn.setAttribute('data-active', r === selectedRegion ? 'true' : 'false');
+    });
+  }
+  syncRegionUI();
+
+  function matchFuzzy(text: string, query: string): boolean {
+    if (!query) return true;
+    const cleanText = text.toLowerCase();
+    const tokens = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    return tokens.every((token) => cleanText.includes(token));
+  }
+
+  function getFilteredAndSortedCards(): HTMLElement[] {
+    const filtered = allCards.filter((card) => {
+      const name = card.getAttribute('data-name') || '';
+      const country = card.getAttribute('data-country') || '';
+      const slug = card.getAttribute('data-slug') || '';
+      const region = card.getAttribute('data-region') || '';
+      const types = (card.getAttribute('data-types') || '').split(',');
+      const tagline = card.getAttribute('data-tagline') || '';
+      const description = card.getAttribute('data-description') || '';
+      const highlights = card.getAttribute('data-highlights') || '';
+      const minDays = parseInt(card.getAttribute('data-min-days') || '0', 10);
+      const maxDays = parseInt(card.getAttribute('data-max-days') || '0', 10);
+
+      // Search Query
+      const searchableContent = `${name} ${country} ${slug} ${tagline} ${description} ${highlights}`;
+      const matchesSearch = matchFuzzy(searchableContent, searchQuery);
+
+      // Region Filter
+      let matchesRegion = true;
+      if (selectedRegion !== 'all') {
+        if (selectedRegion === 'international' || selectedRegion === 'domestic') {
+          matchesRegion = region === selectedRegion;
+        } else if (selectedRegion === 'europe') {
+          matchesRegion = slug === 'europe' || country === 'switzerland' || country === 'iceland';
+        } else if (selectedRegion === 'asia') {
+          matchesRegion = ['thailand', 'malaysia', 'bali', 'indonesia', 'singapore', 'nepal', 'bhutan', 'china', 'japan', 'south korea', 'maldives', 'hong kong'].includes(country);
+        } else if (selectedRegion === 'africa') {
+          matchesRegion = ['egypt', 'south africa', 'kenya'].includes(country);
+        }
+      }
+
+      // Style Filter
+      let matchesStyle = true;
+      if (selectedStyle !== 'all') {
+        matchesStyle = types.includes(selectedStyle);
+      }
+
+      // Duration Filter
+      let matchesDuration = true;
+      if (selectedDuration === 'short') matchesDuration = minDays <= 6;
+      else if (selectedDuration === 'medium') matchesDuration = (minDays >= 6 && minDays <= 10) || (maxDays >= 7 && maxDays <= 10);
+      else if (selectedDuration === 'long') matchesDuration = maxDays >= 10;
+
+      return matchesSearch && matchesRegion && matchesStyle && matchesDuration;
+    });
+
+    // Sorting
+    filtered.sort((a, b) => {
+      const budgetA = parseFloat(a.getAttribute('data-budget') || '0');
+      const budgetB = parseFloat(b.getAttribute('data-budget') || '0');
+      const minDaysA = parseInt(a.getAttribute('data-min-days') || '0', 10);
+      const minDaysB = parseInt(b.getAttribute('data-min-days') || '0', 10);
+
+      switch (selectedSort) {
+        case 'budget-asc': return budgetA - budgetB;
+        case 'budget-desc': return budgetB - budgetA;
+        case 'duration-asc': return minDaysA - minDaysB;
+        case 'duration-desc': return minDaysB - minDaysA;
+        default: return 0; // featured default
+      }
+    });
+
+    return filtered;
+  }
+
+  function renderActiveTags() {
+    if (!activeTags || !activeWrap) return;
+    activeTags.innerHTML = '';
+    const tags: { label: string; clear: () => void }[] = [];
+
+    if (searchQuery) {
+      tags.push({
+        label: `"${searchQuery}"`,
+        clear: () => {
+          searchQuery = '';
+          if (searchInput) searchInput.value = '';
+          searchClear?.classList.add('hidden');
+        }
+      });
+    }
+
+    if (selectedRegion !== 'all') {
+      tags.push({
+        label: `Region: ${selectedRegion}`,
+        clear: () => { selectedRegion = 'all'; syncRegionUI(); }
+      });
+    }
+
+    if (selectedStyle !== 'all') {
+      tags.push({
+        label: `Style: ${selectedStyle}`,
+        clear: () => { selectedStyle = 'all'; if (styleSelect) styleSelect.value = 'all'; }
+      });
+    }
+
+    if (selectedDuration !== 'all') {
+      tags.push({
+        label: `Duration: ${selectedDuration}`,
+        clear: () => { selectedDuration = 'all'; if (durationSelect) durationSelect.value = 'all'; }
+      });
+    }
+
+    if (tags.length > 0) {
+      activeWrap.classList.remove('hidden');
+      tags.forEach((tag) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-neutral-300 rounded-full text-xs font-semibold text-neutral-800 shadow-sm';
+        span.innerHTML = `<span>${tag.label}</span><button class="text-neutral-400 hover:text-neutral-900 font-bold ml-1 text-xs" aria-label="Remove filter">&times;</button>`;
+        span.querySelector('button')?.addEventListener('click', () => {
+          tag.clear();
+          currentPage = 1;
+          applyFilters();
+        });
+        activeTags.appendChild(span);
+      });
+    } else {
+      activeWrap.classList.add('hidden');
+    }
+  }
+
+  function renderPagination(totalItems: number) {
+    if (!paginationContainer) return;
+    paginationContainer.innerHTML = '';
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+    if (totalPages <= 1) return;
+
+    // Previous Button
+    const prevBtn = document.createElement('button');
+    prevBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+      currentPage === 1
+        ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+        : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+    }`;
+    prevBtn.innerHTML = '&larr; Prev';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        applyFilters(true);
+      }
+    });
+    paginationContainer.appendChild(prevBtn);
+
+    // Page numbers
+    for (let p = 1; p <= totalPages; p++) {
+      const pageBtn = document.createElement('button');
+      const isCurrent = p === currentPage;
+      pageBtn.className = `w-9 h-9 rounded-xl text-xs font-bold border transition-all ${
+        isCurrent
+          ? 'bg-[#C6A34E] text-neutral-950 border-[#C6A34E] shadow-sm'
+          : 'bg-white text-neutral-700 border-neutral-200 hover:border-[#C6A34E]'
+      }`;
+      pageBtn.innerText = String(p);
+      pageBtn.addEventListener('click', () => {
+        currentPage = p;
+        applyFilters(true);
+      });
+      paginationContainer.appendChild(pageBtn);
+    }
+
+    // Next Button
+    const nextBtn = document.createElement('button');
+    nextBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+      currentPage === totalPages
+        ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+        : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+    }`;
+    nextBtn.innerHTML = 'Next &rarr;';
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        applyFilters(true);
+      }
+    });
+    paginationContainer.appendChild(nextBtn);
+  }
+
+  function applyFilters(scrollToTop = false) {
+    const filtered = getFilteredAndSortedCards();
+    const total = filtered.length;
+
+    const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+    if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const visibleCards = filtered.slice(startIndex, endIndex);
+
+    allCards.forEach((card) => {
+      card.style.display = 'none';
+    });
+
+    if (destinationsGrid) {
+      visibleCards.forEach((card) => {
+        card.style.display = '';
+        destinationsGrid.appendChild(card);
+      });
+    }
+
+    if (countBadge) {
+      if (total === 0) {
+        countBadge.innerText = '0 destinations found';
+      } else {
+        const from = startIndex + 1;
+        const to = Math.min(endIndex, total);
+        countBadge.innerText = `Showing ${from}–${to} of ${total} destinations`;
+      }
+    }
+
+    if (noResults) {
+      noResults.classList.toggle('hidden', total > 0);
+    }
+
+    renderActiveTags();
+    renderPagination(total);
+
+    if (scrollToTop) {
+      const anchor = document.getElementById('dest-results-anchor');
+      anchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Event Listeners
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    searchClear?.classList.toggle('hidden', !searchQuery);
+    currentPage = 1;
+    applyFilters();
+  });
+
+  searchClear?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    searchQuery = '';
+    searchClear.classList.add('hidden');
+    currentPage = 1;
+    applyFilters();
+  });
+
+  styleSelect?.addEventListener('change', (e) => {
+    selectedStyle = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  durationSelect?.addEventListener('change', (e) => {
+    selectedDuration = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  sortSelect?.addEventListener('change', (e) => {
+    selectedSort = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  regionBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter') ?? 'all';
-
-      filterBtns.forEach((b) => {
-        b.setAttribute('aria-pressed', 'false');
-        (b as HTMLElement).style.cssText = '';
-      });
-      btn.setAttribute('aria-pressed', 'true');
-      (btn as HTMLElement).style.cssText = 'border-color: var(--color-accent); color: var(--color-accent); background: rgba(0,39,124,0.06);';
-
-      let visible = 0;
-      cards.forEach((card) => {
-        const region = card.getAttribute('data-region') ?? '';
-        const types = (card.getAttribute('data-types') ?? '').split(',');
-        const show = filter === 'all' || region === filter || types.includes(filter);
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      if (noResults) noResults.classList.toggle('hidden', visible > 0);
+      selectedRegion = btn.getAttribute('data-region') || 'all';
+      syncRegionUI();
+      currentPage = 1;
+      applyFilters();
     });
   });
 
-  // Stagger reveal
-  gsap.to(cards, {
-    opacity: 1,
-    y: 0,
-    duration: 0.5,
-    ease: 'power3.out',
-    stagger: 0.06,
-    scrollTrigger: { trigger: '#destinations-grid', start: 'top 80%' },
-  });
+  function resetAll() {
+    searchQuery = '';
+    selectedRegion = 'all';
+    selectedStyle = 'all';
+    selectedDuration = 'all';
+    selectedSort = 'featured';
+
+    if (searchInput) searchInput.value = '';
+    searchClear?.classList.add('hidden');
+    if (styleSelect) styleSelect.value = 'all';
+    if (durationSelect) durationSelect.value = 'all';
+    if (sortSelect) sortSelect.value = 'featured';
+
+    syncRegionUI();
+    currentPage = 1;
+    applyFilters();
+  }
+
+  resetAllBtn?.addEventListener('click', resetAll);
+  emptyResetBtn?.addEventListener('click', resetAll);
+
+  // Initial Run
+  applyFilters();
 </script>

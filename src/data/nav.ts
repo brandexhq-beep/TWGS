@@ -37,9 +37,10 @@ export const NAV_LINKS: NavItem[] = [
       { label: "🇮🇩 Bali", href: "/destinations/bali" },
       { label: "🇸🇬 Singapore", href: "/destinations/singapore" },
       { label: "🇦🇪 Dubai", href: "/destinations/dubai" },
+      { label: "🇨🇳 China", href: "/destinations/china" },
     ],
   },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Visa", href: "/visa" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -58,7 +59,7 @@ export const FOOTER_COLUMNS = [
     links: [
       { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
-      { label: "Gallery", href: "/gallery" },
+      { label: "Visa", href: "/visa" },
       { label: "Plan My Trip", href: "/#plan-my-trip" },
       { label: "Contact", href: "/contact" },
     ],

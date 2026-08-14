@@ -1,10 +1,13 @@
 ---
-// pages/packages/index.astro — packages landing with visual region cards & style sub-filters
+// pages/packages/index.astro — Travel packages search, filter & pagination
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { PACKAGES, PACKAGE_CATEGORIES } from '../../data/packages';
+import { PACKAGES } from '../../data/packages';
 import { SITE } from '../../data/site';
 
 const allPackages = PACKAGES;
+
+// Collect unique countries for filter dropdown
+const uniqueCountries = Array.from(new Set(allPackages.map((p) => p.country))).sort();
 
 const breadcrumb = {
   "@context": "https://schema.org",
@@ -17,32 +20,143 @@ const breadcrumb = {
 ---
 
 <BaseLayout
-  title={`Travel Packages | ${SITE.name}`}
-  description="Browse curated travel packages — honeymoon, family, luxury, Europe, Maldives, Bali & more. Fully handled end-to-end."
+  title={`Travel Packages & Curated Itineraries | ${SITE.name}`}
+  description="Browse 25+ handpicked travel packages — Europe, Switzerland, Iceland, Japan, Bali, Maldives, Pilgrimages & more. Search, filter & plan your perfect vacation."
   structuredData={breadcrumb}
 >
-  <!-- Hero -->
-  <div class="relative pt-36 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">
+  <!-- Hero Section -->
+  <div class="relative pt-36 pb-16 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] overflow-hidden text-white">
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#C6A34E]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#00277C]/30 rounded-full blur-3xl pointer-events-none"></div>
+
     <div class="container-site relative z-10">
-      <span class="text-eyebrow block mb-4">Curated Portfolios</span>
-      <h1 class="text-display-xl text-white mb-4">Journeys crafted<br/><em class="not-italic" style="color: var(--color-luxury);">for every wanderer.</em></h1>
-      <p class="text-body-lg text-white/70 max-w-lg">
-        From European alpine dreams to tropical Asian escapes — every package is bespoke.
-      </p>
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#E5C378] text-xs font-semibold uppercase tracking-wider mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#E5C378]"></span>
+          Curated Travel Packages
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white mb-4 leading-tight">
+          Journeys crafted<br/>
+          <em class="not-italic text-[#E5C378]">for every wanderer.</em>
+        </h1>
+        <p class="text-neutral-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+          From Arctic lights and alpine railways to tropical archipelagos and sacred shrines — filter by destination, style, or duration.
+        </p>
+      </div>
     </div>
   </div>
 
-  <section class="section-padding bg-[var(--color-bg)]" aria-label="Browse all travel packages">
+  <section class="py-12 lg:py-16 bg-[#F8F8F6]" aria-label="Browse all travel packages">
     <div class="container-site">
 
-      <!-- Explore by Destination (Pill Buttons) -->
-      <div class="mb-10">
-        <h2 class="text-xs uppercase tracking-widest text-[var(--color-text-secondary)] font-bold mb-4">Explore by Destination</h2>
-        <div class="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none">
-          {PACKAGE_CATEGORIES.filter(c => !["luxury", "family", "honeymoon", "international"].includes(c.id)).map((cat) => (
-            <button 
-              class={`region-card ${cat.id === 'all' ? 'active bg-[var(--color-accent)] text-white border-[var(--color-accent)]' : 'bg-white text-slate-700 border-slate-200'} px-5 py-2.5 rounded-full text-sm font-semibold border hover:border-[var(--color-accent)] transition-all shrink-0 whitespace-nowrap shadow-sm`}
+      <!-- Search & Filter Control Center -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-md mb-10">
+        
+        <!-- Search Input Bar -->
+        <div class="relative mb-6">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="pkg-search-input"
+            placeholder="Search by destination, country, keyword (e.g. Northern Lights, Swiss, Safari, Temple, Beach)..."
+            class="w-full pl-12 pr-10 py-3.5 bg-neutral-50 border border-neutral-200 rounded-2xl text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all placeholder:text-neutral-400 font-medium"
+          />
+          <button
+            id="pkg-search-clear"
+            class="absolute inset-y-0 right-0 pr-4 flex items-center text-neutral-400 hover:text-neutral-700 hidden"
+            aria-label="Clear search"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filter Dropdowns Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <!-- Country Filter -->
+          <div>
+            <label for="pkg-country-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Country</label>
+            <select
+              id="pkg-country-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">All Countries</option>
+              {uniqueCountries.map((c) => (
+                <option value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Travel Style Filter -->
+          <div>
+            <label for="pkg-style-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Travel Style</label>
+            <select
+              id="pkg-style-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">All Styles</option>
+              <option value="luxury">💎 Luxury</option>
+              <option value="honeymoon">💑 Honeymoon</option>
+              <option value="family">👨‍👩‍👧 Family</option>
+              <option value="adventure">🧗 Adventure</option>
+              <option value="pilgrimage">🙏 Pilgrimage</option>
+              <option value="corporate">💼 Corporate</option>
+            </select>
+          </div>
+
+          <!-- Duration Filter -->
+          <div>
+            <label for="pkg-duration-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Duration</label>
+            <select
+              id="pkg-duration-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">Any Duration</option>
+              <option value="short">1 – 5 Days (Short Trips)</option>
+              <option value="medium">6 – 8 Days (Standard)</option>
+              <option value="long">9+ Days (Extended)</option>
+            </select>
+          </div>
+
+          <!-- Sort Filter -->
+          <div>
+            <label for="pkg-sort-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Sort By</label>
+            <select
+              id="pkg-sort-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="featured">Featured / Recommended</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="duration-asc">Duration: Short to Long</option>
+              <option value="duration-desc">Duration: Long to Short</option>
+              <option value="rating-desc">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Quick Region Pill Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-neutral-100 pt-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 shrink-0 mr-1">Region:</span>
+          {[
+            { id: "all", label: "All Regions" },
+            { id: "europe", label: "🇪🇺 Europe" },
+            { id: "asia", label: "🌏 Asia" },
+            { id: "africa", label: "🌍 Africa" },
+            { id: "domestic", label: "🇮🇳 Domestic (India)" },
+            { id: "pilgrimage", label: "🙏 Pilgrimage" },
+          ].map((cat) => (
+            <button
+              class="pkg-region-btn px-4 py-1.5 rounded-full text-xs font-semibold border transition-all shrink-0 whitespace-nowrap bg-white text-neutral-700 border-neutral-200 hover:border-[#C6A34E] data-[active=true]:bg-[#C6A34E] data-[active=true]:text-neutral-950 data-[active=true]:border-[#C6A34E] data-[active=true]:font-bold"
               data-region={cat.id}
+              data-active={cat.id === "all" ? "true" : "false"}
             >
               {cat.label}
             </button>
@@ -50,28 +164,45 @@ const breadcrumb = {
         </div>
       </div>
 
-      <!-- Travel Style Sub-Filter Chips -->
-      <div class="flex items-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none border-b border-slate-200/60">
-        <span class="text-xs font-bold uppercase tracking-wider text-[var(--color-text-secondary)] shrink-0 mr-2">Style:</span>
-        <button class="style-chip active px-4 py-1.5 rounded-full text-xs font-semibold bg-[var(--color-accent)] text-white transition-colors" data-style="all">All Styles</button>
-        <button class="style-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[var(--color-accent)] transition-colors" data-style="honeymoon">Honeymoon</button>
-        <button class="style-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[var(--color-accent)] transition-colors" data-style="family">Family</button>
-        <button class="style-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[var(--color-accent)] transition-colors" data-style="adventure">Adventure</button>
+      <!-- Results Header & Active Filters Bar -->
+      <div id="pkg-results-anchor" class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div>
+          <span id="pkg-count-badge" class="text-xs font-bold uppercase tracking-wider text-neutral-500">
+            Showing all {allPackages.length} packages
+          </span>
+        </div>
+        <div id="pkg-active-filters-wrap" class="flex flex-wrap items-center gap-2 hidden">
+          <span class="text-xs text-neutral-400 font-medium">Active Filters:</span>
+          <div id="pkg-active-tags" class="flex flex-wrap items-center gap-2"></div>
+          <button id="pkg-reset-all" class="text-xs font-bold text-[#BA1828] hover:underline ml-2">
+            Clear All
+          </button>
+        </div>
       </div>
 
-      <!-- Packages grid -->
+      <!-- Packages Grid Container -->
       <div id="packages-panel" role="tabpanel" aria-label="Packages">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-grid">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="packages-grid">
           {allPackages.map((pkg) => (
             <article
-              class="pkg-card package-card relative group cursor-pointer"
-              data-categories={pkg.category.join(',')}
+              class="pkg-card package-card bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group relative"
+              data-id={pkg.id}
+              data-name={pkg.name.toLowerCase()}
+              data-destination={pkg.destination.toLowerCase()}
               data-country={pkg.country}
+              data-categories={pkg.category.join(',')}
+              data-highlights={pkg.highlights.join(' ').toLowerCase()}
+              data-tagline={pkg.tagline.toLowerCase()}
+              data-days={pkg.duration.days}
+              data-nights={pkg.duration.nights}
+              data-price={pkg.priceFrom}
+              data-rating={pkg.rating}
+              data-featured={pkg.featured ? "true" : "false"}
             >
               <!-- Stretched link for full card clickability -->
               <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${pkg.name}`}></a>
               
-              <div class="card-image relative overflow-hidden" style="aspect-ratio: 4/3;">
+              <div class="card-image relative overflow-hidden aspect-[4/3] bg-neutral-100">
                 <img
                   src={pkg.heroImage}
                   alt={`${pkg.name} — ${pkg.destination}`}
@@ -79,40 +210,54 @@ const breadcrumb = {
                   height="600"
                   loading="lazy"
                   decoding="async"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+                <!-- Region Chip -->
                 <div class="absolute top-4 left-4 flex gap-1.5">
-                  <span class="chip bg-white/90 border-white text-[var(--color-text-primary)] text-xs font-semibold" style="min-height:0; padding: 0.2rem 0.6rem; font-size: 0.7rem;">
-                    {pkg.category.includes('europe') ? '🇪🇺 Europe' : pkg.category.includes('asia') ? '🌏 Asia' : pkg.category[0]}
+                  <span class="bg-white/95 backdrop-blur-md text-neutral-900 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                    {pkg.category.includes('europe') ? '🇪🇺 Europe' : pkg.category.includes('pilgrimage') ? '🙏 Sacred' : pkg.category.includes('asia') ? '🌏 Asia' : pkg.category.includes('africa') ? '🌍 Africa' : pkg.country}
                   </span>
                 </div>
-                <div class="absolute top-4 right-4 bg-[var(--color-accent)] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                  {pkg.duration.nights}N/{pkg.duration.days}D
+
+                <!-- Duration Badge -->
+                <div class="absolute top-4 right-4 bg-[#C6A34E] text-neutral-950 text-xs font-bold px-3 py-1 rounded-full shadow">
+                  {pkg.duration.nights}N / {pkg.duration.days}D
                 </div>
               </div>
 
-              <div class="p-6">
-                <p class="text-caption text-[var(--color-text-secondary)] mb-1 font-medium">{pkg.destination}, {pkg.country}</p>
-                <h3 class="text-xl font-bold font-serif leading-snug mb-3 text-[var(--color-text-primary)]">{pkg.name}</h3>
+              <div class="p-6 flex flex-col flex-1">
+                <p class="text-xs font-bold uppercase tracking-wider text-[#A3822E] mb-1">
+                  {pkg.destination} • {pkg.country}
+                </p>
+                <h3 class="text-xl font-bold font-serif leading-snug mb-2 text-neutral-900 group-hover:text-[var(--color-accent)] transition-colors">
+                  {pkg.name}
+                </h3>
+                <p class="text-xs text-neutral-500 line-clamp-2 mb-4 leading-relaxed">
+                  {pkg.tagline}
+                </p>
 
-                <div class="flex items-center justify-between mb-4">
-                  <div class="star-rating text-sm" aria-label={`${pkg.rating} stars`}>
-                    <span class="text-[var(--color-luxury)]">★</span>
-                    <span class="font-semibold text-[var(--color-text-primary)] ml-1">{pkg.rating}</span>
-                    <span class="text-caption text-[var(--color-text-secondary)] ml-1">({pkg.reviewCount})</span>
+                <div class="flex items-center justify-between mb-5 mt-auto pt-3 border-t border-neutral-100">
+                  <div class="star-rating text-xs flex items-center" aria-label={`${pkg.rating} stars`}>
+                    <span class="text-amber-500 text-sm mr-1">★</span>
+                    <span class="font-bold text-neutral-900">{pkg.rating}</span>
+                    <span class="text-neutral-400 ml-1">({pkg.reviewCount})</span>
                   </div>
                   <div class="text-right">
-                    <p class="text-caption text-[var(--color-text-secondary)]">From</p>
-                    <p class="price-tag text-lg font-serif">₹{pkg.priceFrom.toLocaleString('en-IN')}</p>
+                    <span class="text-[10px] uppercase font-bold text-neutral-400 tracking-wider block">Starting From</span>
+                    <p class="price-tag text-lg font-bold text-neutral-900 font-serif">
+                      ₹{pkg.priceFrom.toLocaleString('en-IN')}
+                    </p>
                   </div>
                 </div>
 
-                <div class="flex gap-3 pt-2 border-t border-slate-100">
-                  <a href={`/packages/${pkg.slug}`} class="btn btn-primary flex-1 py-2.5 text-sm justify-center">
-                    <span>View Details</span>
+                <div class="flex gap-2">
+                  <a href={`/packages/${pkg.slug}`} class="btn btn-primary flex-1 py-2.5 text-xs uppercase tracking-wider font-bold justify-center bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)] rounded-xl relative z-20">
+                    <span>View Itinerary</span>
                   </a>
-                  <a href="/#plan-my-trip" class="btn btn-secondary py-2.5 text-sm px-4 justify-center">
-                    <span>Enquire</span>
+                  <a href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hi, I would like to inquire about the ${pkg.name} (${pkg.duration.days}D/${pkg.duration.nights}N) package.`)}`} target="_blank" rel="noopener noreferrer" class="btn border border-neutral-200 hover:border-[#C6A34E] text-neutral-800 py-2.5 px-4 text-xs font-bold rounded-xl justify-center relative z-20" aria-label="Chat on WhatsApp">
+                    <span>Chat</span>
                   </a>
                 </div>
               </div>
@@ -120,117 +265,409 @@ const breadcrumb = {
           ))}
         </div>
 
-        <p id="pkg-no-results" class="hidden text-center text-[var(--color-text-secondary)] py-16 text-lg">
-          No packages match your selected filter. <a href="/contact" class="text-[var(--color-accent)] font-semibold underline">Contact us</a> for a tailor-made itinerary!
-        </p>
+        <!-- Pagination Controls -->
+        <div id="pkg-pagination" class="mt-14 flex items-center justify-center gap-2">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- No Results Fallback Card -->
+        <div id="pkg-no-results" class="hidden text-center py-20 bg-white rounded-3xl border border-neutral-200 shadow-sm max-w-2xl mx-auto p-8">
+          <span class="text-4xl mb-4 block">🧭</span>
+          <h3 class="text-2xl font-serif font-bold text-neutral-900 mb-2">No Matching Packages Found</h3>
+          <p class="text-sm text-neutral-500 mb-6 leading-relaxed">
+            We couldn't find any packages matching your exact criteria. Try adjusting your search query or reset your filters.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button id="pkg-empty-reset" class="btn bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-xl">
+              Reset Filters
+            </button>
+            <a href="/contact" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-xl">
+              Request Custom Itinerary
+            </a>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
-  const regionCards = document.querySelectorAll('.region-card');
-  const styleChips = document.querySelectorAll('.style-chip');
-  const cards = document.querySelectorAll('.pkg-card') as NodeListOf<HTMLElement>;
+  // ─── Interactive Search, Multi-Filter & Pagination Script ──────────────────
+  const searchInput = document.getElementById('pkg-search-input') as HTMLInputElement | null;
+  const searchClear = document.getElementById('pkg-search-clear') as HTMLButtonElement | null;
+  const countrySelect = document.getElementById('pkg-country-select') as HTMLSelectElement | null;
+  const styleSelect = document.getElementById('pkg-style-select') as HTMLSelectElement | null;
+  const durationSelect = document.getElementById('pkg-duration-select') as HTMLSelectElement | null;
+  const sortSelect = document.getElementById('pkg-sort-select') as HTMLSelectElement | null;
+  const regionBtns = document.querySelectorAll('.pkg-region-btn');
+  const countBadge = document.getElementById('pkg-count-badge');
+  const activeWrap = document.getElementById('pkg-active-filters-wrap');
+  const activeTags = document.getElementById('pkg-active-tags');
+  const resetAllBtn = document.getElementById('pkg-reset-all');
+  const emptyResetBtn = document.getElementById('pkg-empty-reset');
+  const packagesGrid = document.getElementById('packages-grid');
+  const paginationContainer = document.getElementById('pkg-pagination');
   const noResults = document.getElementById('pkg-no-results');
 
+  const allCards = Array.from(document.querySelectorAll('.pkg-card')) as HTMLElement[];
+  const ITEMS_PER_PAGE = 9;
+  let currentPage = 1;
+
+  // State
+  let searchQuery = '';
+  let selectedRegion = 'all';
+  let selectedCountry = 'all';
+  let selectedStyle = 'all';
+  let selectedDuration = 'all';
+  let selectedSort = 'featured';
+
+  // Read URL query params on load
   const urlParams = new URLSearchParams(window.location.search);
-  let activeRegion = urlParams.get('region') ?? 'all';
-  let activeStyle = urlParams.get('style') ?? 'all';
-  let activeCountry = urlParams.get('country');
-
-  function filterPackages() {
-    let visible = 0;
-    cards.forEach((card) => {
-      const cats = (card.getAttribute('data-categories') ?? '').split(',');
-      const country = card.getAttribute('data-country');
-      // If region is set and not 'all', the package must have it
-      const matchRegion = activeRegion === 'all' || cats.includes(activeRegion);
-      // If style is set and not 'all', the package must have it
-      const matchStyle = activeStyle === 'all' || cats.includes(activeStyle);
-      const matchCountry = !activeCountry || country === activeCountry;
-      const show = matchRegion && matchStyle && matchCountry;
-
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-
-    if (noResults) noResults.classList.toggle('hidden', visible > 0);
+  if (urlParams.has('q')) searchQuery = urlParams.get('q') || '';
+  if (urlParams.has('region')) selectedRegion = urlParams.get('region') || 'all';
+  if (urlParams.has('country')) selectedCountry = urlParams.get('country') || 'all';
+  if (urlParams.has('category')) {
+    const cat = urlParams.get('category') || '';
+    if (['pilgrimage', 'europe', 'asia', 'africa', 'domestic'].includes(cat)) {
+      selectedRegion = cat;
+    } else if (['luxury', 'honeymoon', 'family', 'adventure', 'corporate'].includes(cat)) {
+      selectedStyle = cat;
+    }
   }
 
-  // Initial filter setup
-  function updateUI() {
-    // Update region buttons
-    regionCards.forEach((c) => {
-      if (c.getAttribute('data-region') === activeRegion) {
-        c.classList.add('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
-        c.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
-      } else {
-        c.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
-        c.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+  // Set initial input states
+  if (searchInput && searchQuery) {
+    searchInput.value = searchQuery;
+    searchClear?.classList.remove('hidden');
+  }
+  if (countrySelect && selectedCountry !== 'all') countrySelect.value = selectedCountry;
+  if (styleSelect && selectedStyle !== 'all') styleSelect.value = selectedStyle;
+
+  // Sync region button UI
+  function syncRegionUI() {
+    regionBtns.forEach((btn) => {
+      const r = btn.getAttribute('data-region');
+      btn.setAttribute('data-active', r === selectedRegion ? 'true' : 'false');
+    });
+  }
+  syncRegionUI();
+
+  // Simple and effective fuzzy / token-based search matcher
+  function matchFuzzy(text: string, query: string): boolean {
+    if (!query) return true;
+    const cleanText = text.toLowerCase();
+    const tokens = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    return tokens.every((token) => cleanText.includes(token));
+  }
+
+  function getFilteredAndSortedCards(): HTMLElement[] {
+    const filtered = allCards.filter((card) => {
+      const name = card.getAttribute('data-name') || '';
+      const dest = card.getAttribute('data-destination') || '';
+      const country = card.getAttribute('data-country') || '';
+      const cats = (card.getAttribute('data-categories') || '').split(',');
+      const highlights = card.getAttribute('data-highlights') || '';
+      const tagline = card.getAttribute('data-tagline') || '';
+      const days = parseInt(card.getAttribute('data-days') || '0', 10);
+
+      // Search Query
+      const searchableContent = `${name} ${dest} ${country} ${highlights} ${tagline} ${cats.join(' ')}`;
+      const matchesSearch = matchFuzzy(searchableContent, searchQuery);
+
+      // Region Filter
+      let matchesRegion = true;
+      if (selectedRegion !== 'all') {
+        matchesRegion = cats.includes(selectedRegion);
+      }
+
+      // Country Filter
+      let matchesCountry = true;
+      if (selectedCountry !== 'all') {
+        matchesCountry = country.toLowerCase() === selectedCountry.toLowerCase();
+      }
+
+      // Style Filter
+      let matchesStyle = true;
+      if (selectedStyle !== 'all') {
+        matchesStyle = cats.includes(selectedStyle);
+      }
+
+      // Duration Filter
+      let matchesDuration = true;
+      if (selectedDuration === 'short') matchesDuration = days <= 5;
+      else if (selectedDuration === 'medium') matchesDuration = days >= 6 && days <= 8;
+      else if (selectedDuration === 'long') matchesDuration = days >= 9;
+
+      return matchesSearch && matchesRegion && matchesCountry && matchesStyle && matchesDuration;
+    });
+
+    // Sorting
+    filtered.sort((a, b) => {
+      const priceA = parseFloat(a.getAttribute('data-price') || '0');
+      const priceB = parseFloat(b.getAttribute('data-price') || '0');
+      const daysA = parseInt(a.getAttribute('data-days') || '0', 10);
+      const daysB = parseInt(b.getAttribute('data-days') || '0', 10);
+      const ratingA = parseFloat(a.getAttribute('data-rating') || '0');
+      const ratingB = parseFloat(b.getAttribute('data-rating') || '0');
+
+      switch (selectedSort) {
+        case 'price-asc': return priceA - priceB;
+        case 'price-desc': return priceB - priceA;
+        case 'duration-asc': return daysA - daysB;
+        case 'duration-desc': return daysB - daysA;
+        case 'rating-desc': return ratingB - ratingA;
+        default: return 0; // maintain original featured order
       }
     });
 
-    // Update style chips
-    styleChips.forEach((s) => {
-      if (s.getAttribute('data-style') === activeStyle) {
-        s.classList.add('bg-[var(--color-accent)]', 'text-white');
-        s.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-      } else {
-        s.classList.remove('bg-[var(--color-accent)]', 'text-white');
-        s.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+    return filtered;
+  }
+
+  function renderActiveTags() {
+    if (!activeTags || !activeWrap) return;
+    activeTags.innerHTML = '';
+    const tags: { label: string; clear: () => void }[] = [];
+
+    if (searchQuery) {
+      tags.push({
+        label: `"${searchQuery}"`,
+        clear: () => {
+          searchQuery = '';
+          if (searchInput) searchInput.value = '';
+          searchClear?.classList.add('hidden');
+        }
+      });
+    }
+
+    if (selectedRegion !== 'all') {
+      tags.push({
+        label: `Region: ${selectedRegion}`,
+        clear: () => { selectedRegion = 'all'; syncRegionUI(); }
+      });
+    }
+
+    if (selectedCountry !== 'all') {
+      tags.push({
+        label: `Country: ${selectedCountry}`,
+        clear: () => { selectedCountry = 'all'; if (countrySelect) countrySelect.value = 'all'; }
+      });
+    }
+
+    if (selectedStyle !== 'all') {
+      tags.push({
+        label: `Style: ${selectedStyle}`,
+        clear: () => { selectedStyle = 'all'; if (styleSelect) styleSelect.value = 'all'; }
+      });
+    }
+
+    if (selectedDuration !== 'all') {
+      tags.push({
+        label: `Duration: ${selectedDuration}`,
+        clear: () => { selectedDuration = 'all'; if (durationSelect) durationSelect.value = 'all'; }
+      });
+    }
+
+    if (tags.length > 0) {
+      activeWrap.classList.remove('hidden');
+      tags.forEach((tag) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-neutral-300 rounded-full text-xs font-semibold text-neutral-800 shadow-sm';
+        span.innerHTML = `<span>${tag.label}</span><button class="text-neutral-400 hover:text-neutral-900 font-bold ml-1 text-xs" aria-label="Remove filter">&times;</button>`;
+        span.querySelector('button')?.addEventListener('click', () => {
+          tag.clear();
+          currentPage = 1;
+          applyFilters();
+        });
+        activeTags.appendChild(span);
+      });
+    } else {
+      activeWrap.classList.add('hidden');
+    }
+  }
+
+  function renderPagination(totalItems: number) {
+    if (!paginationContainer) return;
+    paginationContainer.innerHTML = '';
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+    if (totalPages <= 1) return;
+
+    // Previous Button
+    const prevBtn = document.createElement('button');
+    prevBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+      currentPage === 1
+        ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+        : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+    }`;
+    prevBtn.innerHTML = '&larr; Prev';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        applyFilters(true);
       }
     });
-    
-    filterPackages();
-  }
-  
-  updateUI();
+    paginationContainer.appendChild(prevBtn);
 
-  regionCards.forEach((btn) => {
+    // Page numbers
+    for (let p = 1; p <= totalPages; p++) {
+      const pageBtn = document.createElement('button');
+      const isCurrent = p === currentPage;
+      pageBtn.className = `w-9 h-9 rounded-xl text-xs font-bold border transition-all ${
+        isCurrent
+          ? 'bg-[#C6A34E] text-neutral-950 border-[#C6A34E] shadow-sm'
+          : 'bg-white text-neutral-700 border-neutral-200 hover:border-[#C6A34E]'
+      }`;
+      pageBtn.innerText = String(p);
+      pageBtn.addEventListener('click', () => {
+        currentPage = p;
+        applyFilters(true);
+      });
+      paginationContainer.appendChild(pageBtn);
+    }
+
+    // Next Button
+    const nextBtn = document.createElement('button');
+    nextBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+      currentPage === totalPages
+        ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+        : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+    }`;
+    nextBtn.innerHTML = 'Next &rarr;';
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        applyFilters(true);
+      }
+    });
+    paginationContainer.appendChild(nextBtn);
+  }
+
+  function applyFilters(scrollToTop = false) {
+    const filtered = getFilteredAndSortedCards();
+    const total = filtered.length;
+
+    // Adjust page bounds
+    const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+    if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const visibleCards = filtered.slice(startIndex, endIndex);
+
+    // Hide all cards first
+    allCards.forEach((card) => {
+      card.style.display = 'none';
+    });
+
+    // Detach and re-append in sorted order to grid, display only visible for current page
+    if (packagesGrid) {
+      visibleCards.forEach((card) => {
+        card.style.display = '';
+        packagesGrid.appendChild(card);
+      });
+    }
+
+    // Count badge
+    if (countBadge) {
+      if (total === 0) {
+        countBadge.innerText = '0 packages found';
+      } else {
+        const from = startIndex + 1;
+        const to = Math.min(endIndex, total);
+        countBadge.innerText = `Showing ${from}–${to} of ${total} packages`;
+      }
+    }
+
+    // Toggle No results card
+    if (noResults) {
+      noResults.classList.toggle('hidden', total > 0);
+    }
+
+    renderActiveTags();
+    renderPagination(total);
+
+    if (scrollToTop) {
+      const anchor = document.getElementById('pkg-results-anchor');
+      anchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Event Listeners
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    searchClear?.classList.toggle('hidden', !searchQuery);
+    currentPage = 1;
+    applyFilters();
+  });
+
+  searchClear?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    searchQuery = '';
+    searchClear.classList.add('hidden');
+    currentPage = 1;
+    applyFilters();
+  });
+
+  countrySelect?.addEventListener('change', (e) => {
+    selectedCountry = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  styleSelect?.addEventListener('change', (e) => {
+    selectedStyle = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  durationSelect?.addEventListener('change', (e) => {
+    selectedDuration = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  sortSelect?.addEventListener('change', (e) => {
+    selectedSort = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  regionBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      regionCards.forEach((c) => {
-        c.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
-        c.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
-      });
-      btn.classList.add('active', 'bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]');
-      btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
-
-      activeRegion = btn.getAttribute('data-region') ?? 'all';
-      // When a region button is clicked, clear the URL country filter so it doesn't conflict
-      activeCountry = null;
-      const newUrl = new URL(window.location.href);
-      newUrl.searchParams.delete('country');
-      window.history.replaceState({}, '', newUrl);
-
-      filterPackages();
+      selectedRegion = btn.getAttribute('data-region') || 'all';
+      syncRegionUI();
+      currentPage = 1;
+      applyFilters();
     });
   });
 
-  styleChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      styleChips.forEach((s) => {
-        s.classList.remove('bg-[var(--color-accent)]', 'text-white');
-        s.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-      });
-      chip.classList.add('bg-[var(--color-accent)]', 'text-white');
-      chip.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+  function resetAll() {
+    searchQuery = '';
+    selectedRegion = 'all';
+    selectedCountry = 'all';
+    selectedStyle = 'all';
+    selectedDuration = 'all';
+    selectedSort = 'featured';
 
-      activeStyle = chip.getAttribute('data-style') ?? 'all';
-      filterPackages();
-    });
-  });
+    if (searchInput) searchInput.value = '';
+    searchClear?.classList.add('hidden');
+    if (countrySelect) countrySelect.value = 'all';
+    if (styleSelect) styleSelect.value = 'all';
+    if (durationSelect) durationSelect.value = 'all';
+    if (sortSelect) sortSelect.value = 'featured';
 
-  gsap.from(cards, {
-    opacity: 0, 
-    y: 30, 
-    duration: 0.8, 
-    ease: 'power3.out', 
-    stagger: 0.05,
-    scrollTrigger: { trigger: '#packages-grid', start: 'top 85%' },
-  });
+    syncRegionUI();
+    currentPage = 1;
+    applyFilters();
+  }
+
+  resetAllBtn?.addEventListener('click', resetAll);
+  emptyResetBtn?.addEventListener('click', resetAll);
+
+  // Initial Run
+  applyFilters();
 </script>

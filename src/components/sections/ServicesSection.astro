@@ -1,0 +1,213 @@
+---
+// components/sections/ServicesSection.astro
+---
+
+<section class="py-14 lg:py-20 bg-[#1F1A16] text-white relative overflow-hidden" id="signature-services" aria-label="Signature Luxury Experiences">
+  <!-- Subtle ambient glow in corner -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#C6A34E]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#1242BA]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container-site relative z-10">
+    <!-- Header Section -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="w-6 h-[2px] bg-[#C5A358]"></span>
+          <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-[#C5A358]">
+            SIGNATURE EXPERIENCES
+          </span>
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white font-normal tracking-tight leading-[1.12]">
+          Whatever you need,<br />
+          <span class="inline-block bg-[#C6A34E] text-[#1F1A16] px-4 py-1 mt-2.5 font-serif italic font-normal rounded shadow-md">
+            we can arrange it.
+          </span>
+        </h2>
+      </div>
+
+      <p class="text-[#A8A199] text-base sm:text-lg max-w-lg leading-relaxed lg:pb-2">
+        From imperial landmarks to mountain landscapes and living local culture, every journey is designed around the experiences that make your travel unforgettable.
+      </p>
+    </div>
+
+    <!-- 4 Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Card 1: Private Cars & Vans -->
+      <div class="bg-white text-neutral-900 rounded-2xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl group">
+        <div class="h-52 overflow-hidden relative bg-neutral-100">
+          <img 
+            src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80" 
+            alt="Private Cars & Vans" 
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+            PRIVATE VEHICLES
+          </span>
+          <h3 class="font-serif text-xl font-semibold text-neutral-900 mb-3 tracking-tight">
+            PRIVATE CARS & VANS
+          </h3>
+          <p class="text-xs text-neutral-600 mb-6 leading-relaxed flex-1">
+            Travel your way with a private vehicle arranged around your itinerary, group size and comfort preferences.
+          </p>
+
+          <div class="border-t border-neutral-100 pt-4 mb-6">
+            <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+              OUR SERVICE
+            </span>
+            <p class="text-[11px] text-neutral-500 leading-relaxed">
+              Private transportation can be arranged for airport transfers, sightseeing, multi-city journeys and customized tours.
+            </p>
+          </div>
+
+          <a 
+            href="/#plan-my-trip" 
+            class="w-full text-center py-3.5 px-4 bg-[#C6A34E] hover:bg-[#A8873B] text-[#1F1A16] font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5"
+          >
+            <span>CUSTOMIZE YOUR RIDE</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Private Jet Travel -->
+      <div class="bg-white text-neutral-900 rounded-2xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl group">
+        <div class="h-52 overflow-hidden relative bg-neutral-100">
+          <img 
+            src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80" 
+            alt="Private Jet Travel" 
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+            PRIVATE AIRCRAFT
+          </span>
+          <h3 class="font-serif text-xl font-semibold text-neutral-900 mb-3 tracking-tight">
+            PRIVATE JET TRAVEL
+          </h3>
+          <p class="text-xs text-neutral-600 mb-6 leading-relaxed flex-1">
+            For travellers who value privacy, flexibility and time, private aircraft can be arranged for selected journeys and destinations.
+          </p>
+
+          <div class="border-t border-neutral-100 pt-4 mb-6">
+            <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+              OUR SERVICE
+            </span>
+            <p class="text-[11px] text-neutral-500 leading-relaxed">
+              Private transportation can be arranged for airport transfers, sightseeing, multi-city journeys and customized tours.
+            </p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="w-full text-center py-3.5 px-4 bg-[#C6A34E] hover:bg-[#A8873B] text-[#1F1A16] font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5"
+          >
+            <span>ENQUIRE NOW</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Private Charter -->
+      <div class="bg-white text-neutral-900 rounded-2xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl group">
+        <div class="h-52 overflow-hidden relative bg-neutral-100">
+          <img 
+            src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80" 
+            alt="Charter Flights and Boats" 
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+            CHARTER FLIGHTS
+          </span>
+          <h3 class="font-serif text-xl font-semibold text-neutral-900 mb-3 tracking-tight">
+            PRIVATE CHARTER
+          </h3>
+          <p class="text-xs text-neutral-600 mb-6 leading-relaxed flex-1">
+            Need to move your group efficiently? We can arrange charter flight solutions around your schedule and route.
+          </p>
+
+          <div class="border-t border-neutral-100 pt-4 mb-6">
+            <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+              OUR SERVICE
+            </span>
+            <p class="text-[11px] text-neutral-500 leading-relaxed">
+              Private transportation can be arranged for airport transfers, sightseeing, multi-city journeys and customized tours.
+            </p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="w-full text-center py-3.5 px-4 bg-[#C6A34E] hover:bg-[#A8873B] text-[#1F1A16] font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5"
+          >
+            <span>PLAN YOUR CHARTER</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Custom Transport -->
+      <div class="bg-white text-neutral-900 rounded-2xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl group">
+        <div class="h-52 overflow-hidden relative bg-neutral-100">
+          <img 
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80" 
+            alt="Custom Transport & Bespoke VIP Concierge" 
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+            CUSTOM TRANSPORT
+          </span>
+          <h3 class="font-serif text-xl font-semibold text-neutral-900 mb-3 tracking-tight leading-tight">
+            YOUR REQUEST,<br />OUR ARRANGEMENT
+          </h3>
+          <p class="text-xs text-neutral-600 mb-6 leading-relaxed flex-1">
+            From special vehicles to complex multi-city transportation, tell us what you need and our team will work out the right solution.
+          </p>
+
+          <div class="border-t border-neutral-100 pt-4 mb-6">
+            <span class="text-[10px] font-bold tracking-[0.18em] uppercase text-[#A3822E] mb-1.5 block">
+              OUR SERVICE
+            </span>
+            <p class="text-[11px] text-neutral-500 leading-relaxed">
+              Private transportation can be arranged for airport transfers, sightseeing, multi-city journeys and customized tours.
+            </p>
+          </div>
+
+          <a 
+            href="/contact" 
+            class="w-full text-center py-3.5 px-4 bg-[#C6A34E] hover:bg-[#A8873B] text-[#1F1A16] font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-200 shadow-sm flex items-center justify-center gap-1.5"
+          >
+            <span>MAKE A REQUEST</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Signature Tagline -->
+    <div class="mt-16 pt-8 border-t border-white/10 flex items-center justify-center gap-4 text-center">
+      <span class="text-[11px] uppercase tracking-[0.25em] text-[#C5A358] font-medium">PRIVATE JOURNEY</span>
+      <span class="w-8 h-[1px] bg-[#C5A358]/40"></span>
+      <span class="text-[11px] uppercase tracking-[0.25em] text-[#C5A358] font-medium">CURATED WORLDWIDE</span>
+    </div>
+  </div>
+</section>

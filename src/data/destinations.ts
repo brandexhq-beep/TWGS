@@ -355,6 +355,23 @@ export const DESTINATIONS: Destination[] = [
     budget: { from: 120999, to: 350000 },
     highlights: ["Overwater Villas", "Snorkeling", "Private Islands", "Sunset Cruises"],
     featured: true,
+  },
+  {
+    id: "dest-hk-mo",
+    slug: "hong-kong-macau",
+    name: "Hong Kong + Macau",
+    country: "Hong Kong",
+    packageCountry: "Hong Kong",
+    region: "international",
+    tagline: "City Lights & Entertainment Hub",
+    description: "Discover the dazzling skyline of Hong Kong and the vibrant entertainment scene of Macau. Perfect for a quick getaway or a family holiday. Whether you are looking for a romantic getaway, a thrilling adventure, or a relaxing family holiday, our carefully curated itineraries ensure you experience the very best this destination has to offer. We handle everything from flights and luxury accommodations to guided tours and local transport, so you can travel hassle-free. Our local experts have handpicked the finest experiences to create memories that will last a lifetime.",
+    heroImage: "https://images.unsplash.com/photo-1506970845347-1e58a2e584ec?w=1200&q=80&fm=webp",
+    travelTypes: ["family", "luxury", "solo"],
+    seasons: ["year-round"],
+    duration: { min: 4, max: 7 },
+    budget: { from: 64999, to: 120000 },
+    highlights: ["Victoria Peak", "Disneyland", "Macau Casinos", "Cotai Strip"],
+    featured: true,
   }
 ];
 
