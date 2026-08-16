@@ -591,8 +591,7 @@ const breadcrumb = {
     renderPagination(total);
 
     if (scrollToTop) {
-      const anchor = document.getElementById('pkg-results-anchor');
-      anchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
