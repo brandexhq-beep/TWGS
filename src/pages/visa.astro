@@ -8,10 +8,12 @@ const popularVisas = [
   {
     flag: "🇪🇺",
     country: "Schengen Visa",
-    coverage: "France, Germany, Italy, Switzerland, Spain & 24 more",
+    coverage: "France, Germany, Italy, Switzerland, Spain & 24 more European countries",
     type: "Tourist / Business / Family",
     validity: "Up to 90 days stay",
     processingTime: "15–20 Working Days",
+    region: "europe",
+    visaType: "sticker",
     highlights: ["Complete itinerary & hotel vouchers", "Cover letter drafting", "VFS slot booking assistance", "Travel insurance support"],
     featured: true,
   },
@@ -22,6 +24,8 @@ const popularVisas = [
     type: "Standard Visitor (6M / 2Y / 5Y / 10Y)",
     validity: "Multiple Entry",
     processingTime: "10–15 Working Days",
+    region: "europe",
+    visaType: "sticker",
     highlights: ["Financial document audit", "Strong employment tie proofing", "VFS priority booking support", "Application review"],
     featured: true,
   },
@@ -32,28 +36,58 @@ const popularVisas = [
     type: "Tourist & Business Visitor",
     validity: "10 Years Multiple Entry",
     processingTime: "Slot Based",
+    region: "americas",
+    visaType: "sticker",
     highlights: ["DS-160 form accurate filing", "Emergency / early slot monitoring", "One-on-one Mock interview prep", "Consular guideline adherence"],
     featured: true,
   },
   {
-    flag: "🇯🇵",
-    country: "Japan",
-    coverage: "Tokyo, Kyoto, Osaka & nationwide",
-    type: "eVisa / Sticker Visa (Single & Multiple)",
-    validity: "15 to 90 days",
-    processingTime: "5–7 Working Days",
-    highlights: ["Official daily itinerary generation", "Financial eligibility verification", "Fast-track processing", "eVisa issuance guidance"],
-    featured: false,
+    flag: "🇹🇭",
+    country: "Thailand",
+    coverage: "Bangkok, Phuket, Krabi, Chiang Mai, Pattaya & nationwide",
+    type: "Visa on Arrival / eVisa / Sticker",
+    validity: "15 to 60 Days",
+    processingTime: "Instant / 3–5 Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Visa exemption / VOA document check", "Express eVisa pre-approval", "Hotel & return flight itinerary voucher", "Fast-track immigration pass"],
+    featured: true,
   },
   {
-    flag: "🇨🇳",
-    country: "China",
-    coverage: "Shanghai, Beijing, Guangzhou & nationwide",
-    type: "Tourist (L) & Business (M) Visa",
-    validity: "Single / Double / Multiple",
-    processingTime: "7–10 Working Days",
-    highlights: ["Invitation letter check", "Biometric center slot booking", "Flight & stay reservation proof", "Expedited options"],
-    featured: false,
+    flag: "🇮🇩",
+    country: "Bali & Indonesia",
+    coverage: "Bali, Jakarta, Lombok, Komodo, Yogyakarta & islands",
+    type: "Electronic Visa on Arrival (e-VOA / B211A)",
+    validity: "30 to 60 Days (Extendable)",
+    processingTime: "24–48 Hours",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Official Indonesian e-VOA registration", "60-day tourist B211A visa assistance", "Bali Tourist Levy guidance", "Simple digital issuance"],
+    featured: true,
+  },
+  {
+    flag: "🇻🇳",
+    country: "Vietnam",
+    coverage: "Hanoi, Da Nang, Ho Chi Minh City, Ha Long Bay & nationwide",
+    type: "Official 90-Day Multiple / Single eVisa",
+    validity: "30 to 90 Days",
+    processingTime: "3–4 Working Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Official Immigration portal filing", "Urgent 24-hr express processing available", "Multi-entry approval letter", "Passport & photo specification audit"],
+    featured: true,
+  },
+  {
+    flag: "🇲🇻",
+    country: "Maldives",
+    coverage: "Male, Maafushi, Baa Atoll, Ari Atoll & resort islands",
+    type: "Tourist Visa on Arrival (30 Days)",
+    validity: "30 Days Free on Arrival",
+    processingTime: "Instant / Pre-Travel IMUGA",
+    region: "asia",
+    visaType: "voa",
+    highlights: ["Mandatory IMUGA Traveler Declaration submission", "Resort voucher & confirmed transfer verification", "Return ticket & fund requirement check", "Honeymoon & family entry guidance"],
+    featured: true,
   },
   {
     flag: "🇦🇪",
@@ -62,39 +96,249 @@ const popularVisas = [
     type: "Express Tourist eVisa (30 / 60 Days)",
     validity: "Single & Multiple Entry",
     processingTime: "24–48 Hours",
-    highlights: ["Only passport & photo required", "Guaranteed quick turnaround", "Instant PDF delivery", "Extension support"],
-    featured: false,
+    region: "middle-east",
+    visaType: "evisa",
+    highlights: ["Only passport copy & photo required", "Guaranteed quick turnaround", "Instant PDF delivery to WhatsApp/Email", "Inside-country extension support"],
+    featured: true,
   },
   {
     flag: "🇸🇬",
     country: "Singapore & Malaysia",
-    coverage: "Singapore e-Pass & Malaysia eVisa/eNTRI",
-    type: "Tourist & Transit Visa",
+    coverage: "Singapore e-Pass & Malaysia eVisa/MDAC",
+    type: "Tourist & Transit eVisa",
     validity: "30 Days Stay",
     processingTime: "2–4 Working Days",
-    highlights: ["Authorized submission", "Singapore SG Arrival card help", "Malaysia MDAC integration", "Minimal documentation"],
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Authorized Singapore submission", "Singapore SG Arrival card filing", "Malaysia MDAC integration", "Minimal documentation hassle"],
+    featured: true,
+  },
+  {
+    flag: "🇭🇰",
+    country: "Hong Kong & Macau",
+    coverage: "Hong Kong SAR & Macau SAR",
+    type: "PAR (Pre-arrival Registration) & Macau VOA",
+    validity: "14 to 30 Days Entry",
+    processingTime: "24 Hours (Instant PAR)",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Pre-arrival Registration (PAR) approval", "Macau on-arrival visa guidelines", "Twin-city border transit rules", "Return ticket verification"],
+    featured: false,
+  },
+  {
+    flag: "🇹🇼",
+    country: "Taiwan",
+    coverage: "Taipei, Kaohsiung, Taichung & nationwide",
+    type: "Travel Authorization Certificate (TAC) / eVisa",
+    validity: "14 to 30 Days Stay",
+    processingTime: "1–3 Working Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Online TAC certificate filing for eligible travelers", "Standard tourist eVisa submission", "Hotel & itinerary proofing", "Business & leisure verification"],
+    featured: false,
+  },
+  {
+    flag: "🇯🇵",
+    country: "Japan",
+    coverage: "Tokyo, Kyoto, Osaka, Hokkaido & nationwide",
+    type: "eVisa / Sticker Visa (Single & Multiple)",
+    validity: "15 to 90 Days",
+    processingTime: "5–7 Working Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Official daily itinerary generation", "Financial eligibility verification", "Fast-track processing", "eVisa issuance guidance"],
+    featured: false,
+  },
+  {
+    flag: "🇰🇷",
+    country: "South Korea",
+    coverage: "Seoul, Busan, Jeju Island & nationwide",
+    type: "K-ETA / C-3-9 Tourist Sticker Visa",
+    validity: "90 Days Stay (Up to 5Y Multiple)",
+    processingTime: "5–10 Working Days",
+    region: "asia",
+    visaType: "sticker",
+    highlights: ["K-ETA online electronic authorization", "KVAC consular submission", "Income tax & bank audit", "Jeju visa-free transit advisory"],
+    featured: false,
+  },
+  {
+    flag: "🇰🇵",
+    country: "North Korea (DPRK)",
+    coverage: "Pyongyang, Kaesong, DMZ & state-approved zones",
+    type: "Official Tourist Permit & Group Visa",
+    validity: "Tour Itinerary Specific",
+    processingTime: "4–6 Weeks",
+    region: "asia",
+    visaType: "sticker",
+    highlights: ["Official state travel agency clearance", "Beijing/Dandong transit visa arrangements", "Strict regulatory compliance advisory", "Full group tour documentation"],
+    featured: false,
+  },
+  {
+    flag: "🇱🇰",
+    country: "Sri Lanka",
+    coverage: "Colombo, Kandy, Galle, Bentota, Sigiriya & nationwide",
+    type: "Official Tourist ETA / eVisa",
+    validity: "30 to 180 Days (Double Entry)",
+    processingTime: "24–48 Hours",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Online ETA authorization filing", "Double entry tourist validity", "Fast-track approval", "Only passport bio-page needed"],
+    featured: false,
+  },
+  {
+    flag: "🇵🇭",
+    country: "Philippines",
+    coverage: "Manila, Boracay, Palawan (El Nido/Coron), Cebu & islands",
+    type: "9A Tourist Visa / e-Travel Pass",
+    validity: "30 to 59 Days (Single/Multiple)",
+    processingTime: "5–8 Working Days",
+    region: "asia",
+    visaType: "sticker",
+    highlights: ["Official e-Travel QR registration", "Embassy 9A tourist visa filing", "Financial statement verification", "Island-hopping flight reservations"],
+    featured: false,
+  },
+  {
+    flag: "🇰🇭",
+    country: "Cambodia",
+    coverage: "Siem Reap (Angkor Wat), Phnom Penh, Sihanoukville",
+    type: "Tourist eVisa (Type T) / Visa on Arrival",
+    validity: "30 Days Single Entry",
+    processingTime: "24–72 Hours",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Official eVisa certificate issuance", "Direct border checkpoint authorization", "No embassy visit required", "Fast PDF download"],
+    featured: false,
+  },
+  {
+    flag: "🇱🇦",
+    country: "Laos",
+    coverage: "Luang Prabang, Vientiane, Vang Vieng & nationwide",
+    type: "Official Tourist eVisa (Type T-B3)",
+    validity: "30 Days Single Entry",
+    processingTime: "3 Working Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Official Ministry of Foreign Affairs eVisa", "Designated airport & border clearance", "Passport scan & photo audit", "Instant confirmation"],
+    featured: false,
+  },
+  {
+    flag: "🇦🇲",
+    country: "Armenia",
+    coverage: "Yerevan, Lake Sevan, Dilijan & historic monasteries",
+    type: "Official Tourist eVisa / Visa on Arrival",
+    validity: "21 to 120 Days",
+    processingTime: "3 Working Days",
+    region: "europe",
+    visaType: "evisa",
+    highlights: ["Ministry of Foreign Affairs eVisa portal", "Short-stay tourist clearance", "Invitation letter check if required", "Hotel and flight verification"],
+    featured: false,
+  },
+  {
+    flag: "🇦🇿",
+    country: "Azerbaijan",
+    coverage: "Baku, Gabala, Shahdag, Sheki & nationwide",
+    type: "ASAN Tourist eVisa (Standard & Urgent)",
+    validity: "30 Days Stay (90 Days Validity)",
+    processingTime: "3 Hours (Urgent) / 3 Days",
+    region: "europe",
+    visaType: "evisa",
+    highlights: ["ASAN Visa official issuance", "3-hour ultra-urgent processing option", "Single entry 30-day allowance", "Only passport copy required"],
+    featured: false,
+  },
+  {
+    flag: "🇧🇹",
+    country: "Bhutan",
+    coverage: "Paro (Tiger's Nest), Thimphu, Punakha & valleys",
+    type: "Bhutan Tourism Permit & SDF Clearance",
+    validity: "Tour Duration Specific",
+    processingTime: "3–5 Working Days",
+    region: "asia",
+    visaType: "evisa",
+    highlights: ["Sustainable Development Fee (SDF) management", "Official Department of Tourism e-permit", "Licensed local guide coordination", "Entry monument clearances"],
+    featured: false,
+  },
+  {
+    flag: "🇯🇴",
+    country: "Jordan",
+    coverage: "Petra, Wadi Rum, Dead Sea, Amman & Aqaba",
+    type: "Jordan Pass / Tourist eVisa",
+    validity: "30 Days Stay",
+    processingTime: "24–48 Hours",
+    region: "middle-east",
+    visaType: "evisa",
+    highlights: ["Jordan Pass processing (includes Petra entry)", "Visa fee waiver with Jordan Pass", "Queen Alia Airport clearance", "Desert safari & tour itinerary planning"],
+    featured: false,
+  },
+  {
+    flag: "🇳🇵",
+    country: "Nepal",
+    coverage: "Kathmandu, Pokhara, Everest Base Camp, Chitwan",
+    type: "Online Tourist Pre-Visa / Visa on Arrival",
+    validity: "15 / 30 / 90 Days",
+    processingTime: "24 Hours / Instant",
+    region: "asia",
+    visaType: "voa",
+    highlights: ["Online Department of Immigration pre-filing", "Trekking & TIMS permit coordination", "Tribhuvan Airport fast clearance", "Multiple entry extension help"],
+    featured: false,
+  },
+  {
+    flag: "🇿🇦",
+    country: "South Africa",
+    coverage: "Cape Town, Kruger Safari, Johannesburg, Garden Route",
+    type: "Visitor eVisa & Consular Sticker Visa",
+    validity: "Up to 90 Days Stay",
+    processingTime: "10–15 Working Days",
+    region: "africa",
+    visaType: "evisa",
+    highlights: ["Department of Home Affairs eVisa portal", "VFS biometric submission support", "Detailed safari itinerary formatting", "Comprehensive bank statement audit"],
+    featured: false,
+  },
+  {
+    flag: "🇨🇳",
+    country: "China",
+    coverage: "Shanghai, Beijing, Guangzhou, Shenzhen & nationwide",
+    type: "Tourist (L) & Business (M) Visa",
+    validity: "Single / Double / Multiple",
+    processingTime: "7–10 Working Days",
+    region: "asia",
+    visaType: "sticker",
+    highlights: ["Invitation letter check", "Biometric center slot booking", "Flight & stay reservation proof", "Expedited options"],
     featured: false,
   },
   {
     flag: "🇸🇦",
     country: "Saudi Arabia & Umrah",
-    coverage: "Makkah, Madinah, Riyadh, Jeddah",
+    coverage: "Makkah, Madinah, Riyadh, Jeddah, AlUla",
     type: "Tourist eVisa & Stopover Visa",
     validity: "1 Year Multiple Entry",
     processingTime: "24–72 Hours",
+    region: "middle-east",
+    visaType: "evisa",
     highlights: ["Umrah permit guidance", "Nusuk app registration support", "Medical insurance included", "Express processing"],
     featured: false,
   },
   {
     flag: "🇦🇺",
     country: "Australia & Canada",
-    coverage: "Subclass 600 & Visitor TRV",
+    coverage: "Subclass 600 Visitor & Canada Visitor TRV",
     type: "Visitor & Tourist Visa",
     validity: "Up to 3–10 Years",
     processingTime: "3–6 Weeks",
+    region: "oceania",
+    visaType: "sticker",
     highlights: ["SOP & Statement of purpose drafting", "Tax & asset documentation indexing", "Biometric appointment booking", "Online portal management"],
     featured: false,
   },
+];
+
+const regions = [
+  { id: "all", label: "All Destinations" },
+  { id: "asia", label: "🌏 Asia & SE Asia" },
+  { id: "europe", label: "🇪🇺 Europe & Caucasus" },
+  { id: "middle-east", label: "🕌 Middle East" },
+  { id: "africa", label: "🦁 Africa" },
+  { id: "americas", label: "🗽 Americas" },
+  { id: "oceania", label: "🦘 Oceania" },
 ];
 
 const processSteps = [
@@ -147,7 +391,7 @@ const faqs = [
 
 <BaseLayout
   title={`Visa Assistance & Global Concierge | ${SITE.name}`}
-  description="Fast, reliable, and hassle-free visa services for 50+ countries. 99.2% approval rate, expert document audit, appointment booking, and mock interview guidance."
+  description="Fast, reliable, and hassle-free visa services for 50+ countries including Thailand, Bali, Vietnam, Japan, UK, USA, Schengen, and more. 99.2% approval rate."
 >
   <!-- Hero Section -->
   <header class="pt-36 pb-20 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] text-white relative overflow-hidden">
@@ -158,77 +402,188 @@ const faqs = [
     <div class="container-site relative z-10">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#E5C378] text-xs font-semibold uppercase tracking-wider mb-6">
-          <span class="w-2 h-2 rounded-full bg-[#E5C378] animate-pulse"></span>
+          <span class="w-2 h-2 rounded-full bg-[#E5C378]"></span>
           Global Visa Concierge & Assistance
         </div>
-
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-white leading-[1.12] mb-6">
-          World-Class Visa Solutions.<br/>
-          <em class="not-italic text-[#E5C378]">Handled With Precision.</em>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+          Hassle-Free Visas.<br/>
+          <em class="not-italic text-[#E5C378]">Worldwide Approvals.</em>
         </h1>
-
-        <p class="text-neutral-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl font-light">
-          Skip the embassy queues and paperwork stress. Our visa experts provide end-to-end documentation audit, fast-track slot booking, mock interview guidance, and an industry-leading <strong class="text-white font-medium">99.2% approval success rate</strong>.
+        
+        <p class="text-neutral-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed mb-8">
+          Skip the embassy queues and paperwork stress. From instant eVisas to intricate consular submissions, our specialists provide end-to-end documentation audit, fast-track slot booking, and an industry-leading <strong class="text-white font-medium">99.2% approval success rate</strong>.
         </p>
 
         <div class="flex flex-wrap items-center gap-4">
           <a href="#visa-destinations" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all">
-            <span>Explore Countries</span>
+            Explore 25+ Visa Destinations
           </a>
           <a 
             href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent("Hello! I need assistance with getting a visa. Could you please guide me?")}`} 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="btn border border-white/30 text-white hover:bg-white/10 px-7 py-3.5 rounded-xl backdrop-blur-sm inline-flex items-center gap-2"
+            class="btn border border-white/30 text-white hover:bg-white/10 px-7 py-3.5 rounded-xl backdrop-blur-sm transition-all flex items-center gap-2"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/>
+            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <span>Talk to Visa Specialist</span>
           </a>
         </div>
-      </div>
 
-      <!-- Trust Metrics Strip -->
-      <div class="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div>
-          <span class="block text-3xl sm:text-4xl font-serif text-[#E5C378] font-bold">99.2%</span>
-          <span class="text-xs uppercase tracking-wider text-neutral-300">Approval Success Rate</span>
-        </div>
-        <div>
-          <span class="block text-3xl sm:text-4xl font-serif text-white font-bold">50+</span>
-          <span class="text-xs uppercase tracking-wider text-neutral-300">Countries Supported</span>
-        </div>
-        <div>
-          <span class="block text-3xl sm:text-4xl font-serif text-[#E5C378] font-bold">24–48h</span>
-          <span class="text-xs uppercase tracking-wider text-neutral-300">Document Audit Turnaround</span>
-        </div>
-        <div>
-          <span class="block text-3xl sm:text-4xl font-serif text-white font-bold">10,000+</span>
-          <span class="text-xs uppercase tracking-wider text-neutral-300">Visas Processed</span>
+        <!-- Trust Highlights Strip -->
+        <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/10 max-w-xl">
+          <div>
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-[#E5C378]">99.2%</div>
+            <span class="text-xs uppercase tracking-wider text-neutral-300">Approval Rate</span>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-[#E5C378]">50+</div>
+            <span class="text-xs uppercase tracking-wider text-neutral-300">Countries Supported</span>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-serif font-bold text-[#E5C378]">10k+</div>
+            <span class="text-xs uppercase tracking-wider text-neutral-300">Visas Processed</span>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Popular Visa Countries Section -->
-  <section class="section-padding bg-[#FCFCFA]" id="visa-destinations" aria-label="Popular Visa Destinations">
+  <section class="section-padding bg-[#FCFCFA]" id="visa-destinations" aria-label="Visa Destinations Concierge">
     <div class="container-site">
-      <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-eyebrow block mb-3 text-[var(--color-luxury)] font-semibold tracking-widest uppercase text-xs">
-          DESTINATIONS WE COVER
+          COUNTRIES & DESTINATIONS
         </span>
         <h2 class="text-display-lg text-[var(--color-text-primary)] font-serif">
-          Popular Visa <em class="not-italic text-[var(--color-accent)] font-serif">Assistance</em>
+          Global Visa <em class="not-italic text-[var(--color-accent)] font-serif">Assistance</em>
         </h2>
         <p class="text-[var(--color-text-secondary)] mt-3 text-base">
-          From complex Schengen stickers to instant Middle East eVisas, our experts handle every guideline with embassy precision.
+          Search below to find fast-track tourist eVisas, entry permits, and sticker consular appointments with full checklist verification.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {popularVisas.map((visa) => (
-          <div class="bg-white rounded-3xl p-8 border border-neutral-200/70 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group relative overflow-hidden">
+      <!-- Search & Filter Control Center -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-md mb-10">
+        
+        <!-- Search Input Bar with Fuzzy Search -->
+        <div class="relative mb-6">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="visa-search-input"
+            placeholder="Search countries, destinations, or keywords (e.g. Thailand, Bali, Vietnam, Schengen, Azerbaijan, North Korea, eVisa)..."
+            class="w-full pl-12 pr-10 py-3.5 bg-neutral-50 border border-neutral-200 rounded-2xl text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all placeholder:text-neutral-400 font-medium"
+          />
+          <button
+            id="visa-search-clear"
+            class="absolute inset-y-0 right-0 pr-4 flex items-center text-neutral-400 hover:text-neutral-700 hidden"
+            aria-label="Clear search"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filter Dropdowns Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <!-- Visa Type Filter -->
+          <div>
+            <label for="visa-type-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Visa Category</label>
+            <select
+              id="visa-type-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="all">All Visa Types</option>
+              <option value="evisa">⚡ Instant eVisa / Electronic Permit</option>
+              <option value="sticker">🛂 Consular / Sticker / Appointment Visa</option>
+              <option value="voa">🛬 Visa on Arrival / Declaration</option>
+            </select>
+          </div>
+
+          <!-- Sort Filter -->
+          <div>
+            <label for="visa-sort-select" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">Sort Destinations</label>
+            <select
+              id="visa-sort-select"
+              class="w-full py-2.5 px-3.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#C6A34E] focus:border-transparent transition-all"
+            >
+              <option value="featured">Featured / Most Requested First</option>
+              <option value="name-asc">Country Name (A to Z)</option>
+              <option value="name-desc">Country Name (Z to A)</option>
+            </select>
+          </div>
+
+          <!-- Reset Filter Button -->
+          <div class="flex items-end">
+            <button
+              id="visa-reset-all-btn"
+              class="w-full py-2.5 px-4 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 border border-neutral-200"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              <span>Reset All Filters</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Region Pill Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-neutral-100 pt-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 shrink-0 mr-1">Region:</span>
+          {regions.map((reg) => (
+            <button
+              data-region={reg.id}
+              class={`visa-region-pill px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                reg.id === "all"
+                  ? "bg-[#10253F] text-white shadow-sm"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+              }`}
+            >
+              {reg.label}
+            </button>
+          ))}
+        </div>
+
+        <!-- Active Search Chips & Result Count -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-5 border-t border-neutral-100 text-xs">
+          <div id="visa-active-chips" class="flex flex-wrap items-center gap-2">
+            <!-- Dynamically populated -->
+          </div>
+          <span id="visa-count-badge" class="font-bold text-neutral-500 text-xs shrink-0">
+            Showing all {popularVisas.length} destinations
+          </span>
+        </div>
+      </div>
+
+      <!-- Results Anchor -->
+      <div id="visa-results-anchor"></div>
+
+      <!-- Visa Grid Container -->
+      <div id="visa-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {popularVisas.map((visa, idx) => (
+          <div 
+            class="visa-card bg-white rounded-3xl p-8 border border-neutral-200/70 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group relative overflow-hidden"
+            data-index={idx}
+            data-country={visa.country.toLowerCase()}
+            data-coverage={visa.coverage.toLowerCase()}
+            data-type-text={visa.type.toLowerCase()}
+            data-visa-type={visa.visaType}
+            data-region={visa.region}
+            data-featured={visa.featured ? "true" : "false"}
+            data-highlights={visa.highlights.join(" ").toLowerCase()}
+          >
             {visa.featured && (
               <span class="absolute top-0 right-0 bg-[#C6A34E] text-[#10253F] font-bold text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-bl-2xl shadow-sm">
                 Most Requested
@@ -279,7 +634,7 @@ const faqs = [
               href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hi, I would like to get visa assistance for ${visa.country}. Please share requirements and process.`)}`} 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="w-full py-3 px-4 rounded-xl text-center font-semibold text-xs uppercase tracking-wider bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] text-white transition-colors duration-200 shadow-sm flex items-center justify-center gap-2"
+              class="w-full py-3 px-4 rounded-xl text-center font-semibold text-xs uppercase tracking-wider bg-[var(--color-accent)] hover:bg-[var(--color-accent-dark)] text-white transition-colors duration-200 shadow-sm flex items-center justify-center gap-2 mt-auto"
             >
               <span>Apply for {visa.country}</span>
               <span>&rarr;</span>
@@ -287,8 +642,420 @@ const faqs = [
           </div>
         ))}
       </div>
+
+      <!-- No Results State -->
+      <div id="visa-no-results" class="hidden text-center py-16 bg-white rounded-3xl border border-neutral-200 shadow-sm mt-6 p-8">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-neutral-100 flex items-center justify-center text-3xl">
+          🔍
+        </div>
+        <h3 class="text-xl font-serif font-bold text-neutral-900 mb-2">No Matching Visa Destinations Found</h3>
+        <p class="text-neutral-500 text-sm max-w-md mx-auto mb-6">
+          We process visas for over 50+ countries worldwide even if not listed in this view. Contact our visa desk directly for immediate assistance.
+        </p>
+        <div class="flex justify-center gap-3">
+          <button id="visa-empty-reset-btn" class="px-5 py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold rounded-xl transition-all">
+            Clear Filters
+          </button>
+          <a 
+            href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent("Hi! I have a visa inquiry for a country not listed on your website. Could you please advise?")}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-5 py-2.5 bg-[#C6A34E] hover:bg-[#B3913E] text-neutral-950 text-xs font-bold rounded-xl transition-all"
+          >
+            Consult on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Pagination Controls -->
+      <div id="visa-pagination-container" class="flex items-center justify-center gap-2 mt-12 flex-wrap">
+        <!-- Dynamically rendered pagination buttons -->
+      </div>
     </div>
   </section>
+
+  <!-- Client-Side Search, Fuzzy Matching, and Pagination Script -->
+  <script>
+    const ITEMS_PER_PAGE = 9;
+    let currentPage = 1;
+    let searchQuery = '';
+    let selectedRegion = 'all';
+    let selectedVisaType = 'all';
+    let selectedSort = 'featured';
+
+    const searchInput = document.getElementById('visa-search-input') as HTMLInputElement | null;
+    const searchClear = document.getElementById('visa-search-clear');
+    const typeSelect = document.getElementById('visa-type-select') as HTMLSelectElement | null;
+    const sortSelect = document.getElementById('visa-sort-select') as HTMLSelectElement | null;
+    const regionPills = document.querySelectorAll('.visa-region-pill');
+    const resetAllBtn = document.getElementById('visa-reset-all-btn');
+    const emptyResetBtn = document.getElementById('visa-empty-reset-btn');
+    const countBadge = document.getElementById('visa-count-badge');
+    const activeChipsContainer = document.getElementById('visa-active-chips');
+    const visaGrid = document.getElementById('visa-grid');
+    const noResults = document.getElementById('visa-no-results');
+    const paginationContainer = document.getElementById('visa-pagination-container');
+
+    const allCards = Array.from(document.querySelectorAll('.visa-card')) as HTMLElement[];
+
+    // Fuzzy Search Helper: Handles typos, common aliases, transposed letters, and partial matches
+    function calculateFuzzyScore(text: string, query: string): number {
+      const t = text.toLowerCase();
+      const q = query.toLowerCase().trim();
+      if (!q) return 1;
+
+      // Exact substring match gives highest score
+      if (t.includes(q)) return 100;
+
+      // Check common aliases and alternate spellings
+      const aliasMap: Record<string, string[]> = {
+        'combodia': ['cambodia'],
+        'cambodia': ['combodia', 'siem reap', 'angkor'],
+        'korea': ['south korea', 'north korea', 'seoul', 'pyongyang'],
+        'south korea': ['korea', 'seoul', 'busan', 'k-eta'],
+        'north korea': ['korea', 'dprk', 'pyongyang'],
+        'bali': ['indonesia', 'denpasar', 'ubud'],
+        'indonesia': ['bali', 'jakarta'],
+        'america': ['united states', 'usa', 'us'],
+        'usa': ['united states', 'america', 'b1', 'b2'],
+        'uk': ['united kingdom', 'england', 'britain', 'london'],
+        'uae': ['dubai', 'abu dhabi', 'emirates'],
+        'dubai': ['uae', 'emirates'],
+        'hong kong': ['macau', 'hk', 'par'],
+        'macau': ['hong kong', 'macao'],
+        'philippines': ['philippine', 'manila', 'boracay', 'cebu'],
+        'philipines': ['philippines', 'manila'],
+        'vietnam': ['viet nam', 'hanoi', 'da nang'],
+        'sri lanka': ['srilanka', 'colombo'],
+        'srilanka': ['sri lanka', 'colombo'],
+        'schengen': ['europe', 'france', 'germany', 'italy', 'switzerland', 'spain'],
+        'europe': ['schengen', 'uk', 'armenia', 'azerbaijan'],
+        'saudi': ['saudi arabia', 'mecca', 'makkah', 'umrah'],
+        'africa': ['south africa', 'cape town'],
+      };
+
+      for (const [key, aliases] of Object.entries(aliasMap)) {
+        if (q.includes(key) || key.includes(q)) {
+          if (aliases.some(a => t.includes(a)) || t.includes(key)) {
+            return 80;
+          }
+        }
+      }
+
+      // Word-token matching
+      const qTokens = q.split(/\s+/).filter(Boolean);
+      let matchedTokens = 0;
+      for (const token of qTokens) {
+        if (t.includes(token)) {
+          matchedTokens++;
+          continue;
+        }
+        // Sub-sequence character check for typos (Levenshtein-like subsequence)
+        let tIndex = 0;
+        let charMatches = 0;
+        for (let i = 0; i < token.length; i++) {
+          const char = token[i];
+          const foundIdx = t.indexOf(char, tIndex);
+          if (foundIdx !== -1) {
+            charMatches++;
+            tIndex = foundIdx + 1;
+          }
+        }
+        if (charMatches / token.length >= 0.75 && token.length >= 4) {
+          matchedTokens += 0.8;
+        }
+      }
+
+      return (matchedTokens / qTokens.length) * 50;
+    }
+
+    function syncRegionUI() {
+      regionPills.forEach((pill) => {
+        const r = pill.getAttribute('data-region');
+        if (r === selectedRegion) {
+          pill.className = 'visa-region-pill px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer bg-[#10253F] text-white shadow-sm';
+        } else {
+          pill.className = 'visa-region-pill px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900';
+        }
+      });
+    }
+
+    function getFilteredAndSortedCards(): HTMLElement[] {
+      const q = searchQuery.trim().toLowerCase();
+
+      const matched = allCards.filter((card) => {
+        const country = card.getAttribute('data-country') || '';
+        const coverage = card.getAttribute('data-coverage') || '';
+        const typeText = card.getAttribute('data-type-text') || '';
+        const visaType = card.getAttribute('data-visa-type') || '';
+        const region = card.getAttribute('data-region') || '';
+        const highlights = card.getAttribute('data-highlights') || '';
+
+        const fullSearchable = `${country} ${coverage} ${typeText} ${region} ${highlights}`;
+
+        // Fuzzy search check
+        let matchesSearch = true;
+        if (q) {
+          const score = calculateFuzzyScore(fullSearchable, q);
+          matchesSearch = score >= 35;
+        }
+
+        // Region filter
+        let matchesRegion = true;
+        if (selectedRegion !== 'all') {
+          matchesRegion = region === selectedRegion;
+        }
+
+        // Visa category filter
+        let matchesVisaType = true;
+        if (selectedVisaType !== 'all') {
+          matchesVisaType = visaType === selectedVisaType;
+        }
+
+        return matchesSearch && matchesRegion && matchesVisaType;
+      });
+
+      // Sorting
+      matched.sort((a, b) => {
+        const isFeaturedA = a.getAttribute('data-featured') === 'true' ? 1 : 0;
+        const isFeaturedB = b.getAttribute('data-featured') === 'true' ? 1 : 0;
+        const countryA = (a.getAttribute('data-country') || '').toLowerCase();
+        const countryB = (b.getAttribute('data-country') || '').toLowerCase();
+
+        switch (selectedSort) {
+          case 'name-asc':
+            return countryA.localeCompare(countryB);
+          case 'name-desc':
+            return countryB.localeCompare(countryA);
+          case 'featured':
+          default:
+            if (isFeaturedB !== isFeaturedA) {
+              return isFeaturedB - isFeaturedA;
+            }
+            return parseInt(a.getAttribute('data-index') || '0', 10) - parseInt(b.getAttribute('data-index') || '0', 10);
+        }
+      });
+
+      return matched;
+    }
+
+    function renderActiveChips() {
+      if (!activeChipsContainer) return;
+      activeChipsContainer.innerHTML = '';
+      const chips: { label: string; clear: () => void }[] = [];
+
+      if (searchQuery.trim()) {
+        chips.push({
+          label: `Search: "${searchQuery.trim()}"`,
+          clear: () => {
+            searchQuery = '';
+            if (searchInput) searchInput.value = '';
+            searchClear?.classList.add('hidden');
+          }
+        });
+      }
+
+      if (selectedRegion !== 'all') {
+        const regObj = Array.from(regionPills).find(p => p.getAttribute('data-region') === selectedRegion);
+        chips.push({
+          label: `Region: ${regObj?.textContent?.trim() || selectedRegion}`,
+          clear: () => {
+            selectedRegion = 'all';
+            syncRegionUI();
+          }
+        });
+      }
+
+      if (selectedVisaType !== 'all') {
+        let typeName = selectedVisaType;
+        if (selectedVisaType === 'evisa') typeName = 'eVisa / Online';
+        if (selectedVisaType === 'sticker') typeName = 'Consular Sticker';
+        if (selectedVisaType === 'voa') typeName = 'Visa on Arrival';
+        chips.push({
+          label: `Category: ${typeName}`,
+          clear: () => {
+            selectedVisaType = 'all';
+            if (typeSelect) typeSelect.value = 'all';
+          }
+        });
+      }
+
+      chips.forEach((chip) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 rounded-full text-xs font-semibold text-neutral-800 shadow-sm transition-all';
+        span.innerHTML = `<span>${chip.label}</span><button class="text-neutral-400 hover:text-neutral-900 font-bold ml-1 text-sm leading-none" aria-label="Remove filter">&times;</button>`;
+        span.querySelector('button')?.addEventListener('click', () => {
+          chip.clear();
+          currentPage = 1;
+          applyFilters();
+        });
+        activeChipsContainer.appendChild(span);
+      });
+    }
+
+    function renderPagination(totalItems: number) {
+      if (!paginationContainer) return;
+      paginationContainer.innerHTML = '';
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+      if (totalPages <= 1) return;
+
+      // Previous Button
+      const prevBtn = document.createElement('button');
+      prevBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+        currentPage === 1
+          ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+          : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+      }`;
+      prevBtn.innerHTML = '&larr; Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          applyFilters(true);
+        }
+      });
+      paginationContainer.appendChild(prevBtn);
+
+      // Numbered Page Buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `w-9 h-9 rounded-xl text-xs font-bold border transition-all ${
+          currentPage === i
+            ? 'bg-[#10253F] text-white border-[#10253F] shadow-sm'
+            : 'bg-white border-neutral-200 text-neutral-700 hover:border-[#C6A34E]'
+        }`;
+        pageBtn.innerText = i.toString();
+        pageBtn.addEventListener('click', () => {
+          currentPage = i;
+          applyFilters(true);
+        });
+        paginationContainer.appendChild(pageBtn);
+      }
+
+      // Next Button
+      const nextBtn = document.createElement('button');
+      nextBtn.className = `px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+        currentPage === totalPages
+          ? 'opacity-40 cursor-not-allowed border-neutral-200 text-neutral-400'
+          : 'bg-white border-neutral-200 text-neutral-800 hover:border-[#C6A34E]'
+      }`;
+      nextBtn.innerHTML = 'Next &rarr;';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          applyFilters(true);
+        }
+      });
+      paginationContainer.appendChild(nextBtn);
+    }
+
+    function applyFilters(scrollToTop = false) {
+      const filtered = getFilteredAndSortedCards();
+      const total = filtered.length;
+
+      const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+      if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = startIndex + ITEMS_PER_PAGE;
+      const visibleCards = filtered.slice(startIndex, endIndex);
+
+      allCards.forEach((card) => {
+        card.style.display = 'none';
+      });
+
+      if (visaGrid) {
+        visibleCards.forEach((card) => {
+          card.style.display = '';
+          visaGrid.appendChild(card);
+        });
+      }
+
+      if (countBadge) {
+        if (total === 0) {
+          countBadge.innerText = '0 destinations found';
+        } else {
+          const from = startIndex + 1;
+          const to = Math.min(endIndex, total);
+          countBadge.innerText = `Showing ${from}–${to} of ${total} destinations`;
+        }
+      }
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', total > 0);
+      }
+
+      renderActiveChips();
+      renderPagination(total);
+
+      if (scrollToTop) {
+        const anchor = document.getElementById('visa-results-anchor');
+        anchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Event Listeners
+    searchInput?.addEventListener('input', (e) => {
+      searchQuery = (e.target as HTMLInputElement).value;
+      searchClear?.classList.toggle('hidden', !searchQuery);
+      currentPage = 1;
+      applyFilters();
+    });
+
+    searchClear?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      searchQuery = '';
+      searchClear.classList.add('hidden');
+      currentPage = 1;
+      applyFilters();
+    });
+
+    typeSelect?.addEventListener('change', (e) => {
+      selectedVisaType = (e.target as HTMLSelectElement).value;
+      currentPage = 1;
+      applyFilters();
+    });
+
+    sortSelect?.addEventListener('change', (e) => {
+      selectedSort = (e.target as HTMLSelectElement).value;
+      currentPage = 1;
+      applyFilters();
+    });
+
+    regionPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        selectedRegion = pill.getAttribute('data-region') || 'all';
+        syncRegionUI();
+        currentPage = 1;
+        applyFilters();
+      });
+    });
+
+    function resetAll() {
+      searchQuery = '';
+      selectedRegion = 'all';
+      selectedVisaType = 'all';
+      selectedSort = 'featured';
+
+      if (searchInput) searchInput.value = '';
+      searchClear?.classList.add('hidden');
+      if (typeSelect) typeSelect.value = 'all';
+      if (sortSelect) sortSelect.value = 'featured';
+
+      syncRegionUI();
+      currentPage = 1;
+      applyFilters();
+    }
+
+    resetAllBtn?.addEventListener('click', resetAll);
+    emptyResetBtn?.addEventListener('click', resetAll);
+
+    // Initial render
+    applyFilters();
+  </script>
 
   <!-- 5-Step Process Section -->
   <section class="section-padding bg-[#10253F] text-white relative overflow-hidden" aria-label="How Our Visa Assistance Works">
