@@ -20,12 +20,10 @@ const featured = getFeaturedPackages().slice(0, 3);
     </div>
 
     <!-- Compact 3-column card grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {featured.map((pkg) => (
         <article
           class="package-card relative group cursor-pointer flex flex-col gsap-rise-hidden"
-          role="listitem"
-          aria-label={pkg.name}
         >
           <!-- Stretched link -->
           <a href={`/packages/${pkg.slug}`} class="absolute inset-0 z-10" aria-label={`View details for ${pkg.name}`}></a>
@@ -50,7 +48,7 @@ const featured = getFeaturedPackages().slice(0, 3);
             <p class="text-xs text-[var(--color-text-secondary)] mb-1">{pkg.destination}</p>
             <h3 class="text-base font-semibold leading-snug mb-3" style="font-family: var(--font-display);">{pkg.name}</h3>
             <div class="flex items-center gap-2 mb-4">
-              <div class="star-rating" aria-label={`Rated ${pkg.rating} out of 5`}>
+              <div class="star-rating" role="img" aria-label={`Rated ${pkg.rating} out of 5 stars`}>
                 {Array.from({length: 5}).map((_, si) => (
                   <span class="star text-xs" aria-hidden="true">{si < Math.floor(pkg.rating) ? '★' : '☆'}</span>
                 ))}
@@ -65,7 +63,7 @@ const featured = getFeaturedPackages().slice(0, 3);
                   {pkg.priceFrom.toLocaleString('en-IN')}
                 </p>
               </div>
-              <a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20">
+              <a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20" aria-label={`Book now for ${pkg.name}`}>
                 <span>Book Now</span>
               </a>
             </div>

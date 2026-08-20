@@ -91,7 +91,7 @@ const relatedDestinations = DESTINATIONS
               <div class="p-5 flex flex-col flex-1">
                 <p class="text-xs text-[var(--color-text-secondary)] mb-1">{pkg.destination}</p>
                 <h3 class="text-base font-semibold leading-snug mb-3" style="font-family: var(--font-display);">{pkg.name}</h3>
-                <div class="mt-auto flex items-center justify-between"><div><p class="text-xs text-[var(--color-text-secondary)]">From</p><p class="price-tag text-lg"><span class="currency">&#x20B9;</span>{pkg.priceFrom.toLocaleString("en-IN")}</p></div><a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20"><span>Book Now</span></a></div>
+                <div class="mt-auto flex items-center justify-between"><div><p class="text-xs text-[var(--color-text-secondary)]">From</p><p class="price-tag text-lg"><span class="currency">&#x20B9;</span>{pkg.priceFrom.toLocaleString("en-IN")}</p></div><a href={`/packages/${pkg.slug}`} class="btn btn-primary py-2 px-4 text-xs relative z-20" aria-label={`Book now for ${pkg.name}`}><span>Book Now</span></a></div>
               </div>
             </article>
           ))}

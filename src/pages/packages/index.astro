@@ -239,7 +239,7 @@ const breadcrumb = {
                 </p>
 
                 <div class="flex items-center justify-between mb-5 mt-auto pt-3 border-t border-neutral-100">
-                  <div class="star-rating text-xs flex items-center" aria-label={`${pkg.rating} stars`}>
+                  <div class="star-rating text-xs flex items-center" role="img" aria-label={`Rated ${pkg.rating} out of 5 stars`}>
                     <span class="text-amber-500 text-sm mr-1">★</span>
                     <span class="font-bold text-neutral-900">{pkg.rating}</span>
                     <span class="text-neutral-400 ml-1">({pkg.reviewCount})</span>
@@ -253,10 +253,10 @@ const breadcrumb = {
                 </div>
 
                 <div class="flex gap-2">
-                  <a href={`/packages/${pkg.slug}`} class="btn btn-primary flex-1 py-2.5 text-xs uppercase tracking-wider font-bold justify-center bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)] rounded-xl relative z-20">
+                  <a href={`/packages/${pkg.slug}`} class="btn btn-primary flex-1 py-2.5 text-xs uppercase tracking-wider font-bold justify-center bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)] rounded-xl relative z-20" aria-label={`View itinerary for ${pkg.name}`}>
                     <span>View Itinerary</span>
                   </a>
-                  <a href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hi, I would like to inquire about the ${pkg.name} (${pkg.duration.days}D/${pkg.duration.nights}N) package.`)}`} target="_blank" rel="noopener noreferrer" class="btn border border-neutral-200 hover:border-[#C6A34E] text-neutral-800 py-2.5 px-4 text-xs font-bold rounded-xl justify-center relative z-20" aria-label="Chat on WhatsApp">
+                  <a href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hi, I would like to inquire about the ${pkg.name} (${pkg.duration.days}D/${pkg.duration.nights}N) package.`)}`} target="_blank" rel="noopener noreferrer" class="btn border border-neutral-200 hover:border-[#C6A34E] text-neutral-800 py-2.5 px-4 text-xs font-bold rounded-xl justify-center relative z-20" aria-label={`Chat on WhatsApp about ${pkg.name}`}>
                     <span>Chat</span>
                   </a>
                 </div>

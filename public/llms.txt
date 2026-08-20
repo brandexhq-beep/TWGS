@@ -41,16 +41,19 @@ The Man Wanders Globe is a premium travel agency that designs bespoke domestic a
 - **WhatsApp:** +91 98457 07423 (24/7)
 - **Business hours:** Mon–Sat, 10 AM – 7 PM IST
 
-## Content on This Site
+## Key Pages
 
-- Home page with featured packages and trip planner
-- Destinations browser (30+ destinations, filterable)
-- Package pages with detailed day-by-day itineraries and pricing
-- Travel photography gallery
-- About page with company story
-- Contact and enquiry forms
-- Legal pages: Privacy Policy (DPDP Act 2023 compliant), Terms, Cancellation Policy, Refund Policy
-- FAQ section
+- [Home](https://www.themanwandersglobetours.com/): Bespoke luxury & curated travel packages from India
+- [Packages](https://www.themanwandersglobetours.com/packages): Search and filter 25+ handpicked holiday itineraries with day-by-day plans and pricing
+- [Destinations](https://www.themanwandersglobetours.com/destinations): Browse top global and domestic travel destinations
+- [Visa Assistance](https://www.themanwandersglobetours.com/visa): Complete visa documentation, requirements, and concierge application assistance
+- [Travel Agency in Bengaluru](https://www.themanwandersglobetours.com/bengaluru-travel-agency): Local bespoke travel planning services based in Bengaluru
+- [About Us](https://www.themanwandersglobetours.com/about): Our story, leadership team, and bespoke travel philosophy
+- [Contact Us](https://www.themanwandersglobetours.com/contact): Get in touch for custom itineraries, quotes, and travel enquiries
+- [Privacy Policy](https://www.themanwandersglobetours.com/privacy-policy): DPDP Act 2023 compliant privacy and data protection terms
+- [Terms & Conditions](https://www.themanwandersglobetours.com/terms): Terms and conditions for travel bookings
+- [Cancellation Policy](https://www.themanwandersglobetours.com/cancellation-policy): Booking cancellation and rescheduling policy
+- [Refund Policy](https://www.themanwandersglobetours.com/refund-policy): Refund guidelines, timelines, and deductions
 
 ## Technology
 
