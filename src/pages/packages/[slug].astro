@@ -27,19 +27,25 @@ const breadcrumb = {
   ]
 };
 
-const touristTrip = {
+const packageSchema = {
   "@context": "https://schema.org",
-  "@type": "TouristTrip",
+  "@type": "Product",
   "name": pkg.name,
   "description": pkg.tagline,
   "image": ogImage,
-  "touristType": pkg.category.includes('honeymoon') ? 'Romantic' : 'Leisure',
+  "category": "Travel Packages",
+  "sku": pkg.id || pkg.slug,
+  "brand": {
+    "@type": "Brand",
+    "name": SITE.company?.brandName || SITE.name
+  },
   "offers": {
     "@type": "Offer",
+    "url": `${SITE.url}/packages/${pkg.slug}`,
     "price": String(pkg.priceFrom),
     "priceCurrency": "INR",
     "availability": "https://schema.org/InStock",
-    "validFrom": "2025-01-01"
+    "priceValidUntil": "2027-12-31"
   },
   "aggregateRating": pkg.rating ? {
     "@type": "AggregateRating",
@@ -59,7 +65,7 @@ const relatedPackages = PACKAGES
   title={`${pkg.name} | ${pkg.destination} Package`}
   description={`${pkg.duration.nights}N/${pkg.duration.days}D ${pkg.destination} trip from ₹${pkg.priceFrom.toLocaleString('en-IN')}. ${pkg.tagline.slice(0, 80)}...`}
   ogImage={ogImage}
-  structuredData={[breadcrumb, touristTrip]}
+  structuredData={[breadcrumb, packageSchema]}
 >
   <!-- Hero Section with Proper Header Offset -->
   <section class="relative w-full min-h-[500px] md:min-h-[560px] flex items-end pt-36 md:pt-44 pb-16 overflow-hidden">
