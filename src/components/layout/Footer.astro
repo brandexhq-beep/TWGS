@@ -111,12 +111,22 @@ import { SITE } from '../../data/site';
             {SITE.contact.phoneSecondary}
           </a>
           <a href={`mailto:${SITE.contact.email}`}
-             class="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+             class="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+             title="Tours & Bookings">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
             {SITE.contact.email}
+          </a>
+          <a href={`mailto:${SITE.contact.supportEmail}`}
+             class="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+             title="Support & Help">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            {SITE.contact.supportEmail}
           </a>
           <p class="flex items-start gap-2 text-sm text-white/60">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="mt-0.5 shrink-0" aria-hidden="true">

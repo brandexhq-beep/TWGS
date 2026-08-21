@@ -13,7 +13,8 @@ export const SITE = {
   ogImage: "https://www.themanwandersglobetours.com/logo.webp",
 
   contact: {
-    email: "hello@themanwandersglobetours.com",
+    email: "tours@themanwandersglobetours.com",
+    supportEmail: "help@themanwandersglobetours.com",
     phone: "+91 98457 07423",
     phoneSecondary: "+91 90719 71123",
     whatsapp: "919845707423",
@@ -30,8 +31,9 @@ export const SITE = {
   },
 
   company: {
-    legalName: "Frontier Travel and Hospitality Solutions Private Limited",
+    legalName: "FRONTIER TRAVEL & HOSPITALITY SOLUTIONS PRIVATE LIMITED",
     brandName: "TheMan WandersGlobe Tours",
+    businessDescription: "International & domestic tours, visa assistance, flight & hotel bookings, with future expansion into B2B travel solutions.",
     cin: "U63040MH2024PTC000000", // placeholder
     gstin: "27AAAAA0000A1Z5", // placeholder
     pan: "AAAAA0000A", // placeholder
