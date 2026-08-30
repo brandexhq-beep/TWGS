@@ -171,18 +171,42 @@ import { SITE } from '../../data/site';
 </footer>
 
 <script>
+  import { SITE } from '../../data/site';
+
   const form = document.getElementById('footer-newsletter') as HTMLFormElement | null;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]') as HTMLInputElement;
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    if (!input.value) return;
-    btn.textContent = '✓ Subscribed!';
+    if (!input.value || !input.value.includes('@')) return;
+
+    const originalText = btn.textContent || 'Subscribe';
+    btn.textContent = '…';
     btn.disabled = true;
-    input.value = '';
-    setTimeout(() => {
-      btn.textContent = 'Subscribe';
+
+    try {
+      const payload = {
+        access_key: SITE.formAccessKey,
+        subject: `Newsletter Subscription — ${input.value}`,
+        from_name: 'TWGS Newsletter',
+        email: input.value,
+      };
+
+      await fetch(SITE.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      btn.textContent = '✓ Subscribed!';
+      input.value = '';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 4000);
+    } catch {
+      btn.textContent = originalText;
       btn.disabled = false;
-    }, 4000);
+    }
   });
 </script>

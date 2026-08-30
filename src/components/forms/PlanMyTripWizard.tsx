@@ -1,5 +1,5 @@
-/** @jsxImportSource react */
 import React, { useState, useRef } from 'react';
+import { SITE } from '../../data/site';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PlanMyTripWizard — 4-step interactive form
@@ -79,6 +79,8 @@ export default function PlanMyTripWizard() {
     consent: false,
   });
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
   function navigate(to: number) {
@@ -141,10 +143,46 @@ export default function PlanMyTripWizard() {
     e.preventDefault();
     if (!validateStep()) return;
     setIsLoading(true);
-    // Simulate submission delay (TODO: wire to real endpoint)
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsLoading(false);
-    setSubmitted(true);
+    setSubmitError(null);
+
+    try {
+      const payload = {
+        access_key: SITE.formAccessKey,
+        subject: `Plan My Trip (${form.tripType}) — ${form.name}`,
+        from_name: 'TWGS Trip Planner',
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        trip_type: form.tripType,
+        destination: form.destination,
+        start_date: form.startDate,
+        end_date: form.endDate,
+        budget_inr: `₹${form.budget.toLocaleString('en-IN')}`,
+        travellers: `${form.adults} Adults, ${form.children} Children`,
+        preferences: form.preferences.join(', ') || 'None specified',
+        message: form.message || 'N/A',
+      };
+
+      const response = await fetch(SITE.formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err: any) {
+      setSubmitError(err?.message || 'Something went wrong. Please try again or reach out via WhatsApp.');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   // Step slide animation classes
@@ -545,11 +583,16 @@ export default function PlanMyTripWizard() {
                     I agree to the{' '}
                     <a href="/privacy-policy" className="text-[#00277C] underline" target="_blank">Privacy Policy</a>
                     {' '}and consent to The Man Wanders Globe contacting me about my trip enquiry.
-                    Placeholder data — see §10.
                   </span>
                 </label>
                 {errors.consent && <p className="form-error mt-1">{errors.consent}</p>}
               </div>
+
+              {submitError && (
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+                  {submitError}
+                </div>
+              )}
             </div>
           </form>
         )}

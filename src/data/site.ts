@@ -48,9 +48,9 @@ export const SITE = {
     averageRating: 4.9,
   },
 
-  /** Form endpoint — TODO: replace with real Web3Forms / Formspree access key */
+  /** Form endpoint — Web3Forms access key */
   formEndpoint: "https://api.web3forms.com/submit",
-  formAccessKey: "YOUR_ACCESS_KEY_HERE", // TODO: sign up at web3forms.com
+  formAccessKey: "d27069db-3598-4ab8-b5ac-43761fe6567a",
 } as const;
 
 export type SocialKey = keyof typeof SITE.social;

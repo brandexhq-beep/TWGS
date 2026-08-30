@@ -118,7 +118,9 @@ import { SITE } from '../data/site';
           <div id="contact-form-state">
             <form id="contact-form" novalidate aria-label="Contact enquiry form" class="space-y-5">
               <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <input type="hidden" name="access_key" value={SITE.formAccessKey} />
               <input type="hidden" name="subject" value="Contact Enquiry — The Man Wanders Globe" />
+              <input type="hidden" name="from_name" value="TWGS Contact Form" />
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="form-field">
@@ -179,6 +181,10 @@ import { SITE } from '../data/site';
                 </svg>
               </button>
 
+              <div id="contact-form-error" class="hidden text-sm text-red-600 font-medium">
+                Something went wrong. Please try again or contact us via WhatsApp/phone.
+              </div>
+
               <p class="text-caption text-[var(--color-text-secondary)]">
                 Your data is protected under the DPDP Act 2023. We will never sell or share your information.
               </p>
@@ -211,6 +217,7 @@ import { SITE } from '../data/site';
   const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement;
   const btnText = document.getElementById('contact-btn-text');
   const spinner = document.getElementById('contact-spinner');
+  const generalError = document.getElementById('contact-form-error');
 
   function showErr(id: string, show: boolean) {
     document.getElementById(id)?.classList.toggle('hidden', !show);
@@ -236,14 +243,31 @@ import { SITE } from '../data/site';
     submitBtn.disabled = true;
     if (btnText) btnText.textContent = 'Sending…';
     spinner?.classList.remove('hidden');
+    generalError?.classList.add('hidden');
 
-    await new Promise(r => setTimeout(r, 1200)); // Demo delay
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
 
-    formState?.classList.add('hidden');
-    successState?.classList.remove('hidden');
-    setTimeout(() => {
-      document.getElementById('contact-check-circle')?.classList.add('animate');
-      document.getElementById('contact-checkmark')?.classList.add('animate');
-    }, 100);
+      const result = await res.json();
+      if (res.ok && result.success) {
+        formState?.classList.add('hidden');
+        successState?.classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('contact-check-circle')?.classList.add('animate');
+          document.getElementById('contact-checkmark')?.classList.add('animate');
+        }, 100);
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err) {
+      generalError?.classList.remove('hidden');
+      if (btnText) btnText.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      spinner?.classList.add('hidden');
+    }
   });
 </script>
