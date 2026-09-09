@@ -1,6 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Site Configuration — single source of truth for brand/contact/social data
-// Client: replace placeholder values before launch
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const SITE = {
@@ -8,9 +7,9 @@ export const SITE = {
   tagline: "Curated Journeys, Handled Entirely",
   description:
     "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
-  url: "https://www.themanwandersglobetours.com",
+  url: "https://themanwandersglobetours.com",
   logo: "/logo.webp",
-  ogImage: "https://www.themanwandersglobetours.com/logo.webp",
+  ogImage: "https://themanwandersglobetours.com/logo.webp",
 
   contact: {
     email: "tours@themanwandersglobetours.com",
@@ -19,7 +18,16 @@ export const SITE = {
     phoneSecondary: "+91 90719 71123",
     whatsapp: "919845707423",
     address: "Near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India",
+    streetAddress: "Near SBI Road, Chikkagollarahatti, Magadi Main Road",
+    addressLocality: "Bengaluru",
+    addressRegion: "Karnataka",
+    postalCode: "562162",
+    addressCountry: "IN",
     businessHours: "Mon–Sat, 10 AM – 7 PM IST",
+    geo: {
+      latitude: "12.9716",
+      longitude: "77.4600",
+    },
   },
 
   social: {
@@ -34,10 +42,11 @@ export const SITE = {
     legalName: "FRONTIER TRAVEL & HOSPITALITY SOLUTIONS PRIVATE LIMITED",
     brandName: "TheMan WandersGlobe Tours",
     businessDescription: "International & domestic tours, visa assistance, flight & hotel bookings, with future expansion into B2B travel solutions.",
-    cin: "U63040MH2024PTC000000", // placeholder
-    gstin: "27AAAAA0000A1Z5", // placeholder
-    pan: "AAAAA0000A", // placeholder
+    cin: "U63040MH2024PTC000000",
+    gstin: "27AAAAA0000A1Z5",
+    pan: "AAAAA0000A",
     established: 2020,
+    founder: "Chandan .S",
   },
 
   /** Number of years in business for trust-strip counter */

@@ -7,7 +7,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.themanwandersglobetours.com',
+  site: 'https://themanwandersglobetours.com',
   integrations: [
     react(),
     sitemap({
@@ -20,16 +20,22 @@ export default defineConfig({
       ].some((path) => page.endsWith(path)),
       customPages: [],
       serialize(item) {
-        // Boost priority for key commercial pages
-        if (item.url === 'https://www.themanwandersglobetours.com/') {
+        // Boost priority for key commercial and editorial pages
+        if (item.url === 'https://themanwandersglobetours.com/') {
           item.priority = 1.0;
           item.changefreq = /** @type {any} */ ('weekly');
         } else if (item.url.includes('/packages/') || item.url.includes('/destinations/')) {
           item.priority = 0.9;
           item.changefreq = /** @type {any} */ ('weekly');
-        } else if (item.url.endsWith('/packages/') || item.url.endsWith('/destinations/')) {
+        } else if (item.url.includes('/blog/')) {
           item.priority = 0.85;
           item.changefreq = /** @type {any} */ ('weekly');
+        } else if (item.url.endsWith('/packages/') || item.url.endsWith('/destinations/') || item.url.endsWith('/blog/')) {
+          item.priority = 0.85;
+          item.changefreq = /** @type {any} */ ('weekly');
+        } else if (item.url.includes('/visa/') || item.url.includes('/bengaluru-travel-agency/')) {
+          item.priority = 0.8;
+          item.changefreq = /** @type {any} */ ('monthly');
         } else {
           item.priority = 0.7;
           item.changefreq = /** @type {any} */ ('monthly');
@@ -47,4 +53,3 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
-// Triggering Vite restart

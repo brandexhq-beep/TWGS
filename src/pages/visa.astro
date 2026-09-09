@@ -387,11 +387,50 @@ const faqs = [
     a: "Our multi-tier verification process ensures zero errors, complete financial clarity, flawless documentation, and authentic itinerary presentation. If we identify any weakness in a profile, we advise rectifications before submission."
   }
 ];
+
+const canonicalUrl = `${SITE.url}/visa`;
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "Visa Concierge & Assistance", "item": canonicalUrl },
+  ]
+};
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${canonicalUrl}#service`,
+  "name": "Global Visa Concierge & Documentation Assistance",
+  "serviceType": "Tourist & Business Visa Processing Support",
+  "description": "Fast, reliable, and hassle-free visa services for 50+ countries including Schengen, UK, USA, Thailand, Bali, Japan, Singapore, and Dubai with a 99.2% approval track record.",
+  "provider": {
+    "@id": `${SITE.url}/#organization`
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
+  }
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
 ---
 
 <BaseLayout
   title={`Visa Assistance & Global Concierge | ${SITE.name}`}
   description="Fast, reliable, and hassle-free visa services for 50+ countries including Thailand, Bali, Vietnam, Japan, UK, USA, Schengen, and more. 99.2% approval rate."
+  canonicalUrl={canonicalUrl}
+  structuredData={[breadcrumb, serviceSchema, faqSchema]}
 >
   <!-- Hero Section -->
   <header class="pt-36 pb-20 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] text-white relative overflow-hidden">

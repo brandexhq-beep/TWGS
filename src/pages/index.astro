@@ -10,22 +10,26 @@ import PopularDestinations from '../components/sections/PopularDestinations.astr
 import PilgrimagePackage from '../components/sections/PilgrimagePackage.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
 import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
+import BlogPreviewSection from '../components/sections/BlogPreviewSection.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
 import LeadCTABar from '../components/sections/LeadCTABar.astro';
 import { SITE } from '../data/site';
 
+const canonicalUrl = `${SITE.url}/`;
+
 // BreadcrumbList JSON-LD for home page
 const breadcrumb = {
-  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url }],
+  "@id": `${canonicalUrl}#breadcrumb`,
+  "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": canonicalUrl }],
 };
 ---
 
 <BaseLayout
   title="The Man Wanders Globe | Bespoke Travel & Luxury Packages"
   description="The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander."
+  canonicalUrl={canonicalUrl}
   structuredData={breadcrumb}
 >
   <LoadingScreen />
@@ -36,6 +40,7 @@ const breadcrumb = {
   <PilgrimagePackage />
   <ServicesSection />
   <WhyChooseUs />
+  <BlogPreviewSection />
   <Testimonials />
   <FAQSection />
   <!-- Floating lead capture bar (slides up on scroll) -->

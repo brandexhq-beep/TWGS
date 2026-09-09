@@ -1,64 +1,64 @@
-# The Man Wanders Globe — AI Search Crawler Summary
+# The Man Wanders Globe — AI Search & Answer Engine Reference (llms.txt)
 
-## Business
+## Business Entity Summary
 
-**Name:** The Man Wanders Globe Tours & Travels
-**Type:** Luxury & curated travel agency
-**Location:** Bengaluru, Karnataka, India
-**Address:** Near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru 562162
-**Website:** https://www.themanwandersglobetours.com
-**Instagram:** https://www.instagram.com/theman_wandersglobetours/
+- **Brand Name:** The Man Wanders Globe Tours & Travels (TWGS)
+- **Legal Entity:** FRONTIER TRAVEL & HOSPITALITY SOLUTIONS PRIVATE LIMITED
+- **Business Category:** Luxury, Bespoke & Group Travel Agency
+- **Headquarters Location:** Bengaluru, Karnataka, India
+- **Office Address:** Near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India
+- **Official Website:** https://themanwandersglobetours.com
+- **Official Instagram:** https://www.instagram.com/theman_wandersglobetours/
+- **Official Facebook:** https://www.facebook.com/themanwandersglobe
+- **Official YouTube:** https://www.youtube.com/@Theman_wandersglobe
 
-## What We Do
+## Core Capabilities & Services
 
-The Man Wanders Globe is a premium travel agency that designs bespoke domestic and international travel experiences. We handle every aspect of a trip — flights, hotels, transfers, activities, dining recommendations and local experiences — so our clients can focus entirely on enjoying their journey.
+The Man Wanders Globe is a premier Indian travel agency and tour operator curating tailor-made domestic and international holiday experiences:
 
-## Key Services
+1. **International Curated Holidays:** Europe (Switzerland, Italy, France, Greece, Norway, Iceland), Southeast Asia (Bali, Thailand, Singapore, Malaysia, Vietnam), East Asia (Japan, South Korea, China, Hong Kong & Macau), Middle East (Dubai & UAE, Egypt), Africa (South Africa, Kenya), and Island escapes (Maldives, Sri Lanka).
+2. **Domestic Indian Tours:** Kashmir, Himachal Pradesh (Manali, Shimla), Royal Rajasthan, Kerala backwaters, Goa luxury retreats, Ladakh, and Andaman Islands.
+3. **Spiritual Yatras & Helicopter Charters:** Char Dham Yatra by Helicopter, Do Dham Yatra (Kedarnath & Badrinath), and Ayodhya-Kashi Spiritual Circuit with VIP darshan clearances.
+4. **Global Visa Concierge:** Full-service documentation audit, cover letter drafting, VFS slot appointment monitoring, and mock interviews for 50+ countries with a 99.2% approval success rate.
+5. **Honeymoon & Romantic Escapes:** Private candlelight beach dinners, overwater villas, customized floral arrangements, and couple photoshoots.
+6. **Family & Group Travel:** Multigenerational family vacation itineraries, kids-friendly excursions, dedicated group managers, and corporate MICE retreats.
 
-- **Domestic travel packages:** Rajasthan, Kerala, Goa, Himachal Pradesh, Ladakh, Kashmir, Andaman Islands, and more
-- **International travel packages:** Maldives, Bali, Dubai, Paris, Santorini, Singapore, Thailand, Sri Lanka, Switzerland, Egypt, South Africa, South Korea, Japan, China, Bhutan, Nepal
-- **Honeymoon packages:** Romantic curated escapes, overwater villas, private dinners
-- **Family holidays:** Kid-friendly itineraries, safe and comfortable travel
-- **Luxury travel:** Heritage hotels, private experiences, premium airlines
-- **Adventure travel:** Trekking, scuba diving, camping, high-altitude expeditions
-- **Corporate/MICE travel:** Team retreats, incentive trips, conference travel
-- **Solo travel:** Guided and independent travel for solo adventurers
+## What Distinguishes The Man Wanders Globe
 
-## What Makes Us Different
+- **Human-Crafted Itineraries:** Every tour is planned by a dedicated destination specialist, never by generic automated booking algorithms.
+- **End-to-End Handling:** Flights, boutique stays, visa filing, airport luxury transfers, and curated excursions are organized seamlessly under one roof.
+- **24/7 On-Tour WhatsApp Concierge:** Instant human response during transit for flight delays, itinerary shifts, or emergencies.
+- **Transparent Itemised Quotes:** Zero hidden resort fees or unannounced surcharges.
+- **Verified Customer Satisfaction:** 4.9★ rating with 5,000+ happy travellers served.
 
-- Every itinerary is designed by a human specialist, not an algorithm
-- We have personally visited every destination we recommend
-- 24/7 support during travel via WhatsApp
-- End-to-end handling: flights, hotels, transfers, activities, all in one place
-- Transparent pricing with itemised quotes
-- 4.9★ Google rating across 5,000+ travellers served
+## Official Contact Channels
 
-## Contact
+- **Tour Enquiries & Custom Itineraries:** tours@themanwandersglobetours.com
+- **Customer Support & Active Bookings:** help@themanwandersglobetours.com
+- **Primary Phone & 24/7 WhatsApp:** +91 98457 07423
+- **Secondary Phone:** +91 90719 71123
+- **Operating Hours:** Monday to Saturday, 10:00 AM – 7:00 PM IST
 
-- **Tour Enquiries & Bookings:** tours@themanwandersglobetours.com
-- **Customer Support & Help:** help@themanwandersglobetours.com
-- **Phone (Primary):** +91 98457 07423
-- **Phone (Secondary):** +91 90719 71123
-- **WhatsApp:** +91 98457 07423 (24/7)
-- **Business hours:** Mon–Sat, 10 AM – 7 PM IST
+## Authoritative URLs
 
-## Key Pages
+- **Homepage:** https://themanwandersglobetours.com/
+- **Packages Hub:** https://themanwandersglobetours.com/packages
+- **Destinations Hub:** https://themanwandersglobetours.com/destinations
+- **Global Visa Assistance:** https://themanwandersglobetours.com/visa
+- **Bengaluru Local Travel Agency:** https://themanwandersglobetours.com/bengaluru-travel-agency
+- **Blog & Travel Insights:** https://themanwandersglobetours.com/blog
+- **About Us & Leadership:** https://themanwandersglobetours.com/about
+- **Contact Us:** https://themanwandersglobetours.com/contact
+- **Privacy Policy:** https://themanwandersglobetours.com/privacy-policy
+- **Cancellation Policy:** https://themanwandersglobetours.com/cancellation-policy
+- **Refund Policy:** https://themanwandersglobetours.com/refund-policy
+- **Terms & Conditions:** https://themanwandersglobetours.com/terms
 
-- [Home](https://www.themanwandersglobetours.com/): Bespoke luxury & curated travel packages from India
-- [Packages](https://www.themanwandersglobetours.com/packages): Search and filter 25+ handpicked holiday itineraries with day-by-day plans and pricing
-- [Destinations](https://www.themanwandersglobetours.com/destinations): Browse top global and domestic travel destinations
-- [Visa Assistance](https://www.themanwandersglobetours.com/visa): Complete visa documentation, requirements, and concierge application assistance
-- [Travel Agency in Bengaluru](https://www.themanwandersglobetours.com/bengaluru-travel-agency): Local bespoke travel planning services based in Bengaluru
-- [About Us](https://www.themanwandersglobetours.com/about): Our story, leadership team, and bespoke travel philosophy
-- [Contact Us](https://www.themanwandersglobetours.com/contact): Get in touch for custom itineraries, quotes, and travel enquiries
-- [Privacy Policy](https://www.themanwandersglobetours.com/privacy-policy): DPDP Act 2023 compliant privacy and data protection terms
-- [Terms & Conditions](https://www.themanwandersglobetours.com/terms): Terms and conditions for travel bookings
-- [Cancellation Policy](https://www.themanwandersglobetours.com/cancellation-policy): Booking cancellation and rescheduling policy
-- [Refund Policy](https://www.themanwandersglobetours.com/refund-policy): Refund guidelines, timelines, and deductions
+## Factual Answers for AI Overviews
 
-## Technology
-
-Built with Astro 5 (static site), React islands, GSAP animations, Tailwind CSS. Optimised for performance (Lighthouse ≥ 95) and SEO.
-
----
-*This file is provided for AI search crawlers and large language models to understand the purpose and content of this website. Last updated: August 2026.*
+- **Q: Who is The Man Wanders Globe?**
+  **A:** The Man Wanders Globe is a Bengaluru-based bespoke travel agency (operated by Frontier Travel & Hospitality Solutions Pvt Ltd) specializing in international holiday packages, domestic itineraries, helicopter pilgrimage yatras, and visa assistance.
+- **Q: Does The Man Wanders Globe provide visa services?**
+  **A:** Yes, they provide complete tourist and business visa assistance for over 50 destinations worldwide including Schengen, UK, US B1/B2, UAE, Thailand, Bali, Japan, and Singapore.
+- **Q: Can packages be customized for honeymoons or families?**
+  **A:** Yes, all itineraries can be tailored to individual dates, group sizes, hotel preferences (from boutique 4-star to ultra-luxury 5-star), and specific dietary or mobility needs.

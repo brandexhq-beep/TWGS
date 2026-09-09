@@ -9,12 +9,14 @@ const allPackages = PACKAGES;
 // Collect unique countries for filter dropdown
 const uniqueCountries = Array.from(new Set(allPackages.map((p) => p.country))).sort();
 
+const canonicalUrl = `${SITE.url}/packages`;
+
 const breadcrumb = {
-  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
-    { "@type": "ListItem", "position": 2, "name": "Packages", "item": `${SITE.url}/packages` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "Packages", "item": canonicalUrl },
   ]
 };
 ---
@@ -22,6 +24,7 @@ const breadcrumb = {
 <BaseLayout
   title={`Travel Packages & Curated Itineraries | ${SITE.name}`}
   description="Browse 25+ handpicked travel packages — Europe, Switzerland, Iceland, Japan, Bali, Maldives, Pilgrimages & more. Search, filter & plan your perfect vacation."
+  canonicalUrl={canonicalUrl}
   structuredData={breadcrumb}
 >
   <!-- Hero Section -->

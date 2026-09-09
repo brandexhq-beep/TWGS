@@ -1,6 +1,7 @@
 import { SITE } from '../data/site';
 import { PACKAGES } from '../data/packages';
 import { DESTINATIONS } from '../data/destinations';
+import { BLOGS } from '../data/blogs';
 
 export async function GET() {
   const images: { url: string; imageLoc: string; imageTitle?: string; imageCaption?: string; }[] = [];
@@ -31,6 +32,17 @@ export async function GET() {
         imageLoc: img.startsWith('http') ? img : `${SITE.url}${img}`,
         imageTitle: `${pkg.name} - Gallery`,
       });
+    });
+  });
+
+  // Add blog hero images
+  BLOGS.forEach(blog => {
+    const pageUrl = `${SITE.url}/blog/${blog.slug}`;
+    images.push({
+      url: pageUrl,
+      imageLoc: blog.heroImage.startsWith('http') ? blog.heroImage : `${SITE.url}${blog.heroImage}`,
+      imageTitle: blog.title,
+      imageCaption: blog.summary
     });
   });
 

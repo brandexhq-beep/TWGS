@@ -1,9 +1,49 @@
+# Robots.txt for The Man Wanders Globe Tours (https://themanwandersglobetours.com)
+
+# Default crawler rules
 User-agent: *
 Allow: /
-
-# Block private paths
 Disallow: /dist/
-Disallow: /.env
+Disallow: /.env*
+Disallow: /api/private/
 
-Sitemap: https://www.themanwandersglobetours.com/sitemap-index.xml
-Sitemap: https://www.themanwandersglobetours.com/image-sitemap.xml
+# Explicitly permit ChatGPT Search Crawler (Discovery & Real-Time Answers)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /dist/
+Disallow: /.env*
+
+# Permit OpenAI Model Training Crawler
+User-agent: GPTBot
+Allow: /
+Disallow: /dist/
+Disallow: /.env*
+
+# Explicitly permit Perplexity AI Search Crawler
+User-agent: PerplexityBot
+Allow: /
+Disallow: /dist/
+Disallow: /.env*
+
+# Explicitly permit Anthropic Claude Search & Retrieval Crawler
+User-agent: ClaudeBot
+Allow: /
+Disallow: /dist/
+Disallow: /.env*
+
+# Explicitly permit Apple & Google AI Discovery Crawlers
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Canonical Sitemaps
+Sitemap: https://themanwandersglobetours.com/sitemap-index.xml
+Sitemap: https://themanwandersglobetours.com/image-sitemap.xml

@@ -1,0 +1,278 @@
+---
+// pages/blog/[slug].astro — Comprehensive Article Template with AEO Blocks & FAQ Schema
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { BLOGS, getBlogPostBySlug } from '../../data/blogs';
+import { PACKAGES } from '../../data/packages';
+import { DESTINATIONS } from '../../data/destinations';
+import { SITE } from '../../data/site';
+import {
+  getBlogPostingSchema,
+  getBreadcrumbSchema,
+  getFAQPageSchema,
+} from '../../lib/schema';
+
+export async function getStaticPaths() {
+  return BLOGS.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
+}
+
+const { slug } = Astro.params;
+const blog = getBlogPostBySlug(slug);
+
+if (!blog) {
+  return Astro.redirect('/blog');
+}
+
+const canonicalUrl = `${SITE.url}/blog/${blog.slug}`;
+
+// Breadcrumb schema
+const breadcrumbSchema = getBreadcrumbSchema(canonicalUrl, [
+  { name: 'Home', url: `${SITE.url}/` },
+  { name: 'Blog', url: `${SITE.url}/blog` },
+  { name: blog.title, url: canonicalUrl },
+]);
+
+// BlogPosting schema
+const blogPostingSchema = getBlogPostingSchema(blog, canonicalUrl);
+
+// FAQ schema
+const faqSchema = getFAQPageSchema(blog.faqs);
+
+const structuredData = [breadcrumbSchema, blogPostingSchema, faqSchema].filter(Boolean);
+
+// Find related packages & destinations
+const relatedPackages = PACKAGES.filter((p) => blog.relatedPackagesSlugs.includes(p.slug));
+const relatedDestinations = DESTINATIONS.filter((d) => blog.relatedDestinationsSlugs.includes(d.slug));
+---
+
+<BaseLayout
+  title={`${blog.title} | ${SITE.name}`}
+  description={blog.summary}
+  ogImage={blog.heroImage}
+  canonicalUrl={canonicalUrl}
+  ogType="article"
+  articlePublishedTime={blog.publishedDate}
+  articleModifiedTime={blog.modifiedDate}
+  articleAuthor={blog.author.name}
+  articleTags={blog.tags}
+  structuredData={structuredData}
+>
+  <!-- Article Header / Hero -->
+  <header class="relative pt-36 pb-16 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] text-white">
+    <div class="container-site max-w-4xl mx-auto">
+      <!-- Breadcrumb Bar -->
+      <nav class="flex items-center gap-2 text-xs text-slate-300/80 mb-6" aria-label="Breadcrumbs">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>/</span>
+        <span class="text-[#E5C378] truncate max-w-xs">{blog.category}</span>
+      </nav>
+
+      <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-[#C6A34E]/20 text-[#E5C378] border border-[#C6A34E]/30 uppercase tracking-wider mb-4">
+        {blog.category}
+      </span>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-white font-bold leading-tight mb-6">
+        {blog.title}
+      </h1>
+
+      <p class="text-slate-300 text-lg font-light leading-relaxed mb-8">
+        {blog.subtitle}
+      </p>
+
+      <!-- Author & Metadata Meta Strip -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10 text-xs text-slate-300">
+        <div class="flex items-center gap-3">
+          {blog.author.image ? (
+            <img
+              src={blog.author.image}
+              alt={blog.author.name}
+              class="w-10 h-10 rounded-full object-cover border border-[#C6A34E] shadow-sm"
+              width="40"
+              height="40"
+            />
+          ) : (
+            <div class="w-10 h-10 rounded-full bg-[#C6A34E] text-slate-950 font-bold flex items-center justify-center text-sm shadow-sm">
+              {blog.author.name.charAt(0)}
+            </div>
+          )}
+          <div>
+            <span class="font-semibold text-white block">{blog.author.name}</span>
+            <span class="text-slate-400">{blog.author.role}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <time datetime={blog.publishedDate}>
+              {new Date(blog.publishedDate).toLocaleDateString('en-IN', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </time>
+          </div>
+          <span>•</span>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>{blog.readingTime}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Body -->
+  <article class="section-padding bg-[var(--color-bg)]">
+    <div class="container-site max-w-4xl mx-auto">
+      
+      <!-- Key Takeaways / AI Overview Summary Box (AEO Optimization) -->
+      <section class="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-6 sm:p-8 mb-12 shadow-sm" aria-label="Key Takeaways">
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[#00277C] text-white text-xs font-bold">✓</span>
+          <h2 class="text-lg font-bold text-slate-900 tracking-tight">Key Takeaways & Quick Facts</h2>
+        </div>
+        <ul class="space-y-2.5 text-slate-700 text-sm leading-relaxed">
+          {blog.keyTakeaways.map((point) => (
+            <li class="flex items-start gap-2.5">
+              <span class="text-[#00277C] font-bold mt-0.5">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Editorial Body Sections -->
+      <div class="prose prose-slate lg:prose-lg max-w-none text-slate-800 leading-relaxed">
+        {blog.content.map((sec) => (
+          <section class="mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+              {sec.heading}
+            </h2>
+            <div class="space-y-4 text-slate-700 leading-relaxed" set:html={sec.bodyHtml} />
+          </section>
+        ))}
+      </div>
+
+      <!-- Verified Author Credentials & E-E-A-T Card -->
+      <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 my-12 flex flex-col sm:flex-row items-center gap-6 shadow-sm" aria-label="About the Author">
+        {blog.author.image ? (
+          <img
+            src={blog.author.image}
+            alt={blog.author.name}
+            class="w-20 h-20 rounded-full object-cover border-2 border-[#00277C] shadow-md shrink-0"
+            width="80"
+            height="80"
+          />
+        ) : (
+          <div class="w-16 h-16 rounded-full bg-[#00277C] text-white text-2xl font-bold flex items-center justify-center shrink-0">
+            {blog.author.name.charAt(0)}
+          </div>
+        )}
+        <div class="text-center sm:text-left">
+          <span class="text-xs uppercase tracking-wider font-bold text-[#C6A34E] block mb-1">Written & Curated By</span>
+          <h3 class="text-xl font-bold text-slate-900">{blog.author.name}</h3>
+          <p class="text-xs text-slate-500 font-medium mb-2">{blog.author.role} at The Man Wanders Globe</p>
+          <p class="text-sm text-slate-600 leading-relaxed">{blog.author.bio}</p>
+        </div>
+      </section>
+
+      <!-- Frequently Asked Questions (Accordion + FAQ Schema) -->
+      {blog.faqs && blog.faqs.length > 0 && (
+        <section class="my-14" aria-label="Frequently Asked Questions">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">
+            Frequently Asked Questions
+          </h2>
+          <div class="space-y-4">
+            {blog.faqs.map((faq, i) => (
+              <details class="group bg-white rounded-xl border border-slate-200 p-5 open:shadow-md transition-all">
+                <summary class="font-semibold text-slate-900 cursor-pointer flex items-center justify-between gap-4 list-none">
+                  <span>{faq.question}</span>
+                  <span class="text-[#00277C] text-lg font-bold group-open:rotate-180 transition-transform">↓</span>
+                </summary>
+                <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Related Packages (Internal Linking) -->
+      {relatedPackages.length > 0 && (
+        <section class="my-14 pt-10 border-t border-slate-200" aria-label="Featured Related Holiday Packages">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <span class="text-xs font-bold text-[#C6A34E] uppercase tracking-wider block">Recommended Holidays</span>
+              <h2 class="text-2xl font-bold text-slate-900">Featured Packages Mentioned in This Guide</h2>
+            </div>
+            <a href="/packages" class="text-xs font-semibold text-[#00277C] hover:underline">
+              Browse All Packages →
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedPackages.map((pkg) => (
+              <div class="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all group">
+                <a href={`/packages/${pkg.slug}`} class="block aspect-[16/10] overflow-hidden">
+                  <img
+                    src={pkg.heroImage}
+                    alt={pkg.name}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    width="400"
+                    height="250"
+                  />
+                </a>
+                <div class="p-4">
+                  <span class="text-xs text-slate-500 font-medium">{pkg.duration}</span>
+                  <h3 class="font-bold text-slate-900 text-sm mt-1 mb-2 group-hover:text-[#00277C] transition-colors">
+                    <a href={`/packages/${pkg.slug}`}>{pkg.name}</a>
+                  </h3>
+                  <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+                    <span class="font-bold text-[#00277C]">₹{pkg.priceFrom.toLocaleString('en-IN')}</span>
+                    <a href={`/packages/${pkg.slug}`} class="text-[#C6A34E] font-semibold hover:underline">
+                      View Details →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- CTA Box: Plan a Custom Trip -->
+      <section class="bg-gradient-to-r from-[#00277C] to-[#10253F] text-white rounded-3xl p-8 sm:p-12 my-12 text-center relative overflow-hidden shadow-xl" aria-label="Book a bespoke consultation">
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold mb-4">
+          Ready to Turn Inspiration into Reality?
+        </h2>
+        <p class="text-slate-300 max-w-xl mx-auto text-sm sm:text-base font-light mb-8">
+          Speak with our destination specialists. We will design a custom itinerary with flights, boutique stays, transfers, and complete visa assistance within 24 hours.
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          <a
+            href="/#plan-my-trip"
+            class="bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold px-7 py-3 rounded-xl transition-all shadow-md text-sm"
+          >
+            Request a Custom Quote
+          </a>
+          <a
+            href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent(`Hello! I read your article on ${blog.title} and would like to plan a trip.`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-white/30 text-white hover:bg-white/10 px-7 py-3 rounded-xl transition-all text-sm font-medium flex items-center gap-2"
+          >
+            <span>💬</span> WhatsApp Our Experts
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+</BaseLayout>

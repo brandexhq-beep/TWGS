@@ -51,11 +51,13 @@ const localBusiness = {
     "worstRating": "1"
   }
 };
+const canonicalUrl = `${SITE.url}/bengaluru-travel-agency`;
 ---
 
 <BaseLayout
   title={`Travel Agency in Bengaluru | Customised Holiday Packages | ${SITE.name}`}
   description="Looking for the best travel agency in Bengaluru? The Man Wanders Globe offers bespoke domestic & international holiday packages from Bengaluru. Enquire today."
+  canonicalUrl={canonicalUrl}
   structuredData={[breadcrumb, localBusiness]}
 >
   <!-- Hero Section -->

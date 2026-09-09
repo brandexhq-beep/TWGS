@@ -1,5 +1,5 @@
 ---
-// BaseLayout.astro — wraps every page
+// BaseLayout.astro — wraps every page with SEO, Schema.org @graph, and analytics
 import '../styles/global.css';
 import { SITE } from '../data/site';
 import Header from '../components/layout/Header.astro';
@@ -9,6 +9,8 @@ import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import ScrollToTop from '../components/layout/ScrollToTop.astro';
 import CookieBanner from '../components/layout/CookieBanner.astro';
 import SEOHead from '../components/seo/SEOHead.astro';
+import { getCanonicalUrl } from '../lib/seo';
+import { buildSchemaGraph, getWebPageSchema } from '../lib/schema';
 
 export interface Props {
   title: string;
@@ -17,6 +19,12 @@ export interface Props {
   canonicalUrl?: string;
   noIndex?: boolean;
   structuredData?: object | object[];
+  ogType?: 'website' | 'article';
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleAuthor?: string;
+  articleTags?: string[];
+  pageType?: string;
 }
 
 const {
@@ -26,9 +34,27 @@ const {
   canonicalUrl,
   noIndex = false,
   structuredData,
+  ogType = 'website',
+  articlePublishedTime,
+  articleModifiedTime,
+  articleAuthor,
+  articleTags,
+  pageType = 'WebPage',
 } = Astro.props;
 
-const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString();
+// Canonical URL is strictly cleaned of any query params (e.g. ?utm_source=chatgpt.com)
+const cleanCanonical = canonicalUrl ?? getCanonicalUrl(Astro.url.pathname);
+
+// Assemble unified Schema.org @graph
+const extraSchemas = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+  ? [structuredData]
+  : [];
+
+// Automatically include the base WebPage schema linked to WebSite & Organization
+const defaultWebPageSchema = getWebPageSchema(cleanCanonical, title, description, pageType);
+const completeSchemaGraph = buildSchemaGraph([defaultWebPageSchema, ...extraSchemas]);
 ---
 
 <!doctype html>
@@ -37,16 +63,21 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- SEO -->
+    <!-- Technical SEO & Social Tags -->
     <SEOHead
       title={title}
       description={description}
       ogImage={ogImage}
-      canonicalUrl={pageUrl}
+      canonicalUrl={cleanCanonical}
       noIndex={noIndex}
+      ogType={ogType}
+      articlePublishedTime={articlePublishedTime}
+      articleModifiedTime={articleModifiedTime}
+      articleAuthor={articleAuthor}
+      articleTags={articleTags}
     />
 
-    <!-- Google Analytics -->
+    <!-- Google Tag Manager / GA4 Base Script -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -55,11 +86,51 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
       gtag('config', 'G-XXXXXXXXXX');
     </script>
 
+    <!-- ChatGPT Search Referral Tracking & UTM Handling -->
+    <script is:inline>
+      (function() {
+        try {
+          var urlParams = new URLSearchParams(window.location.search);
+          var utmSource = urlParams.get('utm_source');
+          var utmMedium = urlParams.get('utm_medium');
+          var utmCampaign = urlParams.get('utm_campaign');
+          var referrer = document.referrer || '';
+          
+          var isChatGPTReferral = (utmSource && utmSource.toLowerCase() === 'chatgpt.com') ||
+                                  referrer.indexOf('chatgpt.com') !== -1;
+
+          if (isChatGPTReferral) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'chatgpt_search_referral',
+              traffic_source: 'chatgpt.com',
+              utm_source: utmSource || 'chatgpt.com',
+              utm_medium: utmMedium || 'referral',
+              utm_campaign: utmCampaign || 'chatgpt_search',
+              referrer: referrer,
+              landing_page: window.location.pathname
+            });
+
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'chatgpt_search_referral', {
+                event_category: 'AI Search Referral',
+                event_label: window.location.pathname,
+                source: 'chatgpt.com',
+                page_path: window.location.pathname
+              });
+            }
+          }
+        } catch (e) {
+          // Non-blocking fail-safe
+        }
+      })();
+    </script>
+
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Favicon — brand logo -->
+    <!-- Favicon & PWA Icons -->
     <link rel="icon" type="image/webp" href="/logo.webp?v=2" />
     <link rel="apple-touch-icon" href="/logo.webp?v=2" />
     <meta name="application-name" content={SITE.name} />
@@ -68,59 +139,16 @@ const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).toString()
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google Fonts: Playfair Display & Inter -->
-    <!-- Organization JSON-LD -->
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "TravelAgency",
-      "@id": `${SITE.url}/#organization`,
-      "name": SITE.name,
-      "alternateName": "TheMan WandersGlobe Tours & Travels",
-      "description": SITE.description,
-      "url": SITE.url,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${SITE.url}/logo.webp`,
-        "width": 512,
-        "height": 512
-      },
-      "image": `${SITE.url}/logo.webp`,
-      "telephone": SITE.contact.phone,
-      "email": SITE.contact.email,
-      "priceRange": "₹₹-₹₹₹",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Near SBI Road, Chikkagollarahatti, Magadi Main Road",
-        "addressLocality": "Bengaluru",
-        "addressRegion": "Karnataka",
-        "postalCode": "562162",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        SITE.social.instagram,
-        SITE.social.facebook,
-        SITE.social.youtube,
-        SITE.social.pinterest,
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": String(SITE.stats.averageRating),
-        "reviewCount": String(SITE.stats.travellersServed),
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "openingHours": "Mo-Sa 10:00-19:00"
-    })} />
-
-    <!-- Additional page-level structured data -->
-    {structuredData && (
-      Array.isArray(structuredData)
-        ? structuredData.map((sd) => <script type="application/ld+json" is:inline set:html={JSON.stringify(sd)} />)
-        : <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
-    )}
+    <!-- Unified Schema.org @graph (TravelAgency, WebSite, WebPage, Breadcrumbs, Entity data) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(completeSchemaGraph)} />
   </head>
 
   <body>
+    <!-- Accessibility skip link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-[#00277C] focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
+      Skip to main content
+    </a>
+
     <!-- Scroll progress bar -->
     <ScrollProgress />
 

@@ -114,11 +114,24 @@ const leadershipTeam = [
     badge: 'Inbound Sales'
   }
 ];
+
+const canonicalUrl = `${SITE.url}/about`;
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "About Us", "item": canonicalUrl },
+  ]
+};
 ---
 
 <BaseLayout
   title={`About Us — Bespoke Travel Agency | ${SITE.name}`}
   description="Discover the journey behind TheMan WandersGlobe Tours — our story, vision, mission, and the specialist team crafting bespoke domestic & international travel experiences across India."
+  canonicalUrl={canonicalUrl}
+  pageType="AboutPage"
+  structuredData={breadcrumb}
 >
   <!-- Hero Section -->
   <div class="relative pt-36 pb-24 bg-[var(--color-accent-secondary)] overflow-hidden">
