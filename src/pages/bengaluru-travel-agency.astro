@@ -7,24 +7,25 @@ import { PACKAGES } from '../data/packages';
 // Get a few featured packages to show on this landing page
 const featuredPackages = PACKAGES.filter((p) => p.featured).slice(0, 3);
 
+const canonicalUrl = `${SITE.url}/bengaluru-travel-agency`;
+
 // Breadcrumb for local landing page
 const breadcrumb = {
-  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
-    { "@type": "ListItem", "position": 2, "name": "Travel Agency in Bengaluru", "item": `${SITE.url}/bengaluru-travel-agency` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "Travel Agency in Bengaluru", "item": canonicalUrl },
   ]
 };
 
 // LocalBusiness schema for the Bengaluru location
 const localBusiness = {
-  "@context": "https://schema.org",
   "@type": "TravelAgency",
   "@id": `${SITE.url}/#localbusiness`,
   "name": SITE.company.brandName,
   "description": "Premium travel agency based in Bengaluru, Karnataka, specialising in bespoke domestic and international holiday packages.",
-  "url": `${SITE.url}/bengaluru-travel-agency`,
+  "url": canonicalUrl,
   "logo": `${SITE.url}/logo.webp`,
   "image": `${SITE.url}/logo.webp`,
   "telephone": SITE.contact.phone,
@@ -41,17 +42,16 @@ const localBusiness = {
     "latitude": "12.9716",
     "longitude": "77.4600"
   },
-  "openingHours": "Mo,Tu,We,Th,Fr,Sa 10:00-19:00",
-  "priceRange": "₹₹-₹₹₹",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": String(SITE.stats.averageRating),
-    "reviewCount": String(SITE.stats.travellersServed),
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "19:00"
+    }
+  ],
+  "priceRange": "₹₹-₹₹₹"
 };
-const canonicalUrl = `${SITE.url}/bengaluru-travel-agency`;
 ---
 
 <BaseLayout

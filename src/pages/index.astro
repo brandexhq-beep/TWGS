@@ -15,22 +15,18 @@ import Testimonials from '../components/sections/Testimonials.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
 import LeadCTABar from '../components/sections/LeadCTABar.astro';
 import { SITE } from '../data/site';
+import { FAQ_ITEMS } from '../data/faq';
+import { getFAQPageSchema } from '../lib/schema';
 
 const canonicalUrl = `${SITE.url}/`;
-
-// BreadcrumbList JSON-LD for home page
-const breadcrumb = {
-  "@type": "BreadcrumbList",
-  "@id": `${canonicalUrl}#breadcrumb`,
-  "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": canonicalUrl }],
-};
+const faqSchema = getFAQPageSchema(FAQ_ITEMS);
 ---
 
 <BaseLayout
   title="The Man Wanders Globe | Bespoke Travel & Luxury Packages"
   description="The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander."
   canonicalUrl={canonicalUrl}
-  structuredData={breadcrumb}
+  structuredData={faqSchema}
 >
   <LoadingScreen />
   <HeroSection />

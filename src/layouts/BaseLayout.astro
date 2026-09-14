@@ -18,7 +18,7 @@ export interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   noIndex?: boolean;
-  structuredData?: object | object[];
+  structuredData?: object | object[] | null | (object | null | undefined)[] | any;
   ogType?: 'website' | 'article';
   articlePublishedTime?: string;
   articleModifiedTime?: string;
@@ -52,8 +52,13 @@ const extraSchemas = Array.isArray(structuredData)
   ? [structuredData]
   : [];
 
+// Check if breadcrumb data is present in extraSchemas
+const hasBreadcrumbs = extraSchemas.flat(Infinity).some((s: any) => 
+  s && (s["@type"] === "BreadcrumbList" || (typeof s["@id"] === "string" && s["@id"].includes("#breadcrumb")))
+);
+
 // Automatically include the base WebPage schema linked to WebSite & Organization
-const defaultWebPageSchema = getWebPageSchema(cleanCanonical, title, description, pageType);
+const defaultWebPageSchema = getWebPageSchema(cleanCanonical, title, description, pageType, hasBreadcrumbs);
 const completeSchemaGraph = buildSchemaGraph([defaultWebPageSchema, ...extraSchemas]);
 ---
 
@@ -78,7 +83,7 @@ const completeSchemaGraph = buildSchemaGraph([defaultWebPageSchema, ...extraSche
     />
 
     <!-- Google Tag Manager / GA4 Base Script -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}

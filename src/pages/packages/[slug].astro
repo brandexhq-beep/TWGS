@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { PACKAGES } from '../../data/packages';
 import { SITE } from '../../data/site';
+import { getPackageSchema } from '../../lib/schema';
 
 export async function getStaticPaths() {
   return PACKAGES.map((pkg) => ({
@@ -29,39 +30,8 @@ const breadcrumb = {
   ]
 };
 
-const packageSchema = {
-  "@type": ["TouristTrip", "Product"],
-  "@id": `${canonicalUrl}#trip`,
-  "name": pkg.name,
-  "description": pkg.tagline || `${pkg.name} holiday tour package by ${SITE.name}`,
-  "image": ogImage,
-  "category": "Travel Packages",
-  "sku": pkg.id || pkg.slug,
-  "touristType": pkg.category || ["Family", "Couples", "Luxury"],
-  "provider": {
-    "@id": `${SITE.url}/#organization`
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": canonicalUrl,
-    "price": String(pkg.priceFrom),
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock",
-    "priceValidUntil": "2027-12-31",
-    "seller": {
-      "@id": `${SITE.url}/#organization`
-    }
-  },
-  ...(pkg.rating ? {
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": String(pkg.rating),
-      "reviewCount": pkg.reviewCount ? String(pkg.reviewCount).replace(/[^0-9]/g,'') : "50",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  } : {})
-};
+const packageSchemas = getPackageSchema(pkg, canonicalUrl);
+
 // Related packages: share at least one category, exclude self, pick up to 3
 const relatedPackages = PACKAGES
   .filter((p) => p.slug !== pkg.slug && p.category.some((c) => pkg.category.includes(c)))
@@ -73,7 +43,7 @@ const relatedPackages = PACKAGES
   description={`${pkg.duration.nights}N/${pkg.duration.days}D ${pkg.destination} trip from ₹${pkg.priceFrom.toLocaleString('en-IN')}. ${pkg.tagline.slice(0, 80)}...`}
   ogImage={ogImage}
   canonicalUrl={canonicalUrl}
-  structuredData={[breadcrumb, packageSchema]}
+  structuredData={[breadcrumb, ...packageSchemas]}
 >
   <!-- Hero Section with Proper Header Offset -->
   <section class="relative w-full min-h-[500px] md:min-h-[560px] flex items-end pt-36 md:pt-44 pb-16 overflow-hidden">

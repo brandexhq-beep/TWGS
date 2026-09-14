@@ -3,6 +3,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { DESTINATIONS } from '../data/destinations';
 import { SITE } from '../data/site';
+import { getDestinationCatalogSchema } from '../lib/schema';
 
 const allDestinations = DESTINATIONS;
 
@@ -16,13 +17,15 @@ const breadcrumb = {
     { "@type": "ListItem", "position": 2, "name": "Destinations", "item": canonicalUrl },
   ]
 };
+
+const catalogSchema = getDestinationCatalogSchema(allDestinations, canonicalUrl);
 ---
 
 <BaseLayout
   title={`Travel Destinations Around the World | ${SITE.name}`}
   description="Explore handpicked travel destinations — Europe, Swiss Alps, Japan, Bali, South Africa, Rajasthan, Kashmir & more. Filter by budget, season & style."
   canonicalUrl={canonicalUrl}
-  structuredData={breadcrumb}
+  structuredData={[breadcrumb, catalogSchema]}
 >
   <!-- Page hero -->
   <div class="relative pt-36 pb-16 bg-gradient-to-b from-[#10253F] via-[#0E1E33] to-[#0A1626] overflow-hidden text-white">

@@ -1,25 +1,10 @@
 ---
-// FAQSection.astro — premium accordion (grid-rows animation), FAQPage JSON-LD
+// FAQSection.astro — premium accordion (grid-rows animation)
 import { FAQ_ITEMS } from '../../data/faq';
 import SectionHeader from '../ui/SectionHeader.astro';
-
-// FAQPage JSON-LD
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": FAQ_ITEMS.map((item) => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.answer,
-    },
-  })),
-};
 ---
 
 <section class="section-padding bg-[var(--color-bg)]" aria-label="Frequently asked questions" id="faq">
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <div class="container-site">
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
