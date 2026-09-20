@@ -230,7 +230,7 @@ const relatedDestinations = DESTINATIONS.filter((d) => blog.relatedDestinationsS
                   />
                 </a>
                 <div class="p-4">
-                  <span class="text-xs text-slate-500 font-medium">{pkg.duration}</span>
+                  <span class="text-xs text-slate-500 font-medium">{pkg.duration.nights} Nights / {pkg.duration.days} Days</span>
                   <h3 class="font-bold text-slate-900 text-sm mt-1 mb-2 group-hover:text-[#00277C] transition-colors">
                     <a href={`/packages/${pkg.slug}`}>{pkg.name}</a>
                   </h3>
