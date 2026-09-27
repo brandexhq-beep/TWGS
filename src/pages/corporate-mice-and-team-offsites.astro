@@ -1,0 +1,97 @@
+---
+// pages/corporate-mice-and-team-offsites.astro — Niche SEO Landing Page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+import { PACKAGES } from '../data/packages';
+
+const corporatePackages = PACKAGES.filter((p) => 
+  p.slug.includes('dubai') || p.slug.includes('singapore') || p.slug.includes('thailand') || p.slug.includes('vietnam')
+);
+
+const canonicalUrl = `${SITE.url}/corporate-mice-and-team-offsites`;
+
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "Corporate MICE & Team Offsites", "item": canonicalUrl },
+  ]
+};
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${canonicalUrl}#service`,
+  "name": "Corporate MICE & Team Building Offsites Concierge",
+  "provider": {
+    "@type": "TravelAgency",
+    "name": SITE.company.brandName,
+    "url": SITE.url
+  },
+  "description": "End-to-end corporate event planning, dealer incentive trips, and international team offsites in Dubai, Singapore, Thailand, & Goa with GST billing."
+};
+---
+
+<BaseLayout
+  title={`Corporate MICE & Team Building Offsites | Dubai, Singapore & Goa | ${SITE.name}`}
+  description="Elevate company retreats, dealer incentive trips, and leadership offsites. Full MICE travel management in Dubai, Singapore, Thailand & Goa with corporate GST billing."
+  canonicalUrl={canonicalUrl}
+  structuredData={[breadcrumb, serviceSchema]}
+>
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-20 bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white overflow-hidden">
+    <div class="container-site relative z-10 text-center max-w-4xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#E5C378] text-xs font-bold uppercase tracking-widest mb-6 border border-white/15">
+        💼 Corporate MICE & Executive Retreats
+      </span>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+        Corporate MICE Travel &<br/>
+        <em class="not-italic text-[#E5C378]">Team Offsites Engineered for ROI.</em>
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-2xl mx-auto">
+        Seamless corporate group flight bookings, convention center setups, private yacht galas, and GST-compliant invoicing for groups of 15 to 500+ delegates.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#mice-inquiry" class="bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold px-8 py-4 rounded-xl text-sm transition-all shadow-xl">
+          Request Corporate RFP / Proposal
+        </a>
+        <a 
+          href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent('Hi! I am looking for a corporate MICE / team offsite quote.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl text-sm font-medium transition-all flex items-center gap-2"
+        >
+          <span>💬 Corporate Account Manager WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MICE Services Grid -->
+  <section class="py-16 md:py-24 bg-[#F8F8F6]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center text-2xl mb-6">🏢</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Conferences & Meetings</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">High-tech ballroom setups, AV equipment, translation booths, and banquet catering in top convention cities.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center text-2xl mb-6">🏆</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Incentive Trips & Galas</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Reward top performers with desert safari galas, private beach resort takeovers, and award night setups.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center text-2xl mb-6">📜</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Corporate GST Invoicing</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Complete corporate compliance, transparent pricing structures, and itemized GST tax invoices for company audits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

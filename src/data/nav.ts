@@ -16,10 +16,11 @@ export const NAV_LINKS: NavItem[] = [
     children: [
       { label: "Domestic", href: "/packages?region=domestic" },
       { label: "International", href: "/packages?region=international" },
+      { label: "💍 Proposal & Yacht Dates", href: "/proposal-trips-and-yacht-dates" },
+      { label: "💖 Honeymoon from Bengaluru", href: "/honeymoon-packages-from-bengaluru" },
+      { label: "💼 Corporate MICE & Offsites", href: "/corporate-mice-and-team-offsites" },
       { label: "Luxury", href: "/packages?style=luxury" },
-      { label: "Adventure", href: "/packages?style=adventure" },
       { label: "Honeymoon", href: "/packages?style=honeymoon" },
-      { label: "Family", href: "/packages?style=family" },
       { label: "Corporate", href: "/packages?style=corporate" },
       { label: "Solo", href: "/packages?style=solo" },
     ],

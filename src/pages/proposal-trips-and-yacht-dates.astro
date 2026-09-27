@@ -1,0 +1,157 @@
+---
+// pages/proposal-trips-and-yacht-dates.astro — Niche SEO Landing Page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+import { PACKAGES } from '../data/packages';
+
+const romanticPackages = PACKAGES.filter((p) => 
+  p.slug.includes('dubai') || p.slug.includes('bali') || p.slug.includes('maldives') || p.slug.includes('switzerland') || p.slug.includes('france')
+).slice(0, 4);
+
+const canonicalUrl = `${SITE.url}/proposal-trips-and-yacht-dates`;
+
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
+    { "@type": "ListItem", "position": 2, "name": "Proposal Trips & Yacht Dates", "item": canonicalUrl },
+  ]
+};
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${canonicalUrl}#service`,
+  "name": "Luxury Proposal Trips & Private Yacht Charters",
+  "serviceType": "Bespoke Romantic Concierge & Proposal Planning",
+  "provider": {
+    "@type": "TravelAgency",
+    "name": SITE.company.brandName,
+    "url": SITE.url
+  },
+  "areaServed": ["Dubai", "Bali", "Maldives", "Switzerland", "France", "India"],
+  "description": "Turnkey proposal trip planning including private sunset yacht charters in Dubai, secret drone videography, floral arches, red carpet entry, and luxury stays."
+};
+---
+
+<BaseLayout
+  title={`Proposal Trips & Yacht Dates | Dubai, Bali & Maldives Concierge | ${SITE.name}`}
+  description="Plan an unforgettable proposal trip or romantic yacht date. Turnkey proposal arrangements in Dubai, Bali, & Maldives with private yachts, secret videography, and luxury stays."
+  canonicalUrl={canonicalUrl}
+  structuredData={[breadcrumb, serviceSchema]}
+>
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-20 bg-gradient-to-b from-[#0A1626] via-[#10253F] to-[#0D1B2D] text-white overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#C6A34E]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#00277C]/30 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="container-site relative z-10 text-center max-w-4xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C6A34E]/20 text-[#E5C378] text-xs font-bold uppercase tracking-widest mb-6 border border-[#C6A34E]/30">
+        <span class="w-2 h-2 rounded-full bg-[#E5C378] animate-pulse"></span>
+        Signature Luxury Romance Specialty
+      </span>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+        Book Your Proposal Trips Today<br/>
+        <em class="not-italic text-[#E5C378]">Or Your Date on the Yacht.</em>
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-xl font-light leading-relaxed mb-8 max-w-2xl mx-auto">
+        From private sunset yacht charters along the Dubai skyline to candlelit beach setups in Bali and alpine peaks in Switzerland — we turn your proposal into a cinematic, lifelong memory.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#quote-form" class="bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold px-8 py-4 rounded-xl text-sm transition-all shadow-xl">
+          Request Custom Proposal Quote
+        </a>
+        <a 
+          href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent('Hi! I would like a custom proposal trip quote for Dubai / Yacht Date.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl text-sm font-medium transition-all flex items-center gap-2"
+        >
+          <span>💬 WhatsApp Instant Quick-Quote</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Res Poster Showcase -->
+  <section class="py-12 bg-slate-950">
+    <div class="container-site max-w-5xl mx-auto">
+      <div class="relative rounded-3xl overflow-hidden border-2 border-[#C6A34E]/40 shadow-2xl">
+        <img 
+          src="/images/proposal-trips-poster.webp" 
+          alt="Book Your Proposal Trips Today - Or Your Date on the Yacht" 
+          class="w-full h-auto object-cover"
+          loading="eager"
+          width="1672"
+          height="941"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- What Is Included Grid -->
+  <section class="py-16 md:py-24 bg-[#F8F8F6]">
+    <div class="container-site">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-bold text-[#C6A34E] tracking-widest block mb-2">Turnkey Experience</span>
+        <h2 class="text-3xl sm:text-4xl font-serif text-slate-900 font-bold">What We Handle For You</h2>
+        <p class="text-slate-600 mt-3 text-sm">Every detail is secret, seamless, and executed with 5-star precision.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-[#C6A34E]/10 flex items-center justify-center text-2xl mb-6">🛥️</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Private Yacht Charter</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">2-hour to half-day luxury yacht charter with private captain, butler, red carpet entry, and chilled champagne.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-[#C6A34E]/10 flex items-center justify-center text-2xl mb-6">📸</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Secret Photo & Drone Crew</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Discrete professional photographers capturing the candid "YES" moment plus 4K cinematic drone video clips.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-[#C6A34E]/10 flex items-center justify-center text-2xl mb-6">🌹</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Floral & Candle Styling</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Custom "MARRY ME" light-up letters, 500+ fresh rose petal decor, candlelit pathways, and live acoustic music.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section id="quote-form" class="py-16 bg-[#10253F] text-white">
+    <div class="container-site max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-serif font-bold text-white mb-4">Start Planning Your Proposal</h2>
+      <p class="text-slate-300 text-sm mb-8">Tell us your preferred destination (Dubai, Bali, Maldives, Paris) and dates. Our romance specialist will contact you within 4 hours.</p>
+      
+      <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 text-left">
+        <form class="space-y-4" action="/contact" method="GET">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Your Name</label>
+              <input type="text" required placeholder="John Doe" class="w-full p-3 bg-white/10 border border-white/20 rounded-xl text-white text-sm focus:outline-none focus:border-[#C6A34E]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Number</label>
+              <input type="tel" required placeholder="+91 98765 43210" class="w-full p-3 bg-white/10 border border-white/20 rounded-xl text-white text-sm focus:outline-none focus:border-[#C6A34E]" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Preferred Destination & Date</label>
+            <input type="text" placeholder="e.g. Dubai Yacht Sunset - Nov 2026" class="w-full p-3 bg-white/10 border border-white/20 rounded-xl text-white text-sm focus:outline-none focus:border-[#C6A34E]" />
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold rounded-xl text-sm transition-all shadow-md uppercase tracking-wider">
+            Submit Proposal Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

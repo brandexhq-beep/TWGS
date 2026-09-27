@@ -1,0 +1,73 @@
+---
+// src/components/sections/ProposalTripsSection.astro
+// Luxury Proposal Trips & Yacht Date Showcase Section
+---
+
+<section class="py-14 lg:py-20 bg-gradient-to-b from-[#0A1626] via-[#10253F] to-[#0D1B2D] text-white relative overflow-hidden" aria-label="Proposal Trips and Luxury Romantic Experiences">
+  <!-- Subtle ambient glow background effects -->
+  <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#C6A34E]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-10 w-[500px] h-[500px] bg-[#00277C]/25 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container-site relative z-10">
+    
+    <!-- Section Header Badge & Title -->
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#C6A34E]/15 border border-[#C6A34E]/30 text-[#E5C378] text-xs font-bold uppercase tracking-widest mb-4">
+        <span class="w-2 h-2 rounded-full bg-[#E5C378] animate-pulse"></span>
+        Exclusive Specialty
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-white font-normal leading-tight">
+        Book Your Proposal Trips Today<br/>
+        <em class="not-italic text-[#E5C378]">Or Your Date on the Yacht.</em>
+      </h2>
+    </div>
+
+    <!-- Full 16:9 Poster Display Card -->
+    <div class="relative group max-w-5xl mx-auto rounded-3xl overflow-hidden border-2 border-[#C6A34E]/50 shadow-2xl bg-black mb-12">
+      <!-- Ambient Glow Behind Image -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-[#C6A34E]/30 via-transparent to-[#00277C]/30 blur-lg opacity-50 group-hover:opacity-100 transition duration-700"></div>
+
+      <!-- The Full Uncropped Poster -->
+      <img 
+        src="/images/proposal-trips-poster.webp" 
+        alt="Book Your Proposal Trips Today - Or Your Date On The Yacht | The Man Wanders Globe" 
+        class="w-full h-auto object-contain relative z-10 rounded-3xl"
+        loading="lazy"
+        width="1672"
+        height="941"
+      />
+    </div>
+
+    <!-- Details Grid Below Poster -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="w-10 h-10 rounded-xl bg-[#C6A34E]/20 text-[#E5C378] flex items-center justify-center text-xl mb-3">🛥️</div>
+        <h3 class="text-base font-bold text-white mb-2">Private Sunset Yacht Charters</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">Experience Dubai, Bali, or Mediterranean coastlines aboard luxury private yachts with butler service and champagne toasts.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="w-10 h-10 rounded-xl bg-[#C6A34E]/20 text-[#E5C378] flex items-center justify-center text-xl mb-3">💍</div>
+        <h3 class="text-base font-bold text-white mb-2">Bespoke Proposal Concierge</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">Turnkey setup including secret drone videography, floral arrangements, red carpet entry, and custom music.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-[#C6A34E]/20 text-[#E5C378] flex items-center justify-center text-xl mb-3">✨</div>
+          <h3 class="text-base font-bold text-white mb-2">Plan Your Moment</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">Let our luxury romance specialists design a tailor-made proposal package within 24 hours.</p>
+        </div>
+        <a 
+          href="#plan-my-trip" 
+          class="w-full text-center bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-md flex items-center justify-center gap-2"
+        >
+          <span>Request Proposal Consultation</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+

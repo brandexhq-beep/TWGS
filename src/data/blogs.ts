@@ -540,6 +540,124 @@ export const BLOGS: BlogPost[] = [
     ],
     relatedPackagesSlugs: ["dubai-5d4n", "thailand-5d4n", "singapore-5d4n"],
     relatedDestinationsSlugs: ["dubai", "thailand", "singapore"]
+  },
+  {
+    slug: "5-day-dubai-yacht-proposal-honeymoon-cost-guide",
+    title: "5-Day Dubai Yacht Proposal & Honeymoon Cost Breakdown from India (2026/2027)",
+    subtitle: "Complete budget guide covering flights from India, 5-star hotel options, luxury yacht charter rates, and secret proposal setup fees.",
+    summary: "Planning a luxury proposal or honeymoon in Dubai? Discover the exact itemized cost breakdown for flights, 5-star Marina hotels, private sunset yacht charters, desert safari galas, and proposal setup services.",
+    heroImage: "/images/blog/corporate-mice-travel.webp",
+    publishedDate: "2026-09-22T10:00:00+05:30",
+    modifiedDate: "2026-09-27T15:00:00+05:30",
+    readingTime: "8 min read",
+    category: "Luxury Travel",
+    tags: ["Dubai Proposal Cost", "Yacht Date Dubai", "Dubai Honeymoon Budget", "Dubai Packages from India", "Luxury Travel"],
+    author: PAVAN_AUTHOR,
+    keyTakeaways: [
+      "A 5-Day Dubai luxury proposal trip for a couple ranges between ₹1,80,000 to ₹3,50,000 depending on hotel category and yacht size.",
+      "Private sunset yacht charters in Dubai Marina start from ₹18,000 ($220) for 2 hours including soft drinks & captain.",
+      "Turnkey proposal setups (floral arches, MARRY ME letters, secret drone photographer) average ₹25,000 to ₹45,000.",
+      "Direct flights from Mumbai, Delhi, and Bengaluru average ₹22,000 to ₹35,000 return per person."
+    ],
+    content: [
+      {
+        heading: "1. Realistic Itemized Cost Breakdown for a Dubai Proposal Trip",
+        bodyHtml: `<p>To help Indian couples plan accurately, here is a transparent breakdown for a 5-Day / 4-Night luxury Dubai proposal holiday:</p>
+        <ul>
+          <li><strong>Return Airfare (Non-stop from Metros):</strong> ₹22,000 – ₹38,000 per person.</li>
+          <li><strong>4-Star / 5-Star Dubai Marina or Palm Hotel (4 Nights):</strong> ₹45,000 – ₹90,000 per couple.</li>
+          <li><strong>Private Sunset Yacht Charter (2 Hours):</strong> ₹18,000 – ₹35,000.</li>
+          <li><strong>Turnkey Proposal Decor & Photographer:</strong> ₹25,000 – ₹45,000.</li>
+          <li><strong>Sightseeing, Visa & Transfers:</strong> ₹25,000 per couple.</li>
+        </ul>`
+      },
+      {
+        heading: "2. Best Sunset Yacht Charter Routes in Dubai",
+        bodyHtml: `<p>The most iconic yacht route departs from <strong>Dubai Marina Lagoon</strong>, passes under the Ain Dubai wheel on Bluewaters Island, sails past JBR beach, and anchors right in front of the Atlantis The Palm or Burj Al Arab for the proposal moment at golden hour.</p>`
+      }
+    ],
+    faqs: [
+      {
+        question: "How far in advance should I book a private yacht proposal in Dubai?",
+        answer: "We recommend booking at least 3 to 4 weeks in advance to secure prime sunset time slots (5:00 PM to 7:00 PM) on weekends."
+      },
+      {
+        question: "Is alcohol allowed on private yachts in Dubai?",
+        answer: "Yes, licensed private charter yachts permit guests to bring onboard champagne or wine for celebration toasts."
+      }
+    ],
+    relatedPackagesSlugs: ["dubai-5d4n"],
+    relatedDestinationsSlugs: ["dubai"]
+  },
+  {
+    slug: "vietnam-vs-bali-for-indian-honeymooners-comparison",
+    title: "Vietnam vs Bali for Indian Honeymooners: Complete 2026 Comparison, Costs & Vibe",
+    subtitle: "Which Southeast Asian destination is right for your romantic getaway? We compare costs, food, beaches, and night life.",
+    summary: "Deciding between Vietnam and Bali for your honeymoon? We compare flights from India, visa policies, private pool villa costs, street food vs fine dining, and overall romantic vibes.",
+    heroImage: "/images/blog/vietnam-travel-guide.webp",
+    publishedDate: "2026-09-24T11:00:00+05:30",
+    modifiedDate: "2026-09-27T15:30:00+05:30",
+    readingTime: "9 min read",
+    category: "Honeymoon Guides",
+    tags: ["Vietnam vs Bali", "Honeymoon Comparison", "Bali Honeymoon", "Vietnam Packages", "Romantic Vacations"],
+    author: CHANDAN_AUTHOR,
+    keyTakeaways: [
+      "Bali offers superior private pool villa resorts, beach clubs, and serene island relaxation in Ubud and Seminyak.",
+      "Vietnam offers richer cultural diversity, dramatic Halong Bay overnight cruises, lantern towns, and lower overall daily expenses.",
+      "Both countries feature simple e-Visas for Indian passport holders approved within 3-4 days.",
+      "Indian vegetarian and South Indian food options are abundant in both Bali (Ubud/Kuta) and Vietnam (Hanoi/Da Nang)."
+    ],
+    content: [
+      {
+        heading: "Head-to-Head Comparison: Bali vs Vietnam",
+        bodyHtml: `<p>Both Bali and Vietnam represent top-tier choices for Indian couples, but cater to slightly different travel styles:</p>
+        <ul>
+          <li><strong>Choose Bali if:</strong> You want luxury private pool villas, floating breakfasts, beach club sunsets, spa treatments, and laid-back tropical relaxation.</li>
+          <li><strong>Choose Vietnam if:</strong> You love scenic mountain karsts, UNESCO heritage ancient towns, cruise sailing, bustling markets, and diverse sightseeing.</li>
+        </ul>`
+      }
+    ],
+    faqs: [
+      {
+        question: "Which is cheaper from India: Bali or Vietnam?",
+        answer: "Vietnam is generally 15% to 25% cheaper for dining, shopping, and local transport, though luxury hotel prices in both destinations offer incredible value compared to Europe."
+      }
+    ],
+    relatedPackagesSlugs: ["bali-5d4n", "vietnam-7d6n"],
+    relatedDestinationsSlugs: ["bali", "vietnam"]
+  },
+  {
+    slug: "switzerland-7-day-budget-eurail-pass-guide-indian-families",
+    title: "Switzerland 7-Day Budget & Eurail Pass Guide for Indian Families (2026/2027)",
+    subtitle: "How to navigate Swiss trains, mountain peaks, and family discounts without overspending.",
+    summary: "Planning a dream Swiss holiday for your family? Learn how the Swiss Travel Pass works, how children under 16 travel free, best mountain excursion tickets (Jungfraujoch & Titlis), and Indian food availability.",
+    heroImage: "/images/blog/brand-experience-travel.webp",
+    publishedDate: "2026-09-26T14:00:00+05:30",
+    modifiedDate: "2026-09-27T15:45:00+05:30",
+    readingTime: "10 min read",
+    category: "Europe Travel",
+    tags: ["Switzerland Tour Packages", "Swiss Travel Pass", "Switzerland Budget", "Europe Family Trips", "Jungfraujoch"],
+    author: CHANDAN_AUTHOR,
+    keyTakeaways: [
+      "The Swiss Travel Pass offers unlimited train, bus, and boat rides plus free access to 500+ museums.",
+      "Children under 16 years travel 100% free across Switzerland when accompanying parents with a Swiss Family Card.",
+      "Staying in central hubs like Interlaken or Lucerne allows easy day trips to Grindelwald, Lauterbrunnen, and Zermatt.",
+      "Authentic Indian vegetarian & Jain dining options are readily available in Lucerne, Interlaken, and Zurich."
+    ],
+    content: [
+      {
+        heading: "1. The Magic of the Swiss Travel Pass for Indian Families",
+        bodyHtml: `<p>Switzerland boasts the world's most efficient public transport network. With a Swiss Travel Pass, you never need to buy individual point-to-point train tickets. Simply board any train, lake steamer boat, or city bus!</p>`
+      }
+    ],
+    faqs: [
+      {
+        question: "Do children travel free on Swiss mountain cable cars?",
+        answer: "Yes, with the complimentary Swiss Family Card issued with your parents' Swiss Travel Pass, children under 16 travel free even on major mountain railways like Mount Rigi and Mount Pilatus."
+      }
+    ],
+    relatedPackagesSlugs: ["switzerland-6d5n"],
+    relatedDestinationsSlugs: ["europe"]
   }
 ];
 
