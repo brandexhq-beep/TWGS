@@ -12,6 +12,7 @@
   <!-- Image crossfade stack -->
   <div class="hero-images absolute inset-0" aria-hidden="true">
     {[
+      { src: '/images/proposal-trips-banner.webp', alt: 'Book Your Proposal Trips & Yacht Dates in Dubai' },
       { src: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1920&q=85&fm=webp', alt: 'Iceland northern lights and glaciers' },
       { src: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=85&fm=webp', alt: 'South Africa wildlife safari' },
       { src: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=1920&q=85&fm=webp', alt: 'Vietnam scenic landscape' },
@@ -68,15 +69,21 @@
         so all you do is arrive, explore and remember.
       </p>
 
-      <!-- Upcoming Group Trips Callout -->
-      <div class="mb-10 p-4 border border-white/20 bg-white/5 backdrop-blur-md rounded-xl max-w-lg gsap-blur-hidden hero-text-el flex items-start gap-3">
-        <span class="text-xl leading-none pt-1" style="color: #C6A34E;">✦</span>
-        <div>
-          <p class="text-[10px] text-white/60 uppercase tracking-widest font-bold mb-1.5">Upcoming Group Trips</p>
-          <p class="text-sm text-white/90">
-            Sep: <strong class="text-white">Iceland</strong> &nbsp;|&nbsp; 
-            Nov: <strong class="text-white">South Africa Safari</strong> &nbsp;|&nbsp; 
-            Dec: <strong class="text-white">Vietnam</strong>
+      <!-- Proposal Trips & Upcoming Group Trips Callout -->
+      <div class="mb-10 p-4 border border-[#C6A34E]/40 bg-black/40 backdrop-blur-md rounded-2xl max-w-xl gsap-blur-hidden hero-text-el flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-2xl">
+        <a href="#plan-my-trip" class="shrink-0 group block overflow-hidden rounded-xl border border-[#C6A34E]/50">
+          <img src="/images/proposal-trips-poster.webp" alt="Book Your Proposal Trips Today" class="w-16 h-24 object-cover group-hover:scale-105 transition-transform" />
+        </a>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs uppercase tracking-widest font-bold text-[#E5C378]">✨ Exclusive Romantic Experience</span>
+            <span class="bg-[#C6A34E]/20 text-[#E5C378] text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-[#C6A34E]/30">NOW LIVE</span>
+          </div>
+          <p class="text-sm text-white font-semibold mb-1">
+            Book Your Proposal Trips & Yacht Dates 💍✨
+          </p>
+          <p class="text-xs text-white/80">
+            Tailor-made luxury proposals, private sunset yacht charters in Dubai & romantic getaways.
           </p>
         </div>
       </div>
@@ -84,7 +91,7 @@
       <!-- CTAs -->
       <div class="flex flex-wrap gap-4 gsap-blur-hidden hero-text-el" id="hero-ctas">
         <a href="#plan-my-trip" class="btn btn-primary">
-          <span>Plan My Trip</span>
+          <span>Book Proposal / Plan Trip</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
