@@ -456,6 +456,14 @@ export function getBlogPostingSchema(blog: any, canonicalUrl: string) {
     },
     "keywords": blog.tags ? blog.tags.join(', ') : "Travel guide, holiday packages, tours from India",
     "articleSection": blog.category || "Travel Guides",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        "h1",
+        "[aria-label='Key Takeaways']"
+      ]
+    },
+    ...(blog.readingTime ? { "timeRequired": `PT${parseInt(blog.readingTime) || 8}M` } : {}),
   };
 }
 

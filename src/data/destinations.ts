@@ -372,6 +372,23 @@ export const DESTINATIONS: Destination[] = [
     budget: { from: 64999, to: 120000 },
     highlights: ["Victoria Peak", "Disneyland", "Macau Casinos", "Cotai Strip"],
     featured: true,
+  },
+  {
+    id: "dest-vn",
+    slug: "vietnam",
+    name: "Vietnam",
+    country: "Vietnam",
+    packageCountry: "Vietnam",
+    region: "international",
+    tagline: "Halong Bay, Golden Bridge & Ancient Lantern Towns",
+    description: "From the emerald waters and limestone karsts of Halong Bay to the lantern-lit riverside streets of Hoi An and the vibrant French-colonial boulevards of Hanoi and Ho Chi Minh City, Vietnam is one of Southeast Asia's most captivating destinations for Indian travellers. Discover the iconic Golden Bridge held by colossal stone hands in Ba Na Hills, cruise through floating villages on luxury junks, and savor exceptional coffee and vegetarian-friendly culinary delights. Enjoy seamless 3-day online e-Visa approvals, direct flights from Bangalore, Mumbai, and Delhi, and dedicated on-ground Indian itinerary management with 24/7 WhatsApp concierge.",
+    heroImage: "/images/blog/vietnam-travel-guide.webp",
+    travelTypes: ["honeymoon", "family", "luxury", "adventure"],
+    seasons: ["winter", "spring", "autumn"],
+    duration: { min: 6, max: 10 },
+    budget: { from: 39999, to: 85000 },
+    highlights: ["Halong Bay Overnight Cruise", "Ba Na Hills Golden Bridge", "Hoi An Ancient Lantern Town", "Hanoi Old Quarter & Train Street", "Cu Chi Tunnels"],
+    featured: true,
   }
 ];
 

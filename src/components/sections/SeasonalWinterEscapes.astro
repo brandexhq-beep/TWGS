@@ -1,0 +1,225 @@
+---
+// SeasonalWinterEscapes.astro — Winter 2026/2027 Seasonal Travel Highlights (November to February)
+import SectionHeader from '../ui/SectionHeader.astro';
+import { SITE } from '../../data/site';
+
+const WINTER_FEATURED = [
+  {
+    title: "Jammu & Kashmir — Gulmarg Snow & Heated Houseboats",
+    badge: "❄️ Peak Snow & Skiing",
+    tagline: "Gulmarg Gondola to Apharwat (13,780 ft), Pahalgam pine valleys, and Dal Lake heated houseboats with traditional Bukhari.",
+    duration: "5 Nights / 6 Days",
+    price: "₹29,999",
+    heroImage: "/images/blog/kashmir-winter-snow-gulmarg.webp",
+    link: "/packages/kashmir-paradise",
+    guideLink: "/blog/kashmir-winter-trip-gulmarg-snowfall-guide",
+    perks: ["4x4 Tangmarg Snow Chains", "Heated Houseboat with Bukhari", "Dal Lake Sunset Shikara", "Dedicated Local Concierge"]
+  },
+  {
+    title: "Vietnam Explorer — Hanoi, Halong Cruise & Golden Bridge",
+    badge: "☀️ Pleasant 24°C Winter Sun",
+    tagline: "Overnight luxury 5-star Halong Bay cruise, Ba Na Hills giant stone hands bridge, and lantern-lit ancient Hoi An.",
+    duration: "6 Nights / 7 Days",
+    price: "₹39,999",
+    heroImage: "/images/blog/vietnam-travel-guide.webp",
+    link: "/packages/vietnam-7d6n-explorer",
+    guideLink: "/blog/vietnam-itinerary-from-india-7-days-cost-guide",
+    perks: ["5★ Overnight Halong Cruise", "Ba Na Hills Cable Car Included", "Cam Thanh Basket Boats", "3-Day Fast e-Visa Support"]
+  },
+  {
+    title: "Iceland Fire & Ice — Chasing Northern Lights",
+    badge: "🌌 Prime Aurora Borealis Season",
+    tagline: "Golden Circle waterfalls, geothermal Blue Lagoon, black sand beaches, and midnight guided Aurora Borealis hunts.",
+    duration: "5 Nights / 6 Days",
+    price: "₹1,49,999",
+    heroImage: "/images/iceland-fire-ice.webp",
+    link: "/packages/iceland-6d5n",
+    guideLink: "/destinations/europe",
+    perks: ["Guided Aurora Night Hunts", "Blue Lagoon Comfort Entrance", "South Coast Glacier Lagoons", "Schengen Visa Assistance"]
+  },
+  {
+    title: "Bali — Island of the Gods Winter Romance",
+    badge: "💍 Winter Honeymoon Special",
+    tagline: "Private pool villas in Ubud, cliffside Uluwatu temple sunsets, beach clubs in Seminyak, and romantic couple spa therapies.",
+    duration: "4 Nights / 5 Days",
+    price: "₹32,999",
+    heroImage: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80&fm=webp",
+    link: "/packages/bali-5d4n",
+    guideLink: "/blog/best-winter-honeymoon-destinations-from-india",
+    perks: ["Private Pool Villa Included", "Candlelight Beach Dinner", "Instant Online e-VOA", "Airport VIP Fast-Track"]
+  },
+  {
+    title: "Grand Europe Tour — 15 Days & 5 Countries",
+    badge: "🏰 Christmas Markets & Alpine Snow",
+    tagline: "Paris Eiffel Tower, Swiss Alps Mount Titlis revolving cable car, Venice gondolas, Florence, Rome & Innsbruck with Indian meals.",
+    duration: "14 Nights / 15 Days",
+    price: "₹2,29,999",
+    heroImage: "/images/blog/europe-15-days-grand-tour.webp",
+    link: "/packages/europe-15-days-grand-tour",
+    guideLink: "/blog/europe-tour-packages-india-15-days-cost-itinerary",
+    perks: ["Daily Hot Indian Dinners", "Titlis Rotair Cable Car", "High-Speed TGV Rail Pass", "Full Schengen Concierge"]
+  },
+  {
+    title: "Dubai Oasis & Luxury Private Yacht Romance",
+    badge: "🎆 Festive New Year Celebration",
+    tagline: "Burj Khalifa 124th floor, red sand dune desert safari with BBQ dinner, Dubai Marina private yacht cruise, and Abu Dhabi grand mosque.",
+    duration: "4 Nights / 5 Days",
+    price: "₹44,999",
+    heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80&fm=webp",
+    link: "/packages/dubai-5d4n",
+    guideLink: "/proposal-trips-and-yacht-dates",
+    perks: ["Private Marina Yacht Cruise", "Desert Safari 4x4 Dune Bashing", "Burj Khalifa Fast Entry", "48-Hour e-Visa Processing"]
+  }
+];
+---
+
+<section class="section-padding bg-gradient-to-b from-slate-900 via-[#0B1B32] to-slate-900 text-white relative overflow-hidden" aria-label="Winter 2026/2027 Seasonal Travel Escapes">
+  <!-- Decorative Background Glows -->
+  <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#00277C]/40 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-[#C6A34E]/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container-site relative z-10">
+    
+    <!-- Header Block -->
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
+      <SectionHeader
+        eyebrow="Curated Seasonal Collection • November 2026 – February 2027"
+        headline="Winter Escapes: <em>Snow Peaks, Northern Lights & Tropical Sun.</em>"
+        subhead="Escape winter chills or chase powdery snow. Discover our handpicked domestic and international seasonal holidays with end-to-end flight, visa, and hotel handling."
+        light={true}
+      />
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <a href="/packages" class="btn btn-primary bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg">
+          Explore All Packages
+        </a>
+        <a
+          href={`https://wa.me/${SITE.contact.whatsapp}?text=${encodeURIComponent("Hello! I am planning a winter holiday for this November/December. Please share the best seasonal options and custom quotes.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-white/30 text-white hover:bg-white/10 px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold flex items-center gap-2 transition-all"
+        >
+          <span>💬</span> WhatsApp Winter Desk
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Seasonal Filter Badges / Navigation Strip -->
+    <div class="flex flex-wrap gap-2.5 mb-10 pb-4 border-b border-white/10 text-xs font-semibold">
+      <span class="px-3.5 py-1.5 rounded-full bg-[#C6A34E] text-slate-950 shadow-sm">All Winter Escapes</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 transition-colors">❄️ Snow & Skiing (Kashmir & Swiss)</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 transition-colors">🌌 Northern Lights (Iceland & Norway)</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 transition-colors">☀️ Tropical Winter Sun (Vietnam, Bali, Thailand)</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 transition-colors">💍 Winter Wedding Honeymoon Specials</span>
+    </div>
+
+    <!-- 6-Card Grid of Seasonal Escapes -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {WINTER_FEATURED.map((item) => (
+        <article class="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/15 hover:border-[#C6A34E]/60 transition-all duration-300 flex flex-col group shadow-xl hover:shadow-2xl hover:-translate-y-1">
+          
+          <!-- Image Container with Stretched Link -->
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-800">
+            <img
+              src={item.heroImage}
+              alt={item.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+              width="600"
+              height="375"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            
+            <!-- Badges -->
+            <span class="absolute top-3 left-3 bg-[#00277C]/90 backdrop-blur-md text-[#E5C378] text-xs font-bold px-3 py-1 rounded-full border border-[#C6A34E]/40 shadow-sm">
+              {item.badge}
+            </span>
+            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded-full">
+              {item.duration}
+            </span>
+
+            <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+              <div>
+                <span class="text-xs text-slate-300 block">Starting From</span>
+                <span class="text-xl font-bold text-white tracking-tight">{item.price} <span class="text-xs font-normal text-slate-300">/ person</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white group-hover:text-[#E5C378] transition-colors leading-snug mb-2 font-serif">
+                <a href={item.link} class="hover:underline">
+                  {item.title}
+                </a>
+              </h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-4 line-clamp-2">
+                {item.tagline}
+              </p>
+
+              <!-- Curated Winter Perks -->
+              <div class="space-y-1.5 mb-6 text-xs text-slate-300/90 pt-3 border-t border-white/10">
+                {item.perks.map((perk) => (
+                  <div class="flex items-center gap-2">
+                    <span class="text-[#C6A34E] text-xs font-bold">✓</span>
+                    <span class="truncate">{perk}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-3 mt-auto">
+              {item.guideLink && (
+                <a
+                  href={item.guideLink}
+                  class="text-xs text-[#E5C378] hover:text-white transition-colors flex items-center gap-1 font-medium"
+                >
+                  Read Guide →
+                </a>
+              )}
+              <a
+                href={item.link}
+                class="bg-[#C6A34E] hover:bg-[#B3913E] text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-md ml-auto"
+                aria-label={`View package for ${item.title}`}
+              >
+                View Itinerary
+              </a>
+            </div>
+
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Seasonal Trust & Concierge Callout Strip -->
+    <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#C6A34E]/20 text-[#E5C378] flex items-center justify-center text-2xl shrink-0">
+          ❄️
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-white">Need a Tailor-Made November/December Holiday?</h4>
+          <p class="text-xs text-slate-300 max-w-xl">
+            Whether you need connecting rooms for family, pure Jain/vegetarian dining across Europe, or a private yacht sunset celebration in Dubai, our travel architects craft every detail within 24 hours.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="/#plan-my-trip"
+          class="bg-[#00277C] hover:bg-[#001D5C] text-white font-semibold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider border border-white/20 transition-all shadow-sm"
+        >
+          Plan My Custom Trip
+        </a>
+        <a
+          href={`tel:${SITE.contact.phone.replace(/\\s+/g, '')}`}
+          class="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all"
+        >
+          Call Our Desk
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

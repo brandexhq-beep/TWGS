@@ -854,11 +854,291 @@ export const PACKAGES: Package[] = [
       { day: 3, title: "Kedarnath → Badrinath", description: "Morning helicopter transfer to Badrinath. Hotel check-in. Badrinath Dham Darshan. Visit Mana Village / nearby attractions, subject to time.", highlights: ["Badrinath Darshan"], meals: ["breakfast", "dinner"], stay: "Badrinath" },
       { day: 4, title: "Badrinath → Dehradun", description: "Breakfast at hotel. Final darshan, subject to schedule. Helicopter transfer to Dehradun. Tour concludes.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
     ]
+  },
+  {
+    id: "pkg-vietnam-7d6n",
+    slug: "vietnam-7d6n-explorer",
+    name: "Vietnam Explorer — Hanoi, Halong Bay & Da Nang",
+    tagline: "Overnight luxury Halong Bay cruise, Ba Na Hills Golden Bridge, and Hoi An lantern-lit ancient streets.",
+    heroImage: "/images/blog/vietnam-travel-guide.webp",
+    galleryImages: [
+      "/images/blog/vietnam-travel-guide.webp",
+      "https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80&fm=webp",
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80&fm=webp"
+    ],
+    featured: true,
+    category: ["asia", "international", "honeymoon", "family", "vietnam"],
+    destination: "Hanoi, Halong Bay & Da Nang",
+    country: "Vietnam",
+    duration: { days: 7, nights: 6 },
+    priceFrom: 39999,
+    maxGroupSize: 12,
+    highlights: [
+      "Halong Bay 5-star Overnight Cruise with Kayaking",
+      "Ba Na Hills Cable Car & Iconic Golden Hand Bridge",
+      "Hoi An Ancient Lantern Town & Coconut Forest Basket Boat",
+      "Hanoi French Quarter, Train Street & Water Puppet Show",
+      "Dedicated Indian food dining options & e-Visa concierge"
+    ],
+    includes: [
+      "6 nights boutique 4-star accommodation (including 1 night on 5★ Halong Bay Cruise)",
+      "Daily international breakfast + 1 onboard cruise lunch and dinner",
+      "All airport and sightseeing transfers in private air-conditioned vehicle",
+      "Ba Na Hills roundtrip cable car & entrance tickets",
+      "Halong Bay entrance fees and kayaking activities",
+      "Hoi An Cam Thanh basket boat experience",
+      "Full Vietnam e-Visa guidance & documentation review",
+      "24/7 dedicated WhatsApp on-tour concierge"
+    ],
+    excludes: [
+      "International flights (custom quotes available with BLR/BOM/DEL direct connections)",
+      "Vietnam visa government stamping fee ($25 e-Visa)",
+      "Personal expenses, optional water sports, and tips"
+    ],
+    seasons: ["November", "December", "January", "February", "March", "April"],
+    rating: 4.9,
+    reviewCount: 94,
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive in Hanoi — The Heart of Vietnam",
+        description: "Arrival at Noi Bai International Airport (HAN). Private transfer to your hotel in central Hanoi. In the afternoon, explore the bustling 36 Guilds of the Old Quarter, stroll around peaceful Hoan Kiem Lake, and enjoy famous Vietnamese egg coffee or an evening water puppet performance.",
+        highlights: ["Airport VIP Greeting", "Hanoi Old Quarter Walk", "Hoan Kiem Lake"],
+        meals: ["dinner"],
+        stay: "Hanoi (4-Star Central Hotel)"
+      },
+      {
+        day: 2,
+        title: "Hanoi → Halong Bay Luxury Overnight Cruise",
+        description: "Scenic morning highway drive to Tuan Chau Harbor. Board your 5-star luxury junk cruise. Marvel at thousands of towering limestone karsts emerging from emerald waters. Enjoy a fresh multi-course lunch onboard. Kayak through Luon Cave, hike Ti Top Island for 360° bay views, and stargaze on the sundeck.",
+        highlights: ["Halong Bay UNESCO Wonder", "Ti Top Island Sunset", "Kayaking", "Luxury Cruise Dinner"],
+        meals: ["breakfast", "lunch", "dinner"],
+        stay: "Luxury Halong Bay Cruise (Balcony Cabin)"
+      },
+      {
+        day: 3,
+        title: "Halong Bay Sunrise → Hanoi → Flight to Da Nang",
+        description: "Begin with sunrise Tai Chi on the sundeck and explore Sung Sot (Surprise) Cave. Savor brunch as the vessel navigates back to port. Private transfer to Hanoi Airport for your 1-hour domestic flight to Da Nang. Check into your seaside Da Nang resort and relax on My Khe Beach.",
+        highlights: ["Surprise Cave Exploration", "Scenic Cruise Brunch", "Flight to Da Nang", "My Khe Beach Sunset"],
+        meals: ["breakfast"],
+        stay: "Da Nang Beachside Resort"
+      },
+      {
+        day: 4,
+        title: "Ba Na Hills & The Iconic Golden Bridge",
+        description: "Take the world's longest single-cable car ride ascending the mist-shrouded peaks of Ba Na Hills. Walk across the world-famous Golden Bridge held aloft by colossal weathered stone hands. Explore the French Village, Linh Ung Pagoda, and Fantasy Park attractions before heading down.",
+        highlights: ["Ba Na Hills Cable Car", "Golden Hand Bridge", "French Alpine Village", "Linh Ung Pagoda"],
+        meals: ["breakfast"],
+        stay: "Da Nang Beachside Resort"
+      },
+      {
+        day: 5,
+        title: "Cam Thanh Coconut Forest Basket Boat → Hoi An Lantern Town",
+        description: "Experience the spinning circular bamboo basket boats through the lush water coconut waterways of Cam Thanh. Continue to UNESCO World Heritage Hoi An Ancient Town. Marvel at centuries-old merchant shophouses, Japanese Covered Bridge, and take a magical sunset lantern boat ride on the Thu Bon River.",
+        highlights: ["Bamboo Basket Boat Spin", "Hoi An Ancient Town Walk", "Japanese Covered Bridge", "Floating Lantern Experience"],
+        meals: ["breakfast", "dinner"],
+        stay: "Da Nang / Hoi An Boutique Resort"
+      },
+      {
+        day: 6,
+        title: "Marble Mountains & Da Nang Dragon Bridge",
+        description: "Visit the sacred Marble Mountains (Ngu Hanh Son) featuring ancient Buddhist sanctuaries inside limestone caves. In the evening, witness the famous Dragon Bridge breathe fire and water (weekend spectacle) along the Han River with dinner at an authentic Indian or Vietnamese restaurant.",
+        highlights: ["Marble Mountains Caves", "Dragon Bridge Light Show", "Han River Promenade"],
+        meals: ["breakfast"],
+        stay: "Da Nang Beachside Resort"
+      },
+      {
+        day: 7,
+        title: "Da Nang → Departure Flight to India",
+        description: "Enjoy breakfast overlooking the South China Sea. Leisurely shopping for Vietnamese drip coffee filters, dried fruits, and handicrafts at Han Market. Private airport transfer to Da Nang International Airport (DAD) for your return flight to India.",
+        highlights: ["Han Market Souvenirs", "Airport Drop-off"],
+        meals: ["breakfast"],
+        stay: "N/A (Departure)"
+      }
+    ]
+  },
+  {
+    id: "pkg-europe-15d",
+    slug: "europe-15-days-grand-tour",
+    name: "Grand Europe Tour — 15 Days & 5 Countries with Indian Meals & Eurail",
+    tagline: "Paris, Swiss Alps, Venice gondolas, Florence, Rome & Innsbruck with curated Indian dinners, Eurail scenic pass, and Schengen visa assistance.",
+    heroImage: "/images/blog/europe-tour-packages.webp",
+    galleryImages: [
+      "/images/blog/europe-tour-packages.webp",
+      "/images/switzerland-alpine.webp",
+      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80&fm=webp"
+    ],
+    featured: true,
+    category: ["europe", "international", "family", "luxury"],
+    destination: "France, Switzerland, Italy, Austria & Vatican",
+    country: "Europe",
+    duration: { days: 15, nights: 14 },
+    priceFrom: 229999,
+    maxGroupSize: 18,
+    highlights: [
+      "Eiffel Tower 2nd Level & Seine River Romantic Cruise (Paris)",
+      "Mount Titlis Rotair revolving cable car, Ice Cliff & Glacier Cave (Swiss Alps)",
+      "Lucerne Lake scenic boat ride & Lion Monument",
+      "Venice private water taxi & traditional Venetian Gondola ride",
+      "Florence Piazzale Michelangelo & Leaning Tower of Pisa",
+      "Rome Colosseum, Trevi Fountain & Vatican City St. Peter's Basilica",
+      "Swarovski Crystal Worlds & Innsbruck Golden Roof (Austria)",
+      "Daily Indian dinners (hot vegetarian, Jain & non-veg options throughout)",
+      "Full Schengen visa appointment scheduling and document auditing"
+    ],
+    includes: [
+      "14 nights accommodation in handpicked 4-star hotels across Paris, Engelberg/Lucerne, Innsbruck, Venice, Florence & Rome",
+      "Daily continental buffet breakfast at hotels",
+      "14 curated hot Indian dinners at verified Indian restaurants",
+      "High-speed TGV train tickets (Paris to Basel/Zurich)",
+      "All coach transfers across Switzerland, Austria, and Italy in luxury air-conditioned coaches",
+      "Mt. Titlis cable car tickets + Ice Flyer admission",
+      "Seine River Paris cruise & Eiffel Tower Level 2 guaranteed time slots",
+      "Venice private boat transfers & gondola ride",
+      "Local licensed English-speaking guides in Paris, Florence, Rome, and the Vatican",
+      "Dedicated multi-lingual Tour Manager from India throughout the journey",
+      "Comprehensive travel medical insurance ($100,000 coverage)"
+    ],
+    excludes: [
+      "International flights (custom roundtrip flight quotes provided from BLR, BOM, DEL, MAA)",
+      "Schengen visa embassy application fees and VFS center charges",
+      "City tourist taxes (payable directly at hotel check-out, ~€2–€6 per person/night)",
+      "Personal porterage, room service, and personal expenses"
+    ],
+    seasons: ["April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    rating: 4.95,
+    reviewCount: 142,
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive in Paris, France — City of Light",
+        description: "Arrive at Paris Charles de Gaulle Airport (CDG). Private transfer to your hotel. Meet your dedicated tour manager. In the evening, enjoy a warm welcome Indian dinner followed by an enchanting illuminations drive across Champs-Élysées and Place de la Concorde.",
+        highlights: ["Paris Welcome", "Illuminations Drive", "Indian Welcome Dinner"],
+        meals: ["dinner"],
+        stay: "Paris (4-Star Hotel)"
+      },
+      {
+        day: 2,
+        title: "Eiffel Tower 2nd Level, City Tour & Seine River Cruise",
+        description: "Morning guided tour of Paris covering Arc de Triomphe, Louvre exterior, Opera Garnier, and Notre-Dame. Ascend to the 2nd level of the iconic Eiffel Tower for panoramic city vistas. Later, embark on a scenic Seine River cruise gliding under historic stone bridges.",
+        highlights: ["Eiffel Tower Level 2", "Seine River Cruise", "Arc de Triomphe", "Louvre Photo Stop"],
+        meals: ["breakfast", "dinner"],
+        stay: "Paris (4-Star Hotel)"
+      },
+      {
+        day: 3,
+        title: "Paris at Leisure / Optional Disneyland Day",
+        description: "Enjoy a leisurely day exploring the artistic quarters of Montmartre and Sacré-Cœur, world-class shopping at Galeries Lafayette, or an optional thrilling day excursion to Disneyland Paris. Relish an authentic Indian dinner in the evening.",
+        highlights: ["Montmartre Artists Quarter", "Galeries Lafayette Shopping", "Optional Disneyland Paris"],
+        meals: ["breakfast", "dinner"],
+        stay: "Paris (4-Star Hotel)"
+      },
+      {
+        day: 4,
+        title: "High-Speed TGV Train → Switzerland (Lucerne & Engelberg)",
+        description: "Board the world-famous French TGV high-speed train speeding across the picturesque countryside toward Switzerland. Arrive in Lucerne, check into your alpine valley hotel, and enjoy the pristine fresh air surrounded by snow-capped peaks.",
+        highlights: ["TGV High-Speed Rail Experience", "Scenic Swiss Countryside", "Lucerne Arrival"],
+        meals: ["breakfast", "dinner"],
+        stay: "Engelberg / Lucerne Valley (4-Star Alpine Hotel)"
+      },
+      {
+        day: 5,
+        title: "Mount Titlis Glacier Paradise & Lucerne City Tour",
+        description: "Ascend 10,000 feet aboard the world's first revolving cable car, Titlis Rotair. Experience the breathtaking Cliff Walk suspension bridge, walk through the blue Glacier Cave, and ride the Ice Flyer chairlift over glacial crevices. In the afternoon, visit Lucerne's historic Chapel Bridge and Lion Monument.",
+        highlights: ["Titlis Rotair Cable Car", "Glacier Cave & Cliff Walk", "Chapel Bridge", "Lion Monument"],
+        meals: ["breakfast", "dinner"],
+        stay: "Engelberg / Lucerne Valley (4-Star Alpine Hotel)"
+      },
+      {
+        day: 6,
+        title: "Interlaken Valley, Jungfrau Region & Lake Brienz Cruise",
+        description: "Drive through the emerald valleys between Lake Thun and Lake Brienz. Stroll through the picturesque resort town of Interlaken with majestic views of the Jungfrau trio (Eiger, Mönch, Jungfrau). Enjoy a relaxing lake boat cruise and visit Swiss watch ateliers.",
+        highlights: ["Interlaken Promenade", "Lake Brienz Scenic Views", "Swiss Chocolate & Watch Shopping"],
+        meals: ["breakfast", "dinner"],
+        stay: "Engelberg / Lucerne Valley (4-Star Alpine Hotel)"
+      },
+      {
+        day: 7,
+        title: "Switzerland → Liechtenstein → Innsbruck, Austria",
+        description: "Scenic coach journey passing the tiny Alpine principality of Liechtenstein with a photo stop in capital Vaduz. Continue into the Austrian Tyrol region to Innsbruck. Visit the glittering Swarovski Crystal Worlds in Wattens and explore Innsbruck's Old Town featuring the famous Golden Roof.",
+        highlights: ["Liechtenstein Photo Stop", "Swarovski Crystal Worlds", "Golden Roof Innsbruck", "Tyrol Alpine Scenery"],
+        meals: ["breakfast", "dinner"],
+        stay: "Innsbruck (4-Star Tyrolean Hotel)"
+      },
+      {
+        day: 8,
+        title: "Innsbruck → Venice, Italy — The Floating City",
+        description: "Descend through the magnificent Brenner Pass crossing the Austrian-Italian Alps into the Veneto plains. Arrive at the Venetian lagoon. Board a private motor launch water taxi gliding past palazzos along the Giudecca Canal into the heart of historic Venice.",
+        highlights: ["Brenner Pass Alpine Drive", "Private Venice Water Taxi", "First Views of Venice Lagoon"],
+        meals: ["breakfast", "dinner"],
+        stay: "Venice Mestre / Lagoon (4-Star Hotel)"
+      },
+      {
+        day: 9,
+        title: "St. Mark's Square, Gondola Ride & Murano Glass Demonstration",
+        description: "Walking tour of Venice including St. Mark's Basilica, Doge's Palace exterior, and Bridge of Sighs. Witness master artisans shape molten glass at a traditional Murano glass factory. Board a classic black Venetian Gondola for an unforgettable glide through serene side canals.",
+        highlights: ["St. Mark's Square", "Bridge of Sighs", "Gondola Ride", "Murano Glass Workshop"],
+        meals: ["breakfast", "dinner"],
+        stay: "Venice Mestre / Lagoon (4-Star Hotel)"
+      },
+      {
+        day: 10,
+        title: "Venice → Leaning Tower of Pisa → Florence, Tuscany",
+        description: "Drive south through the fertile plains of Emilia-Romagna toward Tuscany. Stop at the Field of Miracles in Pisa to admire and photograph the world-famous Leaning Tower of Pisa and Pisa Cathedral. Continue into Renaissance capital Florence for a Tuscan sunset.",
+        highlights: ["Leaning Tower of Pisa", "Pisa Baptistery", "Tuscan Countryside Drive"],
+        meals: ["breakfast", "dinner"],
+        stay: "Florence / Tuscany (4-Star Hotel)"
+      },
+      {
+        day: 11,
+        title: "Florence Renaissance Walking Tour → Drive to Rome",
+        description: "Guided walking tour through Florence: Santa Maria del Fiore Duomo, Giotto's Bell Tower, Piazza della Signoria, and Ponte Vecchio bridge over the Arno. Drive up to Piazzale Michelangelo for an iconic panorama of Florence. In the afternoon, coach drive to the Eternal City of Rome.",
+        highlights: ["Florence Duomo", "Ponte Vecchio", "Piazzale Michelangelo View", "Arrival in Rome"],
+        meals: ["breakfast", "dinner"],
+        stay: "Rome (4-Star Central Hotel)"
+      },
+      {
+        day: 12,
+        title: "Vatican City — St. Peter's Basilica & Rome Wonders",
+        description: "Enter Vatican City, the world's smallest sovereign state. Marvel at the sheer grandeur of St. Peter's Basilica and Michelangelo's Pieta. In Rome, toss a coin into the majestic Trevi Fountain to guarantee your return, admire the Pantheon, and stroll through Piazza Navona.",
+        highlights: ["Vatican City State", "St. Peter's Basilica", "Trevi Fountain Coin Toss", "Pantheon"],
+        meals: ["breakfast", "dinner"],
+        stay: "Rome (4-Star Central Hotel)"
+      },
+      {
+        day: 13,
+        title: "Ancient Rome — Colosseum & Roman Forum",
+        description: "Step back into the Roman Empire. Photo tour of the monumental Colosseum, Circus Maximus, Arch of Constantine, and Roman Forum where gladiators and emperors walked. Enjoy the afternoon shopping for Italian leather goods on Via del Corso.",
+        highlights: ["Colosseum Photo Stop", "Roman Forum & Imperial Palaces", "Via del Corso Shopping"],
+        meals: ["breakfast", "dinner"],
+        stay: "Rome (4-Star Central Hotel)"
+      },
+      {
+        day: 14,
+        title: "Rome at Leisure & Grand Farewell Indian Banquet",
+        description: "A free day to savor gelato near Spanish Steps, explore the Villa Borghese gardens, or take an optional excursion to Pompeii. In the evening, gather with fellow travellers for a celebratory farewell Indian banquet with dessert.",
+        highlights: ["Spanish Steps", "Gelato Tasting", "Grand Farewell Banquet"],
+        meals: ["breakfast", "dinner"],
+        stay: "Rome (4-Star Central Hotel)"
+      },
+      {
+        day: 15,
+        title: "Rome Departure → Return Flight to India",
+        description: "Enjoy breakfast at your hotel. Private transfer to Rome Fiumicino Airport (FCO) for your scheduled flight back home to India, filled with memories of 5 European countries, alpine snow, and historic capitals.",
+        highlights: ["Airport Transfer", "Homeward Flight"],
+        meals: ["breakfast"],
+        stay: "N/A (Departure)"
+      }
+    ]
   }
-
 ];
 
 export const PACKAGE_CATEGORIES = [
+  { id: "all", label: "All Packages" },
+  { id: "domestic", label: "🇮🇳 Domestic (India)" },
+  { id: "asia", label: "🌏 Asia" },
+  { id: "vietnam", label: "🇻🇳 Vietnam" },
+  { id: "europe", label: "🇪🇺 Europe" },
   { id: "all", label: "All Packages" },
   { id: "domestic", label: "🇮🇳 Domestic (India)" },
   { id: "asia", label: "🌏 Asia" },

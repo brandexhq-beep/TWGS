@@ -7,9 +7,9 @@ export const SITE = {
   tagline: "Curated Journeys, Handled Entirely",
   description:
     "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
-  url: "https://themanwandersglobetours.com",
+  url: "https://www.themanwandersglobetours.com",
   logo: "/logo.webp",
-  ogImage: "https://themanwandersglobetours.com/logo.webp",
+  ogImage: "https://www.themanwandersglobetours.com/logo.webp",
 
   contact: {
     email: "tours@themanwandersglobetours.com",

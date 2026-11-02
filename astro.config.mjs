@@ -7,7 +7,8 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://themanwandersglobetours.com',
+  site: 'https://www.themanwandersglobetours.com',
+  trailingSlash: 'never',
   integrations: [
     react(),
     sitemap({
@@ -21,7 +22,7 @@ export default defineConfig({
       customPages: [],
       serialize(item) {
         // Boost priority for key commercial and editorial pages
-        if (item.url === 'https://themanwandersglobetours.com/') {
+        if (item.url === 'https://www.themanwandersglobetours.com/' || item.url === 'https://www.themanwandersglobetours.com') {
           item.priority = 1.0;
           item.changefreq = /** @type {any} */ ('weekly');
         } else if (item.url.includes('/packages/') || item.url.includes('/destinations/')) {
