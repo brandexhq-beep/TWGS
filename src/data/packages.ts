@@ -278,8 +278,10 @@ export const PACKAGES: Package[] = [
     tagline: "Experience towering skylines, premium desert safaris, and Arabian hospitality.",
     category: ["international", "luxury", "family", "honeymoon"],
     featured: true,
-    heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80&fm=webp",
+    heroImage: "/images/blog/dubai-winter-new-year-yacht.webp",
     galleryImages: [
+      "/images/blog/dubai-winter-new-year-yacht.webp",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80&fm=webp",
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1200&q=80&fm=webp"
     ],
     destination: "Dubai",
@@ -779,7 +781,10 @@ export const PACKAGES: Package[] = [
     category: ["domestic", "india", "pilgrimage", "family"],
     featured: true,
     heroImage: "/images/ayodhya-kashi.webp",
-    galleryImages: [],
+    galleryImages: [
+      "/images/blog/ayodhya-varanasi-spiritual-tour.webp",
+      "/images/ayodhya-kashi.webp"
+    ],
     destination: "Ayodhya & Kashi",
     country: "India",
     duration: { days: 5, nights: 4 },
@@ -860,11 +865,11 @@ export const PACKAGES: Package[] = [
     slug: "vietnam-7d6n-explorer",
     name: "Vietnam Explorer — Hanoi, Halong Bay & Da Nang",
     tagline: "Overnight luxury Halong Bay cruise, Ba Na Hills Golden Bridge, and Hoi An lantern-lit ancient streets.",
-    heroImage: "/images/blog/vietnam-travel-guide.webp",
+    heroImage: "/images/blog/thailand-vs-bali-vs-vietnam.webp",
     galleryImages: [
+      "/images/blog/thailand-vs-bali-vs-vietnam.webp",
       "/images/blog/vietnam-travel-guide.webp",
-      "https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80&fm=webp",
-      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80&fm=webp"
+      "https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80&fm=webp"
     ],
     featured: true,
     category: ["asia", "international", "honeymoon", "family", "vietnam"],
@@ -965,6 +970,7 @@ export const PACKAGES: Package[] = [
     heroImage: "/images/blog/europe-tour-packages.webp",
     galleryImages: [
       "/images/blog/europe-tour-packages.webp",
+      "/images/blog/senior-citizen-europe-tour.webp",
       "/images/switzerland-alpine.webp",
       "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80&fm=webp"
     ],

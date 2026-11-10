@@ -147,13 +147,17 @@ const relatedDestinations = DESTINATIONS.filter((d) => blog.relatedDestinationsS
       </section>
 
       <!-- Editorial Body Sections -->
-      <div class="prose prose-slate lg:prose-lg max-w-none text-slate-800 leading-relaxed">
+      <div class="article-body max-w-none">
         {blog.content.map((sec) => (
-          <section class="mb-10">
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
-              {sec.heading}
-            </h2>
-            <div class="space-y-4 text-slate-700 leading-relaxed" set:html={sec.bodyHtml} />
+          <section class="mb-12">
+            <h2>{sec.heading}</h2>
+            <div set:html={sec.bodyHtml} />
+            {sec.subsections && sec.subsections.map((sub) => (
+              <div class="mt-8">
+                <h3>{sub.title}</h3>
+                <div set:html={sub.contentHtml} />
+              </div>
+            ))}
           </section>
         ))}
       </div>
