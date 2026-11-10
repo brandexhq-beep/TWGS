@@ -9,16 +9,23 @@ import partytown from '@astrojs/partytown';
 export default defineConfig({
   site: 'https://www.themanwandersglobetours.com',
   trailingSlash: 'never',
+  redirects: {
+    '/gallery': '/destinations',
+    '/packages/south-korea-seoul': '/packages/seoul-6d5n',
+  },
   integrations: [
     react(),
     sitemap({
-      filter: (page) => ![
-        '/privacy-policy/',
-        '/terms/',
-        '/cancellation-policy/',
-        '/refund-policy/',
-        '/404/',
-      ].some((path) => page.endsWith(path)),
+      filter: (page) => {
+        const excluded = [
+          '/privacy-policy',
+          '/terms',
+          '/cancellation-policy',
+          '/refund-policy',
+          '/404',
+        ];
+        return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + '/'));
+      },
       customPages: [],
       serialize(item) {
         // Boost priority for key commercial and editorial pages
@@ -31,10 +38,10 @@ export default defineConfig({
         } else if (item.url.includes('/blog/')) {
           item.priority = 0.85;
           item.changefreq = /** @type {any} */ ('weekly');
-        } else if (item.url.endsWith('/packages/') || item.url.endsWith('/destinations/') || item.url.endsWith('/blog/')) {
+        } else if (item.url.endsWith('/packages') || item.url.endsWith('/destinations') || item.url.endsWith('/blog')) {
           item.priority = 0.85;
           item.changefreq = /** @type {any} */ ('weekly');
-        } else if (item.url.includes('/visa/') || item.url.includes('/bengaluru-travel-agency/')) {
+        } else if (item.url.includes('/visa') || item.url.includes('/bengaluru-travel-agency')) {
           item.priority = 0.8;
           item.changefreq = /** @type {any} */ ('monthly');
         } else {

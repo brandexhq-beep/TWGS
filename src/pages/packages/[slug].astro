@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { PACKAGES } from '../../data/packages';
+import { BLOGS } from '../../data/blogs';
 import { SITE } from '../../data/site';
 import { getPackageSchema } from '../../lib/schema';
 
@@ -36,6 +37,14 @@ const packageSchemas = getPackageSchema(pkg, canonicalUrl);
 const relatedPackages = PACKAGES
   .filter((p) => p.slug !== pkg.slug && p.category.some((c) => pkg.category.includes(c)))
   .slice(0, 3);
+
+// Related editorial guides: explicitly linked or sharing destination/category keywords
+const relatedBlogs = BLOGS.filter((b) => 
+  b.relatedPackagesSlugs?.includes(pkg.slug) ||
+  pkg.category.some((c) => b.category.toLowerCase().includes(c.toLowerCase())) ||
+  b.slug.toLowerCase().includes(pkg.slug.split('-')[0].toLowerCase()) ||
+  b.title.toLowerCase().includes(pkg.country.toLowerCase())
+).slice(0, 3);
 ---
 
 <BaseLayout 
@@ -259,6 +268,57 @@ const relatedPackages = PACKAGES
   </section>
 
   <!-- Related packages -->
+  <!-- Related Editorial Travel Guides -->
+  {relatedBlogs.length > 0 && (
+    <section class="py-14 bg-white border-t border-[var(--color-border)]">
+      <div class="container-site">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-2xl font-serif text-[var(--color-text-primary)]">Travel Guides & Expert Insights</h2>
+            <p class="text-sm text-[var(--color-text-secondary)] mt-1">Read in-depth itineraries, budgeting blueprints, and visa advice for {pkg.destination}</p>
+          </div>
+          <a href="/blog" class="text-xs font-semibold text-[#00277C] hover:text-[#C6A34E] transition-colors flex items-center gap-1">
+            Browse All Guides →
+          </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {relatedBlogs.map((guide) => (
+            <a
+              href={`/blog/${guide.slug}`}
+              class="group rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
+            >
+              <div class="relative h-44 overflow-hidden">
+                <img
+                  src={guide.heroImage}
+                  alt={guide.title}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="400"
+                  height="176"
+                />
+                <span class="absolute top-3 left-3 bg-[#00277C] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+                  {guide.category}
+                </span>
+              </div>
+              <div class="p-4 flex flex-col gap-2 flex-1">
+                <h3 class="font-bold text-[var(--color-text-primary)] text-sm leading-snug group-hover:text-[#00277C] transition-colors line-clamp-2">
+                  {guide.title}
+                </h3>
+                <p class="text-xs text-[var(--color-text-secondary)] line-clamp-2">
+                  {guide.summary}
+                </p>
+                <div class="mt-auto pt-2 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>{guide.readingTime}</span>
+                  <span class="font-semibold text-[#00277C] group-hover:underline">Read Guide →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   {relatedPackages.length > 0 && (
     <section class="py-14 bg-[var(--color-surface)]">
       <div class="container-site">

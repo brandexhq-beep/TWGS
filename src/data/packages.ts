@@ -860,7 +860,39 @@ export const PACKAGES: Package[] = [
       { day: 4, title: "Badrinath → Dehradun", description: "Breakfast at hotel. Final darshan, subject to schedule. Helicopter transfer to Dehradun. Tour concludes.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
     ]
   },
-  {
+    {
+    id: "pkg-south-temples",
+    slug: "south-india-temple-grand-trail",
+    name: "Grand South Temple Heritage Trail",
+    tagline: "Madurai Meenakshi, Rameshwaram, Kanyakumari & Thanjavur Chola Temples",
+    category: ["domestic", "india", "pilgrimage", "family", "luxury"],
+    featured: true,
+    heroImage: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1200&q=80&fm=webp",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1200&q=80&fm=webp",
+      "/images/ayodhya-kashi.webp"
+    ],
+    destination: "Madurai, Rameshwaram, Kanyakumari & Thanjavur",
+    country: "India",
+    duration: { days: 6, nights: 5 },
+    priceFrom: 22999,
+    maxGroupSize: 18,
+    highlights: ["Madurai Meenakshi Amman Temple", "Ramanathaswamy Jyotirlinga 22 Theertham Bath", "Dhanushkodi Border", "Brihadeeswarar UNESCO Temple"],
+    includes: ["Heritage & Premium Hotel Stays", "Daily Breakfast & Traditional Dinners", "AC Chauffeur Vehicle", "Temple Guide Services", "VIP Darshan Assistance"],
+    excludes: ["Flight/Train Tickets", "Camera Fees", "Personal Expenses"],
+    seasons: ["All Year"],
+    rating: 4.88,
+    reviewCount: 165,
+    itinerary: [
+      { day: 1, title: "Madurai Arrival & Meenakshi Temple", description: "Arrival at Madurai Airport/Station. Check-in and evening visit to the architectural marvel of Meenakshi Sundareswarar Temple with special evening pooja.", highlights: ["Meenakshi Temple", "Evening Pooja"], meals: ["dinner"], stay: "Madurai" },
+      { day: 2, title: "Madurai → Rameshwaram", description: "Drive to sacred island of Rameshwaram via Pamban Sea Bridge. Visit Ramanathaswamy Temple, bathe in the 22 sacred wells (Theerthams), and perform prayers at the Jyotirlinga shrine.", highlights: ["Pamban Bridge", "22 Theerthams", "Rameshwaram Jyotirlinga"], meals: ["breakfast", "dinner"], stay: "Rameshwaram" },
+      { day: 3, title: "Dhanushkodi & Kanyakumari", description: "Early morning drive to Dhanushkodi ghost town and Ram Setu viewpoint. Scenic coastal drive to Kanyakumari (Triveni Sangam of 3 oceans) for spectacular sunset views.", highlights: ["Dhanushkodi", "Ram Setu", "Kanyakumari Sunset"], meals: ["breakfast", "dinner"], stay: "Kanyakumari" },
+      { day: 4, title: "Kanyakumari → Chettinad / Thanjavur", description: "Witness the magnificent sunrise, visit Vivekananda Rock Memorial by ferry, and Thiruvalluvar Statue. Drive to UNESCO Great Living Chola Temples in Thanjavur.", highlights: ["Vivekananda Rock", "Brihadeeswarar Temple"], meals: ["breakfast", "dinner"], stay: "Thanjavur" },
+      { day: 5, title: "Thanjavur → Tiruchirappalli (Trichy)", description: "Visit Srirangam Ranganathaswamy Temple (largest active temple complex in the world) and the historic Rockfort Ucchi Pillayar Temple.", highlights: ["Srirangam Temple", "Rockfort"], meals: ["breakfast", "dinner"], stay: "Trichy" },
+      { day: 6, title: "Trichy Departure", description: "Breakfast at hotel, traditional temple souvenir shopping, and transfer to Trichy or Madurai airport for flight home.", highlights: ["Departure"], meals: ["breakfast"], stay: "N/A" }
+    ]
+  },
+{
     id: "pkg-vietnam-7d6n",
     slug: "vietnam-7d6n-explorer",
     name: "Vietnam Explorer — Hanoi, Halong Bay & Da Nang",
