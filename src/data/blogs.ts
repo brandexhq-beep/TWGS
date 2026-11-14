@@ -53,6 +53,447 @@ const PAVAN_AUTHOR = {
 
 export const BLOGS: BlogPost[] = [
   {
+    slug: "the-man-wanders-globe-tours-bengaluru-travel-agency-story",
+    title: "The Man Wanders Globe Tours: The Story, Vision & Philosophy Behind Bengaluru's Premier Travel Agency",
+    subtitle: "From personalized European adventures to seamless visa concierges, learn why discerning Indian travellers trust The Man Wanders Globe Tours.",
+    summary: "Discover the authentic story behind The Man Wanders Globe Tours (Frontier Travel & Hospitality Solutions Pvt Ltd). Learn about founder Chandan .S, our Bengaluru headquarters on Magadi Road, our guest-first philosophy, and how we distinguish ourselves from legacy mass-market operators.",
+    heroImage: "/images/blog/brand-experience-travel.webp",
+    publishedDate: "2026-11-14T10:00:00+05:30",
+    modifiedDate: "2026-11-14T12:00:00+05:30",
+    readingTime: "9 min read",
+    category: "Brand Story & Trust",
+    tags: [
+      "The Man Wanders Globe Tours",
+      "About Wander Globe Tours",
+      "The Man Wanders Globe Bengaluru",
+      "Travel Agency In Bengaluru Magadi Road",
+      "Bespoke Luxury Travel Agency India",
+      "Frontier Travel And Hospitality Solutions",
+      "The Man Wanders Globe Reviews"
+    ],
+    author: CHANDAN_AUTHOR,
+    keyTakeaways: [
+      "The Man Wanders Globe Tours (TWGS) is an independent bespoke luxury travel company operated by Frontier Travel & Hospitality Solutions Private Limited in Bengaluru.",
+      "Headquartered near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, serving clients across Karnataka and India.",
+      "Completely independent with zero affiliation to northern Indian legacy entities such as Wander Globe Inc. or wanderglobe.in.",
+      "Maintains a 4.9★ guest satisfaction rating across 5,000+ domestic and international travellers.",
+      "Offers dedicated 24/7 human travel concierge, 99.2% visa approval rate, and transparent itemized pricing."
+    ],
+    content: [
+      {
+        heading: "1. The Genesis: Why The Man Wanders Globe Tours Was Founded",
+        bodyHtml: `<p>In an age where travel booking has been reduced to impersonal algorithms and cookie-cutter holiday packages, <strong>The Man Wanders Globe Tours (TWGS)</strong> was established with a radically different conviction: <em>every journey should be an unforgettable, human-crafted narrative</em>.</p>
+<p>Founded by passionate globetrotter <strong>Chandan .S</strong> in Bengaluru, Karnataka, The Man Wanders Globe Tours was born from first-hand frustrations with traditional travel agencies. Too often, Indian families and honeymooners were subjected to rushed group bus tours, rigid schedules, sub-par Indian food catering in remote European towns, and hidden surcharge surprises.</p>
+<div class="callout-box">
+  <p class="font-semibold text-emerald-950 mb-1">Our Core Mission</p>
+  <p class="text-emerald-900 text-sm">To handle 100% of the friction — visa filings, flights, premium transfers, vetted boutique stays, and localized experiences — so our guests can simply wander with peace of mind.</p>
+</div>
+<p>Today, operated under <strong>Frontier Travel & Hospitality Solutions Private Limited</strong>, our travel desk on Magadi Main Road, Bengaluru serves as the planning command center for thousands of travelers embarking on luxury international holidays and sacred domestic yatras.</p>`
+      },
+      {
+        heading: "2. Setting the Record Straight: Official Entity Verification",
+        bodyHtml: `<p>As our digital footprint and word-of-mouth reputation have expanded across Bengaluru, Mumbai, and Delhi, travellers frequently search for our brand under various terms like <em>"The Man Wanders Globe"</em>, <em>"About Wander Globe Tours"</em>, or <em>"TWGS Travel"</em>.</p>
+<div class="warning-box">
+  <p class="font-semibold text-amber-950 mb-1">Entity Disambiguation Notice</p>
+  <p class="text-amber-900 text-sm"><strong>The Man Wanders Globe Tours</strong> (www.themanwandersglobetours.com) is an independent Bengaluru-headquartered private limited entity. We have <strong>no affiliation, partnership, or corporate relationship</strong> with third-party legacy tour operators like Wander Globe Inc. or wanderglobe.in based in New Delhi, Faridabad, or Goa.</p>
+</div>
+<p>To verify our official identity and credentials, our guests can review our registered corporate profile:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Official Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Brand Name</strong></td>
+      <td>The Man Wanders Globe Tours (TWGS)</td>
+    </tr>
+    <tr>
+      <td><strong>Operating Legal Entity</strong></td>
+      <td>Frontier Travel & Hospitality Solutions Private Limited</td>
+    </tr>
+    <tr>
+      <td><strong>Registered Headquarters</strong></td>
+      <td>Near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India</td>
+    </tr>
+    <tr>
+      <td><strong>Primary Direct Desk</strong></td>
+      <td>+91 98457 07423 / +91 90719 71123</td>
+    </tr>
+    <tr>
+      <td><strong>Official Digital Channels</strong></td>
+      <td>Website: <a href="https://www.themanwandersglobetours.com">themanwandersglobetours.com</a> | Instagram: <a href="https://www.instagram.com/theman_wandersglobetours/">@theman_wandersglobetours</a></td>
+    </tr>
+  </tbody>
+</table>`
+      },
+      {
+        heading: "3. What Makes Our Curated Journeys Different?",
+        bodyHtml: `<p>We do not sell pre-packaged, mass-manufactured group coupons. Here is why discerning travelers across India choose The Man Wanders Globe Tours:</p>
+<ul>
+  <li><strong>100% Tailor-Made Itineraries:</strong> Whether it is a 15-day Grand Europe tour with Eurail scenic trains or a 5-day private yacht proposal in Dubai Marina, your trip is designed around your unique pace, budget, and culinary preferences.</li>
+  <li><strong>24/7 Human WhatsApp Concierge:</strong> When you travel internationally, you don't talk to a chatbot. A dedicated personal tour manager monitors your flight transitions, private transfers, and hotel check-ins in real time.</li>
+  <li><strong>In-House Visa Audit Desk:</strong> With a <strong>99.2% approval record</strong> for Schengen, UK, US, Japan, and Singapore visas, our visa specialists vet every financial document and cover letter before submission.</li>
+  <li><strong>Transparent Itemized Pricing:</strong> What you see is what you pay. No hidden resort taxes, surprise vehicle fuel charges, or unannounced driver tips.</li>
+</ul>`
+      },
+      {
+        heading: "4. Our Leadership & Experience Strategy",
+        bodyHtml: `<p>Behind The Man Wanders Globe Tours is a seasoned leadership team combining deep travel passion with global category excellence:</p>
+<ul>
+  <li><strong>Chandan .S (Founder & CEO):</strong> Globetrotter and travel architect who has personally explored over 30 countries and designed holidays for 5,000+ Indian families.</li>
+  <li><strong>Pavan Diwakar (Head of Brand Experience & Growth):</strong> Former category management and brand strategy leader (Kraft Heinz, PepsiCo, Target), bringing corporate-grade customer satisfaction standards and strategic luxury partnerships to Indian tourism.</li>
+  <li><strong>Praveen Kumar (Chief of Technology & International Sales):</strong> Engineering seamless booking workflows, high-speed itinerary visualizers, and instant client coordination.</li>
+</ul>
+<div class="tip-box">
+  <p class="font-semibold text-blue-950 mb-1">Visit Us In Person</p>
+  <p class="text-blue-900 text-sm">Planning an upcoming honeymoon, family vacation, or corporate offsite? Visit our Bengaluru travel lounge on Magadi Main Road or connect with our concierge team over WhatsApp at <strong>+91 98457 07423</strong>.</p>
+</div>`
+      }
+    ],
+    faqs: [
+      {
+        question: "Who is The Man Wanders Globe Tours?",
+        answer: "The Man Wanders Globe Tours is a Bengaluru-based bespoke travel agency and luxury tour operator (operated by Frontier Travel & Hospitality Solutions Private Limited). We curate customized international holidays, domestic Indian packages, luxury honeymoon trips, and VIP helicopter pilgrimage yatras."
+      },
+      {
+        question: "Is The Man Wanders Globe Tours affiliated with wanderglobe.in?",
+        answer: "No. The Man Wanders Globe Tours (www.themanwandersglobetours.com) is an independent private limited company headquartered in Bengaluru, Karnataka, India. It has zero corporate affiliation, partnership, or connection with Wander Globe Inc. (wanderglobe.in) based in Delhi/Goa."
+      },
+      {
+        question: "Where is The Man Wanders Globe Tours located in Bengaluru?",
+        answer: "Our head office is located near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India. We are open Monday to Saturday from 10:00 AM to 7:00 PM."
+      },
+      {
+        question: "How can I book a tour with The Man Wanders Globe Tours?",
+        answer: "You can book directly by browsing our packages online at www.themanwandersglobetours.com, calling our travel desk at +91 98457 07423 or +91 90719 71123, or messaging our 24/7 WhatsApp concierge."
+      }
+    ],
+    relatedPackagesSlugs: [
+      "europe-15-days-grand-tour",
+      "dubai-5d4n",
+      "bali-5d4n",
+      "vietnam-7d6n-explorer"
+    ],
+    relatedDestinationsSlugs: [
+      "europe",
+      "dubai",
+      "bali",
+      "vietnam"
+    ]
+  },
+  {
+    slug: "best-international-holiday-packages-from-bengaluru-direct-flights-guide",
+    title: "10 Best International Holiday Packages from Bengaluru (2026/2027): Direct Flights, Visa Rules & Budget Breakdown",
+    subtitle: "Skip tiring layovers! Here are the top 10 international holiday destinations flying direct from Kempegowda International Airport (BLR).",
+    summary: "Discover the best international tour packages departing directly from Bengaluru (BLR). Complete with direct airline flight times, visa requirements, ideal durations, and all-inclusive INR cost estimates for Dubai, Singapore, Bali, Thailand, Vietnam, and Europe.",
+    heroImage: "/images/blog/best-international-packages-bengaluru.webp",
+    publishedDate: "2026-11-14T11:00:00+05:30",
+    modifiedDate: "2026-11-14T12:30:00+05:30",
+    readingTime: "11 min read",
+    category: "Bengaluru Travel Desk",
+    tags: [
+      "International Tour Packages From Bangalore",
+      "Best International Trips From Bengaluru",
+      "Kempegowda Airport Direct International Flights",
+      "Bangalore To Dubai Tour Package",
+      "Bangalore To Vietnam Direct Package",
+      "Bangalore To Bali Flights Cost",
+      "The Man Wanders Globe Tours Bangalore"
+    ],
+    author: PAVAN_AUTHOR,
+    keyTakeaways: [
+      "Bengaluru's Kempegowda International Airport (BLR) offers direct international flights to Dubai, Singapore, Bangkok, Phuket, Kuala Lumpur, and direct European hubs like Paris, London & Frankfurt.",
+      "Southeast Asia destinations (Thailand, Vietnam, Bali) offer the highest vacation ROI under ₹45,000–₹65,000 per person.",
+      "Visa-on-arrival or instant e-Visas are available for Indian passport holders traveling to Thailand (visa-exempt), Vietnam (e-Visa in 72h), and Bali (30-day e-VOA).",
+      "The Man Wanders Globe Tours provides airport-to-airport custom planning with private transfers and curated Indian meals."
+    ],
+    content: [
+      {
+        heading: "1. Why Direct Departures from Bengaluru (BLR) Are in Peak Demand",
+        bodyHtml: `<p>Kempegowda International Airport (BLR) has emerged as India's premier southern aviation gateway. For busy tech entrepreneurs, corporate professionals, and families in Bengaluru, saving 6 to 10 hours of domestic hub layovers (via Mumbai or Delhi) means spending more vacation time on the beach or exploring ancient cultural alleys.</p>
+<p>At <strong>The Man Wanders Globe Tours</strong>, our travel planners specialize in architecting holidays that sync seamlessly with direct BLR flight departures on Emirates, Singapore Airlines, AirAsia, IndiGo, and VietJet.</p>`
+      },
+      {
+        heading: "2. Top 5 Direct International Destinations from Bengaluru",
+        bodyHtml: `<table>
+  <thead>
+    <tr>
+      <th>Destination</th>
+      <th>BLR Direct Flight Time</th>
+      <th>Visa Requirement</th>
+      <th>Avg Package Cost (Per Person)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Dubai & Abu Dhabi</strong></td>
+      <td>4 hrs 15 mins (Emirates / IndiGo)</td>
+      <td>48-Hour e-Visa</td>
+      <td>₹44,999 – ₹75,000</td>
+    </tr>
+    <tr>
+      <td><strong>Vietnam (Hanoi & Da Nang)</strong></td>
+      <td>4 hrs 45 mins (VietJet)</td>
+      <td>3-Day Online e-Visa</td>
+      <td>₹39,999 – ₹62,000</td>
+    </tr>
+    <tr>
+      <td><strong>Thailand (Bangkok & Phuket)</strong></td>
+      <td>3 hrs 55 mins (Thai Airways / IndiGo)</td>
+      <td>Visa-Exempt / Fast VOA</td>
+      <td>₹28,999 – ₹48,000</td>
+    </tr>
+    <tr>
+      <td><strong>Singapore</strong></td>
+      <td>4 hrs 30 mins (Singapore Airlines / IndiGo)</td>
+      <td>Paperless e-Visa (3-4 Days)</td>
+      <td>₹49,999 – ₹85,000</td>
+    </tr>
+    <tr>
+      <td><strong>Bali, Indonesia</strong></td>
+      <td>1-Stop via SIN/KUL (7 hrs)</td>
+      <td>Instant e-VOA on Arrival</td>
+      <td>₹32,999 – ₹58,000</td>
+    </tr>
+  </tbody>
+</table>`
+      },
+      {
+        heading: "3. Direct Flights to Europe: Paris, Frankfurt & Amsterdam",
+        bodyHtml: `<p>For European wanderers, Air France, Lufthansa, and KLM operate direct wide-body flights connecting BLR directly to Charles de Gaulle (CDG), Frankfurt (FRA), and Amsterdam (AMS). This eliminates baggage re-check hassles and allows you to wake up fresh in Europe.</p>
+<div class="tip-box">
+  <p class="font-semibold text-blue-950 mb-1">BLR European Visa Tip</p>
+  <p class="text-blue-900 text-sm">VFS Global in Bengaluru (Gopalan Innovation Mall, Bannerghatta Road) processes Schengen applications for France, Switzerland, Germany, and Italy. Book your appointment 60 to 90 days before your departure date.</p>
+</div>`
+      }
+    ],
+    faqs: [
+      {
+        question: "Which international destinations have direct flights from Bengaluru?",
+        answer: "BLR airport has direct international flights to Dubai, Abu Dhabi, Doha, Singapore, Bangkok, Phuket, Kuala Lumpur, Male (Maldives), Paris, Frankfurt, London, and Tokyo."
+      },
+      {
+        question: "What is the cheapest international tour package from Bangalore?",
+        answer: "Thailand (Bangkok & Pattaya or Phuket) and Vietnam (Hanoi & Halong Bay) are typically the most budget-friendly, starting between ₹28,999 and ₹39,999 per person for 5 to 7 days excluding flights."
+      },
+      {
+        question: "Does The Man Wanders Globe Tours assist with visas in Bangalore?",
+        answer: "Yes, The Man Wanders Globe Tours provides comprehensive visa assistance from our Bengaluru office, including document audit, appointment scheduling at Bangalore VFS, and cover letter preparation."
+      }
+    ],
+    relatedPackagesSlugs: [
+      "vietnam-7d6n-explorer",
+      "dubai-5d4n",
+      "bali-5d4n",
+      "thailand-bangkok-pattaya",
+      "europe-15-days-grand-tour"
+    ],
+    relatedDestinationsSlugs: [
+      "vietnam",
+      "dubai",
+      "bali",
+      "thailand",
+      "europe"
+    ]
+  },
+  {
+    slug: "dubai-bali-luxury-yacht-proposal-packages-cost-from-india",
+    title: "How to Plan a Dream Yacht Proposal in Dubai or Bali: Cost, Booking & Logistics Guide for Indian Couples",
+    subtitle: "Everything you need to know about private yacht rentals, floral setups, photography, and realistic costs for an unforgettable romantic proposal.",
+    summary: "Dreaming of proposing on a luxury yacht at sunset? Learn how to plan the ultimate private yacht proposal in Dubai Marina or Bali's Jimbaran Bay, covering yacht sizes, floral arch arrangements, drone videography, permits, and complete package pricing from India.",
+    heroImage: "/images/blog/dubai-winter-new-year-yacht.webp",
+    publishedDate: "2026-11-14T11:30:00+05:30",
+    modifiedDate: "2026-11-14T12:45:00+05:30",
+    readingTime: "10 min read",
+    category: "Romantic & Luxury Travel",
+    tags: [
+      "Yacht Proposal Dubai Cost",
+      "Private Yacht Booking Dubai For Proposal",
+      "Bali Yacht Date Sunset",
+      "Romantic Proposal Trips From India",
+      "Dubai Marina Luxury Yacht Cruise",
+      "The Man Wanders Globe Tours Yacht Packages"
+    ],
+    author: CHANDAN_AUTHOR,
+    keyTakeaways: [
+      "Dubai Marina and Bali (Nusa Dua/Jimbaran) are the world's top two destinations for private luxury yacht proposals.",
+      "A 2-hour private yacht cruise in Dubai with customized floral arch, marquee 'Marry Me' letters, and champagne setup costs between ₹45,000 and ₹85,000.",
+      "The best time for yacht proposals in Dubai is golden hour (4:30 PM to 6:30 PM) during the winter season (November to March).",
+      "The Man Wanders Globe Tours handles end-to-end secret coordination, including professional photographers and discreet crew setups."
+    ],
+    content: [
+      {
+        heading: "1. The Rising Phenomenon of Destination Yacht Proposals",
+        bodyHtml: `<p>Getting down on one knee against the sparkling skyline of the Dubai Marina or the dramatic limestone sea cliffs of Bali has become the gold standard for romantic Indian proposals. More than 40% of our couple inquiries at <strong>The Man Wanders Globe Tours</strong> now request bespoke secret proposal arrangements.</p>
+<p>Unlike standard dinner dates, a private yacht charter offers complete intimacy, tailored music playlists, breathtaking sunset backdrops, and cinematic drone footage.</p>`
+      },
+      {
+        heading: "2. Cost Breakdown: Dubai Marina Private Yacht Proposal",
+        bodyHtml: `<table>
+  <thead>
+    <tr>
+      <th>Service Component</th>
+      <th>Standard Experience</th>
+      <th>Ultra-Luxury VIP Experience</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Yacht Charter (2 Hours)</strong></td>
+      <td>48-ft Luxury Motor Yacht (₹22,000 – ₹32,000)</td>
+      <td>70-ft Triple-Deck Superyacht (₹55,000 – ₹85,000)</td>
+    </tr>
+    <tr>
+      <td><strong>Floral Decor & 'Marry Me' Sign</strong></td>
+      <td>Red rose arch + LED candle path (₹15,000)</td>
+      <td>Full deck rose installation + 4ft marquee letters (₹35,000)</td>
+    </tr>
+    <tr>
+      <td><strong>Professional Photography & Drone</strong></td>
+      <td>1 Photographer, 40 edited photos (₹18,000)</td>
+      <td>Cinematic 4K drone + highlight teaser video (₹38,000)</td>
+    </tr>
+    <tr>
+      <td><strong>Culinary & Celebration</strong></td>
+      <td>Champagne, chocolate strawberries & cake (₹8,000)</td>
+      <td>Private onboard chef 4-course dinner (₹25,000)</td>
+    </tr>
+    <tr>
+      <td><strong>Estimated Total (INR)</strong></td>
+      <td><strong>₹63,000 – ₹75,000</strong></td>
+      <td><strong>₹1,50,000 – ₹1,85,000</strong></td>
+    </tr>
+  </tbody>
+</table>`
+      },
+      {
+        heading: "3. How The Man Wanders Globe Tours Coordinates Secret Proposals",
+        bodyHtml: `<p>The most nerve-wracking part of planning a proposal abroad is keeping it a surprise. When you book a proposal trip with us:</p>
+<ul>
+  <li><strong>Discreet Invoicing & Communication:</strong> All coordination happens on a private secondary channel so your partner never suspects a thing.</li>
+  <li><strong>Flawless Alibi:</strong> We present the experience as a casual sunset sightseeing cruise so they dress comfortably yet look stunning in photos.</li>
+  <li><strong>Signal Protocol:</strong> Our onboard skipper cues the romantic playlist and navigates to the exact angle in front of Atlantis The Palm or Ain Dubai right as the sun hits the horizon.</li>
+</ul>`
+      }
+    ],
+    faqs: [
+      {
+        question: "How much does a yacht proposal in Dubai cost from India?",
+        answer: "A complete private 2-hour yacht proposal in Dubai Marina (including yacht rental, romantic floral setup, 'Marry Me' letters, cake, and professional photography) starts from approximately ₹65,000 to ₹1,50,000."
+      },
+      {
+        question: "Can The Man Wanders Globe Tours arrange a drone shoot for my proposal?",
+        answer: "Yes, we arrange licensed drone operators and cinematic videographers who capture the entire proposal moment in high-definition 4K footage."
+      },
+      {
+        question: "How far in advance should I book a yacht proposal in Dubai or Bali?",
+        answer: "We recommend booking at least 3 to 4 weeks in advance, especially for weekend sunset slots between November and February when yacht demand peaks."
+      }
+    ],
+    relatedPackagesSlugs: [
+      "dubai-5d4n",
+      "bali-5d4n"
+    ],
+    relatedDestinationsSlugs: [
+      "dubai",
+      "bali"
+    ]
+  },
+  {
+    slug: "char-dham-do-dham-yatra-helicopter-booking-guide-2027",
+    title: "Char Dham & Do Dham Yatra by Helicopter (2027 Season): Booking Window, Route Map, VIP Darshan & Cost from Bengaluru",
+    subtitle: "A complete practical guide for senior citizens and families undertaking Kedarnath, Badrinath, Gangotri & Yamunotri by helicopter.",
+    summary: "Planning the sacred Char Dham or Do Dham Yatra by helicopter for the 2027 pilgrimage season? Get exact booking timeline details, Dehradun helipad logistics, VIP darshan passes, weight restrictions, medical advisories, and package costs for devotees traveling from Bengaluru and South India.",
+    heroImage: "/images/blog/char-dham-helicopter-guide.webp",
+    publishedDate: "2026-11-14T12:00:00+05:30",
+    modifiedDate: "2026-11-14T13:00:00+05:30",
+    readingTime: "12 min read",
+    category: "Pilgrimage & Spiritual Tours",
+    tags: [
+      "Char Dham Yatra By Helicopter 2027",
+      "Do Dham Helicopter Booking Kedarnath Badrinath",
+      "Char Dham Helicopter Cost From Bangalore",
+      "VIP Darshan Kedarnath Badrinath",
+      "Senior Citizen Friendly Char Dham",
+      "The Man Wanders Globe Tours Pilgrimage"
+    ],
+    author: CHANDAN_AUTHOR,
+    keyTakeaways: [
+      "Char Dham by helicopter compresses an arduous 10-to-12-day road journey into a comfortable 5-day spiritual circuit starting and concluding in Dehradun.",
+      "Do Dham Yatra (Kedarnath & Badrinath) can be completed in just 2 to 3 days, ideal for working professionals and senior citizens.",
+      "Helicopter tickets for the 2027 May-June season open for registration between January and March; early booking is mandatory due to strict DGCA slot caps.",
+      "Packages include luxury hotel stays, all vegetarian meals, VIP darshan slips, and specialized local handling at high altitude."
+    ],
+    content: [
+      {
+        heading: "1. The Sacred Himalayan Journey: Road vs Helicopter",
+        bodyHtml: `<p>Undertaking the sacred <strong>Char Dham Yatra</strong> (Yamunotri, Gangotri, Kedarnath, and Badrinath) is one of the highest spiritual aspirations for Indian families. However, the high-altitude Himalayan terrain, steep trekking trails (like the 16 km climb to Kedarnath), and unpredictable landslides make the traditional road route physically exhausting for elderly parents and senior citizens.</p>
+<p>Helicopter pilgrimage tours operated with authorized DGCA aviation partners eliminate 90% of the physical strain, providing direct helipad access, comfortable hotel bases, and coordinated VIP temple entry passes.</p>`
+      },
+      {
+        heading: "2. Do Dham vs Char Dham by Helicopter: Cost & Duration Comparison",
+        bodyHtml: `<table>
+  <thead>
+    <tr>
+      <th>Package Type</th>
+      <th>Duration</th>
+      <th>Key Shrines Covered</th>
+      <th>Approx. Cost (Per Person)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Do Dham Yatra by Helicopter</strong></td>
+      <td>3 Nights / 4 Days</td>
+      <td>Kedarnath Ji & Badrinath Ji</td>
+      <td>₹1,15,000 – ₹1,50,000</td>
+    </tr>
+    <tr>
+      <td><strong>Char Dham Yatra by Helicopter</strong></td>
+      <td>5 Nights / 6 Days</td>
+      <td>Yamunotri, Gangotri, Kedarnath & Badrinath</td>
+      <td>₹1,95,000 – ₹2,35,000</td>
+    </tr>
+  </tbody>
+</table>`
+      },
+      {
+        heading: "3. Essential Preparation for Bangalore & South Indian Travellers",
+        bodyHtml: `<p>Devotees traveling from Karnataka and South India should note the following logistical steps:</p>
+<ul>
+  <li><strong>Flight to Dehradun (Jolly Grant DED):</strong> Take a morning flight from Bengaluru (BLR) to Dehradun (direct flights operated by IndiGo take 2 hrs 50 mins). Rest overnight in Dehradun before your dawn helicopter departure.</li>
+  <li><strong>Weight Limit:</strong> Strict DGCA aviation safety protocols cap passenger baggage at 5 kg per person in soft duffel bags. Heavy hard-shell suitcases are safely stored at the Dehradun hotel base.</li>
+  <li><strong>Medical Fitness:</strong> Kedarnath sits at an altitude of 11,755 ft. Devotees with cardiovascular conditions should carry oxygen pulse oximeters and doctor-prescribed acclimatization medications.</li>
+</ul>`
+      }
+    ],
+    faqs: [
+      {
+        question: "When does Char Dham helicopter booking open for 2027?",
+        answer: "Advance registration typically opens between January and March for the May–June season. Due to strict slot limitations mandated by DGCA, booking 3 to 5 months in advance is strongly recommended."
+      },
+      {
+        question: "Is Char Dham by helicopter suitable for senior citizens above 70?",
+        answer: "Yes, it is the safest and most comfortable option for senior citizens because it bypasses the strenuous 16-km trek to Kedarnath, providing helipad transfers, pony/palki support, and VIP priority darshan passes."
+      },
+      {
+        question: "Does The Man Wanders Globe Tours arrange flights from Bangalore to Dehradun?",
+        answer: "Yes, we handle complete doorstep-to-temple arrangements, including Bangalore to Dehradun flights, 5-star hotel stays in Dehradun, helicopter charters, and VIP temple darshan coordination."
+      }
+    ],
+    relatedPackagesSlugs: [
+      "char-dham-yatra-helicopter",
+      "do-dham-yatra-helicopter",
+      "ayodhya-kashi-spiritual-yatra"
+    ],
+    relatedDestinationsSlugs: [
+      "kashmir"
+    ]
+  },
+  {
     slug: "dubai-winter-new-year-yacht-proposal-guide",
     title: "Dubai in Winter (2026/2027): New Year Fireworks, Private Yacht Proposals & 5-Day Itinerary",
     subtitle: "From Burj Khalifa VIP access and private Marina yacht charters to Red Dune desert safaris, here is your winter luxury blueprint.",

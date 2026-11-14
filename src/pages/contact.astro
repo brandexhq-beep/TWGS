@@ -3,6 +3,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import { SITE } from '../data/site';
+import { getContactPageSchema } from '../lib/schema';
 
 const canonicalUrl = `${SITE.url}/contact`;
 const breadcrumb = {
@@ -13,14 +14,16 @@ const breadcrumb = {
     { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": canonicalUrl },
   ]
 };
+
+const contactPageSchema = getContactPageSchema(canonicalUrl);
 ---
 
 <BaseLayout
-  title={`Contact Us — Plan Your Dream Trip | ${SITE.name}`}
-  description="Get in touch with The Man Wanders Globe. Call, email, WhatsApp or visit us. Our travel specialists are ready to help you plan your perfect journey anywhere in the world."
+  title={`Contact The Man Wanders Globe Tours | Bengaluru Office & Phone`}
+  description="Contact The Man Wanders Globe Tours in Bengaluru. Call +91 98457 07423, WhatsApp, email, or visit our Magadi Main Road office to plan your personalized holiday."
   canonicalUrl={canonicalUrl}
   pageType="ContactPage"
-  structuredData={breadcrumb}
+  structuredData={[breadcrumb, contactPageSchema]}
 >
   <!-- Page hero -->
   <div class="relative pt-32 pb-16 bg-[var(--color-accent-secondary)] overflow-hidden">
@@ -31,9 +34,12 @@ const breadcrumb = {
     </div>
     <div class="container-site relative z-10">
       <span class="text-eyebrow block mb-4">Get In Touch</span>
-      <h1 class="text-display-xl text-white mb-4">Let's plan<br/><em class="not-italic" style="color: var(--color-luxury);">your journey.</em></h1>
-      <p class="text-body-lg text-white/70 max-w-lg">
-        Whether you have a dream destination in mind or need inspiration from scratch, we're here to help.
+      <h1 class="text-display-xl text-white mb-4">
+        Contact The Man Wanders Globe Tours:<br/>
+        <em class="not-italic" style="color: var(--color-luxury);">Bengaluru Office & Travel Desk.</em>
+      </h1>
+      <p class="text-body-lg text-white/80 max-w-lg">
+        Whether you have a dream destination in mind or need inspiration from scratch, our Bengaluru travel specialists are here to assist.
       </p>
     </div>
   </div>

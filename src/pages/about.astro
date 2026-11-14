@@ -2,6 +2,7 @@
 // pages/about.astro — The Journey Behind TheMan WandersGlobe Tours
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+import { getAboutPageSchema, getFAQPageSchema } from '../lib/schema';
 
 const stats = [
   { value: `${SITE.stats.yearsInBusiness}+`, label: 'Years Experience', icon: '🏆' },
@@ -128,31 +129,55 @@ const breadcrumb = {
   "@id": `${canonicalUrl}#breadcrumb`,
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE.url}/` },
-    { "@type": "ListItem", "position": 2, "name": "About Us", "item": canonicalUrl },
+    { "@type": "ListItem", "position": 2, "name": "About The Man Wanders Globe Tours", "item": canonicalUrl },
   ]
 };
+
+const aboutPageSchema = getAboutPageSchema(canonicalUrl);
+
+// Entity Disambiguation & Verification FAQs
+const entityFaqs = [
+  {
+    question: "Who is The Man Wanders Globe Tours?",
+    answer: "The Man Wanders Globe Tours is a premier bespoke travel agency and luxury tour operator headquartered in Bengaluru, Karnataka (operated by Frontier Travel & Hospitality Solutions Private Limited). We curate customized international holidays, domestic Indian packages, luxury honeymoon trips, and VIP helicopter pilgrimage yatras."
+  },
+  {
+    question: "Is The Man Wanders Globe Tours affiliated with wanderglobe.in or Wander Globe Inc.?",
+    answer: "No. The Man Wanders Globe Tours (www.themanwandersglobetours.com) is an independent private limited company headquartered exclusively in Bengaluru, Karnataka, India. We have no affiliation, partnership, or corporate connection with northern Indian legacy operators such as Wander Globe Inc. or wanderglobe.in based in Delhi/Faridabad/Goa."
+  },
+  {
+    question: "Where is The Man Wanders Globe Tours headquartered?",
+    answer: "Our head office is located near SBI Road, Chikkagollarahatti, Magadi Main Road, Bengaluru, Karnataka 562162, India. Our travel planners assist travellers in person at our Bengaluru travel desk, as well as digitally across India via phone (+91 98457 07423 / +91 90719 71123) and 24/7 WhatsApp concierge."
+  },
+  {
+    question: "What travel services does The Man Wanders Globe Tours provide?",
+    answer: "We provide complete end-to-end travel solutions: hand-crafted international holiday packages (Europe, Switzerland, Dubai, Bali, Vietnam, Japan, Iceland), domestic Indian tours (Kashmir, Himachal, Rajasthan, South India temple trails), spiritual helicopter yatras (Char Dham, Do Dham), and a 99.2% success rate tourist and business visa concierge."
+  }
+];
+
+const faqSchema = getFAQPageSchema(entityFaqs);
 ---
 
 <BaseLayout
-  title={`About Us — Bespoke Travel Agency | ${SITE.name}`}
-  description="Discover the journey behind TheMan WandersGlobe Tours — our story, vision, mission, and the specialist team crafting bespoke domestic & international travel experiences across India."
+  title={`About The Man Wanders Globe Tours | Bespoke Travel Agency Bengaluru`}
+  description="Discover The Man Wanders Globe Tours (Frontier Travel & Hospitality Solutions Pvt Ltd) — Bengaluru's trusted bespoke travel agency for international & domestic holiday planning."
   canonicalUrl={canonicalUrl}
   pageType="AboutPage"
-  structuredData={breadcrumb}
+  structuredData={[breadcrumb, aboutPageSchema, faqSchema]}
 >
   <!-- Hero Section -->
   <div class="relative pt-36 pb-24 bg-[var(--color-accent-secondary)] overflow-hidden">
     <div class="container-site relative z-10">
       <span class="text-eyebrow block mb-4 text-[var(--color-luxury)]">Our Heritage & Vision</span>
       <h1 class="text-display-xl text-white mb-6 max-w-4xl font-bold">
-        The Journey Behind<br/>
-        <em class="not-italic" style="color: var(--color-luxury);">TheMan WandersGlobe Tours.</em>
+        About The Man Wanders Globe Tours:<br/>
+        <em class="not-italic" style="color: var(--color-luxury);">Bespoke Journeys Crafted for You.</em>
       </h1>
       <p class="text-body-lg text-white/80 max-w-2xl font-light leading-relaxed mb-6">
         Travel has always been more than just a journey — it is a way of learning, experiencing, and connecting deeply with the world.
       </p>
       <p class="text-xs text-white/60 mb-12 font-medium tracking-wide uppercase">
-        A proud brand of {SITE.company.legalName}
+        A proud brand of {SITE.company.legalName} • Headquartered in Bengaluru, Karnataka
       </p>
 
       <!-- Trust Stats Bar -->
@@ -389,6 +414,29 @@ const breadcrumb = {
                 </span>
               </div>
             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Entity Identity & Verification FAQs -->
+  <section class="section-padding bg-slate-50 border-t border-slate-200" aria-label="Brand Entity FAQs">
+    <div class="container-site max-w-4xl">
+      <div class="text-center mb-12">
+        <span class="text-eyebrow block mb-2 text-[var(--color-luxury)]">Official Brand Identity</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions About Our Agency</h2>
+        <p class="text-slate-600 mt-2 text-sm sm:text-base">Official facts, corporate background, and service details for The Man Wanders Globe Tours.</p>
+      </div>
+
+      <div class="space-y-4">
+        {entityFaqs.map((faq) => (
+          <div class="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-lg text-slate-900 mb-2 flex items-start gap-2">
+              <span class="text-[var(--color-luxury)] font-serif">Q.</span>
+              <span>{faq.question}</span>
+            </h3>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed pl-6">{faq.answer}</p>
           </div>
         ))}
       </div>

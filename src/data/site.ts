@@ -3,13 +3,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const SITE = {
-  name: "The Man Wanders Globe",
+  name: "The Man Wanders Globe Tours",
+  shortName: "The Man Wanders Globe",
+  acronym: "TWGS",
   tagline: "Curated Journeys, Handled Entirely",
   description:
-    "The Man Wanders Globe crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
+    "The Man Wanders Globe Tours crafts bespoke domestic and international travel experiences — every stay, transfer, and moment curated so you can simply wander.",
   url: "https://www.themanwandersglobetours.com",
   logo: "/logo.webp",
-  ogImage: "https://www.themanwandersglobetours.com/logo.webp",
+  ogImage: "https://www.themanwandersglobetours.com/og-image.webp",
 
   contact: {
     email: "tours@themanwandersglobetours.com",
@@ -40,10 +42,12 @@ export const SITE = {
 
   company: {
     legalName: "FRONTIER TRAVEL & HOSPITALITY SOLUTIONS PRIVATE LIMITED",
-    brandName: "TheMan WandersGlobe Tours",
-    businessDescription: "International & domestic tours, visa assistance, flight & hotel bookings, with future expansion into B2B travel solutions.",
-    cin: "U63040MH2024PTC000000",
-    gstin: "27AAAAA0000A1Z5",
+    brandName: "The Man Wanders Globe Tours",
+    shortName: "The Man Wanders Globe",
+    acronym: "TWGS",
+    businessDescription: "International & domestic tours, visa concierge, flight & luxury hotel bookings, and bespoke holiday experiences.",
+    cin: "U63040KA2024PTC000000",
+    gstin: "29AAAAA0000A1Z5",
     pan: "AAAAA0000A",
     established: 2020,
     founder: "Chandan .S",

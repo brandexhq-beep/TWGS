@@ -21,8 +21,18 @@ export function getOrganizationSchema() {
     "@id": `${SITE.url}/#organization`,
     "name": SITE.name,
     "legalName": SITE.company.legalName,
-    "alternateName": [SITE.company.brandName, "TWGS", "The Man Wanders Globe Tours & Travels"],
+    "alternateName": [
+      "The Man Wanders Globe",
+      "TheMan WandersGlobe",
+      "TheMan WandersGlobe Tours",
+      "TWGS",
+      "The Man Wanders Globe Tours & Travels",
+      "The Man Wanders Globe Bengaluru",
+      "Wander Globe Tours Bengaluru",
+      "The Man Wanders Globe Travel Agency"
+    ],
     "description": SITE.description,
+    "disambiguatingDescription": "The Man Wanders Globe Tours (TWGS) is an independent bespoke luxury and international travel agency headquartered in Bengaluru, Karnataka, India, operated by Frontier Travel & Hospitality Solutions Private Limited. It is distinct and unaffiliated with Wander Globe Inc. (wanderglobe.in, Delhi/Goa).",
     "url": SITE.url,
     "logo": {
       "@type": "ImageObject",
@@ -71,6 +81,10 @@ export function getOrganizationSchema() {
       SITE.social.linkedin,
     ],
     "foundingDate": String(SITE.company.established),
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Bengaluru, Karnataka, India"
+    },
     "founder": {
       "@type": "Person",
       "name": SITE.company.founder,
@@ -223,6 +237,78 @@ export function getWebPageSchema(
 /**
  * FAQ Schema Generator
  */
+/**
+ * Dedicated AboutPage Schema
+ */
+export function getAboutPageSchema(canonicalUrl: string) {
+  return {
+    "@type": "AboutPage",
+    "@id": `${canonicalUrl}#aboutpage`,
+    "url": canonicalUrl,
+    "name": "About The Man Wanders Globe Tours | Bespoke Travel Agency Bengaluru",
+    "description": "Discover the story, leadership team, and travel philosophy of The Man Wanders Globe Tours, a brand of Frontier Travel & Hospitality Solutions Private Limited based in Bengaluru.",
+    "isPartOf": { "@id": `${SITE.url}/#website` },
+    "about": { "@id": `${SITE.url}/#organization` },
+    "mainEntity": { "@id": `${SITE.url}/#organization` },
+    "inLanguage": "en-IN",
+    "breadcrumb": { "@id": `${canonicalUrl}#breadcrumb` }
+  };
+}
+
+/**
+ * Dedicated ContactPage Schema with ContactPoints
+ */
+export function getContactPageSchema(canonicalUrl: string) {
+  return {
+    "@type": "ContactPage",
+    "@id": `${canonicalUrl}#contactpage`,
+    "url": canonicalUrl,
+    "name": "Contact The Man Wanders Globe Tours | Bengaluru Office, Phone & Inquiries",
+    "description": "Contact The Man Wanders Globe Tours in Bengaluru. Reach our travel specialists via phone, WhatsApp, email, or visit our Magadi Road office.",
+    "isPartOf": { "@id": `${SITE.url}/#website` },
+    "about": { "@id": `${SITE.url}/#organization` },
+    "mainEntity": {
+      "@type": "TravelAgency",
+      "@id": `${SITE.url}/#organization`,
+      "name": SITE.name,
+      "telephone": SITE.contact.phone,
+      "email": SITE.contact.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": SITE.contact.streetAddress,
+        "addressLocality": SITE.contact.addressLocality,
+        "addressRegion": SITE.contact.addressRegion,
+        "postalCode": SITE.contact.postalCode,
+        "addressCountry": SITE.contact.addressCountry,
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": SITE.contact.geo.latitude,
+        "longitude": SITE.contact.geo.longitude,
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": SITE.contact.phone,
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Kannada", "Hindi"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": `+${SITE.contact.whatsapp}`,
+          "contactType": "reservations",
+          "contactOption": "WhatsApp Concierge",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Kannada", "Hindi"]
+        }
+      ]
+    },
+    "inLanguage": "en-IN",
+    "breadcrumb": { "@id": `${canonicalUrl}#breadcrumb` }
+  };
+}
+
 export function getFAQPageSchema(faqs: FAQItemSchema[]) {
   if (!faqs || faqs.length === 0) return null;
   return {
